@@ -1,79 +1,112 @@
 package com.dictiographer.view;
 
+import com.dictiographer.controller.ViewController;
+import com.dictiographer.model.Constants;
+import com.dictiographer.model.IndexModel;
+
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
-public class Dictiographer extends JDialog {
+public class Dictiographer extends JFrame {
+    private ViewController controller;
+
     private JPanel contentPane;
-    private JButton button1;
     private JEditorPane editorPane1;
-    private JList list1;
     private JTextField textField1;
-    private JComboBox comboBox1;
+    private JComboBox domainComboBox;
+    private JList list1;
+    private JSplitPane mainSplitPane;
 
-    /**
-     * 14763264
-     * 16252928
-     * 41379744
-     * 119468032
-     * <p/>
-     * 14763120
-     * 16252928
-     * 1767064
-     * 29548544
-     */
 
-    public Dictiographer() {
+    public Dictiographer(ViewController c) {
+        this.controller = c;
         setContentPane(contentPane);
-        setModal(true);
 
-//        System.out.println(Runtime.getRuntime().freeMemory());
-//        System.out.println(Runtime.getRuntime().totalMemory());
-//
-//        List<Integer> words = new ArrayList<Integer>();
-//        for (int i = 0; i < 1000000; i++) {
-//            words.add(i);
-//        }
-//        list1.setListData(words.toArray());
-//
-//        System.out.println(Runtime.getRuntime().freeMemory());
-//        System.out.println(Runtime.getRuntime().totalMemory());
+        int w = (int) Double.parseDouble(Constants.PROPS.getProperty(Constants.WIDTH_PROP_KEY));
+        int h = (int) Double.parseDouble(Constants.PROPS.getProperty(Constants.HEIGHT_PROP_KEY));
+        int x = (int) Double.parseDouble(Constants.PROPS.getProperty(Constants.X_POS_PROP_KEY));
+        int y = (int) Double.parseDouble(Constants.PROPS.getProperty(Constants.Y_POS_PROP_KEY));
+        int div = Integer.parseInt(Constants.PROPS.getProperty(Constants.DIVIDER_PROP_KEY));
 
-// call onCancel() when cross is clicked
+        setSize(w, h);
+        setLocation(x, y);
+        mainSplitPane.setDividerLocation(div);
+
+        String[] dns = IndexModel.getInstance().domains;
+        domainComboBox.setModel(new DefaultComboBoxModel(dns));
+        if (dns.length > 0) {
+            domainComboBox.setEnabled(true);
+        }
+
+        String selDomain = Constants.PROPS.getProperty(Constants.SELECTED_DOMAIN_PROP_KEY);
+        if (!selDomain.equals("")) {
+            domainComboBox.setSelectedItem(selDomain);
+        }
+
+        onDomainChanged();
+
+
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                onCancel();
+                controller.onClosing();
             }
         });
 
-// call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-    }
-
-
-    private void onCancel() {
-// add your code here if necessary
-        dispose();
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
+        domainComboBox.addActionListener(new ActionListener() {
             @Override
-            public void run() {
-                Dictiographer dialog = new Dictiographer();
-                dialog.pack();
-                dialog.setVisible(true);
-                System.exit(0);
+            public void actionPerformed(ActionEvent e) {
+                onDomainChanged();
             }
         });
+
+        list1.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (list1.getSelectedValue() != null) {
+                    Constants.PROPS.setProperty(Constants.SELECTED_WORD_PROP_KEY, list1.getSelectedValue().toString());
+                }
+                textField1.requestFocus();
+            }
+        });
+
+
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                textField1.requestFocus();
+            }
+        });
+
+    }
+
+    private void onDomainChanged() {
+        list1.setListData(ViewController.getInstance().getIndex(domainComboBox.getSelectedItem().toString()));
+        String selWord = Constants.PROPS.getProperty(Constants.SELECTED_WORD_PROP_KEY);
+        if (!selWord.equals("")) {
+            list1.setSelectedValue(selWord, true);
+        }
+        textField1.requestFocus();
+    }
+
+    public int getDividerLocation() {
+        return mainSplitPane.getDividerLocation();
+    }
+
+
+    public String getSelectedDomain() {
+        Object selItem = domainComboBox.getSelectedItem();
+        return selItem == null ? "" : selItem.toString();
+    }
+
+    public String getSelectedWord() {
+        Object selItem = list1.getSelectedValue();
+        return selItem == null ? "" : selItem.toString();
     }
 
     {
@@ -103,36 +136,55 @@ public class Dictiographer extends JDialog {
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
         contentPane.add(panel1, gbc);
-        final JSplitPane splitPane1 = new JSplitPane();
-        splitPane1.setDividerLocation(100);
-        panel1.add(splitPane1, BorderLayout.CENTER);
+        mainSplitPane = new JSplitPane();
+        mainSplitPane.setDividerLocation(100);
+        panel1.add(mainSplitPane, BorderLayout.CENTER);
         final JPanel panel2 = new JPanel();
         panel2.setLayout(new BorderLayout(0, 0));
-        splitPane1.setRightComponent(panel2);
+        mainSplitPane.setRightComponent(panel2);
         final JToolBar toolBar1 = new JToolBar();
         toolBar1.setFloatable(false);
         panel2.add(toolBar1, BorderLayout.NORTH);
-        button1 = new JButton();
-        button1.setText("Button");
-        toolBar1.add(button1);
+        final JToggleButton toggleButton1 = new JToggleButton();
+        toggleButton1.setIcon(new ImageIcon(getClass().getResource("/translation.png")));
+        toolBar1.add(toggleButton1);
+        final JToggleButton toggleButton2 = new JToggleButton();
+        toggleButton2.setIcon(new ImageIcon(getClass().getResource("/example.png")));
+        toolBar1.add(toggleButton2);
+        final JToggleButton toggleButton3 = new JToggleButton();
+        toggleButton3.setIcon(new ImageIcon(getClass().getResource("/link.png")));
+        toolBar1.add(toggleButton3);
+        final JToggleButton toggleButton4 = new JToggleButton();
+        toggleButton4.setIcon(new ImageIcon(getClass().getResource("/idiom.png")));
+        toolBar1.add(toggleButton4);
+        final JToggleButton toggleButton5 = new JToggleButton();
+        toggleButton5.setIcon(new ImageIcon(getClass().getResource("/image.png")));
+        toolBar1.add(toggleButton5);
+        final JToggleButton toggleButton6 = new JToggleButton();
+        toggleButton6.setIcon(new ImageIcon(getClass().getResource("/grammar.png")));
+        toolBar1.add(toggleButton6);
         final JScrollPane scrollPane1 = new JScrollPane();
+        scrollPane1.setHorizontalScrollBarPolicy(30);
         panel2.add(scrollPane1, BorderLayout.CENTER);
         editorPane1 = new JEditorPane();
+        editorPane1.setEditable(false);
         scrollPane1.setViewportView(editorPane1);
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new BorderLayout(0, 0));
-        splitPane1.setLeftComponent(panel3);
+        mainSplitPane.setLeftComponent(panel3);
+        final JPanel panel4 = new JPanel();
+        panel4.setLayout(new BorderLayout(5, 0));
+        panel3.add(panel4, BorderLayout.NORTH);
+        panel4.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(9, 3, 9, 3), null));
+        textField1 = new JTextField();
+        panel4.add(textField1, BorderLayout.CENTER);
+        domainComboBox = new JComboBox();
+        domainComboBox.setEnabled(false);
+        panel4.add(domainComboBox, BorderLayout.WEST);
         final JScrollPane scrollPane2 = new JScrollPane();
         panel3.add(scrollPane2, BorderLayout.CENTER);
         list1 = new JList();
         scrollPane2.setViewportView(list1);
-        final JPanel panel4 = new JPanel();
-        panel4.setLayout(new BorderLayout(0, 0));
-        panel3.add(panel4, BorderLayout.NORTH);
-        textField1 = new JTextField();
-        panel4.add(textField1, BorderLayout.CENTER);
-        comboBox1 = new JComboBox();
-        panel4.add(comboBox1, BorderLayout.WEST);
     }
 
     /**

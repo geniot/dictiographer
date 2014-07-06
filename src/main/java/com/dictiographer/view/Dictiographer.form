@@ -15,7 +15,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <splitpane id="98b5a">
+          <splitpane id="98b5a" binding="mainSplitPane">
             <constraints border-constraint="Center"/>
             <properties>
               <dividerLocation value="100"/>
@@ -27,7 +27,9 @@
                   <splitpane position="right"/>
                 </constraints>
                 <properties/>
-                <border type="none"/>
+                <border type="none">
+                  <size top="5" left="5" bottom="5" right="5"/>
+                </border>
                 <children>
                   <toolbar id="48646">
                     <constraints border-constraint="North"/>
@@ -36,22 +38,56 @@
                     </properties>
                     <border type="none"/>
                     <children>
-                      <component id="44bdf" class="javax.swing.JButton" binding="button1" default-binding="true">
+                      <component id="b366e" class="javax.swing.JToggleButton">
                         <constraints/>
                         <properties>
-                          <text value="Button"/>
+                          <icon value="translation.png"/>
+                        </properties>
+                      </component>
+                      <component id="f6437" class="javax.swing.JToggleButton">
+                        <constraints/>
+                        <properties>
+                          <icon value="example.png"/>
+                        </properties>
+                      </component>
+                      <component id="4a8fb" class="javax.swing.JToggleButton">
+                        <constraints/>
+                        <properties>
+                          <icon value="link.png"/>
+                        </properties>
+                      </component>
+                      <component id="a4ab7" class="javax.swing.JToggleButton">
+                        <constraints/>
+                        <properties>
+                          <icon value="idiom.png"/>
+                        </properties>
+                      </component>
+                      <component id="c1d96" class="javax.swing.JToggleButton">
+                        <constraints/>
+                        <properties>
+                          <icon value="image.png"/>
+                        </properties>
+                      </component>
+                      <component id="8a935" class="javax.swing.JToggleButton">
+                        <constraints/>
+                        <properties>
+                          <icon value="grammar.png"/>
                         </properties>
                       </component>
                     </children>
                   </toolbar>
                   <scrollpane id="d2c26">
                     <constraints border-constraint="Center"/>
-                    <properties/>
+                    <properties>
+                      <horizontalScrollBarPolicy value="30"/>
+                    </properties>
                     <border type="none"/>
                     <children>
                       <component id="12af7" class="javax.swing.JEditorPane" binding="editorPane1" default-binding="true">
                         <constraints/>
-                        <properties/>
+                        <properties>
+                          <editable value="false"/>
+                        </properties>
                       </component>
                     </children>
                   </scrollpane>
@@ -64,32 +100,36 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <scrollpane id="8637e">
-                    <constraints border-constraint="Center"/>
-                    <properties/>
-                    <border type="none"/>
-                    <children>
-                      <component id="bce8f" class="javax.swing.JList" binding="list1" default-binding="true">
-                        <constraints/>
-                        <properties/>
-                      </component>
-                    </children>
-                  </scrollpane>
-                  <grid id="e6b63" layout-manager="BorderLayout" hgap="0" vgap="0">
+                  <grid id="e6b63" layout-manager="BorderLayout" hgap="5" vgap="0">
                     <constraints border-constraint="North"/>
                     <properties/>
-                    <border type="none"/>
+                    <border type="empty">
+                      <size top="9" left="3" bottom="9" right="3"/>
+                    </border>
                     <children>
                       <component id="e215c" class="javax.swing.JTextField" binding="textField1" default-binding="true">
                         <constraints border-constraint="Center"/>
                         <properties/>
                       </component>
-                      <component id="33193" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+                      <component id="33193" class="javax.swing.JComboBox" binding="domainComboBox">
                         <constraints border-constraint="West"/>
-                        <properties/>
+                        <properties>
+                          <enabled value="false"/>
+                        </properties>
                       </component>
                     </children>
                   </grid>
+                  <scrollpane id="65c48">
+                    <constraints border-constraint="Center"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="e80c" class="javax.swing.JList" binding="list1" default-binding="true">
+                        <constraints/>
+                        <properties/>
+                      </component>
+                    </children>
+                  </scrollpane>
                 </children>
               </grid>
             </children>
