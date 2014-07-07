@@ -1,5 +1,5 @@
 <xsl:stylesheet version="1.0"
-                xmlns:dictiography="com.dictiography.shared.ElexUtils"
+                xmlns:dictiographer="com.dictiographer.view.TransformUtils"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
         >
 
@@ -38,7 +38,7 @@
                     <div class="imgContainer">
                         <img class="img">
                             <xsl:attribute name="id">img<xsl:value-of select="$imgId"/></xsl:attribute>
-                            <xsl:attribute name="src">/media?l=<xsl:value-of select="$lang"/>&amp;hw=<xsl:value-of select="dictiography:encodeUrl($headword)"/>&amp;cs=<xsl:value-of select="void[@property='checksum']/long/text()"/></xsl:attribute>
+                            <xsl:attribute name="src">/media?l=<xsl:value-of select="$lang"/>&amp;hw=<xsl:value-of select="dictiographer:encodeUrl($headword)"/>&amp;cs=<xsl:value-of select="void[@property='checksum']/long/text()"/></xsl:attribute>
                         </img>
                     </div>
                 </td>

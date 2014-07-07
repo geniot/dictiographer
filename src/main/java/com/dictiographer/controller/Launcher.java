@@ -1,9 +1,6 @@
 package com.dictiographer.controller;
 
-import com.dictiographer.model.Constants;
-import com.dictiographer.view.Dictiographer;
 
-import javax.swing.*;
 
 /**
  * Author: Vitaly Sazanovich

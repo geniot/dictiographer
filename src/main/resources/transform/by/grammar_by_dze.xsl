@@ -1,5 +1,5 @@
 <xsl:stylesheet version="1.0"
-                xmlns:dictiography="com.dictiography.shared.ElexUtils"
+                xmlns:dictiographer="com.dictiographer.view.TransformUtils"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
         >
 
@@ -21,12 +21,12 @@
         </xsl:variable>
 
         <xsl:if test="$pos!=''">
-            <span class="grammar_block">
-                <xsl:value-of select="dictiography:getProperty($lang,$pos)"/>
+            <div class="grammar_block">
+                <xsl:value-of select="dictiographer:getProperty($lang,$pos)"/>
                 <xsl:if test="$nonPersonalForm='true'">,&#160;безасабовая форма</xsl:if>
                 <xsl:if test="$finite='true'">,&#160;закончанае трыванне</xsl:if>
                 <xsl:if test="$infinite='true'">,&#160;незакончанае трыванне</xsl:if>
-            </span>
+            </div>
         </xsl:if>
 
 
@@ -47,33 +47,33 @@
                             <td class="title_col">1</td>
                             <td>
                                 <xsl:value-of disable-output-escaping="yes"
-                                              select="dictiography:addStress(object/void[@property='presentSing1']/string/text())"/>
+                                              select="dictiographer:addStress(object/void[@property='presentSing1']/string/text())"/>
                             </td>
                             <td>
                                 <xsl:value-of disable-output-escaping="yes"
-                                              select="dictiography:addStress(object/void[@property='presentPl1']/string/text())"/>
+                                              select="dictiographer:addStress(object/void[@property='presentPl1']/string/text())"/>
                             </td>
                         </tr>
                         <tr>
                             <td class="title_col">2</td>
                             <td>
                                 <xsl:value-of disable-output-escaping="yes"
-                                              select="dictiography:addStress(object/void[@property='presentSing2']/string/text())"/>
+                                              select="dictiographer:addStress(object/void[@property='presentSing2']/string/text())"/>
                             </td>
                             <td>
                                 <xsl:value-of disable-output-escaping="yes"
-                                              select="dictiography:addStress(object/void[@property='presentPl2']/string/text())"/>
+                                              select="dictiographer:addStress(object/void[@property='presentPl2']/string/text())"/>
                             </td>
                         </tr>
                         <tr>
                             <td class="title_col">3</td>
                             <td>
                                 <xsl:value-of disable-output-escaping="yes"
-                                              select="dictiography:addStress(object/void[@property='presentSing3']/string/text())"/>
+                                              select="dictiographer:addStress(object/void[@property='presentSing3']/string/text())"/>
                             </td>
                             <td>
                                 <xsl:value-of disable-output-escaping="yes"
-                                              select="dictiography:addStress(object/void[@property='presentPl3']/string/text())"/>
+                                              select="dictiographer:addStress(object/void[@property='presentPl3']/string/text())"/>
                             </td>
                         </tr>
 
@@ -93,33 +93,33 @@
                             <td class="title_col">1</td>
                             <td>
                                 <xsl:value-of disable-output-escaping="yes"
-                                              select="dictiography:addStress(object/void[@property='pastSing1']/string/text())"/>
+                                              select="dictiographer:addStress(object/void[@property='pastSing1']/string/text())"/>
                             </td>
                             <td>
                                 <xsl:value-of disable-output-escaping="yes"
-                                              select="dictiography:addStress(object/void[@property='pastPl1']/string/text())"/>
+                                              select="dictiographer:addStress(object/void[@property='pastPl1']/string/text())"/>
                             </td>
                         </tr>
                         <tr>
                             <td class="title_col">2</td>
                             <td>
                                 <xsl:value-of disable-output-escaping="yes"
-                                              select="dictiography:addStress(object/void[@property='pastSing2']/string/text())"/>
+                                              select="dictiographer:addStress(object/void[@property='pastSing2']/string/text())"/>
                             </td>
                             <td>
                                 <xsl:value-of disable-output-escaping="yes"
-                                              select="dictiography:addStress(object/void[@property='pastPl2']/string/text())"/>
+                                              select="dictiographer:addStress(object/void[@property='pastPl2']/string/text())"/>
                             </td>
                         </tr>
                         <tr>
                             <td class="title_col">3</td>
                             <td>
                                 <xsl:value-of disable-output-escaping="yes"
-                                              select="dictiography:addStress(object/void[@property='pastSing3']/string/text())"/>
+                                              select="dictiographer:addStress(object/void[@property='pastSing3']/string/text())"/>
                             </td>
                             <td>
                                 <xsl:value-of disable-output-escaping="yes"
-                                              select="dictiography:addStress(object/void[@property='pastPl3']/string/text())"/>
+                                              select="dictiographer:addStress(object/void[@property='pastPl3']/string/text())"/>
                             </td>
                         </tr>
 
@@ -139,11 +139,11 @@
                         <tr>
                             <td>
                                 <xsl:value-of disable-output-escaping="yes"
-                                              select="dictiography:addStress(object/void[@property='imperSing']/string/text())"/>
+                                              select="dictiographer:addStress(object/void[@property='imperSing']/string/text())"/>
                             </td>
                             <td>
                                 <xsl:value-of disable-output-escaping="yes"
-                                              select="dictiography:addStress(object/void[@property='imperPl']/string/text())"/>
+                                              select="dictiographer:addStress(object/void[@property='imperPl']/string/text())"/>
                             </td>
                         </tr>
                     </table>
@@ -160,11 +160,11 @@
                         <tr>
                             <td>
                                 <xsl:value-of disable-output-escaping="yes"
-                                              select="dictiography:addStress(object/void[@property='finiteForm']/string/text())"/>
+                                              select="dictiographer:addStress(object/void[@property='finiteForm']/string/text())"/>
                             </td>
                             <td>
                                 <xsl:value-of disable-output-escaping="yes"
-                                              select="dictiography:addStress(object/void[@property='infiniteForm']/string/text())"/>
+                                              select="dictiographer:addStress(object/void[@property='infiniteForm']/string/text())"/>
                             </td>
                         </tr>
                     </table>
@@ -180,7 +180,7 @@
                             </tr><tr>
                             <td>
                                 <xsl:value-of disable-output-escaping="yes"
-                                              select="dictiography:addStress(object/void[@property='participle']/string/text())"/>
+                                              select="dictiographer:addStress(object/void[@property='participle']/string/text())"/>
                             </td>
                         </tr>
                     </table>

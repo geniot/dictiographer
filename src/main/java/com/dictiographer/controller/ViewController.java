@@ -3,12 +3,17 @@ package com.dictiographer.controller;
 import com.dictiographer.model.Constants;
 import com.dictiographer.model.IndexModel;
 import com.dictiographer.view.Dictiographer;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 
 import javax.swing.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import javax.xml.transform.*;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+import java.io.*;
+import java.net.URL;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.TreeSet;
@@ -20,7 +25,6 @@ import java.util.TreeSet;
  */
 public class ViewController {
     private static ViewController INSTANCE;
-    private Dictiographer view;
 
     public static ViewController getInstance() {
         if (INSTANCE == null) {
@@ -35,7 +39,7 @@ public class ViewController {
             FileInputStream fis = new FileInputStream(getUserPropsFilePath());
             Constants.PROPS.loadFromXML(fis);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
         }
 
         try {
@@ -43,8 +47,10 @@ public class ViewController {
             if (!f.exists()) {
                 f.mkdirs();
             }
-            IndexModel.getInstance().domains = f.list();
-            Arrays.sort(IndexModel.getInstance().domains);
+            String[] domains = f.list();
+            Arrays.sort(domains);
+            IndexModel.getInstance().setDomains(domains);
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -53,18 +59,14 @@ public class ViewController {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                view = new Dictiographer(ViewController.this);
-                ViewController.this.setView(view);
+                Dictiographer view = new Dictiographer();
                 view.setVisible(true);
             }
         });
     }
 
-    public void setView(Dictiographer v) {
-        this.view = v;
-    }
 
-    public void onClosing() {
+    public void onClosing(Dictiographer view) {
         Constants.PROPS.setProperty(Constants.X_POS_PROP_KEY, String.valueOf(view.getLocation().getX()));
         Constants.PROPS.setProperty(Constants.Y_POS_PROP_KEY, String.valueOf(view.getLocation().getY()));
         Constants.PROPS.setProperty(Constants.WIDTH_PROP_KEY, String.valueOf(view.getSize().getWidth()));
@@ -99,6 +101,62 @@ public class ViewController {
         } catch (Exception ex) {
             ex.printStackTrace();
             return new String[]{};
+        }
+    }
+
+    public String getEntry(String domain, String hw) {
+        try {
+            File file = new File(Constants.PROPS.getProperty(Constants.DATA_FOLDER_PROP_KEY) + File.separator + domain + File.separator + URLEncoder.encode(hw, "UTF-8"));
+            String s = FileUtils.readFileToString(file, "UTF-8");
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("<!DOCTYPE html>");
+            sb.append("<html>");
+            sb.append("<head>");
+            sb.append("<style>");
+            sb.append(readCSS());
+            sb.append("</style>");
+            sb.append("</head>");
+            sb.append("<body>");
+            sb.append(transform(domain, s));
+            sb.append("</body>");
+            sb.append("</html>");
+
+            return sb.toString();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return "";
+        }
+    }
+
+    private String readCSS() throws Exception {
+        InputStream is = getClass().getClassLoader().getResourceAsStream("transform/style.css");
+        byte[] bytes = IOUtils.toByteArray(is);
+        return new String(bytes, "UTF-8");
+    }
+
+    private String transform(String locale, String s) throws Exception {
+        Source xmlInput = new StreamSource(new ByteArrayInputStream(s.getBytes("UTF-8")));
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ClassLoader cl = this.getClass().getClassLoader();
+        String systemID = "transform/transform.xsl";
+        InputStream in = cl.getResourceAsStream(systemID);
+        URL url = cl.getResource(systemID);
+        Source source = new StreamSource(in);
+        source.setSystemId(url.toExternalForm());
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        transformerFactory.setURIResolver(new ClasspathResourceURIResolver());
+        Transformer transformer = transformerFactory.newTransformer(source);
+        transformer.setParameter("lang", locale);
+        Result xmlOutput = new StreamResult(baos);
+        transformer.transform(xmlInput, xmlOutput);
+        return new String(baos.toByteArray(), "UTF-8");
+    }
+
+    class ClasspathResourceURIResolver implements URIResolver {
+        @Override
+        public Source resolve(String href, String base) throws TransformerException {
+            return new StreamSource(getClass().getClassLoader().getResourceAsStream("transform/" + href));
         }
     }
 }

@@ -1,5 +1,5 @@
 <xsl:stylesheet version="1.0"
-                xmlns:dictiography="com.dictiography.shared.ElexUtils"
+                xmlns:dictiographer="com.dictiographer.view.TransformUtils"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
         >
 
@@ -21,7 +21,7 @@
 
         <xsl:if test="$pos!=''">
             <span class="grammar_block">
-                <xsl:value-of select="dictiography:getProperty($lang,$pos)"/>
+                <xsl:value-of select="dictiographer:getProperty($lang,$pos)"/>
                 <xsl:if test="$gender='m'">,&#160;мужчынскі род</xsl:if>
                 <xsl:if test="$gender='v'">,&#160;жаночы род</xsl:if>
                 <xsl:if test="$gender='o'">,&#160;ніякі род</xsl:if>
@@ -40,33 +40,33 @@
                     </tr>
                     <tr>
                         <td class="title_col">Назоўны</td>
-                        <td><xsl:value-of disable-output-escaping="yes" select="dictiography:addStress(object/void[@property='singular']/string/text())"/></td>
-                        <td><xsl:value-of disable-output-escaping="yes" select="dictiography:addStress(object/void[@property='plural']/string/text())"/></td>
+                        <td><xsl:value-of disable-output-escaping="yes" select="dictiographer:addStress(object/void[@property='singular']/string/text())"/></td>
+                        <td><xsl:value-of disable-output-escaping="yes" select="dictiographer:addStress(object/void[@property='plural']/string/text())"/></td>
                     </tr>
                     <tr>
                         <td class="title_col">Родны</td>
-                        <td><xsl:value-of disable-output-escaping="yes" select="dictiography:addStress(object/void[@property='singularR']/string/text())"/></td>
-                        <td><xsl:value-of disable-output-escaping="yes" select="dictiography:addStress(object/void[@property='pluralR']/string/text())"/></td>
+                        <td><xsl:value-of disable-output-escaping="yes" select="dictiographer:addStress(object/void[@property='singularR']/string/text())"/></td>
+                        <td><xsl:value-of disable-output-escaping="yes" select="dictiographer:addStress(object/void[@property='pluralR']/string/text())"/></td>
                     </tr>
                     <tr>
                         <td class="title_col">Давальны</td>
-                        <td><xsl:value-of disable-output-escaping="yes" select="dictiography:addStress(object/void[@property='singularD']/string/text())"/></td>
-                        <td><xsl:value-of disable-output-escaping="yes" select="dictiography:addStress(object/void[@property='pluralD']/string/text())"/></td>
+                        <td><xsl:value-of disable-output-escaping="yes" select="dictiographer:addStress(object/void[@property='singularD']/string/text())"/></td>
+                        <td><xsl:value-of disable-output-escaping="yes" select="dictiographer:addStress(object/void[@property='pluralD']/string/text())"/></td>
                     </tr>
                     <tr>
                         <td class="title_col">Вінавальны</td>
-                        <td><xsl:value-of disable-output-escaping="yes" select="dictiography:addStress(object/void[@property='singularV']/string/text())"/></td>
-                        <td><xsl:value-of disable-output-escaping="yes" select="dictiography:addStress(object/void[@property='pluralV']/string/text())"/></td>
+                        <td><xsl:value-of disable-output-escaping="yes" select="dictiographer:addStress(object/void[@property='singularV']/string/text())"/></td>
+                        <td><xsl:value-of disable-output-escaping="yes" select="dictiographer:addStress(object/void[@property='pluralV']/string/text())"/></td>
                     </tr>
                     <tr>
                         <td class="title_col">Творны</td>
-                        <td><xsl:value-of disable-output-escaping="yes" select="dictiography:addStress(object/void[@property='singularT']/string/text())"/></td>
-                        <td><xsl:value-of disable-output-escaping="yes" select="dictiography:addStress(object/void[@property='pluralT']/string/text())"/></td>
+                        <td><xsl:value-of disable-output-escaping="yes" select="dictiographer:addStress(object/void[@property='singularT']/string/text())"/></td>
+                        <td><xsl:value-of disable-output-escaping="yes" select="dictiographer:addStress(object/void[@property='pluralT']/string/text())"/></td>
                     </tr>
                     <tr>
                         <td class="title_col">Месны</td>
-                        <td><xsl:value-of disable-output-escaping="yes" select="dictiography:addStress(object/void[@property='singularM']/string/text())"/></td>
-                        <td><xsl:value-of disable-output-escaping="yes" select="dictiography:addStress(object/void[@property='pluralM']/string/text())"/></td>
+                        <td><xsl:value-of disable-output-escaping="yes" select="dictiographer:addStress(object/void[@property='singularM']/string/text())"/></td>
+                        <td><xsl:value-of disable-output-escaping="yes" select="dictiographer:addStress(object/void[@property='pluralM']/string/text())"/></td>
                     </tr>
                 </table>
             </td></tr>

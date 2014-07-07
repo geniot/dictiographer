@@ -15,5 +15,13 @@ public class IndexModel {
         return INSTANCE;
     }
 
-    public String[] domains = new String[]{};
+    private String[] domains = new String[]{};
+
+    public String[] getDomains() {
+        return domains;
+    }
+
+    public void setDomains(String[] domains) {
+        this.domains = domains;
+    }
 }

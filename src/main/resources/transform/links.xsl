@@ -1,5 +1,5 @@
 <xsl:stylesheet version="1.0"
-                xmlns:dictiography="com.dictiography.shared.ElexUtils"
+                xmlns:dictiographer="com.dictiographer.view.TransformUtils"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <xsl:template
@@ -8,7 +8,7 @@
             <xsl:if test="@property='hyperoniems'">
                 <tr>
                     <td class="lnk_head">
-                        <span class="lnk_head"><xsl:value-of select="dictiography:getProperty($lang,'label.hyperonym')"/>:&#160;</span>
+                        <span class="lnk_head"><xsl:value-of select="dictiographer:getProperty($lang,'label.hyperonym')"/>:&#160;</span>
                     </td>
                     <td class="lnk">
                         <xsl:for-each select="array/void/object[@class='com.dictiography.client.entry.EntryLink']">
@@ -31,8 +31,8 @@
                 <tr>
                     <td class="lnk_head">
                         <span class="lnk_head">
-                            <xsl:if test="$hypCount=1"><xsl:value-of select="dictiography:getProperty($lang,'label.hyponym')"/></xsl:if>
-                            <xsl:if test="$hypCount>1"><xsl:value-of select="dictiography:getProperty($lang,'label.hyponyms')"/></xsl:if>:&#160;
+                            <xsl:if test="$hypCount=1"><xsl:value-of select="dictiographer:getProperty($lang,'label.hyponym')"/></xsl:if>
+                            <xsl:if test="$hypCount>1"><xsl:value-of select="dictiographer:getProperty($lang,'label.hyponyms')"/></xsl:if>:&#160;
                         </span>
                     </td>
                     <td class="lnk">
@@ -56,8 +56,8 @@
                 <tr>
                     <td class="lnk_head">
                         <span class="lnk_head">
-                            <xsl:if test="$synCount=1"><xsl:value-of select="dictiography:getProperty($lang,'label.synonym')"/></xsl:if>
-                            <xsl:if test="$synCount>1"><xsl:value-of select="dictiography:getProperty($lang,'label.synonyms')"/></xsl:if>:&#160;
+                            <xsl:if test="$synCount=1"><xsl:value-of select="dictiographer:getProperty($lang,'label.synonym')"/></xsl:if>
+                            <xsl:if test="$synCount>1"><xsl:value-of select="dictiographer:getProperty($lang,'label.synonyms')"/></xsl:if>:&#160;
                         </span>
                     </td>
                     <td class="lnk">
@@ -81,8 +81,8 @@
                 <tr>
                     <td class="lnk_head">
                         <span class="lnk_head">
-                            <xsl:if test="$antCount=1"><xsl:value-of select="dictiography:getProperty($lang,'label.antonym')"/></xsl:if>
-                            <xsl:if test="$antCount>1"><xsl:value-of select="dictiography:getProperty($lang,'label.antonyms')"/></xsl:if>:&#160;
+                            <xsl:if test="$antCount=1"><xsl:value-of select="dictiographer:getProperty($lang,'label.antonym')"/></xsl:if>
+                            <xsl:if test="$antCount>1"><xsl:value-of select="dictiographer:getProperty($lang,'label.antonyms')"/></xsl:if>:&#160;
                         </span>
                     </td>
                     <td class="lnk">
@@ -101,8 +101,8 @@
                 <tr>
                     <td class="lnk_head">
                         <span class="lnk_head">
-                            <!--<xsl:if test="$posCount>0"><xsl:value-of select="dictiography:getProperty($lang,'label.alsosee')"/></xsl:if>-->
-                            <xsl:value-of select="dictiography:getProperty($lang,'label.see')"/>
+                            <!--<xsl:if test="$posCount>0"><xsl:value-of select="dictiographer:getProperty($lang,'label.alsosee')"/></xsl:if>-->
+                            <xsl:value-of select="dictiographer:getProperty($lang,'label.see')"/>
                             :&#160;
                         </span>
                     </td>
@@ -127,8 +127,8 @@
                 <tr>
                     <td>
                         <span class="lnk_head">
-                            <xsl:if test="$aflCount=1"><xsl:value-of select="dictiography:getProperty($lang,'label.derivative')"/></xsl:if>
-                            <xsl:if test="$aflCount>1"><xsl:value-of select="dictiography:getProperty($lang,'label.derivatives')"/></xsl:if>:&#160;
+                            <xsl:if test="$aflCount=1"><xsl:value-of select="dictiographer:getProperty($lang,'label.derivative')"/></xsl:if>
+                            <xsl:if test="$aflCount>1"><xsl:value-of select="dictiographer:getProperty($lang,'label.derivatives')"/></xsl:if>:&#160;
                         </span>
                     </td>
                     <td class="afl">

@@ -19,4 +19,6 @@ public class Constants {
     public static String DATA_FOLDER_PROP_KEY = "app.data.folder";
     public static String SELECTED_DOMAIN_PROP_KEY = "app.selected.domain";
     public static String SELECTED_WORD_PROP_KEY = "app.selected.word";
+
+    public static String DEFAULT_LOCALE_PROP_KEY = "app.default.locale";
 }

@@ -1,5 +1,5 @@
 <xsl:stylesheet version="1.0"
-                xmlns:dictiography="com.dictiography.shared.ElexUtils"
+                xmlns:dictiographer="com.dictiographer.view.TransformUtils"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
         >
 

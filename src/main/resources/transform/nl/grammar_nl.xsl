@@ -1,5 +1,5 @@
 <xsl:stylesheet version="1.0"
-                xmlns:dictiography="com.dictiography.shared.ElexUtils"
+                xmlns:dictiographer="com.dictiographer.view.TransformUtils"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
         >
 
@@ -34,7 +34,7 @@
                     <xsl:when test="$alleenMeer!='true' and $alleenEnkel!='true'">
                         <span>
                             <xsl:attribute name="title">
-                                <xsl:value-of select="dictiography:getProperty($lang,$gender)"/>
+                                <xsl:value-of select="dictiographer:getProperty($lang,$gender)"/>
                             </xsl:attribute>
                             <xsl:value-of select="$headword"/>
                         </span>
@@ -85,7 +85,7 @@
                         <xsl:attribute name="title">
                             <xsl:text>werkwoordsoort</xsl:text>
                         </xsl:attribute>
-                        <xsl:value-of select="dictiography:getProperty($lang,$verbType)"/>
+                        <xsl:value-of select="dictiographer:getProperty($lang,$verbType)"/>
                     </span>
                 </xsl:if>
 
@@ -112,7 +112,7 @@
                             <xsl:text>hulpwerkwoord</xsl:text>
                         </xsl:attribute>
                         <xsl:text>,&#160;</xsl:text>
-                        <xsl:value-of select="dictiography:getProperty($lang,$helpVerb)"/>
+                        <xsl:value-of select="dictiographer:getProperty($lang,$helpVerb)"/>
                     </span>
                     <span class="voltoid">
                         <xsl:attribute name="title">
@@ -172,18 +172,18 @@
                 </xsl:if>
             </xsl:if>
             <xsl:if test="$pos='bwd'">
-                <xsl:value-of select="dictiography:getProperty($lang,object/void[@property='posKey']/string/text())"/>
+                <xsl:value-of select="dictiographer:getProperty($lang,object/void[@property='posKey']/string/text())"/>
             </xsl:if>
             <xsl:if test="$pos='lwd'">
-                <xsl:value-of select="dictiography:getProperty($lang,object/void[@property='posKey']/string/text())"/>
+                <xsl:value-of select="dictiographer:getProperty($lang,object/void[@property='posKey']/string/text())"/>
             </xsl:if>
             <xsl:if test="$pos='twl'">
-                <xsl:value-of select="dictiography:getProperty($lang,object/void[@property='posKey']/string/text())"/>
+                <xsl:value-of select="dictiographer:getProperty($lang,object/void[@property='posKey']/string/text())"/>
             </xsl:if>
             <xsl:if test="$pos='vnw'">
-                <xsl:value-of select="dictiography:getProperty($lang,object/void[@property='vnwKey']/string/text())"/>
+                <xsl:value-of select="dictiographer:getProperty($lang,object/void[@property='vnwKey']/string/text())"/>
                 <xsl:text>&#160;</xsl:text>
-                <xsl:value-of select="dictiography:getProperty($lang,object/void[@property='posKey']/string/text())"/>
+                <xsl:value-of select="dictiographer:getProperty($lang,object/void[@property='posKey']/string/text())"/>
             </xsl:if>
         </span>
     </xsl:template>

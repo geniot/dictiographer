@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.dictiographer.view.Dictiographer">
   <grid id="cbd77" binding="contentPane" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="48" y="54" width="436" height="297"/>
+      <xy x="48" y="54" width="453" height="297"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -76,17 +76,15 @@
                       </component>
                     </children>
                   </toolbar>
-                  <scrollpane id="d2c26">
+                  <scrollpane id="e8414" binding="entryScrollPane">
                     <constraints border-constraint="Center"/>
-                    <properties>
-                      <horizontalScrollBarPolicy value="30"/>
-                    </properties>
+                    <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="12af7" class="javax.swing.JEditorPane" binding="editorPane1" default-binding="true">
+                      <component id="17001" class="javax.swing.JEditorPane" binding="entryPane">
                         <constraints/>
                         <properties>
-                          <editable value="false"/>
+                          <contentType value="text/html"/>
                         </properties>
                       </component>
                     </children>
