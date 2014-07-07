@@ -2,21 +2,16 @@ package com.dictiographer.controller;
 
 import com.dictiographer.model.Constants;
 import com.dictiographer.model.IndexModel;
+import com.dictiographer.model.entry.EntryObjectModel;
 import com.dictiographer.view.Dictiographer;
+import freemarker.template.*;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 
 import javax.swing.*;
-import javax.xml.transform.*;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
 import java.io.*;
-import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.util.Arrays;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Author: Vitaly Sazanovich
@@ -25,6 +20,7 @@ import java.util.TreeSet;
  */
 public class ViewController {
     private static ViewController INSTANCE;
+    private Configuration cfg;
 
     public static ViewController getInstance() {
         if (INSTANCE == null) {
@@ -34,6 +30,17 @@ public class ViewController {
     }
 
     private ViewController() {
+
+        cfg = new Configuration();
+
+        cfg.setClassForTemplateLoading(this.getClass(), "/");
+
+        cfg.setObjectWrapper(new DefaultObjectWrapper());
+        cfg.setDefaultEncoding("UTF-8");
+        cfg.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
+        cfg.setIncompatibleImprovements(new Version(2, 3, 20));
+
+
         try {
             Constants.PROPS.load(Launcher.class.getClassLoader().getResourceAsStream("app.properties"));
             FileInputStream fis = new FileInputStream(getUserPropsFilePath());
@@ -108,55 +115,22 @@ public class ViewController {
         try {
             File file = new File(Constants.PROPS.getProperty(Constants.DATA_FOLDER_PROP_KEY) + File.separator + domain + File.separator + URLEncoder.encode(hw, "UTF-8"));
             String s = FileUtils.readFileToString(file, "UTF-8");
-
-            StringBuilder sb = new StringBuilder();
-            sb.append("<!DOCTYPE html>");
-            sb.append("<html>");
-            sb.append("<head>");
-            sb.append("<style>");
-            sb.append(readCSS());
-            sb.append("</style>");
-            sb.append("</head>");
-            sb.append("<body>");
-            sb.append(transform(domain, s));
-            sb.append("</body>");
-            sb.append("</html>");
-
-            return sb.toString();
+            EntryObjectModel eom = (EntryObjectModel) DictiographerUtils.xml2entry(s);
+            return convert(eom);
         } catch (Exception ex) {
             ex.printStackTrace();
             return "";
         }
     }
 
-    private String readCSS() throws Exception {
-        InputStream is = getClass().getClassLoader().getResourceAsStream("transform/style.css");
-        byte[] bytes = IOUtils.toByteArray(is);
-        return new String(bytes, "UTF-8");
-    }
-
-    private String transform(String locale, String s) throws Exception {
-        Source xmlInput = new StreamSource(new ByteArrayInputStream(s.getBytes("UTF-8")));
+    public String convert(EntryObjectModel eom) throws Exception {
+        Map root = new HashMap();
+        root.put("entry", eom);
+        Template temp = cfg.getTemplate("templates/main.ftl");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ClassLoader cl = this.getClass().getClassLoader();
-        String systemID = "transform/transform.xsl";
-        InputStream in = cl.getResourceAsStream(systemID);
-        URL url = cl.getResource(systemID);
-        Source source = new StreamSource(in);
-        source.setSystemId(url.toExternalForm());
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        transformerFactory.setURIResolver(new ClasspathResourceURIResolver());
-        Transformer transformer = transformerFactory.newTransformer(source);
-        transformer.setParameter("lang", locale);
-        Result xmlOutput = new StreamResult(baos);
-        transformer.transform(xmlInput, xmlOutput);
+        Writer out = new OutputStreamWriter(baos);
+        temp.process(root, out);
         return new String(baos.toByteArray(), "UTF-8");
     }
 
-    class ClasspathResourceURIResolver implements URIResolver {
-        @Override
-        public Source resolve(String href, String base) throws TransformerException {
-            return new StreamSource(getClass().getClassLoader().getResourceAsStream("transform/" + href));
-        }
-    }
 }

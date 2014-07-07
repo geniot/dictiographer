@@ -85,6 +85,7 @@
                         <constraints/>
                         <properties>
                           <contentType value="text/html"/>
+                          <editable value="false"/>
                         </properties>
                       </component>
                     </children>

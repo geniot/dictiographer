@@ -12,8 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
-import java.net.URL;
 
 public class Dictiographer extends JFrame {
 
@@ -72,8 +70,11 @@ public class Dictiographer extends JFrame {
         list1.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                setEntry();
-                textField1.requestFocus();
+                if (!e.getValueIsAdjusting()) {
+                    setEntry();
+                    textField1.requestFocus();
+                }
+
             }
         });
 
@@ -183,6 +184,7 @@ public class Dictiographer extends JFrame {
         panel2.add(entryScrollPane, BorderLayout.CENTER);
         entryPane = new JEditorPane();
         entryPane.setContentType("text/html");
+        entryPane.setEditable(false);
         entryScrollPane.setViewportView(entryPane);
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new BorderLayout(0, 0));

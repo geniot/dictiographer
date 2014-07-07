@@ -20,11 +20,11 @@ public class TransformUtils {
 
     public static String getProperty(String lang, String key) {
         try {
-            return Utf8ResourceBundle.getBundle("DictiographyResource", new Locale(lang.toLowerCase()), TransformUtils.class.getClassLoader()).getString(key);
+            return Utf8ResourceBundle.getBundle("DictiographerResource", new Locale(lang.toLowerCase()), TransformUtils.class.getClassLoader()).getString(key);
         } catch (Exception e) {
             try {
                 String defLocale = Constants.PROPS.getProperty(Constants.DEFAULT_LOCALE_PROP_KEY);
-                return Utf8ResourceBundle.getBundle("DictiographyResource", new Locale(defLocale), TransformUtils.class.getClassLoader()).getString(key);
+                return Utf8ResourceBundle.getBundle("DictiographerResource", new Locale(defLocale), TransformUtils.class.getClassLoader()).getString(key);
             } catch (Exception ex) {
                 logger.log(Level.SEVERE, "Can't find resource for key: " + key);
                 return key;
