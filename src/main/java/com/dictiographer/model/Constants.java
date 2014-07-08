@@ -21,4 +21,7 @@ public class Constants {
     public static String SELECTED_WORD_PROP_KEY = "app.selected.word";
 
     public static String DEFAULT_LOCALE_PROP_KEY = "app.default.locale";
+
+    public static String MEDIA_CURRENT_DIRECTORY;
+    public static String NEW_ACTION = "NEW_ACTION";
 }

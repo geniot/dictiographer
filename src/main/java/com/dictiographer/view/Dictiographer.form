@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.dictiographer.view.Dictiographer">
-  <grid id="cbd77" binding="contentPane" layout-manager="GridBagLayout">
+  <grid id="cbd77" binding="contentPane" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="48" y="54" width="453" height="297"/>
+      <xy x="48" y="54" width="453" height="415"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
       <grid id="e3588" layout-manager="BorderLayout" hgap="0" vgap="0">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="1.0" weighty="1.0"/>
-        </constraints>
+        <constraints border-constraint="Center"/>
         <properties/>
         <border type="none"/>
         <children>
@@ -86,6 +83,7 @@
                         <properties>
                           <contentType value="text/html"/>
                           <editable value="false"/>
+                          <text value="&lt;html&gt;&#13;&#10;  &lt;head&gt;&#13;&#10;&#13;&#10;  &lt;/head&gt;&#13;&#10;  &lt;body&gt;&#13;&#10;    &lt;p style=&quot;margin-top: 0&quot;&gt;&#13;&#10;      &#13;&#10;    &lt;/p&gt;&#13;&#10;  &lt;/body&gt;&#13;&#10;&lt;/html&gt;&#13;&#10;"/>
                         </properties>
                       </component>
                     </children>
@@ -133,6 +131,51 @@
               </grid>
             </children>
           </splitpane>
+          <grid id="a54a" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="South"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <toolbar id="c485a">
+                <constraints border-constraint="South"/>
+                <properties>
+                  <borderPainted value="false"/>
+                  <floatable value="false"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="6e030" class="javax.swing.JButton" binding="button1" default-binding="true">
+                    <constraints/>
+                    <properties>
+                      <icon value="application_form_add.png"/>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                  <component id="fe970" class="javax.swing.JButton" binding="button2" default-binding="true">
+                    <constraints/>
+                    <properties>
+                      <icon value="application_form_edit.png"/>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                  <component id="edffe" class="javax.swing.JButton" binding="button3" default-binding="true">
+                    <constraints/>
+                    <properties>
+                      <icon value="application_form_delete.png"/>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                  <component id="e920f" class="javax.swing.JButton" binding="button4" default-binding="true">
+                    <constraints/>
+                    <properties>
+                      <icon value="arrow_refresh.png"/>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                </children>
+              </toolbar>
+            </children>
+          </grid>
         </children>
       </grid>
     </children>

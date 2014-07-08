@@ -23,6 +23,10 @@ public class Dictiographer extends JFrame {
     private JSplitPane mainSplitPane;
     private JEditorPane entryPane;
     private JScrollPane entryScrollPane;
+    private JButton button1;
+    private JButton button2;
+    private JButton button3;
+    private JButton button4;
 
 
     public Dictiographer() {
@@ -142,17 +146,10 @@ public class Dictiographer extends JFrame {
      */
     private void $$$setupUI$$$() {
         contentPane = new JPanel();
-        contentPane.setLayout(new GridBagLayout());
+        contentPane.setLayout(new BorderLayout(0, 0));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new BorderLayout(0, 0));
-        GridBagConstraints gbc;
-        gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        gbc.fill = GridBagConstraints.BOTH;
-        contentPane.add(panel1, gbc);
+        contentPane.add(panel1, BorderLayout.CENTER);
         mainSplitPane = new JSplitPane();
         mainSplitPane.setDividerLocation(100);
         panel1.add(mainSplitPane, BorderLayout.CENTER);
@@ -185,6 +182,7 @@ public class Dictiographer extends JFrame {
         entryPane = new JEditorPane();
         entryPane.setContentType("text/html");
         entryPane.setEditable(false);
+        entryPane.setText("<html>\r\n  <head>\r\n\r\n  </head>\r\n  <body>\r\n    <p style=\"margin-top: 0\">\r\n      \r\n    </p>\r\n  </body>\r\n</html>\r\n");
         entryScrollPane.setViewportView(entryPane);
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new BorderLayout(0, 0));
@@ -202,6 +200,29 @@ public class Dictiographer extends JFrame {
         panel3.add(scrollPane1, BorderLayout.CENTER);
         list1 = new JList();
         scrollPane1.setViewportView(list1);
+        final JPanel panel5 = new JPanel();
+        panel5.setLayout(new BorderLayout(0, 0));
+        panel1.add(panel5, BorderLayout.SOUTH);
+        final JToolBar toolBar2 = new JToolBar();
+        toolBar2.setBorderPainted(false);
+        toolBar2.setFloatable(false);
+        panel5.add(toolBar2, BorderLayout.SOUTH);
+        button1 = new JButton();
+        button1.setIcon(new ImageIcon(getClass().getResource("/application_form_add.png")));
+        button1.setText("");
+        toolBar2.add(button1);
+        button2 = new JButton();
+        button2.setIcon(new ImageIcon(getClass().getResource("/application_form_edit.png")));
+        button2.setText("");
+        toolBar2.add(button2);
+        button3 = new JButton();
+        button3.setIcon(new ImageIcon(getClass().getResource("/application_form_delete.png")));
+        button3.setText("");
+        toolBar2.add(button3);
+        button4 = new JButton();
+        button4.setIcon(new ImageIcon(getClass().getResource("/arrow_refresh.png")));
+        button4.setText("");
+        toolBar2.add(button4);
     }
 
     /**

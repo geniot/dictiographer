@@ -1,0 +1,107 @@
+package com.dictiographer.view.panels;
+
+import com.dictiographer.controller.DictiographerUtils;
+import entry.EntryDefinition;
+import entry.Grammar;
+import entry.PartOfSpeech;
+import com.dictiographer.view.AbstractContainerRenderer;
+import com.dictiographer.view.DnDTabbedPane;
+import com.dictiographer.view.KeyValuePair;
+import com.dictiographer.view.comboboxmodels.PosComboBoxModel;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+
+/**
+ * User: Vitaly Sazanovich
+ * Date: 12/18/12
+ * Time: 11:09 PM
+ */
+public class PosPanel extends AbstractContainerRenderer {
+
+    public JTextField afleidingen;
+    public JTextField pronunciation;
+    public DnDTabbedPane entryDefinitions;
+
+    public PosPanel() {
+        init("com/dictiography/client/ui/descriptors/PosPanel.xml");
+        entryDefinitions.addNewTab(null);
+    }
+
+
+    @Override
+    public void setData(Object d) {
+        if (d == null) return;
+        super.setData(d);
+
+        if (d instanceof PartOfSpeech) {
+            PartOfSpeech pos = (PartOfSpeech) d;
+            if (pos.getAfleidingen() != null) afleidingen.setText(DictiographerUtils.arr2str(pos.getAfleidingen()));
+            if (pos.getPronunciation() != null) pronunciation.setText(pos.getPronunciation());
+            grammar = pos.getGrammar();
+            if (pos.getGrammar() != null) {
+                PosComboBoxModel model = (PosComboBoxModel) posComboBox.getModel();
+                posComboBox.setSelectedItem(model.get(pos.getGrammar().getPosKey()));
+            }
+            //definitions
+            if (pos.getEntryDefinitions() != null) {
+                for (int i = 0; i < pos.getEntryDefinitions().length; i++) {
+                    Component c = entryDefinitions.getComponentAt(i);
+                    if (c != null && c instanceof FormContentPanel) {
+                        FormContentPanel form = (FormContentPanel) c;
+                        DefPanel defForm = (DefPanel) form.getForm();
+                        defForm.setData(pos.getEntryDefinitions()[i]);
+                    } else {
+                        entryDefinitions.addNewTab(pos.getEntryDefinitions()[i]);
+                    }
+                }
+            }
+
+            entryDefinitions.setSelectedIndex(0);
+        }
+    }
+
+    @Override
+    public Object getData(Object d) {
+        PartOfSpeech pos = (PartOfSpeech) d;
+        if (!afleidingen.getText().trim().equals("")) pos.setAfleidingen(afleidingen.getText().trim().split(","));
+        if (!pronunciation.getText().trim().equals("")) pos.setPronunciation(pronunciation.getText().trim());
+        if (grammar == null) grammar = new Grammar();
+        grammar.setPosKey(((KeyValuePair) posComboBox.getSelectedItem()).getKey());
+        pos.setGrammar(grammar);
+        ArrayList<EntryDefinition> eds = new ArrayList();
+        for (int i = 0; i < entryDefinitions.getTabCount() - 1; i++) {
+            Component c = entryDefinitions.getComponentAt(i);
+            if (c != null && c instanceof FormContentPanel) {
+                FormContentPanel form = (FormContentPanel) c;
+                DefPanel defForm = (DefPanel) form.getForm();
+                if (defForm.isEmpty()) continue;
+                EntryDefinition ed = new EntryDefinition();
+                defForm.getData(ed);
+                eds.add(ed);
+            }
+        }
+        pos.setEntryDefinitions(eds.isEmpty() ? null : eds.toArray(new EntryDefinition[eds.size()]));
+        return d;
+    }
+
+
+    @Override
+    public boolean isEmpty() {
+        if (grammar != null) return false;
+        if (!afleidingen.getText().trim().equals("")) return false;
+        if (!pronunciation.getText().trim().equals("")) return false;
+        for (int i = 0; i < entryDefinitions.getTabCount() - 1; i++) {
+            Component c = entryDefinitions.getComponentAt(i);
+            if (c != null && c instanceof FormContentPanel) {
+                FormContentPanel form = (FormContentPanel) c;
+                DefPanel defPanel = (DefPanel) form.getForm();
+                if (!defPanel.isEmpty()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
