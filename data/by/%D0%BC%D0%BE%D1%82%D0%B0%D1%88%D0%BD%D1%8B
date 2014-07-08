@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_14" class="java.beans.XMLDecoder"> 
+ <object class="entry.EntryObjectModel">
+  <void property="headword"> 
+   <string>моташны</string> 
+  </void> 
+  <void property="partOfSpeeches"> 
+   <array class="entry.PartOfSpeech" length="1">
+    <void index="0"> 
+     <object class="entry.PartOfSpeech">
+      <void property="entryDefinitions"> 
+       <array class="entry.EntryDefinition" length="2">
+        <void index="0"> 
+         <object class="entry.EntryDefinition">
+          <void property="definition"> 
+           <string>Ад якога становіцца моташна (у 1, 3 знач.).</string> 
+          </void> 
+          <void property="examples"> 
+           <array class="entry.Example" length="1">
+            <void index="0"> 
+             <object class="entry.Example">
+              <void property="example"> 
+               <string>моташны пах</string> 
+              </void> 
+              <void property="translations"> 
+               <array class="entry.Translation" length="1">
+                <void index="0"> 
+                 <object class="entry.Translation">
+                  <void property="locale"> 
+                   <string>NL</string> 
+                  </void> 
+                  <void property="translation"> 
+                   <string>een walgelijke geur</string> 
+                  </void> 
+                 </object> 
+                </void> 
+               </array> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+          <void property="translations"> 
+           <array class="entry.Translation" length="2">
+            <void index="0"> 
+             <object class="entry.Translation">
+              <void property="locale"> 
+               <string>RU</string> 
+              </void> 
+              <void property="translation"> 
+               <string>тошный, муторный</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="1"> 
+             <object class="entry.Translation">
+              <void property="locale"> 
+               <string>NL</string> 
+              </void> 
+              <void property="translation"> 
+               <string>walgelijk</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+          <void property="zie"> 
+           <array class="entry.EntryLink" length="1">
+            <void index="0"> 
+             <object class="entry.EntryLink">
+              <void property="text"> 
+               <string>моташна</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="1"> 
+         <object class="entry.EntryDefinition">
+          <void property="definition"> 
+           <string>Агідны, прыкры.</string> 
+          </void> 
+          <void property="examples"> 
+           <array class="entry.Example" length="1">
+            <void index="0"> 
+             <object class="entry.Example">
+              <void property="example"> 
+               <string>Быў апошні вечар у Адэсе, цягучы і моташны.</string> 
+              </void> 
+              <void property="source"> 
+               <string>Мехаў</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+          <void property="meta"> 
+           <string>пераноснае значэнне</string> 
+          </void> 
+         </object> 
+        </void> 
+       </array> 
+      </void> 
+      <void property="grammar"> 
+       <object class="entry.Grammar">
+        <void property="grammarPRY"> 
+         <object class="entry.grammar.by.GrammarPRY">
+          <void property="pluralMD"> 
+           <string>м[о]ташным</string> 
+          </void> 
+          <void property="pluralMM"> 
+           <string>м[о]ташных</string> 
+          </void> 
+          <void property="pluralMN"> 
+           <string>м[о]ташныя</string> 
+          </void> 
+          <void property="pluralMR"> 
+           <string>м[о]ташных</string> 
+          </void> 
+          <void property="pluralMT"> 
+           <string>м[о]ташнымі</string> 
+          </void> 
+          <void property="pluralMV"> 
+           <string>м[о]ташныя</string> 
+          </void> 
+          <void property="pluralND"> 
+           <string>м[о]ташным</string> 
+          </void> 
+          <void property="pluralNM"> 
+           <string>м[о]ташных</string> 
+          </void> 
+          <void property="pluralNN"> 
+           <string>м[о]ташныя</string> 
+          </void> 
+          <void property="pluralNR"> 
+           <string>м[о]ташных</string> 
+          </void> 
+          <void property="pluralNT"> 
+           <string>м[о]ташнымі</string> 
+          </void> 
+          <void property="pluralNV"> 
+           <string>м[о]ташныя</string> 
+          </void> 
+          <void property="pluralZD"> 
+           <string>м[о]ташным</string> 
+          </void> 
+          <void property="pluralZM"> 
+           <string>м[о]ташных</string> 
+          </void> 
+          <void property="pluralZN"> 
+           <string>м[о]ташныя</string> 
+          </void> 
+          <void property="pluralZR"> 
+           <string>м[о]ташных</string> 
+          </void> 
+          <void property="pluralZT"> 
+           <string>м[о]ташнымі</string> 
+          </void> 
+          <void property="pluralZV"> 
+           <string>м[о]ташныя</string> 
+          </void> 
+          <void property="singularMD"> 
+           <string>м[о]ташнаму</string> 
+          </void> 
+          <void property="singularMM"> 
+           <string>м[о]ташным</string> 
+          </void> 
+          <void property="singularMN"> 
+           <string>м[о]ташны</string> 
+          </void> 
+          <void property="singularMR"> 
+           <string>м[о]ташнага</string> 
+          </void> 
+          <void property="singularMT"> 
+           <string>м[о]ташным</string> 
+          </void> 
+          <void property="singularMV"> 
+           <string>м[о]ташны</string> 
+          </void> 
+          <void property="singularND"> 
+           <string>м[о]ташнаму</string> 
+          </void> 
+          <void property="singularNM"> 
+           <string>м[о]ташным</string> 
+          </void> 
+          <void property="singularNN"> 
+           <string>м[о]ташнае</string> 
+          </void> 
+          <void property="singularNR"> 
+           <string>м[о]ташнага</string> 
+          </void> 
+          <void property="singularNT"> 
+           <string>м[о]ташным</string> 
+          </void> 
+          <void property="singularNV"> 
+           <string>м[о]ташнае</string> 
+          </void> 
+          <void property="singularZD"> 
+           <string>м[о]ташнай</string> 
+          </void> 
+          <void property="singularZM"> 
+           <string>м[о]ташнай / м[о]ташнаю</string> 
+          </void> 
+          <void property="singularZN"> 
+           <string>м[о]ташная</string> 
+          </void> 
+          <void property="singularZR"> 
+           <string>м[о]ташнай / м[о]ташнае</string> 
+          </void> 
+          <void property="singularZT"> 
+           <string>м[о]ташнай / м[о]ташнаю</string> 
+          </void> 
+          <void property="singularZV"> 
+           <string>м[о]ташная</string> 
+          </void> 
+         </object> 
+        </void> 
+        <void property="posKey"> 
+         <string>pry</string> 
+        </void> 
+       </object> 
+      </void> 
+     </object> 
+    </void> 
+   </array> 
+  </void> 
+  <void property="stressedSyllable"> 
+   <int>1</int> 
+  </void> 
+  <void property="syllables"> 
+   <string>мо|та|шны</string> 
+  </void> 
+ </object> 
+</java> 

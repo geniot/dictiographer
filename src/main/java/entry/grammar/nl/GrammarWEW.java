@@ -1,4 +1,4 @@
-package com.dictiographer.model.entry.grammar.nl;
+package entry.grammar.nl;
 
 import java.io.Serializable;
 

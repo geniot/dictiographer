@@ -1,4 +1,4 @@
-package com.dictiographer.controller;
+package entry;
 
 import org.apache.commons.codec.binary.Base64;
 

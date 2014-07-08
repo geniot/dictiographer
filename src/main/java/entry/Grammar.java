@@ -1,13 +1,14 @@
-package com.dictiographer.model.entry;
+package entry;
 
 
-import com.dictiographer.model.entry.grammar.by.GrammarDZE;
-import com.dictiographer.model.entry.grammar.by.GrammarNAZ;
-import com.dictiographer.model.entry.grammar.by.GrammarPRY;
-import com.dictiographer.model.entry.grammar.nl.GrammarBNW;
-import com.dictiographer.model.entry.grammar.nl.GrammarVNW;
-import com.dictiographer.model.entry.grammar.nl.GrammarWEW;
-import com.dictiographer.model.entry.grammar.nl.GrammarZNW;
+import entry.grammar.by.GrammarDZE;
+import entry.grammar.by.GrammarNAZ;
+import entry.grammar.by.GrammarPRY;
+import entry.grammar.nl.GrammarBNW;
+import entry.grammar.nl.GrammarVNW;
+import entry.grammar.nl.GrammarWEW;
+import entry.grammar.nl.GrammarZNW;
+import entry.grammar.nl.GrammarZNW;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;

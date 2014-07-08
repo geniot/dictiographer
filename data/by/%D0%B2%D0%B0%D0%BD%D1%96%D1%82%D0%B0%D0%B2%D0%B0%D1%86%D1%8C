@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_14" class="java.beans.XMLDecoder"> 
+ <object class="entry.EntryObjectModel">
+  <void property="headword"> 
+   <string>ванітаваць</string> 
+  </void> 
+  <void property="partOfSpeeches"> 
+   <array class="entry.PartOfSpeech" length="1">
+    <void index="0"> 
+     <object class="entry.PartOfSpeech">
+      <void property="entryDefinitions"> 
+       <array class="entry.EntryDefinition" length="2">
+        <void index="0"> 
+         <object class="entry.EntryDefinition">
+          <void property="definition"> 
+           <string>Пра стан моташнасці, рвоты.</string> 
+          </void> 
+          <void property="examples"> 
+           <array class="entry.Example" length="2">
+            <void index="0"> 
+             <object class="entry.Example">
+              <void property="example"> 
+               <string>ванітаваць крывёй</string> 
+              </void> 
+              <void property="translations"> 
+               <array class="entry.Translation" length="1">
+                <void index="0"> 
+                 <object class="entry.Translation">
+                  <void property="locale"> 
+                   <string>NL</string> 
+                  </void> 
+                  <void property="translation"> 
+                   <string>[met] bloed overgeven; bloedbraken</string> 
+                  </void> 
+                 </object> 
+                </void> 
+               </array> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="1"> 
+             <object class="entry.Example">
+              <void property="example"> 
+               <string>[Алеся] ванітавала, але ён перамагаў гэта і піў датуль, пакуль пляшка не апусцела.</string> 
+              </void> 
+              <void property="source"> 
+               <string>Чарнышэвіч</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+          <void property="meta"> 
+           <string>размоўнае слова</string> 
+          </void> 
+          <void property="translations"> 
+           <array class="entry.Translation" length="1">
+            <void index="0"> 
+             <object class="entry.Translation">
+              <void property="locale"> 
+               <string>NL</string> 
+              </void> 
+              <void property="translation"> 
+               <string>braken, overgeven</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="1"> 
+         <object class="entry.EntryDefinition">
+          <void property="definition"> 
+           <string>Пра пачуццё агіды да каго- ці чаго-небудзь.</string> 
+          </void> 
+          <void property="meta"> 
+           <string>пераноснае значэнне, размоўнае слова</string> 
+          </void> 
+         </object> 
+        </void> 
+       </array> 
+      </void> 
+      <void property="grammar"> 
+       <object class="entry.Grammar">
+        <void property="grammarDZE"> 
+         <object class="entry.grammar.by.GrammarDZE">
+          <void property="finiteForm"> 
+           <string>званітав[а]ць</string> 
+          </void> 
+          <void property="imperPl"> 
+           <string>ваніт[у]йце</string> 
+          </void> 
+          <void property="imperSing"> 
+           <string>ваніт[у]й</string> 
+          </void> 
+          <void property="infinite"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="infiniteForm"> 
+           <string>ванітав[а]ць</string> 
+          </void> 
+          <void property="nonPersonalForm"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="participle"> 
+           <string>ваніт[у]ючы</string> 
+          </void> 
+          <void property="pastPl1"> 
+           <string>ванітав[а]лі</string> 
+          </void> 
+          <void property="pastPl2"> 
+           <string>ванітав[а]лі</string> 
+          </void> 
+          <void property="pastPl3"> 
+           <string>ванітав[а]лі</string> 
+          </void> 
+          <void property="pastSing1"> 
+           <string>ванітав[а]ў</string> 
+          </void> 
+          <void property="pastSing2"> 
+           <string>ванітав[а]ў</string> 
+          </void> 
+          <void property="pastSing3"> 
+           <string>ванітав[а]ў / ванітав[а]ла</string> 
+          </void> 
+          <void property="presentPl1"> 
+           <string>ваніт[у]ем</string> 
+          </void> 
+          <void property="presentPl2"> 
+           <string>ваніт[у]еце</string> 
+          </void> 
+          <void property="presentPl3"> 
+           <string>ваніт[у]юць</string> 
+          </void> 
+          <void property="presentSing1"> 
+           <string>ваніт[у]ю</string> 
+          </void> 
+          <void property="presentSing2"> 
+           <string>ваніт[у]еш</string> 
+          </void> 
+          <void property="presentSing3"> 
+           <string>ваніт[у]е</string> 
+          </void> 
+         </object> 
+        </void> 
+        <void property="posKey"> 
+         <string>dze</string> 
+        </void> 
+       </object> 
+      </void> 
+     </object> 
+    </void> 
+   </array> 
+  </void> 
+  <void property="stressedSyllable"> 
+   <int>4</int> 
+  </void> 
+  <void property="syllables"> 
+   <string>ва|ні|та|ваць</string> 
+  </void> 
+ </object> 
+</java> 

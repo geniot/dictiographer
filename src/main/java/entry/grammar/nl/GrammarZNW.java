@@ -1,4 +1,4 @@
-package com.dictiographer.model.entry.grammar.nl;
+package entry.grammar.nl;
 
 import java.io.Serializable;
 
@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Email: Vitaly.Sazanovich@gmail.com
  * Date: 7/1/14
  */
-public class GrammarVNW implements Serializable {
+public class GrammarZNW implements Serializable {
     public boolean isEmpty() {
         return false;
     }

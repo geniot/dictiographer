@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_26" class="java.beans.XMLDecoder"> 
+ <object class="entry.EntryObjectModel">
+  <void property="headword"> 
+   <string>аўторак</string> 
+  </void> 
+  <void property="partOfSpeeches"> 
+   <array class="entry.PartOfSpeech" length="1">
+    <void index="0"> 
+     <object class="entry.PartOfSpeech">
+      <void property="entryDefinitions"> 
+       <array class="entry.EntryDefinition" length="1">
+        <void index="0"> 
+         <object class="entry.EntryDefinition">
+          <void property="definition"> 
+           <string>Другі дзень тыдня.</string> 
+          </void> 
+          <void property="examples"> 
+           <array class="entry.Example" length="1">
+            <void index="0"> 
+             <object class="entry.Example">
+              <void property="example"> 
+               <string>У аўторак на заняткі я не пайшоў.</string> 
+              </void> 
+              <void property="source"> 
+               <string>&quot;Малекула&quot;, Уладзімір Арлоў</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+          <void property="translations"> 
+           <array class="entry.Translation" length="2">
+            <void index="0"> 
+             <object class="entry.Translation">
+              <void property="locale"> 
+               <string>NL</string> 
+              </void> 
+              <void property="translation"> 
+               <string>dinsdag</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="1"> 
+             <object class="entry.Translation">
+              <void property="locale"> 
+               <string>EN</string> 
+              </void> 
+              <void property="translation"> 
+               <string>Tuesday</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+         </object> 
+        </void> 
+       </array> 
+      </void> 
+      <void property="grammar"> 
+       <object class="entry.Grammar">
+        <void property="grammarNAZ"> 
+         <object class="entry.grammar.by.GrammarNAZ">
+          <void property="genderKey"> 
+           <string>m</string> 
+          </void> 
+          <void property="plural"> 
+           <string>аўт[о]ркі</string> 
+          </void> 
+          <void property="pluralD"> 
+           <string>аўт[о]ркам</string> 
+          </void> 
+          <void property="pluralM"> 
+           <string>аўт[о]рках</string> 
+          </void> 
+          <void property="pluralR"> 
+           <string>аўт[о]ркаў</string> 
+          </void> 
+          <void property="pluralT"> 
+           <string>аўт[о]ркамі</string> 
+          </void> 
+          <void property="pluralV"> 
+           <string>аўт[о]ркі</string> 
+          </void> 
+          <void property="singular"> 
+           <string>аўт[о]рак</string> 
+          </void> 
+          <void property="singularD"> 
+           <string>аўт[о]рку</string> 
+          </void> 
+          <void property="singularM"> 
+           <string>аўт[о]рку</string> 
+          </void> 
+          <void property="singularR"> 
+           <string>аўт[о]рка</string> 
+          </void> 
+          <void property="singularT"> 
+           <string>аўт[о]ркам</string> 
+          </void> 
+          <void property="singularV"> 
+           <string>аўт[о]рак</string> 
+          </void> 
+         </object> 
+        </void> 
+        <void property="posKey"> 
+         <string>naz</string> 
+        </void> 
+       </object> 
+      </void> 
+     </object> 
+    </void> 
+   </array> 
+  </void> 
+  <void property="stressedSyllable"> 
+   <int>2</int> 
+  </void> 
+  <void property="syllables"> 
+   <string>аў|то|рак</string> 
+  </void> 
+ </object> 
+</java> 

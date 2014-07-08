@@ -2,7 +2,7 @@ package com.dictiographer.controller;
 
 import com.dictiographer.model.Constants;
 import com.dictiographer.model.IndexModel;
-import com.dictiographer.model.entry.EntryObjectModel;
+import entry.EntryObjectModel;
 import com.dictiographer.view.Dictiographer;
 import freemarker.template.*;
 import org.apache.commons.io.FileUtils;

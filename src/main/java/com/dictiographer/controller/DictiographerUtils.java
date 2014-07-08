@@ -1,5 +1,7 @@
 package com.dictiographer.controller;
 
+import entry.ByteArrayPersistenceDelegate;
+
 import java.beans.PersistenceDelegate;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;

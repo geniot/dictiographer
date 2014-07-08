@@ -1,4 +1,4 @@
-package com.dictiographer.model.entry;
+package entry;
 
 /**
  * User: Vitaly Sazanovich

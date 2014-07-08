@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_26" class="java.beans.XMLDecoder"> 
+ <object class="entry.EntryObjectModel">
+  <void property="headword"> 
+   <string>ваніты</string> 
+  </void> 
+  <void property="partOfSpeeches"> 
+   <array class="entry.PartOfSpeech" length="1">
+    <void index="0"> 
+     <object class="entry.PartOfSpeech">
+      <void property="entryDefinitions"> 
+       <array class="entry.EntryDefinition" length="1">
+        <void index="0"> 
+         <object class="entry.EntryDefinition">
+          <void property="definition"> 
+           <string>Тое, што вывяргаецца са страўніка пры ванітаванні, рвоце.</string> 
+          </void> 
+          <void property="examples"> 
+           <array class="entry.Example" length="1">
+            <void index="0"> 
+             <object class="entry.Example">
+              <void property="example"> 
+               <string>Чамусьці трохі хіліла на ваніты.</string> 
+              </void> 
+              <void property="source"> 
+               <string>&quot;Дажыць да світання&quot;, Васіль Быкаў</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+          <void property="meta"> 
+           <string>размоўнае слова</string> 
+          </void> 
+          <void property="translations"> 
+           <array class="entry.Translation" length="1">
+            <void index="0"> 
+             <object class="entry.Translation">
+              <void property="locale"> 
+               <string>NL</string> 
+              </void> 
+              <void property="translation"> 
+               <string>braaksel</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+         </object> 
+        </void> 
+       </array> 
+      </void> 
+      <void property="grammar"> 
+       <object class="entry.Grammar">
+        <void property="grammarNAZ"> 
+         <object class="entry.grammar.by.GrammarNAZ">
+          <void property="onlyPlural"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="plural"> 
+           <string>ван[і]ты</string> 
+          </void> 
+          <void property="pluralD"> 
+           <string>ван[і]там</string> 
+          </void> 
+          <void property="pluralM"> 
+           <string>ван[і]тах</string> 
+          </void> 
+          <void property="pluralR"> 
+           <string>ван[і]таў</string> 
+          </void> 
+          <void property="pluralT"> 
+           <string>ван[і]тамі</string> 
+          </void> 
+          <void property="pluralV"> 
+           <string>ван[і]ты</string> 
+          </void> 
+          <void property="singular"> 
+           <string>-</string> 
+          </void> 
+          <void property="singularD"> 
+           <string>-</string> 
+          </void> 
+          <void property="singularM"> 
+           <string>-</string> 
+          </void> 
+          <void property="singularR"> 
+           <string>-</string> 
+          </void> 
+          <void property="singularT"> 
+           <string>-</string> 
+          </void> 
+          <void property="singularV"> 
+           <string>-</string> 
+          </void> 
+         </object> 
+        </void> 
+        <void property="posKey"> 
+         <string>naz</string> 
+        </void> 
+       </object> 
+      </void> 
+     </object> 
+    </void> 
+   </array> 
+  </void> 
+  <void property="stressedSyllable"> 
+   <int>2</int> 
+  </void> 
+  <void property="syllables"> 
+   <string>ва|ні|ты</string> 
+  </void> 
+ </object> 
+</java> 

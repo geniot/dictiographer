@@ -1,6 +1,6 @@
 package com.dictiographer.controller;
 
-import com.dictiographer.model.entry.EntryObjectModel;
+import entry.EntryObjectModel;
 import freemarker.cache.TemplateLoader;
 import freemarker.template.*;
 import junit.framework.TestCase;

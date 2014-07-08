@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_14" class="java.beans.XMLDecoder"> 
+ <object class="entry.EntryObjectModel">
+  <void property="headword"> 
+   <string>званітаваць</string> 
+  </void> 
+  <void property="partOfSpeeches"> 
+   <array class="entry.PartOfSpeech" length="1">
+    <void index="0"> 
+     <object class="entry.PartOfSpeech">
+      <void property="grammar"> 
+       <object class="entry.Grammar">
+        <void property="grammarDZE"> 
+         <object class="entry.grammar.by.GrammarDZE">
+          <void property="finite"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="finiteForm"> 
+           <string>званітав[а]ць</string> 
+          </void> 
+          <void property="imperPl"> 
+           <string>званіт[у]йце</string> 
+          </void> 
+          <void property="imperSing"> 
+           <string>званіт[у]й</string> 
+          </void> 
+          <void property="infiniteForm"> 
+           <string>ванітав[а]ць</string> 
+          </void> 
+          <void property="nonPersonalForm"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="participle"> 
+           <string>званітав[а]ўшы</string> 
+          </void> 
+          <void property="pastPl1"> 
+           <string>званітав[а]лі</string> 
+          </void> 
+          <void property="pastPl2"> 
+           <string>званітав[а]лі</string> 
+          </void> 
+          <void property="pastPl3"> 
+           <string>званітав[а]лі</string> 
+          </void> 
+          <void property="pastSing1"> 
+           <string>званітав[а]ў</string> 
+          </void> 
+          <void property="pastSing2"> 
+           <string>званітав[а]ў</string> 
+          </void> 
+          <void property="pastSing3"> 
+           <string>званітав[а]ў / званітав[а]ла</string> 
+          </void> 
+          <void property="presentPl1"> 
+           <string>званіт[у]ем</string> 
+          </void> 
+          <void property="presentPl2"> 
+           <string>званіт[у]еце</string> 
+          </void> 
+          <void property="presentPl3"> 
+           <string>званіт[у]юць</string> 
+          </void> 
+          <void property="presentSing1"> 
+           <string>званіт[у]ю</string> 
+          </void> 
+          <void property="presentSing2"> 
+           <string>званіт[у]еш</string> 
+          </void> 
+          <void property="presentSing3"> 
+           <string>званіт[у]е</string> 
+          </void> 
+         </object> 
+        </void> 
+        <void property="posKey"> 
+         <string>dze</string> 
+        </void> 
+       </object> 
+      </void> 
+     </object> 
+    </void> 
+   </array> 
+  </void> 
+  <void property="stressedSyllable"> 
+   <int>4</int> 
+  </void> 
+  <void property="syllables"> 
+   <string>зва|ні|та|ваць</string> 
+  </void> 
+  <void property="zie"> 
+   <array class="entry.EntryLink" length="1">
+    <void index="0"> 
+     <object class="entry.EntryLink">
+      <void property="text"> 
+       <string>ванітаваць</string> 
+      </void> 
+     </object> 
+    </void> 
+   </array> 
+  </void> 
+ </object> 
+</java> 

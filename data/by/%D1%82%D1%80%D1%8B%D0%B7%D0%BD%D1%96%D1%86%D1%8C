@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_14" class="java.beans.XMLDecoder"> 
+ <object class="entry.EntryObjectModel">
+  <void property="headword"> 
+   <string>трызніць</string> 
+  </void> 
+  <void property="partOfSpeeches"> 
+   <array class="entry.PartOfSpeech" length="1">
+    <void index="0"> 
+     <object class="entry.PartOfSpeech">
+      <void property="entryDefinitions"> 
+       <array class="entry.EntryDefinition" length="1">
+        <void index="0"> 
+         <object class="entry.EntryDefinition">
+          <void property="definition"> 
+           <string>Гаварыць без памяці, будучы цяжка хворым або ў сне.</string> 
+          </void> 
+          <void property="examples"> 
+           <array class="entry.Example" length="1">
+            <void index="0"> 
+             <object class="entry.Example">
+              <void property="example"> 
+               <string>хворы трызніў усю ноч</string> 
+              </void> 
+              <void property="translations"> 
+               <array class="entry.Translation" length="1">
+                <void index="0"> 
+                 <object class="entry.Translation">
+                  <void property="locale"> 
+                   <string>NL</string> 
+                  </void> 
+                  <void property="translation"> 
+                   <string>de zieke heeft de hele nacht geijld</string> 
+                  </void> 
+                 </object> 
+                </void> 
+               </array> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+          <void property="translations"> 
+           <array class="entry.Translation" length="1">
+            <void index="0"> 
+             <object class="entry.Translation">
+              <void property="locale"> 
+               <string>NL</string> 
+              </void> 
+              <void property="translation"> 
+               <string>ijlen</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+         </object> 
+        </void> 
+       </array> 
+      </void> 
+      <void property="grammar"> 
+       <object class="entry.Grammar">
+        <void property="grammarDZE"> 
+         <object class="entry.grammar.by.GrammarDZE">
+          <void property="finiteForm"> 
+           <string>прытр[ы]зніць</string> 
+          </void> 
+          <void property="imperPl"> 
+           <string>тр[ы]зніце</string> 
+          </void> 
+          <void property="imperSing"> 
+           <string>тр[ы]зні</string> 
+          </void> 
+          <void property="infinite"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="infiniteForm"> 
+           <string>тр[ы]зніць</string> 
+          </void> 
+          <void property="participle"> 
+           <string>тр[ы]знячы</string> 
+          </void> 
+          <void property="pastPl1"> 
+           <string>тр[ы]знілі</string> 
+          </void> 
+          <void property="pastPl2"> 
+           <string>тр[ы]знілі</string> 
+          </void> 
+          <void property="pastPl3"> 
+           <string>тр[ы]знілі</string> 
+          </void> 
+          <void property="pastSing1"> 
+           <string>тр[ы]зніў</string> 
+          </void> 
+          <void property="pastSing2"> 
+           <string>тр[ы]зніў</string> 
+          </void> 
+          <void property="pastSing3"> 
+           <string>тр[ы]зніў / тр[ы]зніла</string> 
+          </void> 
+          <void property="presentPl1"> 
+           <string>тр[ы]знім</string> 
+          </void> 
+          <void property="presentPl2"> 
+           <string>тр[ы]зніце</string> 
+          </void> 
+          <void property="presentPl3"> 
+           <string>тр[ы]зняць</string> 
+          </void> 
+          <void property="presentSing1"> 
+           <string>тр[ы]зню</string> 
+          </void> 
+          <void property="presentSing2"> 
+           <string>тр[ы]знiш</string> 
+          </void> 
+          <void property="presentSing3"> 
+           <string>тр[ы]зніць</string> 
+          </void> 
+         </object> 
+        </void> 
+        <void property="posKey"> 
+         <string>dze</string> 
+        </void> 
+       </object> 
+      </void> 
+     </object> 
+    </void> 
+   </array> 
+  </void> 
+  <void property="stressedSyllable"> 
+   <int>1</int> 
+  </void> 
+  <void property="syllables"> 
+   <string>трыз|ніць</string> 
+  </void> 
+ </object> 
+</java> 
