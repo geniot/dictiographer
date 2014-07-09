@@ -27,7 +27,7 @@ public abstract class GrammarDialog extends AbstractContainerRenderer {
         parent = p;
         cardName = cn;
         String lang = MyThreadLocal.get().getLang();
-        String grammarDialogDescriptor = "com/dictiography/client/ui/descriptors/" + lang + "/GrammarDialog" + cardName.toUpperCase() + ".xml";
+        String grammarDialogDescriptor = "descriptors/" + lang + "/GrammarDialog" + cardName.toUpperCase() + ".xml";
         if (getClass().getClassLoader().getResourceAsStream(grammarDialogDescriptor) == null) {
             return;
         }

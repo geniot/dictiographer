@@ -112,7 +112,6 @@ public class MyLocalizer extends Localizer {
      *
      * @param cl <code>ClassLoader</code> - custom classloader
      */
-    @Override
     public void setClassLoader(ClassLoader cl) {
         this.cl = cl;
     }

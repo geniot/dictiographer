@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<panel id="mainPanel"  bundle="DictiographyResource"  constraints="BorderLayout.CENTER" layout="BorderLayout">
+<panel id="mainPanel"  bundle="DictiographerResource"  constraints="BorderLayout.CENTER" layout="BorderLayout">
     <splitpane id="splitPane" DividerLocation="500" constraints="BorderLayout.CENTER">
         <panel constraints="BorderLayout.CENTER" layout="BorderLayout">
             <scrollpane constraints="BorderLayout.CENTER" id="scrollPane">
@@ -17,7 +17,7 @@
                 <button action="addAction"
                         id="addButton"
                         enabled="false"
-                        icon="com/dictiography/client/assets/add.png"
+                        icon="add.png"
                         maximumSize="30,30" minimumSize="30,30" preferredSize="30,30" size="30,30"
                         constraints="BorderLayout.EAST"/>
             </panel>
@@ -33,26 +33,26 @@
                     <button action="deleteAction"
                             enabled="false"
                             id="deleteButton"
-                            icon="com/dictiography/client/assets/delete.png"
+                            icon="delete.png"
                             maximumSize="30,30" minimumSize="30,30" preferredSize="30,30" size="30,30"
                             />
                     <label maximumSize="5,5" minimumSize="5,5" preferredSize="5,5" size="5,5"/>
                     <button action="upAction"
                             id="upButton"
                             enabled="false"
-                            icon="com/dictiography/client/assets/arrow_up.png"
+                            icon="arrow_up.png"
                             maximumSize="30,30" minimumSize="30,30" preferredSize="30,30" size="30,30"
                             />
                     <label maximumSize="5,5" minimumSize="5,5" preferredSize="5,5" size="5,5"/>
                     <button action="downAction"
                             id="downButton"
                             enabled="false"
-                            icon="com/dictiography/client/assets/arrow_down.png"
+                            icon="arrow_down.png"
                             maximumSize="30,30" minimumSize="30,30" preferredSize="30,30" size="30,30"
                             />
                     <label maximumSize="5,5" minimumSize="5,5" preferredSize="5,5" size="5,5"/>
                     <button action="chooseImageAction"
-                            icon="com/dictiography/client/assets/image16.png"
+                            icon="image16.png"
                             maximumSize="30,30" minimumSize="30,30" preferredSize="30,30" size="30,30"
                             />
                 </vbox>

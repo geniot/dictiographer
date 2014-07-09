@@ -47,7 +47,7 @@ public class BeeldPanel extends AbstractContainerRenderer {
 
 
     public BeeldPanel() {
-        init("com/dictiography/client/ui/descriptors/BeeldPanel.xml");
+        init("descriptors/BeeldPanel.xml");
         anchorsList.setModel(new DefaultListModel());
 
         layeredPane = new JLayeredPane();

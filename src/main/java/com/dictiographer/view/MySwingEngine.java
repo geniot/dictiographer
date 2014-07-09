@@ -1,5 +1,6 @@
 package com.dictiographer.view;
 
+import com.dictiographer.model.Constants;
 import org.swixml.*;
 
 /**
@@ -10,11 +11,8 @@ import org.swixml.*;
 
 
 public class MySwingEngine extends SwingEngine{
-    private MyLocalizer myLocalizer = new MyLocalizer();
+
     public Localizer getLocalizer() {
-        if (myLocalizer==null){
-            myLocalizer = new MyLocalizer();
-        }
-        return myLocalizer;
+        return Constants.LOCALIZER;
     }
 }

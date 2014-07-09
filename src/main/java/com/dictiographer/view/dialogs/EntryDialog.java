@@ -33,14 +33,15 @@ public class EntryDialog extends AbstractContainerRenderer {
 
 
     public EntryDialog(Bindable b, EntryObjectModel eom, String mode) {
-        parent = b;
+        this.parent = b;
         this.mode = mode;
-        init("com/dictiography/client/ui/descriptors/EntryDialog.xml");
+        init("descriptors/EntryDialog.xml");
         ((JDialog) container).setTitle(getLocalizer().getString(mode.equals(Constants.NEW_ACTION) ? "title.new" : "title.edit"));
         partOfSpeeches.addNewTab(null);
         if (eom != null) {
             setData(eom);
         }
+
 
     }
 

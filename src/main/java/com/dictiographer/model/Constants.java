@@ -1,5 +1,7 @@
 package com.dictiographer.model;
 
+import com.dictiographer.view.MyLocalizer;
+
 import java.util.Properties;
 
 /**
@@ -9,6 +11,7 @@ import java.util.Properties;
  */
 public class Constants {
     public static Properties PROPS = new Properties();
+    public static MyLocalizer LOCALIZER = new MyLocalizer();
 
     public static String X_POS_PROP_KEY = "app.x.pos";
     public static String Y_POS_PROP_KEY = "app.y.pos";
@@ -24,4 +27,5 @@ public class Constants {
 
     public static String MEDIA_CURRENT_DIRECTORY;
     public static String NEW_ACTION = "NEW_ACTION";
+    public static String UPDATE_ACTION = "UPDATE_ACTION";
 }

@@ -23,7 +23,7 @@ public class ImageDialog extends AbstractContainerRenderer {
 
     public ImageDialog(Bindable p, EntryImage[] eom) {
         parent = p;
-        init("com/dictiography/client/ui/descriptors/ImageDialog.xml");
+        init("descriptors/ImageDialog.xml");
 
         if (eom != null) {
             setData(eom);

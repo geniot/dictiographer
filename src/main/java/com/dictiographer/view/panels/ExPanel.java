@@ -35,7 +35,7 @@ public class ExPanel extends AbstractContainerRenderer {
 
 
     public ExPanel() {
-        init("com/dictiography/client/ui/descriptors/ExPanel.xml");
+        init("descriptors/ExPanel.xml");
     }
 
     public EntryImage[] getImages() throws Exception {

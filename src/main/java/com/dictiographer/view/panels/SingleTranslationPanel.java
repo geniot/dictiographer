@@ -17,7 +17,7 @@ public class SingleTranslationPanel extends AbstractContainerRenderer {
 
     public SingleTranslationPanel(Container p) {
         this.parent = p;
-        init("com/dictiography/client/ui/descriptors/SingleTranslationPanel.xml");
+        init("descriptors/SingleTranslationPanel.xml");
     }
 
     public Action deleteAction = new AbstractAction() {

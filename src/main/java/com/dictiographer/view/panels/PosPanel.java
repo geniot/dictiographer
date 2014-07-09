@@ -25,7 +25,7 @@ public class PosPanel extends AbstractContainerRenderer {
     public DnDTabbedPane entryDefinitions;
 
     public PosPanel() {
-        init("com/dictiography/client/ui/descriptors/PosPanel.xml");
+        init("descriptors/PosPanel.xml");
         entryDefinitions.addNewTab(null);
     }
 

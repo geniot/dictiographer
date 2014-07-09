@@ -19,7 +19,7 @@ public class TranslationDialog extends AbstractContainerRenderer {
 
     public TranslationDialog(Bindable p, Translation[] eom) {
         parent = p;
-        init("com/dictiography/client/ui/descriptors/TranslationDialog.xml");
+        init("descriptors/TranslationDialog.xml");
         if (eom != null) {
             setData(eom);
         } else {

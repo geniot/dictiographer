@@ -22,7 +22,7 @@ public class ExamplesDialog extends AbstractContainerRenderer {
 
     public ExamplesDialog(Bindable p, Example[] eom) {
         parent = p;
-        init("com/dictiography/client/ui/descriptors/ExamplesDialog.xml");
+        init("descriptors/ExamplesDialog.xml");
         if (eom != null) {
             setData(eom);
         } else {

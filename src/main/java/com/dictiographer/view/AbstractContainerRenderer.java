@@ -32,7 +32,6 @@ public abstract class AbstractContainerRenderer extends MySwingEngine implements
     public SemanticCategory category;
     public JComboBox posComboBox;
 
-
     public void init(String fileName) {
         try {
             getTaglib().registerTag("dndtabbedpane", DnDTabbedPane.class);
@@ -203,6 +202,14 @@ public abstract class AbstractContainerRenderer extends MySwingEngine implements
     protected void onCancel() {
         if (container instanceof JDialog) {
             ((JDialog) container).dispose();
+        }
+        Container parent = mainPanel.getParent();
+        while (parent != null) {
+            parent = parent.getParent();
+            if (parent != null  && parent instanceof Window) {
+                ((Window) parent).dispose();
+                return;
+            }
         }
     }
 

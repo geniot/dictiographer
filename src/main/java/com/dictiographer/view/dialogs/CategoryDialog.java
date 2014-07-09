@@ -24,7 +24,7 @@ public class CategoryDialog extends AbstractContainerRenderer {
 
     public CategoryDialog(Bindable p, SemanticCategory category) {
         parent = p;
-        init("com/dictiography/client/ui/descriptors/CategoryDialog.xml");
+        init("descriptors/CategoryDialog.xml");
 //        if (category != null) {
             setData(category);
 //        }

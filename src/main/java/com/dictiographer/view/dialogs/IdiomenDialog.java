@@ -20,7 +20,7 @@ public class IdiomenDialog extends AbstractContainerRenderer {
 
     public IdiomenDialog(Bindable p, Idioom[] eom) {
         parent = p;
-        init("com/dictiography/client/ui/descriptors/IdiomenDialog.xml");
+        init("descriptors/IdiomenDialog.xml");
 
         if (eom != null) {
             setData(eom);

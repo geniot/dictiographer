@@ -20,7 +20,7 @@ public class IdioomPanel extends AbstractContainerRenderer {
     public DnDTabbedPane idDndTabbedPane;
 
     public IdioomPanel() {
-        init("com/dictiography/client/ui/descriptors/IdioomPanel.xml");
+        init("descriptors/IdioomPanel.xml");
         idDndTabbedPane.addNewTab(null);
     }
 

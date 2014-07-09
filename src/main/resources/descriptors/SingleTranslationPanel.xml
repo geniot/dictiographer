@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<panel id="mainPanel"  bundle="DictiographyResource"  layout="GridBagLayout">
+<panel id="mainPanel"  bundle="DictiographerResource"  layout="GridBagLayout">
     <!--0-->
     <!--<label text="Taal">-->
         <!--<gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="0"-->
@@ -20,7 +20,7 @@
                             gridx="1" gridy="0"
                             ipadx="0" ipady="0" weightx="1" weighty="0"/>
     </textfield>
-    <button action="deleteAction" icon="com/dictiography/client/assets/delete.png" maximumSize="25,25"
+    <button action="deleteAction" icon="delete.png" maximumSize="25,25"
             minimumSize="25,25"
             preferredSize="25,25" size="25,25">
         <gridbagconstraints fill="GridBagConstraints.NONE" anchor="GridBagConstraints.WEST" insets="5,5,5,5"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dialog bundle="DictiographyResource" modal="true" size="900,700" name="frame" title="title.grammar" layout="BorderLayout">
+<dialog bundle="DictiographerResource" modal="true" size="900,700" name="frame" title="title.grammar" layout="BorderLayout">
     <panel id="mainPanel" constraints="BorderLayout.CENTER" layout="BorderLayout">
 
         <panel id="cardPanel" constraints="BorderLayout.CENTER" layout="BorderLayout">
@@ -54,7 +54,7 @@
                                             ipadx="0" ipady="0" weightx="1" weighty="0"/>
                     </combobox>
 
-                    <button action="propagateAction" icon="com/dictiography/client/assets/chart_organisation.png"
+                    <button action="propagateAction" icon="chart_organisation.png"
                             maximumSize="35,35" minimumSize="35,35" preferredSize="35,35" size="35,35">
                         <gridbagconstraints fill="GridBagConstraints.NONE" anchor="GridBagConstraints.WEST" insets="5,5,5,5"
                                             gridx="2" gridy="4"

@@ -2,10 +2,16 @@ package com.dictiographer.controller;
 
 import com.dictiographer.model.Constants;
 import com.dictiographer.model.IndexModel;
-import entry.EntryObjectModel;
+import com.dictiographer.view.Bindable;
 import com.dictiographer.view.Dictiographer;
+import com.dictiographer.view.MyThreadLocal;
+import com.dictiographer.view.ThreadContext;
+import com.dictiographer.view.dialogs.EntryDialog;
+import com.dictiographer.view.dialogs.WrapperDialog;
+import entry.EntryObjectModel;
 import freemarker.template.*;
 import org.apache.commons.io.FileUtils;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.swing.*;
 import java.io.*;
@@ -18,9 +24,10 @@ import java.util.*;
  * Email: Vitaly.Sazanovich@gmail.com
  * Date: 7/6/14
  */
-public class ViewController {
+public class ViewController implements Bindable {
     private static ViewController INSTANCE;
     private Configuration cfg;
+    private Dictiographer view;
 
     public static ViewController getInstance() {
         if (INSTANCE == null) {
@@ -66,7 +73,7 @@ public class ViewController {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                Dictiographer view = new Dictiographer();
+                view = new Dictiographer();
                 view.setVisible(true);
             }
         });
@@ -133,4 +140,42 @@ public class ViewController {
         return new String(baos.toByteArray(), "UTF-8");
     }
 
+    public void onEntryEdit(String domain, String hw) {
+        try {
+            File file = new File(Constants.PROPS.getProperty(Constants.DATA_FOLDER_PROP_KEY) + File.separator + domain + File.separator + URLEncoder.encode(hw, "UTF-8"));
+            String s = FileUtils.readFileToString(file, "UTF-8");
+            EntryObjectModel eom = (EntryObjectModel) DictiographerUtils.xml2entry(s);
+            ThreadContext context = new ThreadContext();
+            context.setLang(domain);
+            MyThreadLocal.set(context);
+
+            final EntryDialog entryDialog = new EntryDialog(this, eom, Constants.UPDATE_ACTION);
+            WrapperDialog wrapperDialog = new WrapperDialog(view,entryDialog.mainPanel,Constants.UPDATE_ACTION);
+            wrapperDialog.setSize(900, 700);
+            wrapperDialog.setVisible(true);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public void setData(Object data) {
+        System.out.println(data);
+    }
+
+    @Override
+    public Object getData(Object data) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public JPanel getMainPanel() {
+        return view.getMainPanel();
+    }
 }

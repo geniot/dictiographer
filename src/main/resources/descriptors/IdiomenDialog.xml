@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dialog modal="true"  bundle="DictiographyResource"  size="900,700" name="frame" title="title.idioms" layout="BorderLayout">
+<dialog modal="true"  bundle="DictiographerResource"  size="900,700" name="frame" title="title.idioms" layout="BorderLayout">
     <panel id="mainPanel" layout="BorderLayout"
            constraints="BorderLayout.CENTER">
         <dndtabbedpane id="idDndTabbedPane" constraints="BorderLayout.CENTER" boundModelClassName="entry.Idioom" titleNamingType="INDEX_TO_ALPHABET"

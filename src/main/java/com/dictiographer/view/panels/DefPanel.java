@@ -21,7 +21,7 @@ public class DefPanel extends AbstractContainerRenderer {
     public JTextField zie;
 
     public DefPanel() {
-        init("com/dictiography/client/ui/descriptors/DefPanel.xml");
+        init("descriptors/DefPanel.xml");
     }
 
     @Override

@@ -19,7 +19,7 @@ public class IdiomExplanationPanel  extends AbstractContainerRenderer {
     public Box translations;
 
     public IdiomExplanationPanel() {
-        init("com/dictiography/client/ui/descriptors/IdiomExplanationPanel.xml");
+        init("descriptors/IdiomExplanationPanel.xml");
     }
 
 
