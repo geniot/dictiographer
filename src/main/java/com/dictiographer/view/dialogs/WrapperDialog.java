@@ -13,7 +13,8 @@ import java.awt.event.*;
  */
 public class WrapperDialog extends JDialog {
     public WrapperDialog(Window view, JPanel mainPanel, String mode) {
-        super(view);
+        super(view,ModalityType.APPLICATION_MODAL);
+
         setTitle(Constants.LOCALIZER.getString(mode.equals(Constants.NEW_ACTION) ? "title.new" : "title.edit"));
         setContentPane(mainPanel);
 
@@ -28,6 +29,8 @@ public class WrapperDialog extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        this.setSize(800,600);
+        this.setLocationRelativeTo(view);
     }
 
     protected void onCancel() {
