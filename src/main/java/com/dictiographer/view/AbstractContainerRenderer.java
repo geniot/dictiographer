@@ -192,7 +192,7 @@ public abstract class AbstractContainerRenderer extends MySwingEngine implements
     public Action idiomsAction = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
             try {
-                new IdiomenDialog(AbstractContainerRenderer.this, idioms);
+                new IdiomenDialog(null,AbstractContainerRenderer.this, idioms);
             } catch (Exception e1) {
                 e1.printStackTrace();
             }

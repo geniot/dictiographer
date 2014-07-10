@@ -7,7 +7,6 @@ import com.dictiographer.view.Dictiographer;
 import com.dictiographer.view.MyThreadLocal;
 import com.dictiographer.view.ThreadContext;
 import com.dictiographer.view.dialogs.EntryDialog;
-import com.dictiographer.view.dialogs.WrapperDialog;
 import entry.EntryObjectModel;
 import freemarker.template.*;
 import org.apache.commons.io.FileUtils;
@@ -149,10 +148,8 @@ public class ViewController implements Bindable {
             context.setLang(domain);
             MyThreadLocal.set(context);
 
-            final EntryDialog entryDialog = new EntryDialog(this, eom, Constants.UPDATE_ACTION);
-            WrapperDialog wrapperDialog = new WrapperDialog(view,entryDialog.mainPanel,Constants.UPDATE_ACTION);
-            wrapperDialog.setSize(900, 700);
-            wrapperDialog.setVisible(true);
+            EntryDialog entryDialog = new EntryDialog(view, this, eom, Constants.UPDATE_ACTION);
+            entryDialog.setVisible(true);
 
         } catch (Exception ex) {
             ex.printStackTrace();

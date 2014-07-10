@@ -2,7 +2,8 @@ package com.dictiographer.view.panels;
 
 import com.dictiographer.controller.DictiographerUtils;
 import com.dictiographer.view.AbstractContainerRenderer;
-import entry.EntryDefinition;
+import com.dictiographer.view.Bindable;
+import entry.*;
 
 import javax.swing.*;
 
@@ -11,7 +12,7 @@ import javax.swing.*;
  * Date: 12/18/12
  * Time: 11:09 PM
  */
-public class DefPanel extends AbstractContainerRenderer {
+public class DefPanel extends AbstractContainerRenderer implements Bindable {
     public JTextArea definition;
     public JTextField meta;
     public JTextField hyperoniems;
@@ -20,6 +21,12 @@ public class DefPanel extends AbstractContainerRenderer {
     public JTextField antoniems;
     public JTextField zie;
 
+    public Translation[] translations;
+    public Example[] examples;
+    public Idioom[] idioms;
+    public Grammar grammar;
+    public EntryImage[] images;
+
     public DefPanel() {
         init("descriptors/DefPanel.xml");
     }
@@ -27,7 +34,7 @@ public class DefPanel extends AbstractContainerRenderer {
     @Override
     public void setData(Object d) {
         if (d == null) return;
-        super.setData(d);
+//        super.setData(d);
 
         if (d instanceof EntryDefinition) {
             EntryDefinition ed = (EntryDefinition) d;

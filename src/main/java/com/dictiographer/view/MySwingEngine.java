@@ -11,8 +11,11 @@ import org.swixml.*;
 
 
 public class MySwingEngine extends SwingEngine{
-
+    private MyLocalizer myLocalizer = new MyLocalizer();
     public Localizer getLocalizer() {
-        return Constants.LOCALIZER;
+        if (myLocalizer==null){
+            myLocalizer = new MyLocalizer();
+        }
+        return myLocalizer;
     }
 }

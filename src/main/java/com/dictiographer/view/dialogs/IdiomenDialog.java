@@ -1,85 +1,63 @@
 package com.dictiographer.view.dialogs;
 
-import entry.Idioom;
-import com.dictiographer.view.AbstractContainerRenderer;
+import com.dictiographer.model.Constants;
 import com.dictiographer.view.Bindable;
-import com.dictiographer.view.DnDTabbedPane;
-import com.dictiographer.view.panels.FormContentPanel;
-import com.dictiographer.view.panels.IdioomPanel;
+import com.dictiographer.view.panels.IdiomenDialogPanel;
+import entry.Idioom;
 
+import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.awt.event.*;
 
 /**
  * User: Vitaly Sazanovich
  * Date: 12/18/12
  * Time: 6:39 PM
  */
-public class IdiomenDialog extends AbstractContainerRenderer {
-    public DnDTabbedPane idDndTabbedPane;
+public class IdiomenDialog extends JDialog {
 
-    public IdiomenDialog(Bindable p, Idioom[] eom) {
-        parent = p;
-        init("descriptors/IdiomenDialog.xml");
-
-        if (eom != null) {
-            setData(eom);
-        } else {
-            idDndTabbedPane.addNewTab(null);
-        }
-        container.setVisible(true);
-    }
+    public Bindable parent;
+    private IdiomenDialogPanel idiomenDialogPanel;
 
 
-    public static void main(String[] args) {
-        new IdiomenDialog(null, null);
-    }
+    public IdiomenDialog(Window view, Bindable b, Idioom[] idiooms) {
+        super(view, ModalityType.APPLICATION_MODAL);
+        this.parent = b;
+        setTitle(Constants.LOCALIZER.getString("title.idioms"));
+        idiomenDialogPanel = new IdiomenDialogPanel();
+        setContentPane(idiomenDialogPanel.mainPanel);
 
-
-    @Override
-    public void setData(Object d) {
-        Idioom[] data = (Idioom[]) d;
-        for (int i = 0; i < data.length; i++) {
-            Component c = idDndTabbedPane.getComponentAt(i);
-            if (c != null && c instanceof FormContentPanel) {
-                FormContentPanel form = (FormContentPanel) c;
-                IdioomPanel idioomPanel = (IdioomPanel) form.getForm();
-                idioomPanel.setData(data[i]);
-            } else {
-                idDndTabbedPane.addNewTab(data[i]);
+        setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                onCancel();
             }
+        });
+        idiomenDialogPanel.mainPanel.registerKeyboardAction(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onCancel();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+
+        this.setSize(900, 700);
+        this.setLocationRelativeTo(view);
+
+
+        if (idiooms != null) {
+            idiomenDialogPanel.setData(idiooms);
         }
-        idDndTabbedPane.setSelectedIndex(0);
+
+
     }
 
-    @Override
-    public Object getData(Object data) {
-        ArrayList<Idioom> poses = new ArrayList();
-        for (int i = 0; i < idDndTabbedPane.getTabCount() - 1; i++) {
-            Component c = idDndTabbedPane.getComponentAt(i);
-            if (c != null && c instanceof FormContentPanel) {
-                FormContentPanel form = (FormContentPanel) c;
-                IdioomPanel idioomPanel = (IdioomPanel) form.getForm();
-                if (idioomPanel.isEmpty()) continue;
-                Idioom pos = new Idioom();
-                idioomPanel.getData(pos);
-                poses.add(pos);
-            }
-        }
-        Idioom[] ids = poses.toArray(new Idioom[poses.size()]);
-        return ids;
+    protected void onCancel() {
+        dispose();
     }
 
-    @Override
-    public boolean isEmpty() {
-        for (int i = 0; i < idDndTabbedPane.getTabCount() - 1; i++) {
-            Component c = idDndTabbedPane.getComponentAt(i);
-            if (c != null && c instanceof FormContentPanel) {
-                FormContentPanel form = (FormContentPanel) c;
-                IdioomPanel idioomPanel = (IdioomPanel) form.getForm();
-                if (!idioomPanel.isEmpty()) return false;
-            }
+    public Action saveAction = new AbstractAction() {
+        public void actionPerformed(ActionEvent e) {
+            parent.setData(idiomenDialogPanel.getData(null));
         }
-        return true;
-    }
+    };
+
 }
