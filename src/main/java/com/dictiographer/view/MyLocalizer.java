@@ -1,6 +1,6 @@
 package com.dictiographer.view;
 
-import com.dictiographer.controller.Utf8ResourceBundle;
+import com.dictiographer.utils.Utf8ResourceBundle;
 import com.dictiographer.model.Constants;
 import org.swixml.Localizer;
 
@@ -14,6 +14,11 @@ public class MyLocalizer extends Localizer {
     private String bundleName;
     private ResourceBundle bundle;
     private ClassLoader cl = MyLocalizer.class.getClassLoader();
+
+
+    public MyLocalizer(String lang) {
+        setLocale(new Locale(lang));
+    }
 
     /**
      * Sets the regular expression used to split a key, that could not be found in the resource bundle.
@@ -49,6 +54,14 @@ public class MyLocalizer extends Localizer {
             s = key;   // key not found, return key
         }
         return s;
+    }
+
+
+    public String getString(final String key, String lang) {
+        if (!lang.equals(this.locale.getLanguage())) {
+            setLocale(new Locale(lang));
+        }
+        return getString(key);
     }
 
     /**

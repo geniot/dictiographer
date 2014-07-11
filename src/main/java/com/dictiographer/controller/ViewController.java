@@ -1,15 +1,18 @@
 package com.dictiographer.controller;
 
 import com.dictiographer.model.Constants;
-import com.dictiographer.model.IndexModel;
+import com.dictiographer.utils.DictiographerUtils;
 import com.dictiographer.view.Bindable;
 import com.dictiographer.view.Dictiographer;
 import com.dictiographer.view.MyThreadLocal;
 import com.dictiographer.view.ThreadContext;
 import com.dictiographer.view.dialogs.EntryDialog;
 import entry.EntryObjectModel;
-import freemarker.template.*;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.config.PropertiesFactoryBean;
+import org.springframework.context.MessageSource;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.swing.*;
@@ -24,55 +27,60 @@ import java.util.*;
  * Date: 7/6/14
  */
 public class ViewController implements Bindable {
-    private static ViewController INSTANCE;
-    private Configuration cfg;
+    private Configuration freemarkerConfig;
     private Dictiographer view;
-
-    public static ViewController getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new ViewController();
-        }
-        return INSTANCE;
-    }
-
-    private ViewController() {
-
-        cfg = new Configuration();
-
-        cfg.setClassForTemplateLoading(this.getClass(), "/");
-
-        cfg.setObjectWrapper(new DefaultObjectWrapper());
-        cfg.setDefaultEncoding("UTF-8");
-        cfg.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
-        cfg.setIncompatibleImprovements(new Version(2, 3, 20));
+    private MessageSource messageSource;
+    private Properties dictiographerProperties;
 
 
+    public void init() {
+
+        System.out.println(messageSource.getMessage("naz", null, new Locale("by")));
+
+//        cfg = new Configuration();
+//
+//        cfg.setClassForTemplateLoading(this.getClass(), "/");
+//
+//        cfg.setObjectWrapper(new DefaultObjectWrapper());
+//        cfg.setDefaultEncoding("UTF-8");
+//        cfg.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
+//        cfg.setIncompatibleImprovements(new Version(2, 3, 20));
+//
+//
+        Properties props = new Properties();
         try {
-            Constants.PROPS.load(Launcher.class.getClassLoader().getResourceAsStream("app.properties"));
             FileInputStream fis = new FileInputStream(getUserPropsFilePath());
-            Constants.PROPS.loadFromXML(fis);
+            dictiographerProperties.loadFromXML(fis);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-
-        try {
-            File f = new File(Constants.PROPS.getProperty(Constants.DATA_FOLDER_PROP_KEY));
-            if (!f.exists()) {
-                f.mkdirs();
-            }
-            String[] domains = f.list();
-            Arrays.sort(domains);
-            IndexModel.getInstance().setDomains(domains);
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+//
+//        try {
+//            Constants.LOCALIZER = new MyLocalizer(Constants.PROPS.getProperty(Constants.DEFAULT_LOCALE_PROP_KEY));
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//
+//        try {
+//            File f = new File(Constants.PROPS.getProperty(Constants.DATA_FOLDER_PROP_KEY));
+//            if (!f.exists()) {
+//                f.mkdirs();
+//            }
+//            String[] domains = f.list();
+//            Arrays.sort(domains);
+//            IndexModel.getInstance().setDomains(domains);
+//
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//
+//
 
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                view = new Dictiographer();
+                view = new Dictiographer(ViewController.this, dictiographerProperties);
                 view.setVisible(true);
             }
         });
@@ -132,7 +140,7 @@ public class ViewController implements Bindable {
     public String convert(EntryObjectModel eom) throws Exception {
         Map root = new HashMap();
         root.put("entry", eom);
-        Template temp = cfg.getTemplate("templates/main.ftl");
+        Template temp = freemarkerConfig.getTemplate("templates/main.ftl");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         Writer out = new OutputStreamWriter(baos);
         temp.process(root, out);
@@ -173,6 +181,30 @@ public class ViewController implements Bindable {
 
     @Override
     public JPanel getMainPanel() {
-        return view.getMainPanel();
+        throw new NotImplementedException();
+    }
+
+    public MessageSource getMessageSource() {
+        return messageSource;
+    }
+
+    public void setMessageSource(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
+
+    public Configuration getFreemarkerConfig() {
+        return freemarkerConfig;
+    }
+
+    public void setFreemarkerConfig(Configuration freemarkerConfig) {
+        this.freemarkerConfig = freemarkerConfig;
+    }
+
+    public Properties getDictiographerProperties() {
+        return dictiographerProperties;
+    }
+
+    public void setDictiographerProperties(Properties dictiographerProperties) {
+        this.dictiographerProperties = dictiographerProperties;
     }
 }

@@ -1,8 +1,7 @@
 package com.dictiographer.view.comboboxmodels;
 
 
-import com.dictiographer.controller.DictiographerUtils;
-import com.dictiographer.view.Dictiographer;
+import com.dictiographer.utils.DictiographerUtils;
 import com.dictiographer.view.KeyValuePair;
 import com.dictiographer.view.MyThreadLocal;
 import com.dictiographer.view.ThreadContext;

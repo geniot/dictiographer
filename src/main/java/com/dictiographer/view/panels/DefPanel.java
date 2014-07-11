@@ -1,6 +1,6 @@
 package com.dictiographer.view.panels;
 
-import com.dictiographer.controller.DictiographerUtils;
+import com.dictiographer.utils.DictiographerUtils;
 import com.dictiographer.view.AbstractContainerRenderer;
 import com.dictiographer.view.Bindable;
 import entry.*;

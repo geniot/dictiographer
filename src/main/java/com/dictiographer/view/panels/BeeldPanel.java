@@ -1,8 +1,7 @@
 package com.dictiographer.view.panels;
 
-import com.dictiographer.controller.DictiographerUtils;
+import com.dictiographer.utils.DictiographerUtils;
 import com.dictiographer.model.Constants;
-import com.dictiographer.view.Dictiographer;
 import entry.EntryImage;
 import entry.ImageLink;
 import com.dictiographer.view.AbstractContainerRenderer;

@@ -1,15 +1,12 @@
 package com.dictiographer.controller;
 
+import com.dictiographer.utils.DictiographerUtils;
 import entry.EntryObjectModel;
-import freemarker.cache.TemplateLoader;
-import freemarker.template.*;
 import junit.framework.TestCase;
 import org.apache.commons.io.FileUtils;
 
 import java.io.*;
 import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Author: Vitaly Sazanovich

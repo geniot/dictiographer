@@ -1,4 +1,4 @@
-package com.dictiographer.controller;
+package com.dictiographer.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;

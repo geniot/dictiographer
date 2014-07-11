@@ -1,4 +1,4 @@
-package com.dictiographer.controller;
+package com.dictiographer.utils;
 
 import com.dictiographer.model.Constants;
 import entry.ByteArrayPersistenceDelegate;

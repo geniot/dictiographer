@@ -1,7 +1,7 @@
 package com.dictiographer.view.comboboxmodels;
 
 
-import com.dictiographer.controller.Utf8ResourceBundle;
+import com.dictiographer.utils.Utf8ResourceBundle;
 import com.dictiographer.view.MyThreadLocal;
 
 import java.util.Locale;
