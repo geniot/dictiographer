@@ -12,7 +12,7 @@
         </scrollpane>
         <panel constraints="BorderLayout.SOUTH" layout="FlowLayout(FlowLayout.LEFT)">
             <button action="addTranslationAction"
-                    icon="add.png"
+                    icon="images/add.png"
                     maximumSize="25,25"
                     minimumSize="25,25"
                     preferredSize="25,25"

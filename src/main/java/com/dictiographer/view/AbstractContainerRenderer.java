@@ -37,10 +37,6 @@ public abstract class AbstractContainerRenderer extends MySwingEngine implements
             getTaglib().registerTag("dndtabbedpane", DnDTabbedPane.class);
             getTaglib().registerTag("layeredpane", JLayeredPane.class);
 
-            lang = MyThreadLocal.get().getLang();
-            setLocale(new Locale(lang));
-            getLocalizer().setLocale(new Locale(lang));
-
             container = render(fileName);
 
             if (container instanceof JDialog) {
@@ -189,15 +185,15 @@ public abstract class AbstractContainerRenderer extends MySwingEngine implements
             }
         }
     };
-    public Action idiomsAction = new AbstractAction() {
-        public void actionPerformed(ActionEvent e) {
-            try {
-                new IdiomenDialog(null,AbstractContainerRenderer.this, idioms);
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-        }
-    };
+//    public Action idiomsAction = new AbstractAction() {
+//        public void actionPerformed(ActionEvent e) {
+//            try {
+//                new IdiomenDialog(null,AbstractContainerRenderer.this, idioms);
+//            } catch (Exception e1) {
+//                e1.printStackTrace();
+//            }
+//        }
+//    };
 
     protected void onCancel() {
         if (container instanceof JDialog) {

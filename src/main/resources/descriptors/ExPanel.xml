@@ -57,11 +57,11 @@
         <gridbagconstraints fill="GridBagConstraints.NONE" anchor="GridBagConstraints.WEST" insets="5,5,5,5"
                             gridx="1" gridy="3"
                             ipadx="0" ipady="0" weightx="1" weighty="0"/>
-        <button id="playButton" enabled="false" action="playAudioAction" icon="control_play_blue.png"
+        <button id="playButton" enabled="false" action="playAudioAction" icon="images/control_play_blue.png"
                 maximumSize="40,40" minimumSize="40,40" preferredSize="40,40" size="40,40"/>
-        <button enabled="true" action="selectAudioAction" icon="sound.png"
+        <button enabled="true" action="selectAudioAction" icon="images/sound.png"
                 maximumSize="40,40" minimumSize="40,40" preferredSize="40,40" size="40,40"/>
-        <button id="deleteButton" enabled="false" action="deleteAudionAction" icon="cross.png"
+        <button id="deleteButton" enabled="false" action="deleteAudionAction" icon="images/cross.png"
                 maximumSize="40,40" minimumSize="40,40" preferredSize="40,40" size="40,40"/>
     </panel>
 
@@ -71,7 +71,7 @@
                             gridx="2" gridy="3"
                             ipadx="0" ipady="0" weightx="0" weighty="0"/>
     </label>
-    <button action="imageAction" icon="image.png" maximumSize="35,35"
+    <button action="imageAction" icon="images/image.png" maximumSize="35,35"
             minimumSize="35,35" preferredSize="35,35" size="35,35">
         <gridbagconstraints fill="GridBagConstraints.NONE" anchor="GridBagConstraints.WEST" insets="5,5,5,5"
                             gridx="3" gridy="3"

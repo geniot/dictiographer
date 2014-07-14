@@ -2,9 +2,6 @@ package com.dictiographer.view;
 
 import com.dictiographer.controller.ViewController;
 import com.dictiographer.model.Constants;
-import com.dictiographer.model.IndexModel;
-import org.springframework.beans.factory.config.PropertiesFactoryBean;
-import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -14,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Arrays;
 import java.util.Properties;
 
 public class Dictiographer extends JFrame {
@@ -51,7 +49,7 @@ public class Dictiographer extends JFrame {
         setLocation(x, y);
         mainSplitPane.setDividerLocation(div);
 
-        String[] dns = IndexModel.getInstance().getDomains();
+        String[] dns = viewController.getDomains();
         domainComboBox.setModel(new DefaultComboBoxModel(dns));
         if (dns.length > 0) {
             domainComboBox.setEnabled(true);
@@ -83,8 +81,9 @@ public class Dictiographer extends JFrame {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
-                    setEntry();
-                    textField1.requestFocus();
+                    if (list1.getSelectedValue() != null) {
+                        selectEntry(list1.getSelectedValue().toString());
+                    }
                 }
 
             }
@@ -107,32 +106,34 @@ public class Dictiographer extends JFrame {
         });
     }
 
-    private void setEntry() {
-        if (list1.getSelectedValue() != null) {
-            Constants.PROPS.setProperty(Constants.SELECTED_WORD_PROP_KEY, list1.getSelectedValue().toString());
-            entryPane.setText(viewController.getEntry(domainComboBox.getSelectedItem().toString(), list1.getSelectedValue().toString()));
-
-
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    JViewport jv = entryScrollPane.getViewport();
-                    jv.setViewPosition(new Point(0, 0));
-                }
-            });
-//            entryPane.setText("<html><body>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/></body></html>");
-        }
+    private void selectEntry(String selectedEntry) {
+        props.setProperty(Constants.SELECTED_WORD_PROP_KEY, selectedEntry);
+        entryPane.setText(viewController.getEntry(domainComboBox.getSelectedItem().toString(), selectedEntry));
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JViewport jv = entryScrollPane.getViewport();
+                jv.setViewPosition(new Point(0, 0));
+            }
+        });
+        textField1.requestFocus();
     }
+
 
     private void onDomainChanged() {
         if (domainComboBox.getSelectedItem() == null) {
             return;
         }
-        list1.setListData(viewController.getIndex(domainComboBox.getSelectedItem().toString()));
-        String selWord = Constants.PROPS.getProperty(Constants.SELECTED_WORD_PROP_KEY);
-        if (!selWord.equals("")) {
+
+        String[] hws = viewController.getIndex(domainComboBox.getSelectedItem().toString());
+        list1.setListData(hws);
+
+        String selWord = props.getProperty(Constants.SELECTED_WORD_PROP_KEY);
+        if (selWord != null && !selWord.equals("") && Arrays.asList(hws).contains(selWord)) {
             list1.setSelectedValue(selWord, true);
-            setEntry();
+            selectEntry(list1.getSelectedValue().toString());
+        } else {
+            entryPane.setText("");
         }
         textField1.requestFocus();
     }

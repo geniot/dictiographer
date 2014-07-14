@@ -17,7 +17,7 @@
                             gridx="2" gridy="0"
                             ipadx="0" ipady="0" weightx="0" weighty="0"/>
     </label>
-    <button action="grammarAction" icon="table_sheet.png"
+    <button action="grammarAction" icon="images/table_sheet.png"
             maximumSize="35,35" minimumSize="35,35"
             preferredSize="35,35" size="35,35">
         <gridbagconstraints fill="GridBagConstraints.NONE" anchor="GridBagConstraints.WEST" insets="5,5,5,5"

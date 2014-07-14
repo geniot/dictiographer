@@ -1,6 +1,5 @@
 package com.dictiographer.view.dialogs;
 
-import com.dictiographer.model.Constants;
 import com.dictiographer.view.Bindable;
 import com.dictiographer.view.DnDTabbedPane;
 import com.dictiographer.view.MySwingEngine;
@@ -8,12 +7,12 @@ import com.dictiographer.view.MyThreadLocal;
 import com.dictiographer.view.panels.FormContentPanel;
 import com.dictiographer.view.panels.IdioomPanel;
 import entry.Idioom;
+import org.springframework.context.MessageSource;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Locale;
 
 /**
  * User: Vitaly Sazanovich
@@ -24,12 +23,13 @@ public class IdiomenDialog extends JDialog {
 
     public Bindable parent;
     private IdiomenDialogPanel idiomenDialogPanel;
+    private MessageSource messageSource;
 
-
-    public IdiomenDialog(Window view, Bindable b, Idioom[] idiooms) {
+    public IdiomenDialog(Window view, Bindable b, Idioom[] idiooms, MessageSource ms) {
         super(view, ModalityType.APPLICATION_MODAL);
         this.parent = b;
-        setTitle(Constants.LOCALIZER.getString("title.idioms"));
+        this.messageSource = ms;
+        setTitle(messageSource.getMessage("title.idioms", null, MyThreadLocal.get().getLocale()));
         idiomenDialogPanel = new IdiomenDialogPanel();
         setContentPane(idiomenDialogPanel.mainPanel);
 
@@ -61,8 +61,6 @@ public class IdiomenDialog extends JDialog {
     }
 
 
-
-
     public class IdiomenDialogPanel extends MySwingEngine implements Bindable {
         public JPanel mainPanel;
         public Container container;
@@ -73,10 +71,6 @@ public class IdiomenDialog extends JDialog {
             try {
                 getTaglib().registerTag("dndtabbedpane", DnDTabbedPane.class);
                 getTaglib().registerTag("layeredpane", JLayeredPane.class);
-
-//                lang = MyThreadLocal.get().getLang();
-//                setLocale(new Locale(lang));
-//                getLocalizer().setLocale(new Locale(lang));
 
                 container = render("descriptors/IdiomenDialog.xml");
 
@@ -125,9 +119,9 @@ public class IdiomenDialog extends JDialog {
                     FormContentPanel form = (FormContentPanel) c;
                     IdioomPanel idioomPanel = (IdioomPanel) form.getForm();
                     if (idioomPanel.isEmpty()) continue;
-                    Idioom pos = new Idioom();
-                    idioomPanel.getData(pos);
-                    poses.add(pos);
+                    Idioom idiom = new Idioom();
+                    idioomPanel.getData(idiom);
+                    poses.add(idiom);
                 }
             }
             Idioom[] ids = poses.toArray(new Idioom[poses.size()]);
@@ -150,6 +144,13 @@ public class IdiomenDialog extends JDialog {
         public Action saveAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 parent.setData(idiomenDialogPanel.getData(null));
+                IdiomenDialog.this.dispose();
+            }
+        };
+
+        public Action cancelAction = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                IdiomenDialog.this.dispose();
             }
         };
 

@@ -1,7 +1,7 @@
 package com.dictiographer.view;
 
-import com.dictiographer.model.Constants;
-import org.swixml.*;
+import org.swixml.Localizer;
+import org.swixml.SwingEngine;
 
 /**
  * User: Vitaly Sazanovich
@@ -10,8 +10,9 @@ import org.swixml.*;
  */
 
 
-public class MySwingEngine extends SwingEngine{
+public class MySwingEngine extends SwingEngine {
+
     public Localizer getLocalizer() {
-        return Constants.LOCALIZER;
+        return MyThreadLocal.get().getLocalizer();
     }
 }

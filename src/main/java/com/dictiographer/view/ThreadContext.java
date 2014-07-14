@@ -1,6 +1,6 @@
 package com.dictiographer.view;
 
-import com.dictiographer.model.Constants;
+import java.util.Locale;
 
 /**
  * User: Vitaly Sazanovich
@@ -8,13 +8,22 @@ import com.dictiographer.model.Constants;
  * Time: 9:22 PM
  */
 public class ThreadContext {
-    private String lang = Constants.PROPS.getProperty(Constants.DEFAULT_LOCALE_PROP_KEY);
+    private Locale locale;
+    private MyLocalizer localizer;
 
-    public String getLang() {
-        return lang.toLowerCase();
+    public Locale getLocale() {
+        return locale;
     }
 
-    public void setLang(String lang) {
-        this.lang = lang;
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+    }
+
+    public MyLocalizer getLocalizer() {
+        return localizer;
+    }
+
+    public void setLocalizer(MyLocalizer localizer) {
+        this.localizer = localizer;
     }
 }

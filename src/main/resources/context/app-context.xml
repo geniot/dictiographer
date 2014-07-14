@@ -24,6 +24,7 @@
     <bean id="viewController" class="com.dictiographer.controller.ViewController" init-method="init">
         <property name="messageSource" ref="messageSource"/>
         <property name="dictiographerProperties" ref="dictiographerProperties"/>
+        <property name="freemarkerConfig" ref="freemarkerConfig"/>
     </bean>
 
 </beans>

@@ -105,7 +105,7 @@ public class DictiographerUtils {
             return Utf8ResourceBundle.getBundle("DictiographerResource", new Locale(lang.toLowerCase()), DictiographerUtils.class.getClassLoader()).getString(key);
         } catch (Exception e) {
             try {
-                return Utf8ResourceBundle.getBundle("DictiographerResource", new Locale(Constants.PROPS.getProperty(Constants.DEFAULT_LOCALE_PROP_KEY)), DictiographerUtils.class.getClassLoader()).getString(key);
+                return Utf8ResourceBundle.getBundle("DictiographerResource", new Locale("en"), DictiographerUtils.class.getClassLoader()).getString(key);
             } catch (Exception ex) {
                 logger.log(Level.SEVERE, "Can't find resource for key: " + key);
                 return key;

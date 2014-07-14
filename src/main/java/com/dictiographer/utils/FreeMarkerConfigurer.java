@@ -110,7 +110,7 @@ public class FreeMarkerConfigurer extends FreeMarkerConfigurationFactory
      */
     protected void postProcessConfiguration(Configuration config) {
         TemplateLoader loader = config.getTemplateLoader();
-        ClassTemplateLoader formMacroLoader = new ClassTemplateLoader(getClass());
+        ClassTemplateLoader formMacroLoader = new ClassTemplateLoader(getClass(),"templates");
         TemplateLoader[] loaders = new TemplateLoader[]{loader, formMacroLoader};
         MultiTemplateLoader multiLoader = new MultiTemplateLoader(loaders);
         config.setTemplateLoader(multiLoader);

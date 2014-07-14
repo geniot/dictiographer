@@ -19,7 +19,7 @@ public class PosComboBoxModel extends AbstractComboBoxModel {
 
     @Override
     protected String[] getKeys() {
-        String lang = MyThreadLocal.get().getLang();
+        String lang = MyThreadLocal.get().getLocale().getLanguage();
         String pos = Utf8ResourceBundle.getBundle("DictiographerResource", new Locale(lang), this.getClass().getClassLoader()).getString("pos");
         return pos.split(",");
     }

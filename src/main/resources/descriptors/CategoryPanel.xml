@@ -21,14 +21,14 @@
                     <button action="upAction"
                             id="upButton"
                             enabled="true"
-                            icon="arrow_up.png"
+                            icon="images/arrow_up.png"
                             maximumSize="30,30" minimumSize="30,30" preferredSize="30,30" size="30,30"
                             />
                     <label maximumSize="5,5" minimumSize="5,5" preferredSize="5,5" size="5,5"/>
                     <button action="downAction"
                             id="downButton"
                             enabled="true"
-                            icon="arrow_down.png"
+                            icon="images/arrow_down.png"
                             maximumSize="30,30" minimumSize="30,30" preferredSize="30,30" size="30,30"
                             />
                 </vbox>

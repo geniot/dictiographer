@@ -1,13 +1,17 @@
 package com.dictiographer.view.dialogs;
 
-import com.dictiographer.utils.DictiographerUtils;
 import com.dictiographer.model.Constants;
-import com.dictiographer.view.*;
+import com.dictiographer.utils.DictiographerUtils;
+import com.dictiographer.view.Bindable;
+import com.dictiographer.view.DnDTabbedPane;
+import com.dictiographer.view.MySwingEngine;
+import com.dictiographer.view.MyThreadLocal;
 import com.dictiographer.view.panels.FormContentPanel;
 import com.dictiographer.view.panels.PosPanel;
 import entry.EntryObjectModel;
 import entry.Idioom;
 import entry.PartOfSpeech;
+import org.springframework.context.MessageSource;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,13 +27,15 @@ public class EntryDialog extends JDialog {
     public Bindable parent;
     public String mode = Constants.NEW_ACTION;
     private EntryDialogPanel entryDialogPanel;
+    private MessageSource messageSource;
 
 
-    public EntryDialog(Window view, Bindable b, EntryObjectModel eom, String mode) {
+    public EntryDialog(Window view, Bindable b, EntryObjectModel eom, String mode, MessageSource ms) {
         super(view, ModalityType.APPLICATION_MODAL);
         this.parent = b;
         this.mode = mode;
-        setTitle(Constants.LOCALIZER.getString(mode.equals(Constants.NEW_ACTION) ? "title.new" : "title.edit", MyThreadLocal.get().getLang()));
+        this.messageSource = ms;
+        setTitle(messageSource.getMessage(mode.equals(Constants.NEW_ACTION) ? "title.new" : "title.edit", null, MyThreadLocal.get().getLocale()));
 
         entryDialogPanel = new EntryDialogPanel();
         setContentPane(entryDialogPanel.mainPanel);
@@ -77,27 +83,7 @@ public class EntryDialog extends JDialog {
             try {
                 getTaglib().registerTag("dndtabbedpane", DnDTabbedPane.class);
                 getTaglib().registerTag("layeredpane", JLayeredPane.class);
-
-//                lang = MyThreadLocal.get().getLang();
-//                setLocale(new Locale(lang));
-//                getLocalizer().setLocale(new Locale(lang));
-
                 container = render("descriptors/EntryDialog.xml");
-
-//                if (container instanceof JDialog) {
-//                    ((JDialog) container).setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-//                    ((JDialog) container).addWindowListener(new WindowAdapter() {
-//                        public void windowClosing(WindowEvent e) {
-//                            onCancel();
-//                        }
-//                    });
-//                    mainPanel.registerKeyboardAction(new ActionListener() {
-//                        public void actionPerformed(ActionEvent e) {
-//                            onCancel();
-//                        }
-//                    }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-//                }
-
                 partOfSpeeches.addNewTab(null);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -108,6 +94,7 @@ public class EntryDialog extends JDialog {
         public void setData(Object inputObject) {
             try {
                 if (inputObject == null) return;
+
                 if (inputObject instanceof Idioom[]) {
                     idioms = ((Idioom[]) inputObject).length == 0 ? null : (Idioom[]) inputObject;
                     return;
@@ -119,7 +106,7 @@ public class EntryDialog extends JDialog {
                     if (eom.getSyllables() != null) syllables.setText(eom.getSyllables());
                     if (eom.getZie() != null) zie.setText(DictiographerUtils.links2str(eom.getZie()));
 //                stressedSyllable.setSelectedItem(eom.getStressedSyllable());
-                    idioms = eom.getIdioms();
+                    idioms = eom.getIdioms() == null ? new Idioom[]{} : eom.getIdioms();
                     if (eom.getPartOfSpeeches() != null) {
                         for (int i = 0; i < eom.getPartOfSpeeches().length; i++) {
                             Component c = partOfSpeeches.getComponentAt(i);
@@ -191,7 +178,7 @@ public class EntryDialog extends JDialog {
         public Action idiomsAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    IdiomenDialog dialog = new IdiomenDialog(EntryDialog.this, EntryDialogPanel.this, idioms);
+                    IdiomenDialog dialog = new IdiomenDialog(EntryDialog.this, EntryDialogPanel.this, idioms,messageSource);
                     dialog.setVisible(true);
                 } catch (Exception e1) {
                     e1.printStackTrace();
@@ -204,7 +191,7 @@ public class EntryDialog extends JDialog {
                 EntryObjectModel eom = new EntryObjectModel();
                 getData(eom);
                 if (eom.getHeadword() == null) {
-                    String lang = MyThreadLocal.get().getLang();
+                    String lang = MyThreadLocal.get().getLocale().getLanguage();
                     JOptionPane.showMessageDialog(EntryDialog.this, DictiographerUtils.getProperty(lang, "ERROR_HEADWORD_REQUIRED"));
                 } else {
                     parent.setData(eom);
@@ -221,12 +208,6 @@ public class EntryDialog extends JDialog {
 
 
     public static void main(String[] args) {
-        ThreadContext context = new ThreadContext();
-        context.setLang("by");
-        MyThreadLocal.set(context);
-        Constants.LOCALIZER = new MyLocalizer(Constants.PROPS.getProperty(Constants.DEFAULT_LOCALE_PROP_KEY));
-        EntryDialog ed = new EntryDialog(null, null, null, Constants.NEW_ACTION);
-        ed.setVisible(true);
     }
 
 }

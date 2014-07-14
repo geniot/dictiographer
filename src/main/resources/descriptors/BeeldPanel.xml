@@ -17,7 +17,7 @@
                 <button action="addAction"
                         id="addButton"
                         enabled="false"
-                        icon="add.png"
+                        icon="images/add.png"
                         maximumSize="30,30" minimumSize="30,30" preferredSize="30,30" size="30,30"
                         constraints="BorderLayout.EAST"/>
             </panel>
@@ -33,26 +33,26 @@
                     <button action="deleteAction"
                             enabled="false"
                             id="deleteButton"
-                            icon="delete.png"
+                            icon="images/delete.png"
                             maximumSize="30,30" minimumSize="30,30" preferredSize="30,30" size="30,30"
                             />
                     <label maximumSize="5,5" minimumSize="5,5" preferredSize="5,5" size="5,5"/>
                     <button action="upAction"
                             id="upButton"
                             enabled="false"
-                            icon="arrow_up.png"
+                            icon="images/arrow_up.png"
                             maximumSize="30,30" minimumSize="30,30" preferredSize="30,30" size="30,30"
                             />
                     <label maximumSize="5,5" minimumSize="5,5" preferredSize="5,5" size="5,5"/>
                     <button action="downAction"
                             id="downButton"
                             enabled="false"
-                            icon="arrow_down.png"
+                            icon="images/arrow_down.png"
                             maximumSize="30,30" minimumSize="30,30" preferredSize="30,30" size="30,30"
                             />
                     <label maximumSize="5,5" minimumSize="5,5" preferredSize="5,5" size="5,5"/>
                     <button action="chooseImageAction"
-                            icon="image16.png"
+                            icon="images/image16.png"
                             maximumSize="30,30" minimumSize="30,30" preferredSize="30,30" size="30,30"
                             />
                 </vbox>

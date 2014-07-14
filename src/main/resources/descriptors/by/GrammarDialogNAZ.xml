@@ -58,7 +58,7 @@
                                             ipadx="0" ipady="0" weightx="1" weighty="0"/>
                     </combobox>
 
-                    <button action="propagateAction" icon="chart_organisation.png"
+                    <button action="propagateAction" icon="images/chart_organisation.png"
                             maximumSize="35,35" minimumSize="35,35" preferredSize="35,35" size="35,35">
                         <gridbagconstraints fill="GridBagConstraints.NONE" anchor="GridBagConstraints.WEST" insets="5,5,5,5"
                                             gridx="2" gridy="3"

@@ -10,8 +10,6 @@ import java.util.Properties;
  * Date: 7/6/14
  */
 public class Constants {
-    public static Properties PROPS = new Properties();
-    public static MyLocalizer LOCALIZER;
 
     public static String X_POS_PROP_KEY = "app.x.pos";
     public static String Y_POS_PROP_KEY = "app.y.pos";

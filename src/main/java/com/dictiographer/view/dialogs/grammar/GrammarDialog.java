@@ -3,7 +3,6 @@ package com.dictiographer.view.dialogs.grammar;
 import com.dictiographer.view.AbstractContainerRenderer;
 import com.dictiographer.view.Bindable;
 import com.dictiographer.view.MyThreadLocal;
-import com.dictiographer.view.ThreadContext;
 import entry.Grammar;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -26,7 +25,7 @@ public abstract class GrammarDialog extends AbstractContainerRenderer {
     public GrammarDialog(Bindable p, Grammar grammar, String cn) {
         parent = p;
         cardName = cn;
-        String lang = MyThreadLocal.get().getLang();
+        String lang = MyThreadLocal.get().getLocale().getLanguage();
         String grammarDialogDescriptor = "descriptors/" + lang + "/GrammarDialog" + cardName.toUpperCase() + ".xml";
         if (getClass().getClassLoader().getResourceAsStream(grammarDialogDescriptor) == null) {
             return;
@@ -69,9 +68,6 @@ public abstract class GrammarDialog extends AbstractContainerRenderer {
 
 
     public static void main(String[] args) {
-        ThreadContext context = new ThreadContext();
-        context.setLang("by");
-        MyThreadLocal.set(context);
         new GrammarDialogLauncher(null, null, "pry");
     }
 

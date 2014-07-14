@@ -1,7 +1,6 @@
 package com.dictiographer.view;
 
 import com.dictiographer.utils.Utf8ResourceBundle;
-import com.dictiographer.model.Constants;
 import org.swixml.Localizer;
 
 import java.util.Locale;
@@ -16,8 +15,8 @@ public class MyLocalizer extends Localizer {
     private ClassLoader cl = MyLocalizer.class.getClassLoader();
 
 
-    public MyLocalizer(String lang) {
-        setLocale(new Locale(lang));
+    public MyLocalizer(Locale locale) {
+        setLocale(locale);
     }
 
     /**
@@ -96,7 +95,7 @@ public class MyLocalizer extends Localizer {
             try {
                 bundle = Utf8ResourceBundle.getBundle(bundleName, locale, cl);
             } catch (MissingResourceException mre) {
-                bundle = Utf8ResourceBundle.getBundle(bundleName, new Locale(Constants.PROPS.getProperty(Constants.DEFAULT_LOCALE_PROP_KEY)), cl);
+                bundle = Utf8ResourceBundle.getBundle(bundleName, new Locale("en"), cl);
             }
         } else {
             bundle = null;

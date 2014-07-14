@@ -2,16 +2,12 @@ package com.dictiographer.controller;
 
 import com.dictiographer.model.Constants;
 import com.dictiographer.utils.DictiographerUtils;
-import com.dictiographer.view.Bindable;
-import com.dictiographer.view.Dictiographer;
-import com.dictiographer.view.MyThreadLocal;
-import com.dictiographer.view.ThreadContext;
+import com.dictiographer.utils.FreeMarkerConfigurer;
+import com.dictiographer.view.*;
 import com.dictiographer.view.dialogs.EntryDialog;
 import entry.EntryObjectModel;
-import freemarker.template.Configuration;
 import freemarker.template.Template;
 import org.apache.commons.io.FileUtils;
-import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.MessageSource;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -27,55 +23,19 @@ import java.util.*;
  * Date: 7/6/14
  */
 public class ViewController implements Bindable {
-    private Configuration freemarkerConfig;
+    private FreeMarkerConfigurer freemarkerConfig;
     private Dictiographer view;
     private MessageSource messageSource;
     private Properties dictiographerProperties;
 
 
     public void init() {
-
-        System.out.println(messageSource.getMessage("naz", null, new Locale("by")));
-
-//        cfg = new Configuration();
-//
-//        cfg.setClassForTemplateLoading(this.getClass(), "/");
-//
-//        cfg.setObjectWrapper(new DefaultObjectWrapper());
-//        cfg.setDefaultEncoding("UTF-8");
-//        cfg.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
-//        cfg.setIncompatibleImprovements(new Version(2, 3, 20));
-//
-//
-        Properties props = new Properties();
         try {
             FileInputStream fis = new FileInputStream(getUserPropsFilePath());
             dictiographerProperties.loadFromXML(fis);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-//
-//        try {
-//            Constants.LOCALIZER = new MyLocalizer(Constants.PROPS.getProperty(Constants.DEFAULT_LOCALE_PROP_KEY));
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-//
-//        try {
-//            File f = new File(Constants.PROPS.getProperty(Constants.DATA_FOLDER_PROP_KEY));
-//            if (!f.exists()) {
-//                f.mkdirs();
-//            }
-//            String[] domains = f.list();
-//            Arrays.sort(domains);
-//            IndexModel.getInstance().setDomains(domains);
-//
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-//
-//
-
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -88,17 +48,17 @@ public class ViewController implements Bindable {
 
 
     public void onClosing(Dictiographer view) {
-        Constants.PROPS.setProperty(Constants.X_POS_PROP_KEY, String.valueOf(view.getLocation().getX()));
-        Constants.PROPS.setProperty(Constants.Y_POS_PROP_KEY, String.valueOf(view.getLocation().getY()));
-        Constants.PROPS.setProperty(Constants.WIDTH_PROP_KEY, String.valueOf(view.getSize().getWidth()));
-        Constants.PROPS.setProperty(Constants.HEIGHT_PROP_KEY, String.valueOf(view.getSize().getHeight()));
-        Constants.PROPS.setProperty(Constants.DIVIDER_PROP_KEY, String.valueOf(view.getDividerLocation()));
-        Constants.PROPS.setProperty(Constants.SELECTED_DOMAIN_PROP_KEY, String.valueOf(view.getSelectedDomain()));
-        Constants.PROPS.setProperty(Constants.SELECTED_WORD_PROP_KEY, String.valueOf(view.getSelectedWord()));
+        dictiographerProperties.setProperty(Constants.X_POS_PROP_KEY, String.valueOf(view.getLocation().getX()));
+        dictiographerProperties.setProperty(Constants.Y_POS_PROP_KEY, String.valueOf(view.getLocation().getY()));
+        dictiographerProperties.setProperty(Constants.WIDTH_PROP_KEY, String.valueOf(view.getSize().getWidth()));
+        dictiographerProperties.setProperty(Constants.HEIGHT_PROP_KEY, String.valueOf(view.getSize().getHeight()));
+        dictiographerProperties.setProperty(Constants.DIVIDER_PROP_KEY, String.valueOf(view.getDividerLocation()));
+        dictiographerProperties.setProperty(Constants.SELECTED_DOMAIN_PROP_KEY, String.valueOf(view.getSelectedDomain()));
+        dictiographerProperties.setProperty(Constants.SELECTED_WORD_PROP_KEY, String.valueOf(view.getSelectedWord()));
 
         try {
             FileOutputStream fos = new FileOutputStream(getUserPropsFilePath());
-            Constants.PROPS.storeToXML(fos, "Dictiographer user properties", "UTF-8");
+            dictiographerProperties.storeToXML(fos, "Dictiographer user properties", "UTF-8");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -112,7 +72,7 @@ public class ViewController implements Bindable {
 
     public String[] getIndex(String domain) {
         try {
-            File f = new File(Constants.PROPS.getProperty(Constants.DATA_FOLDER_PROP_KEY) + File.separator + domain);
+            File f = new File(dictiographerProperties.getProperty(Constants.DATA_FOLDER_PROP_KEY) + File.separator + domain);
             Set<String> s = new TreeSet<String>();
             String[] fns = f.list();
             for (String fn : fns) {
@@ -127,7 +87,7 @@ public class ViewController implements Bindable {
 
     public String getEntry(String domain, String hw) {
         try {
-            File file = new File(Constants.PROPS.getProperty(Constants.DATA_FOLDER_PROP_KEY) + File.separator + domain + File.separator + URLEncoder.encode(hw, "UTF-8"));
+            File file = new File(dictiographerProperties.getProperty(Constants.DATA_FOLDER_PROP_KEY) + File.separator + domain + File.separator + URLEncoder.encode(hw, "UTF-8"));
             String s = FileUtils.readFileToString(file, "UTF-8");
             EntryObjectModel eom = (EntryObjectModel) DictiographerUtils.xml2entry(s);
             return convert(eom);
@@ -140,7 +100,7 @@ public class ViewController implements Bindable {
     public String convert(EntryObjectModel eom) throws Exception {
         Map root = new HashMap();
         root.put("entry", eom);
-        Template temp = freemarkerConfig.getTemplate("templates/main.ftl");
+        Template temp = freemarkerConfig.getConfiguration().getTemplate("main.ftl");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         Writer out = new OutputStreamWriter(baos);
         temp.process(root, out);
@@ -149,14 +109,17 @@ public class ViewController implements Bindable {
 
     public void onEntryEdit(String domain, String hw) {
         try {
-            File file = new File(Constants.PROPS.getProperty(Constants.DATA_FOLDER_PROP_KEY) + File.separator + domain + File.separator + URLEncoder.encode(hw, "UTF-8"));
+            File file = new File(dictiographerProperties.getProperty(Constants.DATA_FOLDER_PROP_KEY) + File.separator + domain + File.separator + URLEncoder.encode(hw, "UTF-8"));
             String s = FileUtils.readFileToString(file, "UTF-8");
             EntryObjectModel eom = (EntryObjectModel) DictiographerUtils.xml2entry(s);
+
             ThreadContext context = new ThreadContext();
-            context.setLang(domain);
+            Locale loc = new Locale(domain);
+            context.setLocale(loc);
+            context.setLocalizer(new MyLocalizer(loc));
             MyThreadLocal.set(context);
 
-            EntryDialog entryDialog = new EntryDialog(view, this, eom, Constants.UPDATE_ACTION);
+            EntryDialog entryDialog = new EntryDialog(view, this, eom, Constants.UPDATE_ACTION, messageSource);
             entryDialog.setVisible(true);
 
         } catch (Exception ex) {
@@ -184,6 +147,22 @@ public class ViewController implements Bindable {
         throw new NotImplementedException();
     }
 
+    public String[] getDomains() {
+        try {
+            File f = new File(dictiographerProperties.getProperty(Constants.DATA_FOLDER_PROP_KEY));
+            if (!f.exists()) {
+                f.mkdirs();
+            }
+            String[] domains = f.list();
+            Arrays.sort(domains);
+            return domains;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return new String[]{};
+    }
+
     public MessageSource getMessageSource() {
         return messageSource;
     }
@@ -192,19 +171,19 @@ public class ViewController implements Bindable {
         this.messageSource = messageSource;
     }
 
-    public Configuration getFreemarkerConfig() {
-        return freemarkerConfig;
-    }
-
-    public void setFreemarkerConfig(Configuration freemarkerConfig) {
-        this.freemarkerConfig = freemarkerConfig;
-    }
-
     public Properties getDictiographerProperties() {
         return dictiographerProperties;
     }
 
     public void setDictiographerProperties(Properties dictiographerProperties) {
         this.dictiographerProperties = dictiographerProperties;
+    }
+
+    public FreeMarkerConfigurer getFreemarkerConfig() {
+        return freemarkerConfig;
+    }
+
+    public void setFreemarkerConfig(FreeMarkerConfigurer freemarkerConfig) {
+        this.freemarkerConfig = freemarkerConfig;
     }
 }

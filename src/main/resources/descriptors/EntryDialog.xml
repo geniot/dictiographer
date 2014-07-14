@@ -58,7 +58,7 @@
                 <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="3"
                                     ipadx="0" ipady="0" weightx="0" weighty="0"/>
             </label>
-            <button action="idiomsAction" icon="script.png"
+            <button action="idiomsAction" icon="images/script.png"
                     maximumSize="35,35" minimumSize="35,35" preferredSize="35,35" size="35,35">
                 <gridbagconstraints fill="GridBagConstraints.NONE" anchor="GridBagConstraints.WEST" insets="5,5,5,5"
                                     gridx="1"

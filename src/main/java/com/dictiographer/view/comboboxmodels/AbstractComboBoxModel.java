@@ -21,7 +21,7 @@ public abstract class AbstractComboBoxModel extends DefaultComboBoxModel {
 
     public AbstractComboBoxModel() {
         ThreadContext context = MyThreadLocal.get();
-        lang = context.getLang();
+        lang = context.getLocale().getLanguage();
         kvps = makeModel(getKeys());
         for (KeyValuePair kvp : kvps) {
             addElement(kvp);

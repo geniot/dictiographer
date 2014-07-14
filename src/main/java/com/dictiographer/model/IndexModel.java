@@ -6,14 +6,6 @@ package com.dictiographer.model;
  * Date: 7/6/14
  */
 public class IndexModel {
-    private static IndexModel INSTANCE;
-
-    public static IndexModel getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new IndexModel();
-        }
-        return INSTANCE;
-    }
 
     private String[] domains = new String[]{};
 
