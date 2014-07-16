@@ -1,11 +1,12 @@
 package com.dictiographer.view.panels;
 
 import com.dictiographer.utils.DictiographerUtils;
-import com.dictiographer.view.Bindable;
 import com.dictiographer.view.KeyValuePair;
 import com.dictiographer.view.MySwingEngine;
 import com.dictiographer.view.dialogs.ExamplesDialog;
 import com.dictiographer.view.dialogs.IdiomenDialog;
+import com.dictiographer.view.dialogs.ImageDialog;
+import com.dictiographer.view.dialogs.TranslationDialog;
 import com.dictiographer.view.dialogs.grammar.GrammarDialogLauncher;
 import entry.*;
 
@@ -19,7 +20,8 @@ import java.lang.reflect.Field;
  * Date: 12/18/12
  * Time: 11:09 PM
  */
-public class DefPanel extends MySwingEngine implements Bindable {
+public class DefPanel extends MySwingEngine {
+
     public JTextArea definition;
     public JTextField meta;
     public JTextField hyperoniems;
@@ -27,9 +29,7 @@ public class DefPanel extends MySwingEngine implements Bindable {
     public JTextField synonyms;
     public JTextField antoniems;
     public JTextField zie;
-
-    public Container container;
-    public JPanel mainPanel;
+    public JComboBox posComboBox;
 
     public Translation[] translations;
     public Example[] examples;
@@ -37,11 +37,8 @@ public class DefPanel extends MySwingEngine implements Bindable {
     public Grammar grammar;
     public EntryImage[] images;
 
-    public JComboBox posComboBox;
-
-
     public DefPanel() {
-        super("descriptors/DefPanel.xml");
+        init("descriptors/DefPanel.xml");
     }
 
     @Override
@@ -103,10 +100,6 @@ public class DefPanel extends MySwingEngine implements Bindable {
         return true;
     }
 
-    @Override
-    public JPanel getMainPanel() {
-        return mainPanel;
-    }
 
     public Action cancelAction = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
@@ -119,7 +112,8 @@ public class DefPanel extends MySwingEngine implements Bindable {
     public Action translationAction = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
             try {
-//                new TranslationDialog(DefPanel.this, translations);
+                TranslationDialog td = new TranslationDialog(getClosestWindow(container), DefPanel.this, translations);
+                td.setVisible(true);
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
@@ -128,7 +122,8 @@ public class DefPanel extends MySwingEngine implements Bindable {
     public Action imageAction = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
             try {
-//                new ImageDialog(DefPanel.this, images);
+                ImageDialog id = new ImageDialog(getClosestWindow(container), DefPanel.this, images);
+                id.setVisible(true);
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
@@ -137,7 +132,8 @@ public class DefPanel extends MySwingEngine implements Bindable {
     public Action examplesAction = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
             try {
-                new ExamplesDialog(getClosestWindow(container), DefPanel.this, examples);
+                ExamplesDialog ed = new ExamplesDialog(getClosestWindow(container), DefPanel.this, examples);
+                ed.setVisible(true);
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
@@ -158,7 +154,8 @@ public class DefPanel extends MySwingEngine implements Bindable {
     public Action grammarAction = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
             try {
-                new GrammarDialogLauncher(DefPanel.this, grammar, ((KeyValuePair) getPosComboBox().getSelectedItem()).getKey());
+                new GrammarDialogLauncher(DefPanel.this, grammar,
+                        ((KeyValuePair) getPosComboBox().getSelectedItem()).getKey());
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
@@ -176,7 +173,7 @@ public class DefPanel extends MySwingEngine implements Bindable {
                 c = c.getParent();
                 if (c == null) break;
                 if (c instanceof FormContentPanel) {
-                    DefPanel tmp = (DefPanel) ((FormContentPanel) c).getForm();
+                    Object tmp = ((FormContentPanel) c).getForm();
                     JComboBox f = (JComboBox) getInheritedPrivateFieldValue(tmp, tmp.getClass(), "posComboBox");
                     if (f != null) {
                         return f;
@@ -207,4 +204,5 @@ public class DefPanel extends MySwingEngine implements Bindable {
 
         return null;
     }
+
 }

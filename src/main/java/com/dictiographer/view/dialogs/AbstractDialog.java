@@ -21,6 +21,7 @@ public abstract class AbstractDialog extends JDialog {
     public AbstractDialog(Window view, ModalityType applicationModal, Bindable p) {
         super(view, applicationModal);
         this.parent = p;
+
         setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {

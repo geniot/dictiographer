@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Time: 19:44
  * Email: Vitaly.Sazanovich@gmail.com
  */
-public class IdiomExplanationPanel extends MySwingEngine implements Bindable {
+public class IdiomExplanationPanel extends MySwingEngine{
     public JTextField meta;
     public JTextField explanation;
     public Box translations;
@@ -22,7 +22,7 @@ public class IdiomExplanationPanel extends MySwingEngine implements Bindable {
     public Box contentPanel;
 
     public IdiomExplanationPanel() {
-        super("descriptors/IdiomExplanationPanel.xml");
+        init("descriptors/IdiomExplanationPanel.xml");
     }
 
     protected void addSingleTranslation(Translation tr) {
@@ -80,8 +80,4 @@ public class IdiomExplanationPanel extends MySwingEngine implements Bindable {
         return true;
     }
 
-    @Override
-    public JPanel getMainPanel() {
-        return null;
-    }
 }

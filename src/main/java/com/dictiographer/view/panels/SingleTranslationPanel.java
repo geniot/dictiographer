@@ -1,6 +1,5 @@
 package com.dictiographer.view.panels;
 
-import com.dictiographer.view.Bindable;
 import com.dictiographer.view.MySwingEngine;
 import entry.Translation;
 
@@ -13,12 +12,13 @@ import java.awt.event.ActionEvent;
  * Date: 12/18/12
  * Time: 11:09 PM
  */
-public class SingleTranslationPanel extends MySwingEngine implements Bindable {
+public class SingleTranslationPanel extends MySwingEngine {
     Container parent;
-    public Container container;
+    public JComboBox locale;
+    public JTextField translation;
 
     public SingleTranslationPanel(Container p) {
-        super("descriptors/SingleTranslationPanel.xml");
+        init("descriptors/SingleTranslationPanel.xml");
         this.parent = p;
 
     }
@@ -32,9 +32,6 @@ public class SingleTranslationPanel extends MySwingEngine implements Bindable {
             parent.getParent().remove(parent);
         }
     };
-
-    public JComboBox locale;
-    public JTextField translation;
 
 
     @Override
@@ -57,8 +54,4 @@ public class SingleTranslationPanel extends MySwingEngine implements Bindable {
         return translation.getText().trim().equals("");
     }
 
-    @Override
-    public JPanel getMainPanel() {
-        return null;
-    }
 }

@@ -2,9 +2,12 @@ package com.dictiographer.view.dialogs;
 
 import com.dictiographer.view.Bindable;
 import com.dictiographer.view.DnDTabbedPane;
+import com.dictiographer.view.MySwingEngine;
+import com.dictiographer.view.MyThreadLocal;
 import com.dictiographer.view.panels.BeeldPanel;
 import com.dictiographer.view.panels.FormContentPanel;
 import entry.EntryImage;
+import entry.Example;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,84 +19,76 @@ import java.util.ArrayList;
  * Date: 12/27/12
  * Time: 12:47 AM
  */
-public class ImageDialog extends AbstractDialog implements Bindable {
-    public Container container;
-    public DnDTabbedPane beeldDndTabbedPane;
-    Bindable parent;
+public class ImageDialog extends AbstractDialog {
+    private ImagesDialogPanel imagesDialogPanel;
 
-//    public ImageDialog(Bindable p, EntryImage[] eom) {
-//        parent = p;
-////        init("descriptors/ImageDialog.xml");
-//
-//        if (eom != null) {
-//            setData(eom);
-//        } else {
-//            beeldDndTabbedPane.addNewTab(null);
-//        }
-//        container.setVisible(true);
-//    }
+    public ImageDialog(Window view, Bindable p, EntryImage[] eom) {
+        super(view, ModalityType.APPLICATION_MODAL, p);
 
-    public ImageDialog(Window view, ModalityType applicationModal) {
-        super(view, applicationModal, null);
-    }
+        setTitle(MyThreadLocal.get().getMessageSource().getMessage("title.images", null, MyThreadLocal.get().getLocale()));
+        imagesDialogPanel = new ImagesDialogPanel();
+        setContentPane(imagesDialogPanel.mainPanel);
 
-
-    public static void main(String[] args) {
-        new ImageDialog(null, null);
-    }
-
-    public Action saveAction = new AbstractAction() {
-        public void actionPerformed(ActionEvent e) {
-            EntryImage[] eis = (EntryImage[]) getData(null);
-            parent.setData(eis);
-            ((JDialog) container).dispose();
+        if (eom != null) {
+            imagesDialogPanel.setData(eom);
         }
-    };
+    }
 
+    public class ImagesDialogPanel extends MySwingEngine {
+        public DnDTabbedPane beeldDndTabbedPane;
 
-    @Override
-    public void setData(Object d) {
-        EntryImage[] data = (EntryImage[]) d;
+        public ImagesDialogPanel() {
+            init("descriptors/ImageDialog.xml");
+        }
 
-        for (int i = 0; i < data.length; i++) {
-            Component c = beeldDndTabbedPane.getComponentAt(i);
-            if (c != null && c instanceof FormContentPanel) {
-                FormContentPanel form = (FormContentPanel) c;
-                BeeldPanel beeldPanel = (BeeldPanel) form.getForm();
-                beeldPanel.setData(data[i]);
-            } else {
-                beeldDndTabbedPane.addNewTab(data[i]);
+        @Override
+        public void setData(Object d) {
+            EntryImage[] data = (EntryImage[]) d;
+
+            for (int i = 0; i < data.length; i++) {
+                Component c = beeldDndTabbedPane.getComponentAt(i);
+                if (c != null && c instanceof FormContentPanel) {
+                    FormContentPanel form = (FormContentPanel) c;
+                    BeeldPanel beeldPanel = (BeeldPanel) form.getForm();
+                    beeldPanel.setData(data[i]);
+                } else {
+                    beeldDndTabbedPane.addNewTab(data[i]);
+                }
             }
+
+            beeldDndTabbedPane.setSelectedIndex(0);
         }
 
-        beeldDndTabbedPane.setSelectedIndex(0);
-    }
-
-    @Override
-    public Object getData(Object data) {
-        ArrayList<EntryImage> entryImages = new ArrayList();
-        for (int i = 0; i < beeldDndTabbedPane.getTabCount() - 1; i++) {
-            Component c = beeldDndTabbedPane.getComponentAt(i);
-            if (c != null && c instanceof FormContentPanel) {
-                FormContentPanel form = (FormContentPanel) c;
-                BeeldPanel beeldPanel = (BeeldPanel) form.getForm();
-                if (beeldPanel.isEmpty()) continue;
-                EntryImage entryImage = new EntryImage();
-                beeldPanel.getData(entryImage);
-                entryImages.add(entryImage);
+        @Override
+        public Object getData(Object data) {
+            ArrayList<EntryImage> entryImages = new ArrayList();
+            for (int i = 0; i < beeldDndTabbedPane.getTabCount() - 1; i++) {
+                Component c = beeldDndTabbedPane.getComponentAt(i);
+                if (c != null && c instanceof FormContentPanel) {
+                    FormContentPanel form = (FormContentPanel) c;
+                    BeeldPanel beeldPanel = (BeeldPanel) form.getForm();
+                    if (beeldPanel.isEmpty()) continue;
+                    EntryImage entryImage = new EntryImage();
+                    beeldPanel.getData(entryImage);
+                    entryImages.add(entryImage);
+                }
             }
+            EntryImage[] eis = entryImages.toArray(new EntryImage[entryImages.size()]);
+            return eis;
         }
-        EntryImage[] eis = entryImages.toArray(new EntryImage[entryImages.size()]);
-        return eis;
-    }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
+        public Action saveAction = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                EntryImage[] eis = (EntryImage[]) getData(null);
+                parent.setData(eis);
+                ((JDialog) container).dispose();
+            }
+        };
 
-    @Override
-    public JPanel getMainPanel() {
-        return null;
+
+        @Override
+        public boolean isEmpty() {
+            return false;
+        }
     }
 }

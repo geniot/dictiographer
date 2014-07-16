@@ -19,23 +19,19 @@ import java.util.ArrayList;
  * Date: 12/18/12
  * Time: 11:09 PM
  */
-public class PosPanel extends MySwingEngine implements Bindable {
+public class PosPanel extends MySwingEngine  {
 
     public JTextField afleidingen;
     public JTextField pronunciation;
     public DnDTabbedPane entryDefinitions;
     public JComboBox posComboBox;
 
-    public Container container;
-    public JPanel mainPanel;
-
     public Grammar grammar;
 
     public PosPanel() {
-        super("descriptors/PosPanel.xml");
+        init("descriptors/PosPanel.xml");
         entryDefinitions.addNewTab(null);
     }
-
 
     @Override
     public void setData(Object d) {
@@ -117,10 +113,5 @@ public class PosPanel extends MySwingEngine implements Bindable {
             }
         }
         return true;
-    }
-
-    @Override
-    public JPanel getMainPanel() {
-        return mainPanel;
     }
 }

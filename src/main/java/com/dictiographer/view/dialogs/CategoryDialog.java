@@ -1,7 +1,9 @@
 package com.dictiographer.view.dialogs;
 
-import entry.SemanticCategory;
 import com.dictiographer.view.Bindable;
+import com.dictiographer.view.MySwingEngine;
+import com.dictiographer.view.MyThreadLocal;
+import entry.Example;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -17,70 +19,66 @@ import java.awt.event.ActionEvent;
  * Email: Vitaly.Sazanovich@gmail.com
  */
 
-public class CategoryDialog extends AbstractDialog implements Bindable{
-    Bindable parent;
-    JList anchorsList;
-    JTree catsTree;
+public class CategoryDialog extends AbstractDialog {
 
-    public Container container;
+    private CategoryDialogPanel categoryDialogPanel;
 
-//    public CategoryDialog(Bindable p, SemanticCategory category) {
-//        parent = p;
-////        init("descriptors/CategoryDialog.xml");
-////        if (category != null) {
-//            setData(category);
-////        }
-//        container.setVisible(true);
-//    }
+    public CategoryDialog(Window view, Bindable p, Example[] eom) {
+        super(view, ModalityType.APPLICATION_MODAL, p);
 
-    public Action saveAction = new AbstractAction() {
-        public void actionPerformed(ActionEvent e) {
-            parent.setData(getData(null));
-            ((JDialog) container).dispose();
+        setTitle(MyThreadLocal.get().getMessageSource().getMessage("title.category", null, MyThreadLocal.get().getLocale()));
+        categoryDialogPanel = new CategoryDialogPanel();
+        setContentPane(categoryDialogPanel.mainPanel);
+
+        if (eom != null) {
+            categoryDialogPanel.setData(eom);
         }
-    };
-
-    public CategoryDialog(Window view, ModalityType applicationModal) {
-        super(view, applicationModal,null);
     }
 
 
-    public static void main(String[] args) {
-        new CategoryDialog(null, null);
-    }
+    public class CategoryDialogPanel extends MySwingEngine {
+        public JList anchorsList;
+        public JTree catsTree;
 
-    @Override
-    public void setData(Object d) {
+        public CategoryDialogPanel() {
+            init("descriptors/CategoryDialog.xml");
+        }
+
+        @Override
+        public void setData(Object d) {
 //        if (d == null) return;
 //        SemanticCategory data = (SemanticCategory) d;
-        DefaultListModel model = new DefaultListModel();
-        model.addElement("test");
-        DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("root");
-        DefaultMutableTreeNode child1 = new DefaultMutableTreeNode("child1");
-        DefaultMutableTreeNode child2 = new DefaultMutableTreeNode("child2");
+            DefaultListModel model = new DefaultListModel();
+            model.addElement("test");
+            DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("root");
+            DefaultMutableTreeNode child1 = new DefaultMutableTreeNode("child1");
+            DefaultMutableTreeNode child2 = new DefaultMutableTreeNode("child2");
 
-        child1.add(child2);
-        rootNode.add(child1);
+            child1.add(child2);
+            rootNode.add(child1);
 
-        TreeModel treeModel = new DefaultTreeModel(rootNode);
-        catsTree.setModel(treeModel);
-        anchorsList.setModel(model);
-    }
+            TreeModel treeModel = new DefaultTreeModel(rootNode);
+            catsTree.setModel(treeModel);
+            anchorsList.setModel(model);
+        }
 
 
-    @Override
-    public Object getData(Object data) {
-        return null;
-    }
+        @Override
+        public Object getData(Object data) {
+            return null;
+        }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
+        @Override
+        public boolean isEmpty() {
+            return false;
+        }
 
-    @Override
-    public JPanel getMainPanel() {
-        return null;
+        public Action saveAction = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                parent.setData(getData(null));
+                ((JDialog) container).dispose();
+            }
+        };
     }
 }
 

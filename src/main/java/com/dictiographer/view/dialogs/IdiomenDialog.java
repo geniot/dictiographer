@@ -19,8 +19,6 @@ import java.util.ArrayList;
  * Time: 6:39 PM
  */
 public class IdiomenDialog extends AbstractDialog {
-
-    public Bindable parent;
     private IdiomenDialogPanel idiomenDialogPanel;
 
     public IdiomenDialog(Window view, Bindable b, Idioom[] idiooms) {
@@ -36,12 +34,10 @@ public class IdiomenDialog extends AbstractDialog {
     }
 
     public class IdiomenDialogPanel extends MySwingEngine implements Bindable {
-        public JPanel mainPanel;
-        public Container container;
         public DnDTabbedPane idDndTabbedPane;
 
         public IdiomenDialogPanel() {
-            super("descriptors/IdiomenDialog.xml");
+            init("descriptors/IdiomenDialog.xml");
         }
 
         @Override
@@ -58,6 +54,11 @@ public class IdiomenDialog extends AbstractDialog {
                 }
             }
             idDndTabbedPane.setSelectedIndex(0);
+        }
+
+        @Override
+        public void onCancel() {
+            getClosestWindow(mainPanel).dispose();
         }
 
         @Override

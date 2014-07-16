@@ -35,14 +35,11 @@ public class ExamplesDialog extends AbstractDialog {
     }
 
 
-    public class ExamplesDialogPanel extends MySwingEngine implements Bindable {
-        public JPanel mainPanel;
-        public Container container;
-
+    public class ExamplesDialogPanel extends MySwingEngine {
         public DnDTabbedPane exDndTabbedPane;
 
         public ExamplesDialogPanel() {
-            super("descriptors/ExamplesDialog.xml");
+            init("descriptors/ExamplesDialog.xml");
             exDndTabbedPane.addNewTab(null);
         }
 
@@ -86,11 +83,6 @@ public class ExamplesDialog extends AbstractDialog {
         @Override
         public boolean isEmpty() {
             return false;
-        }
-
-        @Override
-        public JPanel getMainPanel() {
-            return null;
         }
     }
 }

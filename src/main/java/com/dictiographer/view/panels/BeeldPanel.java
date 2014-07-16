@@ -25,7 +25,7 @@ import java.util.zip.CRC32;
  * Date: 12/27/12
  * Time: 1:18 AM
  */
-public class BeeldPanel extends MySwingEngine implements Bindable {
+public class BeeldPanel extends MySwingEngine {
     JFileChooser fc;
     JPanel contentPanel;
     JLayeredPane layeredPane;
@@ -37,7 +37,6 @@ public class BeeldPanel extends MySwingEngine implements Bindable {
     JButton upButton;
     JButton downButton;
 
-    public Container container;
 
     BufferedImage bufferedImage;
     String fileExt;
@@ -48,7 +47,7 @@ public class BeeldPanel extends MySwingEngine implements Bindable {
 
 
     public BeeldPanel() {
-        super("descriptors/BeeldPanel.xml");
+        init("descriptors/BeeldPanel.xml");
         anchorsList.setModel(new DefaultListModel());
 
         layeredPane = new JLayeredPane();
@@ -275,11 +274,6 @@ public class BeeldPanel extends MySwingEngine implements Bindable {
     @Override
     public boolean isEmpty() {
         return bufferedImage == null && anchorsList.getModel().getSize() == 0;
-    }
-
-    @Override
-    public JPanel getMainPanel() {
-        return null;
     }
 
 }

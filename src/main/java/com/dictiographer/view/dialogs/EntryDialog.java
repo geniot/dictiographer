@@ -23,40 +23,21 @@ import java.util.ArrayList;
  * Time: 6:39 PM
  */
 public class EntryDialog extends AbstractDialog {
-
-    public String mode = Constants.NEW_ACTION;
     private EntryDialogPanel entryDialogPanel;
-
 
     public EntryDialog(Window view, Bindable b, EntryObjectModel eom, String mode) {
         super(view, ModalityType.APPLICATION_MODAL, b);
-        this.mode = mode;
         setTitle(MyThreadLocal.get().getMessageSource().getMessage(mode.equals(Constants.NEW_ACTION) ? "title.new" : "title.edit", null, MyThreadLocal.get().getLocale()));
 
         entryDialogPanel = new EntryDialogPanel();
         setContentPane(entryDialogPanel.mainPanel);
 
-        setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                onCancel();
-            }
-        });
-        entryDialogPanel.mainPanel.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-
         this.setSize(900, 700);
         this.setLocationRelativeTo(view);
-
 
         if (eom != null) {
             entryDialogPanel.setData(eom);
         }
-
-
     }
 
     protected void onCancel() {
@@ -64,8 +45,6 @@ public class EntryDialog extends AbstractDialog {
     }
 
     public class EntryDialogPanel extends MySwingEngine implements Bindable {
-        public JPanel mainPanel;
-        public Container container;
         public Box contentPane;
         public JTextField headword;
         public JTextField syllables;
@@ -75,7 +54,7 @@ public class EntryDialog extends AbstractDialog {
         public Idioom[] idioms;
 
         public EntryDialogPanel() {
-            super("descriptors/EntryDialog.xml");
+            init("descriptors/EntryDialog.xml");
             partOfSpeeches.addNewTab(null);
         }
 
@@ -113,6 +92,11 @@ public class EntryDialog extends AbstractDialog {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+        }
+
+        @Override
+        public void onCancel() {
+            getClosestWindow(mainPanel).dispose();
         }
 
         @Override

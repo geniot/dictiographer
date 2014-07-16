@@ -15,16 +15,15 @@ import java.util.ArrayList;
  * Date: 12/18/12
  * Time: 11:09 PM
  */
-public class IdioomPanel extends MySwingEngine implements Bindable {
+public class IdioomPanel extends MySwingEngine {
 
     public JTextField idioom;
     public DnDTabbedPane idDndTabbedPane;
 
     public IdioomPanel() {
-        super("descriptors/IdioomPanel.xml");
+        init("descriptors/IdioomPanel.xml");
         idDndTabbedPane.addNewTab(null);
     }
-
 
     @Override
     public void setData(Object d) {
@@ -84,8 +83,4 @@ public class IdioomPanel extends MySwingEngine implements Bindable {
         return true;
     }
 
-    @Override
-    public JPanel getMainPanel() {
-        return null;
-    }
 }

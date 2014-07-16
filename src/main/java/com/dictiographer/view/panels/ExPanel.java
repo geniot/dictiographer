@@ -22,7 +22,7 @@ import java.util.zip.CRC32;
  * Date: 12/18/12
  * Time: 11:09 PM
  */
-public class ExPanel extends MySwingEngine implements Bindable {
+public class ExPanel extends MySwingEngine {
     private byte[] audio;
     private String fileExt;
 
@@ -37,18 +37,16 @@ public class ExPanel extends MySwingEngine implements Bindable {
 
     public EntryImage[] images;
 
-    public Container container;
     public Box contentPanel;
 
 
     public ExPanel() {
-        super("descriptors/ExPanel.xml");
+        init("descriptors/ExPanel.xml");
     }
 
     public EntryImage[] getImages() throws Exception {
         return images;
     }
-
 
     public Action selectAudioAction = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
@@ -99,6 +97,8 @@ public class ExPanel extends MySwingEngine implements Bindable {
             deleteButton.setEnabled(false);
         }
     };
+
+
 
     @Override
     public void setData(Object inputObject) {
@@ -179,11 +179,6 @@ public class ExPanel extends MySwingEngine implements Bindable {
         if (images != null) return false;
         if (audio != null) return false;
         return true;
-    }
-
-    @Override
-    public JPanel getMainPanel() {
-        return null;
     }
 
 }
