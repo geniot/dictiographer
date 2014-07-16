@@ -67,7 +67,8 @@ public class GrammarDialogPRY extends GrammarDialog {
     public JComboBox endings;
 
     public GrammarDialogPRY(Bindable p, Grammar grammar, String cn) {
-        super(p, grammar, cn);
+        super(null,ModalityType.APPLICATION_MODAL);
+//        super(p, grammar, cn);
     }
 
     @Override
@@ -156,5 +157,10 @@ public class GrammarDialogPRY extends GrammarDialog {
             e1.printStackTrace();
         }
 
+    }
+
+    @Override
+    public JPanel getMainPanel() {
+        return null;
     }
 }

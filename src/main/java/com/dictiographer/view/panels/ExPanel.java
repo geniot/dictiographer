@@ -1,13 +1,15 @@
 package com.dictiographer.view.panels;
 
-import com.dictiographer.utils.DictiographerUtils;
 import com.dictiographer.model.Constants;
-import com.dictiographer.view.AbstractContainerRenderer;
+import com.dictiographer.utils.DictiographerUtils;
+import com.dictiographer.view.Bindable;
+import com.dictiographer.view.MySwingEngine;
 import entry.EntryImage;
 import entry.Example;
 import entry.Translation;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,7 +22,7 @@ import java.util.zip.CRC32;
  * Date: 12/18/12
  * Time: 11:09 PM
  */
-public class ExPanel extends AbstractContainerRenderer {
+public class ExPanel extends MySwingEngine implements Bindable {
     private byte[] audio;
     private String fileExt;
 
@@ -33,9 +35,14 @@ public class ExPanel extends AbstractContainerRenderer {
     public JButton playButton;
     public JButton deleteButton;
 
+    public EntryImage[] images;
+
+    public Container container;
+    public Box contentPanel;
+
 
     public ExPanel() {
-        init("descriptors/ExPanel.xml");
+        super("descriptors/ExPanel.xml");
     }
 
     public EntryImage[] getImages() throws Exception {
@@ -96,7 +103,7 @@ public class ExPanel extends AbstractContainerRenderer {
     @Override
     public void setData(Object inputObject) {
         if (inputObject == null) return;
-        super.setData(inputObject);
+//        super.setData(inputObject);
 
         if (inputObject instanceof Example) {
             Example ex = (Example) inputObject;
@@ -117,6 +124,17 @@ public class ExPanel extends AbstractContainerRenderer {
             }
             images = ex.getImages();
         }
+    }
+
+    protected void addSingleTranslation(Translation tr) {
+        SingleTranslationPanel stp = new SingleTranslationPanel(contentPanel);
+        if (tr != null) {
+            stp.setData(tr);
+        }
+        FormContentPanel formContentPanel = new FormContentPanel(stp.getMainPanel(), stp);
+        contentPanel.add(formContentPanel, contentPanel.getComponentCount());
+        contentPanel.revalidate();
+        contentPanel.repaint();
     }
 
     @Override
@@ -161,6 +179,11 @@ public class ExPanel extends AbstractContainerRenderer {
         if (images != null) return false;
         if (audio != null) return false;
         return true;
+    }
+
+    @Override
+    public JPanel getMainPanel() {
+        return null;
     }
 
 }

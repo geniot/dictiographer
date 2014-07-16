@@ -1,8 +1,9 @@
 package com.dictiographer.view.panels;
 
+import com.dictiographer.view.Bindable;
+import com.dictiographer.view.MySwingEngine;
 import entry.IdiomExplanation;
 import entry.Translation;
-import com.dictiographer.view.AbstractContainerRenderer;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -13,13 +14,26 @@ import java.util.ArrayList;
  * Time: 19:44
  * Email: Vitaly.Sazanovich@gmail.com
  */
-public class IdiomExplanationPanel  extends AbstractContainerRenderer {
+public class IdiomExplanationPanel extends MySwingEngine implements Bindable {
     public JTextField meta;
     public JTextField explanation;
     public Box translations;
 
+    public Box contentPanel;
+
     public IdiomExplanationPanel() {
-        init("descriptors/IdiomExplanationPanel.xml");
+        super("descriptors/IdiomExplanationPanel.xml");
+    }
+
+    protected void addSingleTranslation(Translation tr) {
+        SingleTranslationPanel stp = new SingleTranslationPanel(contentPanel);
+        if (tr != null) {
+            stp.setData(tr);
+        }
+        FormContentPanel formContentPanel = new FormContentPanel(stp.getMainPanel(), stp);
+        contentPanel.add(formContentPanel, contentPanel.getComponentCount());
+        contentPanel.revalidate();
+        contentPanel.repaint();
     }
 
 
@@ -29,7 +43,7 @@ public class IdiomExplanationPanel  extends AbstractContainerRenderer {
         IdiomExplanation data = (IdiomExplanation) d;
         if (data.getExplanation() != null) explanation.setText(data.getExplanation());
         if (data.getMeta() != null) meta.setText(data.getMeta());
-        if (data.getTranslations()!=null){
+        if (data.getTranslations() != null) {
             for (Translation ex : data.getTranslations()) {
                 addSingleTranslation(ex);
             }
@@ -64,5 +78,10 @@ public class IdiomExplanationPanel  extends AbstractContainerRenderer {
             if (!stf.isEmpty()) return false;
         }
         return true;
+    }
+
+    @Override
+    public JPanel getMainPanel() {
+        return null;
     }
 }

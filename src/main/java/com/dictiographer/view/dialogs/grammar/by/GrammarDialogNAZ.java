@@ -40,7 +40,8 @@ public class GrammarDialogNAZ extends GrammarDialog {
 
 
     public GrammarDialogNAZ(Bindable p, Grammar grammar, String cn) {
-        super(p, grammar, cn);
+        super(null,ModalityType.APPLICATION_MODAL);
+//        super(p, grammar, cn);
     }
 
     @Override
@@ -141,5 +142,8 @@ public class GrammarDialogNAZ extends GrammarDialog {
 
     }
 
-
+    @Override
+    public JPanel getMainPanel() {
+        return null;
+    }
 }

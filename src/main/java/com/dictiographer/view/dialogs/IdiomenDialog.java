@@ -7,11 +7,10 @@ import com.dictiographer.view.MyThreadLocal;
 import com.dictiographer.view.panels.FormContentPanel;
 import com.dictiographer.view.panels.IdioomPanel;
 import entry.Idioom;
-import org.springframework.context.MessageSource;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 /**
@@ -19,47 +18,22 @@ import java.util.ArrayList;
  * Date: 12/18/12
  * Time: 6:39 PM
  */
-public class IdiomenDialog extends JDialog {
+public class IdiomenDialog extends AbstractDialog {
 
     public Bindable parent;
     private IdiomenDialogPanel idiomenDialogPanel;
-    private MessageSource messageSource;
 
-    public IdiomenDialog(Window view, Bindable b, Idioom[] idiooms, MessageSource ms) {
-        super(view, ModalityType.APPLICATION_MODAL);
-        this.parent = b;
-        this.messageSource = ms;
-        setTitle(messageSource.getMessage("title.idioms", null, MyThreadLocal.get().getLocale()));
+    public IdiomenDialog(Window view, Bindable b, Idioom[] idiooms) {
+        super(view, ModalityType.APPLICATION_MODAL, b);
+        setTitle(MyThreadLocal.get().getMessageSource().getMessage("title.idioms", null, MyThreadLocal.get().getLocale()));
         idiomenDialogPanel = new IdiomenDialogPanel();
         setContentPane(idiomenDialogPanel.mainPanel);
-
-        setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                onCancel();
-            }
-        });
-        idiomenDialogPanel.mainPanel.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-
-        this.setSize(900, 700);
-        this.setLocationRelativeTo(view);
-
 
         if (idiooms != null) {
             idiomenDialogPanel.setData(idiooms);
         }
 
-
     }
-
-    protected void onCancel() {
-        dispose();
-    }
-
 
     public class IdiomenDialogPanel extends MySwingEngine implements Bindable {
         public JPanel mainPanel;
@@ -67,31 +41,7 @@ public class IdiomenDialog extends JDialog {
         public DnDTabbedPane idDndTabbedPane;
 
         public IdiomenDialogPanel() {
-
-            try {
-                getTaglib().registerTag("dndtabbedpane", DnDTabbedPane.class);
-                getTaglib().registerTag("layeredpane", JLayeredPane.class);
-
-                container = render("descriptors/IdiomenDialog.xml");
-
-                if (container instanceof JDialog) {
-                    ((JDialog) container).setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-                    ((JDialog) container).addWindowListener(new WindowAdapter() {
-                        public void windowClosing(WindowEvent e) {
-                            onCancel();
-                        }
-                    });
-                    mainPanel.registerKeyboardAction(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            onCancel();
-                        }
-                    }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-                }
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            super("descriptors/IdiomenDialog.xml");
         }
 
         @Override

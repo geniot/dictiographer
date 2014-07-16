@@ -1,13 +1,13 @@
 package com.dictiographer.view.dialogs;
 
 import entry.SemanticCategory;
-import com.dictiographer.view.AbstractContainerRenderer;
 import com.dictiographer.view.Bindable;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 /**
@@ -17,19 +17,21 @@ import java.awt.event.ActionEvent;
  * Email: Vitaly.Sazanovich@gmail.com
  */
 
-public class CategoryDialog extends AbstractContainerRenderer {
+public class CategoryDialog extends AbstractDialog implements Bindable{
     Bindable parent;
     JList anchorsList;
     JTree catsTree;
 
-    public CategoryDialog(Bindable p, SemanticCategory category) {
-        parent = p;
-        init("descriptors/CategoryDialog.xml");
-//        if (category != null) {
-            setData(category);
-//        }
-        container.setVisible(true);
-    }
+    public Container container;
+
+//    public CategoryDialog(Bindable p, SemanticCategory category) {
+//        parent = p;
+////        init("descriptors/CategoryDialog.xml");
+////        if (category != null) {
+//            setData(category);
+////        }
+//        container.setVisible(true);
+//    }
 
     public Action saveAction = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
@@ -37,6 +39,10 @@ public class CategoryDialog extends AbstractContainerRenderer {
             ((JDialog) container).dispose();
         }
     };
+
+    public CategoryDialog(Window view, ModalityType applicationModal) {
+        super(view, applicationModal,null);
+    }
 
 
     public static void main(String[] args) {
@@ -70,6 +76,11 @@ public class CategoryDialog extends AbstractContainerRenderer {
     @Override
     public boolean isEmpty() {
         return false;
+    }
+
+    @Override
+    public JPanel getMainPanel() {
+        return null;
     }
 }
 

@@ -1,9 +1,10 @@
 package com.dictiographer.view.panels;
 
+import com.dictiographer.view.Bindable;
+import com.dictiographer.view.DnDTabbedPane;
+import com.dictiographer.view.MySwingEngine;
 import entry.IdiomExplanation;
 import entry.Idioom;
-import com.dictiographer.view.AbstractContainerRenderer;
-import com.dictiographer.view.DnDTabbedPane;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,13 +15,13 @@ import java.util.ArrayList;
  * Date: 12/18/12
  * Time: 11:09 PM
  */
-public class IdioomPanel extends AbstractContainerRenderer {
+public class IdioomPanel extends MySwingEngine implements Bindable {
 
     public JTextField idioom;
     public DnDTabbedPane idDndTabbedPane;
 
     public IdioomPanel() {
-        init("descriptors/IdioomPanel.xml");
+        super("descriptors/IdioomPanel.xml");
         idDndTabbedPane.addNewTab(null);
     }
 
@@ -81,5 +82,10 @@ public class IdioomPanel extends AbstractContainerRenderer {
             }
         }
         return true;
+    }
+
+    @Override
+    public JPanel getMainPanel() {
+        return null;
     }
 }

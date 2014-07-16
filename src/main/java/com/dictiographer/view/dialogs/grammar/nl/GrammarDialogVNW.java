@@ -18,7 +18,8 @@ public class GrammarDialogVNW extends GrammarDialog {
     public JComboBox vnwKey;
 
     public GrammarDialogVNW(Bindable p, Grammar grammar, String cn) {
-        super(p, grammar, cn);
+        super(null,ModalityType.APPLICATION_MODAL);
+//        super(p, grammar, cn);
     }
 
     @Override
@@ -40,6 +41,11 @@ public class GrammarDialogVNW extends GrammarDialog {
 //        if (vnwKey != null) data.setVnwKey(((KeyValuePair) vnwKey.getSelectedItem()).getKey());
 
         return data;
+    }
+
+    @Override
+    public JPanel getMainPanel() {
+        return null;
     }
 }
 

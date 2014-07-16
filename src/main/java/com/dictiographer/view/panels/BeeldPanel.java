@@ -1,12 +1,12 @@
 package com.dictiographer.view.panels;
 
-import com.dictiographer.utils.DictiographerUtils;
 import com.dictiographer.model.Constants;
+import com.dictiographer.utils.DictiographerUtils;
+import com.dictiographer.view.Bindable;
+import com.dictiographer.view.ImageLinkLabel;
+import com.dictiographer.view.MySwingEngine;
 import entry.EntryImage;
 import entry.ImageLink;
-import com.dictiographer.view.AbstractContainerRenderer;
-import com.dictiographer.view.ImageLinkLabel;
-
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -25,7 +25,7 @@ import java.util.zip.CRC32;
  * Date: 12/27/12
  * Time: 1:18 AM
  */
-public class BeeldPanel extends AbstractContainerRenderer {
+public class BeeldPanel extends MySwingEngine implements Bindable {
     JFileChooser fc;
     JPanel contentPanel;
     JLayeredPane layeredPane;
@@ -37,6 +37,8 @@ public class BeeldPanel extends AbstractContainerRenderer {
     JButton upButton;
     JButton downButton;
 
+    public Container container;
+
     BufferedImage bufferedImage;
     String fileExt;
 
@@ -46,7 +48,7 @@ public class BeeldPanel extends AbstractContainerRenderer {
 
 
     public BeeldPanel() {
-        init("descriptors/BeeldPanel.xml");
+        super("descriptors/BeeldPanel.xml");
         anchorsList.setModel(new DefaultListModel());
 
         layeredPane = new JLayeredPane();
@@ -273,6 +275,11 @@ public class BeeldPanel extends AbstractContainerRenderer {
     @Override
     public boolean isEmpty() {
         return bufferedImage == null && anchorsList.getModel().getSize() == 0;
+    }
+
+    @Override
+    public JPanel getMainPanel() {
+        return null;
     }
 
 }

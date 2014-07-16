@@ -25,7 +25,8 @@ public class GrammarDialogZNW extends GrammarDialog {
     public JCheckBox alleenMeer;
 
     public GrammarDialogZNW(Bindable p, Grammar grammar, String cn) {
-        super(p, grammar, cn);
+        super(null,ModalityType.APPLICATION_MODAL);
+//        super(p, grammar, cn);
     }
 
     @Override
@@ -71,5 +72,8 @@ public class GrammarDialogZNW extends GrammarDialog {
         return null;
     }
 
-
+    @Override
+    public JPanel getMainPanel() {
+        return null;
+    }
 }

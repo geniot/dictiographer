@@ -1,11 +1,10 @@
 package com.dictiographer.view.dialogs;
 
-import entry.EntryImage;
-import com.dictiographer.view.AbstractContainerRenderer;
 import com.dictiographer.view.Bindable;
 import com.dictiographer.view.DnDTabbedPane;
 import com.dictiographer.view.panels.BeeldPanel;
 import com.dictiographer.view.panels.FormContentPanel;
+import entry.EntryImage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,20 +16,25 @@ import java.util.ArrayList;
  * Date: 12/27/12
  * Time: 12:47 AM
  */
-public class ImageDialog extends AbstractContainerRenderer {
+public class ImageDialog extends AbstractDialog implements Bindable {
+    public Container container;
     public DnDTabbedPane beeldDndTabbedPane;
     Bindable parent;
 
-    public ImageDialog(Bindable p, EntryImage[] eom) {
-        parent = p;
-        init("descriptors/ImageDialog.xml");
+//    public ImageDialog(Bindable p, EntryImage[] eom) {
+//        parent = p;
+////        init("descriptors/ImageDialog.xml");
+//
+//        if (eom != null) {
+//            setData(eom);
+//        } else {
+//            beeldDndTabbedPane.addNewTab(null);
+//        }
+//        container.setVisible(true);
+//    }
 
-        if (eom != null) {
-            setData(eom);
-        } else {
-            beeldDndTabbedPane.addNewTab(null);
-        }
-        container.setVisible(true);
+    public ImageDialog(Window view, ModalityType applicationModal) {
+        super(view, applicationModal, null);
     }
 
 
@@ -86,5 +90,10 @@ public class ImageDialog extends AbstractContainerRenderer {
     @Override
     public boolean isEmpty() {
         return false;
+    }
+
+    @Override
+    public JPanel getMainPanel() {
+        return null;
     }
 }

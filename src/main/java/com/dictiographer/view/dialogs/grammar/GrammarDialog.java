@@ -1,12 +1,13 @@
 package com.dictiographer.view.dialogs.grammar;
 
-import com.dictiographer.view.AbstractContainerRenderer;
 import com.dictiographer.view.Bindable;
 import com.dictiographer.view.MyThreadLocal;
+import com.dictiographer.view.dialogs.AbstractDialog;
 import entry.Grammar;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.lang.reflect.Field;
 
@@ -16,30 +17,35 @@ import java.lang.reflect.Field;
  * Date: 12/18/12
  * Time: 6:39 PM
  */
-public abstract class GrammarDialog extends AbstractContainerRenderer {
+public abstract class GrammarDialog extends AbstractDialog implements Bindable {
     public JPanel cardPanel;
     public Bindable parent;
     private String cardName;
+    public Container container;
 
 
-    public GrammarDialog(Bindable p, Grammar grammar, String cn) {
-        parent = p;
-        cardName = cn;
-        String lang = MyThreadLocal.get().getLocale().getLanguage();
-        String grammarDialogDescriptor = "descriptors/" + lang + "/GrammarDialog" + cardName.toUpperCase() + ".xml";
-        if (getClass().getClassLoader().getResourceAsStream(grammarDialogDescriptor) == null) {
-            return;
-        }
-        init(grammarDialogDescriptor);
+//    public GrammarDialog(Bindable p, Grammar grammar, String cn) {
+//        parent = p;
+//        cardName = cn;
+//        String lang = MyThreadLocal.get().getLocale().getLanguage();
+//        String grammarDialogDescriptor = "descriptors/" + lang + "/GrammarDialog" + cardName.toUpperCase() + ".xml";
+//        if (getClass().getClassLoader().getResourceAsStream(grammarDialogDescriptor) == null) {
+//            return;
+//        }
+////        init(grammarDialogDescriptor);
+//
+////        CardLayout cl = (CardLayout) (cardPanel.getLayout());
+////        cl.show(cardPanel, cardName);
+//        if (grammar != null) {
+//            setData(grammar);
+//        }
+//
+//        ((JDialog) container).pack();
+//        container.setVisible(true);
+//    }
 
-//        CardLayout cl = (CardLayout) (cardPanel.getLayout());
-//        cl.show(cardPanel, cardName);
-        if (grammar != null) {
-            setData(grammar);
-        }
-
-        ((JDialog) container).pack();
-        container.setVisible(true);
+    public GrammarDialog(Window view, ModalityType applicationModal) {
+        super(view, applicationModal,null);
     }
 
     /**
@@ -61,6 +67,9 @@ public abstract class GrammarDialog extends AbstractContainerRenderer {
             ((JDialog) container).dispose();
         }
     };
+
+
+
 
     public void propagate() {
         throw new NotImplementedException();

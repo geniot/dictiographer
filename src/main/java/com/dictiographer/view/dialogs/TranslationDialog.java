@@ -1,12 +1,12 @@
 package com.dictiographer.view.dialogs;
 
 import entry.Translation;
-import com.dictiographer.view.AbstractContainerRenderer;
 import com.dictiographer.view.Bindable;
 import com.dictiographer.view.panels.FormContentPanel;
 import com.dictiographer.view.panels.SingleTranslationPanel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 /**
@@ -14,18 +14,35 @@ import java.awt.event.ActionEvent;
  * Date: 12/18/12
  * Time: 6:39 PM
  */
-public class TranslationDialog extends AbstractContainerRenderer {
+public class TranslationDialog extends AbstractDialog implements Bindable {
     Bindable parent;
+    public Container container;
+    public Box contentPanel;
 
-    public TranslationDialog(Bindable p, Translation[] eom) {
-        parent = p;
-        init("descriptors/TranslationDialog.xml");
-        if (eom != null) {
-            setData(eom);
-        } else {
-            addSingleTranslation(null);
+//    public TranslationDialog(Bindable p, Translation[] eom) {
+//        parent = p;
+////        init("descriptors/TranslationDialog.xml");
+//        if (eom != null) {
+//            setData(eom);
+//        } else {
+//            addSingleTranslation(null);
+//        }
+//        container.setVisible(true);
+//    }
+
+    public TranslationDialog(Window view, ModalityType applicationModal) {
+        super(view, applicationModal,null);
+    }
+
+    protected void addSingleTranslation(Translation tr) {
+        SingleTranslationPanel stp = new SingleTranslationPanel(contentPanel);
+        if (tr != null) {
+            stp.setData(tr);
         }
-        container.setVisible(true);
+        FormContentPanel formContentPanel = new FormContentPanel(stp.getMainPanel(), stp);
+        contentPanel.add(formContentPanel, contentPanel.getComponentCount());
+        contentPanel.revalidate();
+        contentPanel.repaint();
     }
 
     public Action saveAction = new AbstractAction() {
@@ -65,5 +82,10 @@ public class TranslationDialog extends AbstractContainerRenderer {
     @Override
     public boolean isEmpty() {
         return false;
+    }
+
+    @Override
+    public JPanel getMainPanel() {
+        return null;
     }
 }

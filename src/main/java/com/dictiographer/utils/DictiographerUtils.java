@@ -1,6 +1,5 @@
 package com.dictiographer.utils;
 
-import com.dictiographer.model.Constants;
 import entry.ByteArrayPersistenceDelegate;
 import entry.EntryLink;
 
@@ -77,8 +76,7 @@ public class DictiographerUtils {
         try {
             ByteArrayInputStream in = new ByteArrayInputStream(bbs);
             MemoryCacheImageInputStream mem = new MemoryCacheImageInputStream(in);
-            BufferedImage bImageFromConvert = ImageIO.read(mem);
-            return bImageFromConvert;
+            return ImageIO.read(mem);
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
@@ -114,7 +112,7 @@ public class DictiographerUtils {
     }
 
     public static String links2str(EntryLink[] arr) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < arr.length; i++) {
             sb.append(arr[i].getText());
             if (i < arr.length - 1) {
@@ -136,7 +134,7 @@ public class DictiographerUtils {
     }
 
     public static String arr2str(String[] arr) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < arr.length; i++) {
             sb.append(arr[i]);
             if (i < arr.length - 1) {

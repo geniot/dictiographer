@@ -1,7 +1,8 @@
 package com.dictiographer.view.panels;
 
+import com.dictiographer.view.Bindable;
+import com.dictiographer.view.MySwingEngine;
 import entry.Translation;
-import com.dictiographer.view.AbstractContainerRenderer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,12 +13,14 @@ import java.awt.event.ActionEvent;
  * Date: 12/18/12
  * Time: 11:09 PM
  */
-public class SingleTranslationPanel extends AbstractContainerRenderer {
+public class SingleTranslationPanel extends MySwingEngine implements Bindable {
     Container parent;
+    public Container container;
 
     public SingleTranslationPanel(Container p) {
+        super("descriptors/SingleTranslationPanel.xml");
         this.parent = p;
-        init("descriptors/SingleTranslationPanel.xml");
+
     }
 
     public Action deleteAction = new AbstractAction() {
@@ -52,5 +55,10 @@ public class SingleTranslationPanel extends AbstractContainerRenderer {
     @Override
     public boolean isEmpty() {
         return translation.getText().trim().equals("");
+    }
+
+    @Override
+    public JPanel getMainPanel() {
+        return null;
     }
 }

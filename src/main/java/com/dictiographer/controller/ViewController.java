@@ -16,6 +16,8 @@ import java.io.*;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Author: Vitaly Sazanovich
@@ -23,6 +25,8 @@ import java.util.*;
  * Date: 7/6/14
  */
 public class ViewController implements Bindable {
+    private static final Logger logger = Logger.getLogger(ViewController.class.getName());
+
     private FreeMarkerConfigurer freemarkerConfig;
     private Dictiographer view;
     private MessageSource messageSource;
@@ -98,7 +102,7 @@ public class ViewController implements Bindable {
     }
 
     public String convert(EntryObjectModel eom) throws Exception {
-        Map root = new HashMap();
+        Map<String, Object> root = new HashMap<String, Object>();
         root.put("entry", eom);
         Template temp = freemarkerConfig.getConfiguration().getTemplate("main.ftl");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -117,9 +121,10 @@ public class ViewController implements Bindable {
             Locale loc = new Locale(domain);
             context.setLocale(loc);
             context.setLocalizer(new MyLocalizer(loc));
+            context.setMessageSource(messageSource);
             MyThreadLocal.set(context);
 
-            EntryDialog entryDialog = new EntryDialog(view, this, eom, Constants.UPDATE_ACTION, messageSource);
+            EntryDialog entryDialog = new EntryDialog(view, this, eom, Constants.UPDATE_ACTION);
             entryDialog.setVisible(true);
 
         } catch (Exception ex) {
@@ -151,7 +156,10 @@ public class ViewController implements Bindable {
         try {
             File f = new File(dictiographerProperties.getProperty(Constants.DATA_FOLDER_PROP_KEY));
             if (!f.exists()) {
-                f.mkdirs();
+                boolean res = f.mkdirs();
+                if (!res) {
+                    logger.log(Level.WARNING, "Couldn't create folder in " + f.getAbsolutePath());
+                }
             }
             String[] domains = f.list();
             Arrays.sort(domains);

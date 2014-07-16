@@ -11,7 +11,6 @@ import com.dictiographer.view.panels.PosPanel;
 import entry.EntryObjectModel;
 import entry.Idioom;
 import entry.PartOfSpeech;
-import org.springframework.context.MessageSource;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,19 +22,16 @@ import java.util.ArrayList;
  * Date: 12/18/12
  * Time: 6:39 PM
  */
-public class EntryDialog extends JDialog {
-    public Bindable parent;
+public class EntryDialog extends AbstractDialog {
+
     public String mode = Constants.NEW_ACTION;
     private EntryDialogPanel entryDialogPanel;
-    private MessageSource messageSource;
 
 
-    public EntryDialog(Window view, Bindable b, EntryObjectModel eom, String mode, MessageSource ms) {
-        super(view, ModalityType.APPLICATION_MODAL);
-        this.parent = b;
+    public EntryDialog(Window view, Bindable b, EntryObjectModel eom, String mode) {
+        super(view, ModalityType.APPLICATION_MODAL, b);
         this.mode = mode;
-        this.messageSource = ms;
-        setTitle(messageSource.getMessage(mode.equals(Constants.NEW_ACTION) ? "title.new" : "title.edit", null, MyThreadLocal.get().getLocale()));
+        setTitle(MyThreadLocal.get().getMessageSource().getMessage(mode.equals(Constants.NEW_ACTION) ? "title.new" : "title.edit", null, MyThreadLocal.get().getLocale()));
 
         entryDialogPanel = new EntryDialogPanel();
         setContentPane(entryDialogPanel.mainPanel);
@@ -79,15 +75,8 @@ public class EntryDialog extends JDialog {
         public Idioom[] idioms;
 
         public EntryDialogPanel() {
-
-            try {
-                getTaglib().registerTag("dndtabbedpane", DnDTabbedPane.class);
-                getTaglib().registerTag("layeredpane", JLayeredPane.class);
-                container = render("descriptors/EntryDialog.xml");
-                partOfSpeeches.addNewTab(null);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            super("descriptors/EntryDialog.xml");
+            partOfSpeeches.addNewTab(null);
         }
 
         @Override
@@ -178,7 +167,7 @@ public class EntryDialog extends JDialog {
         public Action idiomsAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    IdiomenDialog dialog = new IdiomenDialog(EntryDialog.this, EntryDialogPanel.this, idioms,messageSource);
+                    IdiomenDialog dialog = new IdiomenDialog(EntryDialog.this, EntryDialogPanel.this, idioms);
                     dialog.setVisible(true);
                 } catch (Exception e1) {
                     e1.printStackTrace();

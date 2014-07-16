@@ -1,5 +1,7 @@
 package com.dictiographer.view;
 
+import org.springframework.context.MessageSource;
+
 import java.util.Locale;
 
 /**
@@ -10,6 +12,7 @@ import java.util.Locale;
 public class ThreadContext {
     private Locale locale;
     private MyLocalizer localizer;
+    private MessageSource messageSource;
 
     public Locale getLocale() {
         return locale;
@@ -25,5 +28,13 @@ public class ThreadContext {
 
     public void setLocalizer(MyLocalizer localizer) {
         this.localizer = localizer;
+    }
+
+    public MessageSource getMessageSource() {
+        return messageSource;
+    }
+
+    public void setMessageSource(MessageSource messageSource) {
+        this.messageSource = messageSource;
     }
 }

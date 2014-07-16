@@ -1,5 +1,7 @@
 package com.dictiographer.view;
 
+import com.dictiographer.view.dialogs.AbstractDialog;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

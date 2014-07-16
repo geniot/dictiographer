@@ -18,7 +18,8 @@ public class GrammarDialogBNW extends GrammarDialog {
     public JCheckBox alleenPredikatief;
 
     public GrammarDialogBNW(Bindable p, Grammar grammar, String cn) {
-        super(p, grammar, cn);
+        super(null,ModalityType.APPLICATION_MODAL);
+//        super(p, grammar, cn);
     }
 
     @Override
@@ -49,5 +50,10 @@ public class GrammarDialogBNW extends GrammarDialog {
 
 
         return data;
+    }
+
+    @Override
+    public JPanel getMainPanel() {
+        return null;
     }
 }

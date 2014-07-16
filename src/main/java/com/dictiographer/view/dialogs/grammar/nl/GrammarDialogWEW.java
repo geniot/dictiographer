@@ -23,7 +23,8 @@ public class GrammarDialogWEW extends GrammarDialog {
     public JCheckBox ookAbsoluut;
 
     public GrammarDialogWEW(Bindable p, Grammar grammar, String cn) {
-        super(p, grammar, cn);
+        super(null,ModalityType.APPLICATION_MODAL);
+//        super(p, grammar, cn);
     }
 
 
@@ -57,5 +58,10 @@ public class GrammarDialogWEW extends GrammarDialog {
 
 
         return data;
+    }
+
+    @Override
+    public JPanel getMainPanel() {
+        return null;
     }
 }

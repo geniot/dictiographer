@@ -41,7 +41,8 @@ public class GrammarDialogDZE extends GrammarDialog {
 
 
     public GrammarDialogDZE(Bindable p, Grammar grammar, String cn) {
-        super(p, grammar, cn);
+        super(null,ModalityType.APPLICATION_MODAL);
+//        super(p, grammar, cn);
     }
 
 
@@ -147,5 +148,8 @@ public class GrammarDialogDZE extends GrammarDialog {
         return gr;
     }
 
-
+    @Override
+    public JPanel getMainPanel() {
+        return null;
+    }
 }

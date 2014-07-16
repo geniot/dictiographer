@@ -1,13 +1,14 @@
 package com.dictiographer.view.panels;
 
 import com.dictiographer.utils.DictiographerUtils;
+import com.dictiographer.view.Bindable;
+import com.dictiographer.view.DnDTabbedPane;
+import com.dictiographer.view.KeyValuePair;
+import com.dictiographer.view.MySwingEngine;
+import com.dictiographer.view.comboboxmodels.PosComboBoxModel;
 import entry.EntryDefinition;
 import entry.Grammar;
 import entry.PartOfSpeech;
-import com.dictiographer.view.AbstractContainerRenderer;
-import com.dictiographer.view.DnDTabbedPane;
-import com.dictiographer.view.KeyValuePair;
-import com.dictiographer.view.comboboxmodels.PosComboBoxModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,14 +19,20 @@ import java.util.ArrayList;
  * Date: 12/18/12
  * Time: 11:09 PM
  */
-public class PosPanel extends AbstractContainerRenderer {
+public class PosPanel extends MySwingEngine implements Bindable {
 
     public JTextField afleidingen;
     public JTextField pronunciation;
     public DnDTabbedPane entryDefinitions;
+    public JComboBox posComboBox;
+
+    public Container container;
+    public JPanel mainPanel;
+
+    public Grammar grammar;
 
     public PosPanel() {
-        init("descriptors/PosPanel.xml");
+        super("descriptors/PosPanel.xml");
         entryDefinitions.addNewTab(null);
     }
 
@@ -33,7 +40,11 @@ public class PosPanel extends AbstractContainerRenderer {
     @Override
     public void setData(Object d) {
         if (d == null) return;
-        super.setData(d);
+
+        if (d instanceof Grammar) {
+            grammar = ((Grammar) d).isEmpty() ? null : (Grammar) d;
+            return;
+        }
 
         if (d instanceof PartOfSpeech) {
             PartOfSpeech pos = (PartOfSpeech) d;
@@ -65,11 +76,14 @@ public class PosPanel extends AbstractContainerRenderer {
     @Override
     public Object getData(Object d) {
         PartOfSpeech pos = (PartOfSpeech) d;
+
         if (!afleidingen.getText().trim().equals("")) pos.setAfleidingen(afleidingen.getText().trim().split(","));
         if (!pronunciation.getText().trim().equals("")) pos.setPronunciation(pronunciation.getText().trim());
+
         if (grammar == null) grammar = new Grammar();
         grammar.setPosKey(((KeyValuePair) posComboBox.getSelectedItem()).getKey());
         pos.setGrammar(grammar);
+
         ArrayList<EntryDefinition> eds = new ArrayList();
         for (int i = 0; i < entryDefinitions.getTabCount() - 1; i++) {
             Component c = entryDefinitions.getComponentAt(i);
@@ -103,5 +117,10 @@ public class PosPanel extends AbstractContainerRenderer {
             }
         }
         return true;
+    }
+
+    @Override
+    public JPanel getMainPanel() {
+        return mainPanel;
     }
 }
