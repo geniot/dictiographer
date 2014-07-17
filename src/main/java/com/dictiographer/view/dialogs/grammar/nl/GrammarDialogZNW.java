@@ -1,36 +1,48 @@
 package com.dictiographer.view.dialogs.grammar.nl;
 
-import entry.Grammar;
 import com.dictiographer.view.Bindable;
-import com.dictiographer.view.dialogs.grammar.GrammarDialog;
+import com.dictiographer.view.MySwingEngine;
+import com.dictiographer.view.MyThreadLocal;
+import com.dictiographer.view.dialogs.AbstractDialog;
+import entry.Grammar;
 
 import javax.swing.*;
-import java.util.Arrays;
-import java.util.List;
+import java.awt.*;
 
 /**
  * Author: Vitaly Sazanovich
  * Email: vitaly.sazanovich@gmail.com
  * Date: 01/07/14
  */
-public class GrammarDialogZNW extends GrammarDialog {
-    public JCheckBox mCheckBox;
-    public JCheckBox mvCheckBox;
-    public JCheckBox vCheckBox;
-    public JCheckBox oCheckBox;
+public class GrammarDialogZNW extends AbstractDialog {
 
-    public JTextField plural;
+    private GrammarDialogZNWPanel grammarDialogZNWPanel;
 
-    public JCheckBox alleenEnkel;
-    public JCheckBox alleenMeer;
+    public GrammarDialogZNW(Window view, ModalityType applicationModal, Bindable p, Grammar grammar) {
+        super(view, applicationModal, p);
+        setTitle(MyThreadLocal.get().getMessageSource().getMessage("title.grammar", null, MyThreadLocal.get().getLocale()));
+        grammarDialogZNWPanel = new GrammarDialogZNWPanel();
+        setContentPane(grammarDialogZNWPanel.mainPanel);
 
-    public GrammarDialogZNW(Bindable p, Grammar grammar, String cn) {
-        super(null,ModalityType.APPLICATION_MODAL);
-//        super(p, grammar, cn);
+        if (grammar != null && grammar.getGrammarZNW() != null) {
+            grammarDialogZNWPanel.setData(grammar.getGrammarZNW());
+        }
     }
 
-    @Override
-    public void setData(Object d) {
+    public class GrammarDialogZNWPanel extends MySwingEngine {
+        public JCheckBox mCheckBox;
+        public JCheckBox mvCheckBox;
+        public JCheckBox vCheckBox;
+        public JCheckBox oCheckBox;
+
+        public JTextField plural;
+
+        public JCheckBox alleenEnkel;
+        public JCheckBox alleenMeer;
+
+
+        @Override
+        public void setData(Object d) {
 //        if (d == null) return;
 //        Grammar data = (Grammar) d;
 //        if (data.getGenderKey() != null) {
@@ -45,10 +57,10 @@ public class GrammarDialogZNW extends GrammarDialog {
 //            alleenEnkel.setSelected(data.getAlleenEnkel().booleanValue());
 //        if (data.getAlleenMeer() != null && alleenMeer != null)
 //            alleenMeer.setSelected(data.getAlleenMeer().booleanValue());
-    }
+        }
 
-    @Override
-    public Object getData(Object d) {
+        @Override
+        public Object getData(Object d) {
 //        Grammar data = (Grammar) d;
 //        if (data == null) data = new Grammar();
 //
@@ -69,11 +81,8 @@ public class GrammarDialogZNW extends GrammarDialog {
 //        if (res.length() > 0) data.setGenderKey(res);
 //
 //        return data;
-        return null;
+            return null;
+        }
     }
 
-    @Override
-    public JPanel getMainPanel() {
-        return null;
-    }
 }

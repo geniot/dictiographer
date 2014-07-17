@@ -9,7 +9,6 @@ import entry.EntryObjectModel;
 import freemarker.template.Template;
 import org.apache.commons.io.FileUtils;
 import org.springframework.context.MessageSource;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.swing.*;
 import java.io.*;
@@ -24,7 +23,7 @@ import java.util.logging.Logger;
  * Email: Vitaly.Sazanovich@gmail.com
  * Date: 7/6/14
  */
-public class ViewController implements Bindable {
+public class ViewController {
     private static final Logger logger = Logger.getLogger(ViewController.class.getName());
 
     private FreeMarkerConfigurer freemarkerConfig;
@@ -124,32 +123,19 @@ public class ViewController implements Bindable {
             context.setMessageSource(messageSource);
             MyThreadLocal.set(context);
 
-            EntryDialog entryDialog = new EntryDialog(view, this, eom, Constants.UPDATE_ACTION);
+            Bindable b = new BindableAdapter() {
+                @Override
+                public void setData(Object data) {
+                    System.out.println(data);
+                }
+            };
+
+            EntryDialog entryDialog = new EntryDialog(view, b, eom, Constants.UPDATE_ACTION);
             entryDialog.setVisible(true);
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-    }
-
-    @Override
-    public void setData(Object data) {
-        System.out.println(data);
-    }
-
-    @Override
-    public Object getData(Object data) {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public JPanel getMainPanel() {
-        throw new NotImplementedException();
     }
 
     public String[] getDomains() {

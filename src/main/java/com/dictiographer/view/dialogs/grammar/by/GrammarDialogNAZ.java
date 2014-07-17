@@ -1,11 +1,14 @@
 package com.dictiographer.view.dialogs.grammar.by;
 
+import com.dictiographer.view.Bindable;
+import com.dictiographer.view.MySwingEngine;
+import com.dictiographer.view.MyThreadLocal;
+import com.dictiographer.view.dialogs.AbstractDialog;
 import entry.Grammar;
 import entry.grammar.by.GrammarNAZ;
-import com.dictiographer.view.Bindable;
-import com.dictiographer.view.dialogs.grammar.GrammarDialog;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,136 +17,151 @@ import java.util.List;
  * Email: vitaly.sazanovich@gmail.com
  * Date: 01/07/14
  */
-public class GrammarDialogNAZ extends GrammarDialog {
-    public JCheckBox genderMaleCheckBox;
-    public JCheckBox genderFemaleCheckBox;
-    public JCheckBox genderNeutralCheckBox;
+public class GrammarDialogNAZ extends AbstractDialog {
 
-    public JCheckBox onlySingularCheckBox;
-    public JCheckBox onlyPluralCheckBox;
+    private GrammarDialogNAZPanel grammarDialogNAZPanel;
 
-    public JTextField base;
-    public JComboBox endings;
+    public GrammarDialogNAZ(Window view, ModalityType applicationModal, Bindable p, Grammar grammar) {
+        super(view, applicationModal, p);
+        setTitle(MyThreadLocal.get().getMessageSource().getMessage("title.grammar", null, MyThreadLocal.get().getLocale()));
+        grammarDialogNAZPanel = new GrammarDialogNAZPanel();
+        setContentPane(grammarDialogNAZPanel.mainPanel);
 
-    public JTextField singular;
-    public JTextField plural;
-    public JTextField singularR;
-    public JTextField pluralR;
-    public JTextField singularD;
-    public JTextField pluralD;
-    public JTextField singularV;
-    public JTextField pluralV;
-    public JTextField singularT;
-    public JTextField pluralT;
-    public JTextField singularM;
-    public JTextField pluralM;
-
-
-    public GrammarDialogNAZ(Bindable p, Grammar grammar, String cn) {
-        super(null,ModalityType.APPLICATION_MODAL);
-//        super(p, grammar, cn);
-    }
-
-    @Override
-    public void propagate() {
-        try {
-            String[] ends = endings.getSelectedItem().toString().replaceAll("-", "").split(",|;");
-
-            JTextField[] fieldSingular = new JTextField[]{singular, singularR, singularD, singularV, singularT, singularM};
-            JTextField[] fieldsPlural = new JTextField[]{plural, pluralR, pluralD, pluralV, pluralT, pluralM};
-
-            boolean onlyPlural = onlySingularCheckBox != null && !onlySingularCheckBox.isSelected();
-            boolean onlySingular = onlyPluralCheckBox != null && !onlyPluralCheckBox.isSelected();
-
-            for (int i = 0; i < fieldSingular.length; i++) {
-                fieldSingular[i].setText(onlyPlural ? base.getText() + ends[i] : "-");
-            }
-
-            for (int i = 0; i < fieldsPlural.length; i++) {
-                fieldsPlural[i].setText(onlySingular ? base.getText() + ends[fieldSingular.length + i] : "-");
-            }
-
-
-        } catch (Exception e1) {
-            e1.printStackTrace();
+        if (grammar != null && grammar.getGrammarNAZ() != null) {
+            grammarDialogNAZPanel.setData(grammar.getGrammarNAZ());
         }
     }
 
-    @Override
-    public Object getData(Object d) {
+    public class GrammarDialogNAZPanel extends MySwingEngine {
+        public JCheckBox genderMaleCheckBox;
+        public JCheckBox genderFemaleCheckBox;
+        public JCheckBox genderNeutralCheckBox;
 
-        Grammar gr = (Grammar) d;
-        if (gr == null) gr = new Grammar();
-        GrammarNAZ data = gr.getGrammarNAZ();
-        if (data == null) data = new GrammarNAZ();
-        gr.setGrammarNAZ(data);
+        public JCheckBox onlySingularCheckBox;
+        public JCheckBox onlyPluralCheckBox;
 
+        public JTextField base;
+        public JComboBox endings;
 
-        set(singular, data, "singular");
-        set(plural, data, "plural");
-        set(singularR, data, "singularR");
-        set(pluralR, data, "pluralR");
-        set(singularD, data, "singularD");
-        set(pluralD, data, "pluralD");
-        set(singularV, data, "singularV");
-        set(pluralV, data, "pluralV");
-        set(singularT, data, "singularT");
-        set(pluralT, data, "pluralT");
-        set(singularM, data, "singularM");
-        set(pluralM, data, "pluralM");
+        public JTextField singular;
+        public JTextField plural;
+        public JTextField singularR;
+        public JTextField pluralR;
+        public JTextField singularD;
+        public JTextField pluralD;
+        public JTextField singularV;
+        public JTextField pluralV;
+        public JTextField singularT;
+        public JTextField pluralT;
+        public JTextField singularM;
+        public JTextField pluralM;
 
-        set(onlySingularCheckBox, data, "onlySingular");
-        set(onlyPluralCheckBox, data, "onlyPlural");
-
-        StringBuffer sb = new StringBuffer();
-        if (genderMaleCheckBox != null && genderMaleCheckBox.isSelected()) sb.append("m,");
-        if (genderFemaleCheckBox != null && genderFemaleCheckBox.isSelected()) sb.append("v,");
-        if (genderNeutralCheckBox != null && genderNeutralCheckBox.isSelected()) sb.append("o");
-
-        String res = sb.toString();
-        if (res.endsWith(",")) res = res.substring(0, res.length() - 1);
-        if (res.length() > 0) data.setGenderKey(res);
-
-        return gr;
-    }
-
-    @Override
-    public void setData(Object d) {
-        if (d == null) return;
-        GrammarNAZ data = ((Grammar) d).getGrammarNAZ();
-        if (data == null) return;
-
-
-        if (data.getGenderKey() != null) {
-            List<String> s = Arrays.asList(data.getGenderKey().split(","));
-            if (genderMaleCheckBox != null)
-                genderMaleCheckBox.setSelected(data.getGenderKey().equals("m") || s.contains("m"));
-            if (genderFemaleCheckBox != null)
-                genderFemaleCheckBox.setSelected(data.getGenderKey().equals("v") || s.contains("v"));
-            if (genderNeutralCheckBox != null)
-                genderNeutralCheckBox.setSelected(data.getGenderKey().equals("o") || s.contains("o"));
+        public GrammarDialogNAZPanel() {
+            init("descriptors/GrammarDialogNAZ.xml");
         }
 
-        set(singular, data.getSingular());
-        set(plural, data.getPlural());
-        set(singularR, data.getSingularR());
-        set(pluralR, data.getPluralR());
-        set(singularD, data.getSingularD());
-        set(pluralD, data.getPluralD());
-        set(singularV, data.getSingularV());
-        set(pluralV, data.getPluralV());
-        set(singularT, data.getSingularT());
-        set(pluralT, data.getPluralT());
-        set(singularM, data.getSingularM());
-        set(pluralM, data.getPluralM());
+        public void propagate() {
+            try {
+                String[] ends = endings.getSelectedItem().toString().replaceAll("-", "").split(",|;");
 
-        set(onlySingularCheckBox, data.getOnlySingular());
-        set(onlyPluralCheckBox, data.getOnlyPlural());
+                JTextField[] fieldSingular = new JTextField[]{singular, singularR, singularD, singularV, singularT, singularM};
+                JTextField[] fieldsPlural = new JTextField[]{plural, pluralR, pluralD, pluralV, pluralT, pluralM};
 
+                boolean onlyPlural = onlySingularCheckBox != null && !onlySingularCheckBox.isSelected();
+                boolean onlySingular = onlyPluralCheckBox != null && !onlyPluralCheckBox.isSelected();
+
+                for (int i = 0; i < fieldSingular.length; i++) {
+                    fieldSingular[i].setText(onlyPlural ? base.getText() + ends[i] : "-");
+                }
+
+                for (int i = 0; i < fieldsPlural.length; i++) {
+                    fieldsPlural[i].setText(onlySingular ? base.getText() + ends[fieldSingular.length + i] : "-");
+                }
+
+
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+
+        @Override
+        public Object getData(Object d) {
+
+            Grammar gr = (Grammar) d;
+            if (gr == null) gr = new Grammar();
+            GrammarNAZ data = gr.getGrammarNAZ();
+            if (data == null) data = new GrammarNAZ();
+            gr.setGrammarNAZ(data);
+
+
+            set(singular, data, "singular");
+            set(plural, data, "plural");
+            set(singularR, data, "singularR");
+            set(pluralR, data, "pluralR");
+            set(singularD, data, "singularD");
+            set(pluralD, data, "pluralD");
+            set(singularV, data, "singularV");
+            set(pluralV, data, "pluralV");
+            set(singularT, data, "singularT");
+            set(pluralT, data, "pluralT");
+            set(singularM, data, "singularM");
+            set(pluralM, data, "pluralM");
+
+            set(onlySingularCheckBox, data, "onlySingular");
+            set(onlyPluralCheckBox, data, "onlyPlural");
+
+            StringBuffer sb = new StringBuffer();
+            if (genderMaleCheckBox != null && genderMaleCheckBox.isSelected()) sb.append("m,");
+            if (genderFemaleCheckBox != null && genderFemaleCheckBox.isSelected()) sb.append("v,");
+            if (genderNeutralCheckBox != null && genderNeutralCheckBox.isSelected()) sb.append("o");
+
+            String res = sb.toString();
+            if (res.endsWith(",")) res = res.substring(0, res.length() - 1);
+            if (res.length() > 0) data.setGenderKey(res);
+
+            return gr;
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return false;  //To change body of implemented methods use File | Settings | File Templates.
+        }
+
+        @Override
+        public void setData(Object d) {
+            if (d == null) return;
+            GrammarNAZ data = ((Grammar) d).getGrammarNAZ();
+            if (data == null) return;
+
+
+            if (data.getGenderKey() != null) {
+                List<String> s = Arrays.asList(data.getGenderKey().split(","));
+                if (genderMaleCheckBox != null)
+                    genderMaleCheckBox.setSelected(data.getGenderKey().equals("m") || s.contains("m"));
+                if (genderFemaleCheckBox != null)
+                    genderFemaleCheckBox.setSelected(data.getGenderKey().equals("v") || s.contains("v"));
+                if (genderNeutralCheckBox != null)
+                    genderNeutralCheckBox.setSelected(data.getGenderKey().equals("o") || s.contains("o"));
+            }
+
+            set(singular, data.getSingular());
+            set(plural, data.getPlural());
+            set(singularR, data.getSingularR());
+            set(pluralR, data.getPluralR());
+            set(singularD, data.getSingularD());
+            set(pluralD, data.getPluralD());
+            set(singularV, data.getSingularV());
+            set(pluralV, data.getPluralV());
+            set(singularT, data.getSingularT());
+            set(pluralT, data.getPluralT());
+            set(singularM, data.getSingularM());
+            set(pluralM, data.getPluralM());
+
+            set(onlySingularCheckBox, data.getOnlySingular());
+            set(onlyPluralCheckBox, data.getOnlyPlural());
+
+        }
     }
 
-    @Override
-    public JPanel getMainPanel() {
-        return null;
-    }
+
 }

@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.lang.reflect.Field;
 
 /**
  * User: Vitaly Sazanovich
@@ -47,7 +48,23 @@ public abstract class MySwingEngine extends SwingEngine implements Bindable {
     public abstract Object getData(Object d);
 
     @Override
-    public abstract boolean isEmpty();
+    public boolean isEmpty() {
+        try {
+            for (Field field : this.getClass().getDeclaredFields()) {
+                field.setAccessible(true); // You might want to set modifier to public first.
+                if (field.getDeclaringClass().equals(JCheckBox.class)) {
+                    JCheckBox checkBox = (JCheckBox) field.get(this);
+                    if (checkBox != null && checkBox.isSelected()) return false;
+                } else if (field.getDeclaringClass().equals(JTextField.class)) {
+                    JTextField textField = (JTextField) field.get(this);
+                    if (textField != null && !textField.getText().trim().equals("")) return false;
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return true;
+    }
 
     @Override
     public JPanel getMainPanel() {
@@ -67,5 +84,51 @@ public abstract class MySwingEngine extends SwingEngine implements Bindable {
             p = p.getParent();
         }
         return null;
+    }
+
+    protected void set(JTextField tf, String s) {
+        if (tf != null && s != null) {
+            tf.setText(s);
+        }
+    }
+
+    protected void set(JCheckBox checkBox, Boolean val) {
+        if (checkBox != null && val != null) {
+            checkBox.setSelected(val.booleanValue());
+        }
+    }
+
+    protected void set(JTextField textField, Object data, String s) {
+        try {
+            if (textField != null && !textField.getText().trim().equals("") && data != null && s != null) {
+                Field f = null;
+                try {
+                    f = data.getClass().getDeclaredField(s);
+                } catch (NoSuchFieldException e) {
+                    return;
+                }
+                f.setAccessible(true);
+                f.set(data, textField.getText().trim());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    protected void set(JCheckBox checkBox, Object data, String s) {
+        try {
+            if (checkBox != null && checkBox.isSelected() && data != null && s != null) {
+                Field f = null;
+                try {
+                    data.getClass().getDeclaredField(s);
+                } catch (NoSuchFieldException e) {
+                    return;
+                }
+                f.setAccessible(true);
+                f.set(data, checkBox.isSelected());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }

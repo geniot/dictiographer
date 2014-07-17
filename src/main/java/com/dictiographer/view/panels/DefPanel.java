@@ -154,7 +154,9 @@ public class DefPanel extends MySwingEngine {
     public Action grammarAction = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
             try {
-                new GrammarDialogLauncher(DefPanel.this, grammar,
+                new GrammarDialogLauncher(
+                        getClosestWindow(getMainPanel()),
+                        DefPanel.this, grammar,
                         ((KeyValuePair) getPosComboBox().getSelectedItem()).getKey());
             } catch (Exception e1) {
                 e1.printStackTrace();

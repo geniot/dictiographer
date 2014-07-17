@@ -1,14 +1,12 @@
 package com.dictiographer.view.dialogs.grammar;
 
-import entry.Grammar;
 import com.dictiographer.view.Bindable;
-import com.dictiographer.view.dialogs.grammar.by.GrammarDialogDZE;
-import com.dictiographer.view.dialogs.grammar.by.GrammarDialogNAZ;
-import com.dictiographer.view.dialogs.grammar.by.GrammarDialogPRY;
-import com.dictiographer.view.dialogs.grammar.nl.GrammarDialogBNW;
-import com.dictiographer.view.dialogs.grammar.nl.GrammarDialogVNW;
-import com.dictiographer.view.dialogs.grammar.nl.GrammarDialogWEW;
-import com.dictiographer.view.dialogs.grammar.nl.GrammarDialogZNW;
+import com.dictiographer.view.MyThreadLocal;
+import entry.Grammar;
+
+import javax.swing.*;
+import java.awt.*;
+import java.lang.reflect.Constructor;
 
 /**
  * Author: Vitaly Sazanovich
@@ -17,23 +15,15 @@ import com.dictiographer.view.dialogs.grammar.nl.GrammarDialogZNW;
  */
 public class GrammarDialogLauncher {
 
-    public GrammarDialogLauncher(Bindable p, Grammar grammar, String cn) {
-        if (cn.toLowerCase().equals("naz")) {
-            new GrammarDialogNAZ(p, grammar, cn);
-        } else if (cn.toLowerCase().equals("dze")) {
-            new GrammarDialogDZE(p, grammar, cn);
-        } else if (cn.toLowerCase().equals("pry")) {
-            new GrammarDialogPRY(p, grammar, cn);
-        }
-
-        else if (cn.toLowerCase().equals("bnw")) {
-            new GrammarDialogBNW(p, grammar, cn);
-        } else if (cn.toLowerCase().equals("vnw")) {
-            new GrammarDialogVNW(p, grammar, cn);
-        } else if (cn.toLowerCase().equals("wew")) {
-            new GrammarDialogWEW(p, grammar, cn);
-        } else if (cn.toLowerCase().equals("znw")) {
-            new GrammarDialogZNW(p, grammar, cn);
+    public GrammarDialogLauncher(Window w, Bindable p, Grammar grammar, String cn) {
+        try {
+            String lang = MyThreadLocal.get().getLocale().getLanguage();
+            Class c = Class.forName("com.dictiographer.view.dialogs.grammar." + lang + ".GrammarDialog" + cn.toUpperCase());
+            Constructor co = c.getDeclaredConstructors()[0];
+            JDialog dialog = (JDialog) co.newInstance(w, Dialog.ModalityType.APPLICATION_MODAL, p, grammar);
+            dialog.setVisible(true);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 }
