@@ -25,7 +25,7 @@ public class CategoryDialog extends AbstractDialog {
 
     public CategoryDialog(Window view, Bindable p, Example[] eom) {
         super(view, ModalityType.APPLICATION_MODAL, p);
-
+        this.setSize(900, 700);
         setTitle(MyThreadLocal.get().getMessageSource().getMessage("title.category", null, MyThreadLocal.get().getLocale()));
         categoryDialogPanel = new CategoryDialogPanel();
         setContentPane(categoryDialogPanel.mainPanel);

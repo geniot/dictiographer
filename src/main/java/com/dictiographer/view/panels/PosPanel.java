@@ -6,12 +6,14 @@ import com.dictiographer.view.DnDTabbedPane;
 import com.dictiographer.view.KeyValuePair;
 import com.dictiographer.view.MySwingEngine;
 import com.dictiographer.view.comboboxmodels.PosComboBoxModel;
+import com.dictiographer.view.dialogs.grammar.GrammarDialogLauncher;
 import entry.EntryDefinition;
 import entry.Grammar;
 import entry.PartOfSpeech;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 /**
@@ -114,4 +116,17 @@ public class PosPanel extends MySwingEngine  {
         }
         return true;
     }
+
+    public Action grammarAction = new AbstractAction() {
+        public void actionPerformed(ActionEvent e) {
+            try {
+                new GrammarDialogLauncher(
+                        getClosestWindow(getMainPanel()),
+                        PosPanel.this, grammar,
+                        ((KeyValuePair) getPosComboBox().getSelectedItem()).getKey());
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    };
 }

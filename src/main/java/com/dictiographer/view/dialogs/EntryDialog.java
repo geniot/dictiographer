@@ -14,7 +14,7 @@ import entry.PartOfSpeech;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 /**
@@ -27,24 +27,18 @@ public class EntryDialog extends AbstractDialog {
 
     public EntryDialog(Window view, Bindable b, EntryObjectModel eom, String mode) {
         super(view, ModalityType.APPLICATION_MODAL, b);
+        this.setSize(900, 700);
         setTitle(MyThreadLocal.get().getMessageSource().getMessage(mode.equals(Constants.NEW_ACTION) ? "title.new" : "title.edit", null, MyThreadLocal.get().getLocale()));
 
         entryDialogPanel = new EntryDialogPanel();
         setContentPane(entryDialogPanel.mainPanel);
-
-        this.setSize(900, 700);
-        this.setLocationRelativeTo(view);
 
         if (eom != null) {
             entryDialogPanel.setData(eom);
         }
     }
 
-    protected void onCancel() {
-        dispose();
-    }
-
-    public class EntryDialogPanel extends MySwingEngine implements Bindable {
+    public class EntryDialogPanel extends MySwingEngine {
         public Box contentPane;
         public JTextField headword;
         public JTextField syllables;
@@ -95,18 +89,15 @@ public class EntryDialog extends AbstractDialog {
         }
 
         @Override
-        public void onCancel() {
-            getClosestWindow(mainPanel).dispose();
-        }
-
-        @Override
         public Object getData(Object d) {
             EntryObjectModel data = (EntryObjectModel) d;
             if (!headword.getText().trim().equals("")) data.setHeadword(headword.getText().trim());
             if (!syllables.getText().trim().equals("")) data.setSyllables(syllables.getText().trim());
             if (!zie.getText().trim().equals("")) data.setZie(DictiographerUtils.str2links(zie.getText().trim()));
 //        data.setStressedSyllable(Integer.parseInt(stressedSyllable.getSelectedItem().toString()));
-            data.setIdioms(idioms);
+            if (idioms != null && idioms.length > 0) {
+                data.setIdioms(idioms);
+            }
             ArrayList<PartOfSpeech> poses = new ArrayList();
             for (int i = 0; i < partOfSpeeches.getTabCount() - 1; i++) {
                 Component c = partOfSpeeches.getComponentAt(i);
@@ -142,11 +133,6 @@ public class EntryDialog extends AbstractDialog {
             return true;
         }
 
-        @Override
-        public JPanel getMainPanel() {
-            return mainPanel;
-        }
-
 
         public Action idiomsAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
@@ -179,8 +165,5 @@ public class EntryDialog extends AbstractDialog {
         };
     }
 
-
-    public static void main(String[] args) {
-    }
 
 }

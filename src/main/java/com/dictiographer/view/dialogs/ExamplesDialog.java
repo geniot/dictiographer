@@ -24,7 +24,7 @@ public class ExamplesDialog extends AbstractDialog {
 
     public ExamplesDialog(Window view, Bindable p, Example[] eom) {
         super(view, ModalityType.APPLICATION_MODAL, p);
-
+        this.setSize(900, 700);
         setTitle(MyThreadLocal.get().getMessageSource().getMessage("title.examples", null, MyThreadLocal.get().getLocale()));
         examplesDialogPanel = new ExamplesDialogPanel();
         setContentPane(examplesDialogPanel.mainPanel);

@@ -21,7 +21,7 @@ public class TranslationDialog extends AbstractDialog {
 
     public TranslationDialog(Window view, Bindable p, Translation[] eom) {
         super(view, ModalityType.APPLICATION_MODAL, p);
-
+        this.setSize(900, 700);
         setTitle(MyThreadLocal.get().getMessageSource().getMessage("title.translations", null, MyThreadLocal.get().getLocale()));
         translationDialogPanel = new TranslationDialogPanel();
         setContentPane(translationDialogPanel.mainPanel);

@@ -1,5 +1,6 @@
 package com.dictiographer.view;
 
+import com.dictiographer.view.panels.FormContentPanel;
 import org.swixml.Localizer;
 import org.swixml.SwingEngine;
 
@@ -120,7 +121,7 @@ public abstract class MySwingEngine extends SwingEngine implements Bindable {
             if (checkBox != null && checkBox.isSelected() && data != null && s != null) {
                 Field f = null;
                 try {
-                    data.getClass().getDeclaredField(s);
+                    f = data.getClass().getDeclaredField(s);
                 } catch (NoSuchFieldException e) {
                     return;
                 }
@@ -130,5 +131,44 @@ public abstract class MySwingEngine extends SwingEngine implements Bindable {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    protected JComboBox getPosComboBox() throws Exception {
+        Container c = container;
+        while (c != null) {
+            try {
+                c = c.getParent();
+                if (c == null) break;
+                if (c instanceof FormContentPanel) {
+                    Object tmp = ((FormContentPanel) c).getForm();
+                    JComboBox f = (JComboBox) getInheritedPrivateFieldValue(tmp, tmp.getClass(), "posComboBox");
+                    if (f != null) {
+                        return f;
+                    }
+                } else {
+                    Field f = c.getClass().getDeclaredField("posComboBox");
+                    if (f.get(c) != null) {
+                        return (JComboBox) f.get(c);
+                    }
+                }
+            } catch (NoSuchFieldException e) {
+            }
+        }
+        throw new Exception("Couldn't find posComboBox in the hierarchy");
+    }
+
+    private Object getInheritedPrivateFieldValue(Object thisObj, Class<?> type, String fieldName) throws IllegalAccessException {
+        Class<?> i = type;
+        while (i != null && i != Object.class) {
+            for (Field field : i.getDeclaredFields()) {
+                if (!field.isSynthetic() && field.getName().equals(fieldName)) {
+                    field.setAccessible(true);
+                    return field.get(thisObj);
+                }
+            }
+            i = i.getSuperclass();
+        }
+
+        return null;
     }
 }

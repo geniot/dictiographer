@@ -23,6 +23,7 @@ public class IdiomenDialog extends AbstractDialog {
 
     public IdiomenDialog(Window view, Bindable b, Idioom[] idiooms) {
         super(view, ModalityType.APPLICATION_MODAL, b);
+        this.setSize(900, 700);
         setTitle(MyThreadLocal.get().getMessageSource().getMessage("title.idioms", null, MyThreadLocal.get().getLocale()));
         idiomenDialogPanel = new IdiomenDialogPanel();
         setContentPane(idiomenDialogPanel.mainPanel);
@@ -38,6 +39,7 @@ public class IdiomenDialog extends AbstractDialog {
 
         public IdiomenDialogPanel() {
             init("descriptors/IdiomenDialog.xml");
+            idDndTabbedPane.addNewTab(null);
         }
 
         @Override
@@ -105,10 +107,7 @@ public class IdiomenDialog extends AbstractDialog {
             }
         };
 
-        @Override
-        public JPanel getMainPanel() {
-            return mainPanel;
-        }
+
     }
 
 

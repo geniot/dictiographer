@@ -165,46 +165,6 @@ public class DefPanel extends MySwingEngine {
     };
 
 
-    private JComboBox getPosComboBox() throws Exception {
-        if (posComboBox != null) {
-            return posComboBox;
-        }
-        Container c = container;
-        while (c != null) {
-            try {
-                c = c.getParent();
-                if (c == null) break;
-                if (c instanceof FormContentPanel) {
-                    Object tmp = ((FormContentPanel) c).getForm();
-                    JComboBox f = (JComboBox) getInheritedPrivateFieldValue(tmp, tmp.getClass(), "posComboBox");
-                    if (f != null) {
-                        return f;
-                    }
-                } else {
-                    Field f = c.getClass().getDeclaredField("posComboBox");
-                    if (f.get(c) != null) {
-                        return (JComboBox) f.get(c);
-                    }
-                }
-            } catch (NoSuchFieldException e) {
-            }
-        }
-        throw new Exception("Couldn't find posComboBox in the hierarchy");
-    }
 
-    private Object getInheritedPrivateFieldValue(Object thisObj, Class<?> type, String fieldName) throws IllegalAccessException {
-        Class<?> i = type;
-        while (i != null && i != Object.class) {
-            for (Field field : i.getDeclaredFields()) {
-                if (!field.isSynthetic() && field.getName().equals(fieldName)) {
-                    field.setAccessible(true);
-                    return field.get(thisObj);
-                }
-            }
-            i = i.getSuperclass();
-        }
-
-        return null;
-    }
 
 }

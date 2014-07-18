@@ -9,6 +9,7 @@ import entry.grammar.by.GrammarNAZ;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,9 +24,12 @@ public class GrammarDialogNAZ extends AbstractDialog {
 
     public GrammarDialogNAZ(Window view, ModalityType applicationModal, Bindable p, Grammar grammar) {
         super(view, applicationModal, p);
+
         setTitle(MyThreadLocal.get().getMessageSource().getMessage("title.grammar", null, MyThreadLocal.get().getLocale()));
         grammarDialogNAZPanel = new GrammarDialogNAZPanel();
         setContentPane(grammarDialogNAZPanel.mainPanel);
+        pack();
+        setLocationRelativeTo(view);
 
         if (grammar != null && grammar.getGrammarNAZ() != null) {
             grammarDialogNAZPanel.setData(grammar.getGrammarNAZ());
@@ -57,32 +61,47 @@ public class GrammarDialogNAZ extends AbstractDialog {
         public JTextField pluralM;
 
         public GrammarDialogNAZPanel() {
-            init("descriptors/GrammarDialogNAZ.xml");
+            init("descriptors/" + MyThreadLocal.get().getLocale().getLanguage() + "/GrammarDialogNAZ.xml");
         }
 
-        public void propagate() {
-            try {
-                String[] ends = endings.getSelectedItem().toString().replaceAll("-", "").split(",|;");
-
-                JTextField[] fieldSingular = new JTextField[]{singular, singularR, singularD, singularV, singularT, singularM};
-                JTextField[] fieldsPlural = new JTextField[]{plural, pluralR, pluralD, pluralV, pluralT, pluralM};
-
-                boolean onlyPlural = onlySingularCheckBox != null && !onlySingularCheckBox.isSelected();
-                boolean onlySingular = onlyPluralCheckBox != null && !onlyPluralCheckBox.isSelected();
-
-                for (int i = 0; i < fieldSingular.length; i++) {
-                    fieldSingular[i].setText(onlyPlural ? base.getText() + ends[i] : "-");
-                }
-
-                for (int i = 0; i < fieldsPlural.length; i++) {
-                    fieldsPlural[i].setText(onlySingular ? base.getText() + ends[fieldSingular.length + i] : "-");
-                }
-
-
-            } catch (Exception e1) {
-                e1.printStackTrace();
+        public Action saveAction = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                parent.setData(getData(null));
+                GrammarDialogNAZ.this.dispose();
             }
-        }
+        };
+
+        public Action cancelAction = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                GrammarDialogNAZ.this.dispose();
+            }
+        };
+
+        public Action propagateAction = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String[] ends = endings.getSelectedItem().toString().replaceAll("-", "").split(",|;");
+
+                    JTextField[] fieldSingular = new JTextField[]{singular, singularR, singularD, singularV, singularT, singularM};
+                    JTextField[] fieldsPlural = new JTextField[]{plural, pluralR, pluralD, pluralV, pluralT, pluralM};
+
+                    boolean onlyPlural = onlySingularCheckBox != null && !onlySingularCheckBox.isSelected();
+                    boolean onlySingular = onlyPluralCheckBox != null && !onlyPluralCheckBox.isSelected();
+
+                    for (int i = 0; i < fieldSingular.length; i++) {
+                        fieldSingular[i].setText(onlyPlural ? base.getText() + ends[i] : "-");
+                    }
+
+                    for (int i = 0; i < fieldsPlural.length; i++) {
+                        fieldsPlural[i].setText(onlySingular ? base.getText() + ends[fieldSingular.length + i] : "-");
+                    }
+
+
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        };
 
         @Override
         public Object getData(Object d) {
@@ -123,14 +142,9 @@ public class GrammarDialogNAZ extends AbstractDialog {
         }
 
         @Override
-        public boolean isEmpty() {
-            return false;  //To change body of implemented methods use File | Settings | File Templates.
-        }
-
-        @Override
         public void setData(Object d) {
             if (d == null) return;
-            GrammarNAZ data = ((Grammar) d).getGrammarNAZ();
+            GrammarNAZ data = (GrammarNAZ) d;
             if (data == null) return;
 
 

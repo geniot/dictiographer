@@ -24,7 +24,7 @@ public class ImageDialog extends AbstractDialog {
 
     public ImageDialog(Window view, Bindable p, EntryImage[] eom) {
         super(view, ModalityType.APPLICATION_MODAL, p);
-
+        this.setSize(900, 700);
         setTitle(MyThreadLocal.get().getMessageSource().getMessage("title.images", null, MyThreadLocal.get().getLocale()));
         imagesDialogPanel = new ImagesDialogPanel();
         setContentPane(imagesDialogPanel.mainPanel);
@@ -39,6 +39,7 @@ public class ImageDialog extends AbstractDialog {
 
         public ImagesDialogPanel() {
             init("descriptors/ImageDialog.xml");
+            beeldDndTabbedPane.addNewTab(null);
         }
 
         @Override

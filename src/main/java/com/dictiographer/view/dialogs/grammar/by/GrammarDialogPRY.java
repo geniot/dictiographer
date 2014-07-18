@@ -9,6 +9,7 @@ import entry.grammar.by.GrammarPRY;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.lang.reflect.Field;
 
 /**
@@ -22,9 +23,12 @@ public class GrammarDialogPRY extends AbstractDialog {
 
     public GrammarDialogPRY(Window view, ModalityType applicationModal, Bindable p, Grammar grammar) {
         super(view, applicationModal, p);
+
         setTitle(MyThreadLocal.get().getMessageSource().getMessage("title.grammar", null, MyThreadLocal.get().getLocale()));
         grammarDialogPRYPanel = new GrammarDialogPRYPanel();
         setContentPane(grammarDialogPRYPanel.mainPanel);
+        pack();
+        setLocationRelativeTo(view);
 
         if (grammar != null && grammar.getGrammarPRY() != null) {
             grammarDialogPRYPanel.setData(grammar.getGrammarPRY());
@@ -87,8 +91,56 @@ public class GrammarDialogPRY extends AbstractDialog {
 
 
         public GrammarDialogPRYPanel() {
-            init("descriptors/GrammarDialogPRY.xml");
+            init("descriptors/" + MyThreadLocal.get().getLocale().getLanguage() + "/GrammarDialogPRY.xml");
         }
+
+        public Action saveAction = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                parent.setData(getData(null));
+                GrammarDialogPRY.this.dispose();
+            }
+        };
+
+        public Action cancelAction = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                GrammarDialogPRY.this.dispose();
+            }
+        };
+
+        public Action propagateAction = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String[] ends = endings.getSelectedItem().toString().replaceAll("-", "").split(",|;");
+
+                    JTextField[] fields1 = new JTextField[]{
+                            singularMN, singularZN, singularNN,
+                            singularMR, singularZR, singularNR,
+                            singularMD, singularZD, singularND,
+                            singularMV, singularZV, singularNV,
+                            singularMT, singularZT, singularNT,
+                            singularMM, singularZM, singularNM,
+
+                            pluralMN, pluralZN, pluralNN,
+                            pluralMR, pluralZR, pluralNR,
+                            pluralMD, pluralZD, pluralND,
+                            pluralMV, pluralZV, pluralNV,
+                            pluralMT, pluralZT, pluralNT,
+                            pluralMM, pluralZM, pluralNM,
+
+                    };
+
+
+                    for (int i = 0; i < fields1.length; i++) {
+                        String ending = ends.length > i ? ends[i] : "";
+                        fields1[i].setText(base.getText() + ending);
+                    }
+
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+        };
 
         @Override
         public Object getData(Object d) {
@@ -116,7 +168,7 @@ public class GrammarDialogPRY extends AbstractDialog {
         @Override
         public void setData(Object d) {
             if (d == null) return;
-            GrammarPRY data = ((Grammar) d).getGrammarPRY();
+            GrammarPRY data = (GrammarPRY) d;
             if (data == null) return;
 
 
@@ -144,38 +196,6 @@ public class GrammarDialogPRY extends AbstractDialog {
         }
 
 
-        public void propagate() {
-            try {
-                String[] ends = endings.getSelectedItem().toString().replaceAll("-", "").split(",|;");
-
-                JTextField[] fields1 = new JTextField[]{
-                        singularMN, singularZN, singularNN,
-                        singularMR, singularZR, singularNR,
-                        singularMD, singularZD, singularND,
-                        singularMV, singularZV, singularNV,
-                        singularMT, singularZT, singularNT,
-                        singularMM, singularZM, singularNM,
-
-                        pluralMN, pluralZN, pluralNN,
-                        pluralMR, pluralZR, pluralNR,
-                        pluralMD, pluralZD, pluralND,
-                        pluralMV, pluralZV, pluralNV,
-                        pluralMT, pluralZT, pluralNT,
-                        pluralMM, pluralZM, pluralNM,
-
-                };
-
-
-                for (int i = 0; i < fields1.length; i++) {
-                    String ending = ends.length > i ? ends[i] : "";
-                    fields1[i].setText(base.getText() + ending);
-                }
-
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-
-        }
     }
 
 }

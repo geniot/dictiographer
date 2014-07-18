@@ -126,7 +126,9 @@ public class ViewController {
             Bindable b = new BindableAdapter() {
                 @Override
                 public void setData(Object data) {
-                    System.out.println(data);
+                    EntryObjectModel eom = (EntryObjectModel)data;
+
+                    System.out.println(DictiographerUtils.entry2xml(eom));
                 }
             };
 

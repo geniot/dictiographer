@@ -28,10 +28,6 @@ public abstract class AbstractDialog extends JDialog {
                 onCancel();
             }
         });
-
-
-        this.setSize(900, 700);
-        this.setLocationRelativeTo(view);
     }
 
     protected void onCancel() {

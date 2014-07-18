@@ -9,6 +9,7 @@ import entry.grammar.by.GrammarDZE;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 /**
  * Author: Vitaly Sazanovich
@@ -25,6 +26,8 @@ public class GrammarDialogDZE extends AbstractDialog {
         setTitle(MyThreadLocal.get().getMessageSource().getMessage("title.grammar", null, MyThreadLocal.get().getLocale()));
         grammarDialogDZEPanel = new GrammarDialogDZEPanel();
         setContentPane(grammarDialogDZEPanel.mainPanel);
+        pack();
+        setLocationRelativeTo(view);
 
         if (grammar != null && grammar.getGrammarDZE() != null) {
             grammarDialogDZEPanel.setData(grammar.getGrammarDZE());
@@ -64,69 +67,50 @@ public class GrammarDialogDZE extends AbstractDialog {
             init("descriptors/" + MyThreadLocal.get().getLocale().getLanguage() + "/GrammarDialogDZE.xml");
         }
 
-        public void propagate() {
-            try {
-                String[] ends = endings.getSelectedItem().toString().replaceAll("-", "").split(",|;");
-
-                JTextField[] fields1 = new JTextField[]{
-                        presentSing1, presentPl1,
-                        presentSing2, presentPl2,
-                        presentSing3, presentPl3,
-                };
-
-                JTextField[] fields2 = new JTextField[]{
-                        pastSing1, pastPl1,
-                        pastSing2, pastPl2,
-                        pastSing3, pastPl3,
-                };
-
-                for (int i = 0; i < fields1.length; i++) {
-                    String ending = ends.length > i ? ends[i] : "";
-                    fields1[i].setText(base1.getText() + ending);
-                }
-                for (int i = 0; i < fields2.length; i++) {
-                    String ending = ends.length > i ? ends[fields1.length + i] : "";
-                    fields2[i].setText(base2.getText() + ending);
-                }
-
-            } catch (Exception e1) {
-                e1.printStackTrace();
+        public Action saveAction = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                parent.setData(getData(null));
+                GrammarDialogDZE.this.dispose();
             }
+        };
 
-        }
+        public Action cancelAction = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                GrammarDialogDZE.this.dispose();
+            }
+        };
 
+        public Action propagateAction = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String[] ends = endings.getSelectedItem().toString().replaceAll("-", "").split(",|;");
 
-        @Override
-        public void setData(Object d) {
-            if (d == null) return;
-            GrammarDZE data = ((Grammar) d).getGrammarDZE();
-            if (data == null) return;
+                    JTextField[] fields1 = new JTextField[]{
+                            presentSing1, presentPl1,
+                            presentSing2, presentPl2,
+                            presentSing3, presentPl3,
+                    };
 
-            set(bfCheckBox, data.getNonPersonalForm());
-            set(ztCheckBox, data.getFinite());
-            set(nztCheckBox, data.getInfinite());
+                    JTextField[] fields2 = new JTextField[]{
+                            pastSing1, pastPl1,
+                            pastSing2, pastPl2,
+                            pastSing3, pastPl3,
+                    };
 
-            set(presentSing1, data.getPresentSing1());
-            set(presentPl1, data.getPresentPl1());
-            set(presentSing2, data.getPresentSing2());
-            set(presentPl2, data.getPresentPl2());
-            set(presentSing3, data.getPresentSing3());
-            set(presentPl3, data.getPresentPl3());
+                    for (int i = 0; i < fields1.length; i++) {
+                        String ending = ends.length > i ? ends[i] : "";
+                        fields1[i].setText(base1.getText() + ending);
+                    }
+                    for (int i = 0; i < fields2.length; i++) {
+                        String ending = ends.length > i ? ends[fields1.length + i] : "";
+                        fields2[i].setText(base2.getText() + ending);
+                    }
 
-            set(pastSing1, data.getPastSing1());
-            set(pastPl1, data.getPastPl1());
-            set(pastSing2, data.getPastSing2());
-            set(pastPl2, data.getPastPl2());
-            set(pastSing3, data.getPastSing3());
-            set(pastPl3, data.getPastPl3());
-
-            set(imperSing, data.getImperSing());
-            set(imperPl, data.getImperPl());
-            set(finiteForm, data.getFiniteForm());
-            set(infiniteForm, data.getInfiniteForm());
-            set(participle, data.getParticiple());
-
-        }
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        };
 
 
         @Override
@@ -164,6 +148,39 @@ public class GrammarDialogDZE extends AbstractDialog {
 
             return gr;
         }
+
+        @Override
+        public void setData(Object d) {
+            if (d == null) return;
+            GrammarDZE data = (GrammarDZE) d;
+            if (data == null) return;
+
+            set(bfCheckBox, data.getNonPersonalForm());
+            set(ztCheckBox, data.getFinite());
+            set(nztCheckBox, data.getInfinite());
+
+            set(presentSing1, data.getPresentSing1());
+            set(presentPl1, data.getPresentPl1());
+            set(presentSing2, data.getPresentSing2());
+            set(presentPl2, data.getPresentPl2());
+            set(presentSing3, data.getPresentSing3());
+            set(presentPl3, data.getPresentPl3());
+
+            set(pastSing1, data.getPastSing1());
+            set(pastPl1, data.getPastPl1());
+            set(pastSing2, data.getPastSing2());
+            set(pastPl2, data.getPastPl2());
+            set(pastSing3, data.getPastSing3());
+            set(pastPl3, data.getPastPl3());
+
+            set(imperSing, data.getImperSing());
+            set(imperPl, data.getImperPl());
+            set(finiteForm, data.getFiniteForm());
+            set(infiniteForm, data.getInfiniteForm());
+            set(participle, data.getParticiple());
+
+        }
     }
+
 
 }
