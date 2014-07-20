@@ -28,7 +28,7 @@ public class ExamplesDialog extends AbstractDialog {
         setTitle(MyThreadLocal.get().getMessageSource().getMessage("title.examples", null, MyThreadLocal.get().getLocale()));
         examplesDialogPanel = new ExamplesDialogPanel();
         setContentPane(examplesDialogPanel.mainPanel);
-
+        setLocationRelativeTo(view);
         if (eom != null) {
             examplesDialogPanel.setData(eom);
         }

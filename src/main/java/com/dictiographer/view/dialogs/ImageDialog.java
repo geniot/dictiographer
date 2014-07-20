@@ -28,7 +28,7 @@ public class ImageDialog extends AbstractDialog {
         setTitle(MyThreadLocal.get().getMessageSource().getMessage("title.images", null, MyThreadLocal.get().getLocale()));
         imagesDialogPanel = new ImagesDialogPanel();
         setContentPane(imagesDialogPanel.mainPanel);
-
+        setLocationRelativeTo(view);
         if (eom != null) {
             imagesDialogPanel.setData(eom);
         }

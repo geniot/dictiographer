@@ -29,7 +29,7 @@ public class CategoryDialog extends AbstractDialog {
         setTitle(MyThreadLocal.get().getMessageSource().getMessage("title.category", null, MyThreadLocal.get().getLocale()));
         categoryDialogPanel = new CategoryDialogPanel();
         setContentPane(categoryDialogPanel.mainPanel);
-
+        setLocationRelativeTo(view);
         if (eom != null) {
             categoryDialogPanel.setData(eom);
         }

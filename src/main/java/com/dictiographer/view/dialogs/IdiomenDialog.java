@@ -27,7 +27,7 @@ public class IdiomenDialog extends AbstractDialog {
         setTitle(MyThreadLocal.get().getMessageSource().getMessage("title.idioms", null, MyThreadLocal.get().getLocale()));
         idiomenDialogPanel = new IdiomenDialogPanel();
         setContentPane(idiomenDialogPanel.mainPanel);
-
+        setLocationRelativeTo(view);
         if (idiooms != null) {
             idiomenDialogPanel.setData(idiooms);
         }

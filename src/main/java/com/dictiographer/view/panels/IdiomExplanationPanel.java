@@ -1,11 +1,11 @@
 package com.dictiographer.view.panels;
 
-import com.dictiographer.view.Bindable;
 import com.dictiographer.view.MySwingEngine;
 import entry.IdiomExplanation;
 import entry.Translation;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Time: 19:44
  * Email: Vitaly.Sazanovich@gmail.com
  */
-public class IdiomExplanationPanel extends MySwingEngine{
+public class IdiomExplanationPanel extends MySwingEngine {
     public JTextField meta;
     public JTextField explanation;
     public Box translations;
@@ -35,6 +35,12 @@ public class IdiomExplanationPanel extends MySwingEngine{
         contentPanel.revalidate();
         contentPanel.repaint();
     }
+
+    public Action addTranslationAction = new AbstractAction() {
+        public void actionPerformed(ActionEvent e) {
+            addSingleTranslation(null);
+        }
+    };
 
 
     @Override

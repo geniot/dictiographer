@@ -33,6 +33,7 @@ public class EntryDialog extends AbstractDialog {
         entryDialogPanel = new EntryDialogPanel();
         setContentPane(entryDialogPanel.mainPanel);
 
+        setLocationRelativeTo(view);
         if (eom != null) {
             entryDialogPanel.setData(eom);
         }
