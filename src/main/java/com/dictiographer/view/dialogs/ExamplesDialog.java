@@ -10,6 +10,7 @@ import entry.Example;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 /**
@@ -47,6 +48,8 @@ public class ExamplesDialog extends AbstractDialog {
         public void setData(Object d) {
             if (d == null) return;
             Example[] ed = (Example[]) d;
+
+
             //examles
             if (ed != null) {
                 for (int i = 0; i < ed.length; i++) {
@@ -84,6 +87,13 @@ public class ExamplesDialog extends AbstractDialog {
         public boolean isEmpty() {
             return false;
         }
+
+        public Action saveAction = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                parent.setData(getData(null));
+                getClosestWindow(getMainPanel()).dispose();
+            }
+        };
     }
 }
 

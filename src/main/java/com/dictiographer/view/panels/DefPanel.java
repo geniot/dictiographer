@@ -11,9 +11,7 @@ import com.dictiographer.view.dialogs.grammar.GrammarDialogLauncher;
 import entry.*;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.lang.reflect.Field;
 
 /**
  * User: Vitaly Sazanovich
@@ -44,7 +42,31 @@ public class DefPanel extends MySwingEngine {
     @Override
     public void setData(Object d) {
         if (d == null) return;
-//        super.setData(d);
+
+        if (d instanceof Translation[]) {
+            translations = ((Translation[]) d).length == 0 ? null : (Translation[]) d;
+            return;
+        }
+
+        if (d instanceof Example[]) {
+            examples = ((Example[]) d).length == 0 ? null : (Example[]) d;
+            return;
+        }
+
+        if (d instanceof Idioom[]) {
+            idioms = ((Idioom[]) d).length == 0 ? null : (Idioom[]) d;
+            return;
+        }
+
+        if (d instanceof Grammar) {
+            grammar = (Grammar) d;
+            return;
+        }
+
+        if (d instanceof EntryImage[]) {
+            images = ((EntryImage[]) d).length == 0 ? null : (EntryImage[]) d;
+            return;
+        }
 
         if (d instanceof EntryDefinition) {
             EntryDefinition ed = (EntryDefinition) d;
@@ -163,8 +185,6 @@ public class DefPanel extends MySwingEngine {
             }
         }
     };
-
-
 
 
 }

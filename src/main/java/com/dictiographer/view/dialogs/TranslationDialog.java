@@ -39,6 +39,12 @@ public class TranslationDialog extends AbstractDialog {
             init("descriptors/TranslationDialog.xml");
         }
 
+        public Action addTranslationAction = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                addSingleTranslation(null);
+            }
+        };
+
         @Override
         public void setData(Object d) {
             if (d == null) return;
@@ -80,7 +86,7 @@ public class TranslationDialog extends AbstractDialog {
         public Action saveAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 parent.setData(getData(null));
-                ((JDialog) container).dispose();
+                TranslationDialog.this.dispose();
             }
         };
     }

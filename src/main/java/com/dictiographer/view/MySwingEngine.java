@@ -73,6 +73,14 @@ public abstract class MySwingEngine extends SwingEngine implements Bindable {
     }
 
 
+
+    public Action cancelAction = new AbstractAction() {
+        public void actionPerformed(ActionEvent e) {
+            getClosestWindow(getMainPanel()).dispose();
+        }
+    };
+
+
     public Localizer getLocalizer() {
         return MyThreadLocal.get().getLocalizer();
     }
@@ -87,10 +95,16 @@ public abstract class MySwingEngine extends SwingEngine implements Bindable {
         return null;
     }
 
+
+
     protected void set(JTextField tf, String s) {
         if (tf != null && s != null) {
             tf.setText(s);
         }
+    }
+
+    public boolean implementsInterface(Object object, Class interf){
+        return interf.isInstance(object);
     }
 
     protected void set(JCheckBox checkBox, Boolean val) {

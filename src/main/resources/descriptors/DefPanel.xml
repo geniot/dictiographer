@@ -2,14 +2,46 @@
 <panel id="mainPanel" bundle="DictiographerResource" constraints="BorderLayout.CENTER" layout="GridBagLayout">
 
     <!--0-->
+    <label text="label.usage">
+        <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5"
+                            gridx="0" gridy="0"
+                            ipadx="0" ipady="0" weightx="0" weighty="0"/>
+    </label>
+
+
+    <textfield id="meta" preferredSize="100,22" Size="100,22" minimumSize="100,22">
+        <gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5"
+                            gridx="1" gridy="0"
+                            gridwidth="3"
+                            ipadx="0" ipady="0" weightx="1" weighty="0"/>
+    </textfield>
+
+    <!--<panel  layout="GridBagLayout">-->
+    <!--<label text="label.frequency">-->
+    <!--<gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5"-->
+    <!--gridx="0" gridy="0"-->
+    <!--ipadx="0" ipady="0" weightx="1" weighty="0"/>-->
+    <!--</label>-->
+    <!--<combobox id="frequency" constraints="BorderLayout.EAST"-->
+    <!--maximumSize="50,22" minimumSize="50,22"-->
+    <!--preferredSize="50,22" size="50,22"-->
+    <!--initclass="com.dictiographer.view.comboboxmodels.FrequencyComboBoxModel">-->
+    <!--<gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5"-->
+    <!--gridx="1" gridy="0"-->
+    <!--ipadx="0" ipady="0" weightx="1" weighty="0"/>-->
+    <!--</combobox>-->
+    <!--</panel>-->
+
+
+    <!--1-->
     <label text="label.definition">
         <gridbagconstraints anchor="GridBagConstraints.NORTHEAST" insets="5,5,5,5"
-                            gridx="0" gridy="0"
+                            gridx="0" gridy="1"
                             ipadx="0" ipady="0" weightx="0" weighty="0"/>
     </label>
     <scrollpane>
         <gridbagconstraints fill="GridBagConstraints.BOTH" insets="5,5,5,5"
-                            gridx="1" gridy="0"
+                            gridx="1" gridy="1"
                             gridwidth="3"
                             ipadx="0" ipady="0" weightx="1" weighty="1"/>
         <textarea font="12" lineWrap="true" wrapStyleWord="true" id="definition"/>
@@ -17,46 +49,17 @@
 
     <!--1-->
     <!--<label text="label.category">-->
-        <!--<gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5"-->
-                            <!--gridx="0" gridy="1"-->
-                            <!--ipadx="0" ipady="0" weightx="0" weighty="0"/>-->
+    <!--<gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5"-->
+    <!--gridx="0" gridy="1"-->
+    <!--ipadx="0" ipady="0" weightx="0" weighty="0"/>-->
     <!--</label>-->
 
     <!--<button action="categoryAction" icon="chart_organisation.png"-->
-            <!--maximumSize="35,35" minimumSize="35,35" preferredSize="35,35" size="35,35">-->
-        <!--<gridbagconstraints fill="GridBagConstraints.NONE" anchor="GridBagConstraints.WEST" insets="5,5,5,5"-->
-                            <!--gridx="1" gridy="1"-->
-                            <!--ipadx="0" ipady="0" weightx="0" weighty="0"/>-->
+    <!--maximumSize="35,35" minimumSize="35,35" preferredSize="35,35" size="35,35">-->
+    <!--<gridbagconstraints fill="GridBagConstraints.NONE" anchor="GridBagConstraints.WEST" insets="5,5,5,5"-->
+    <!--gridx="1" gridy="1"-->
+    <!--ipadx="0" ipady="0" weightx="0" weighty="0"/>-->
     <!--</button>-->
-    <label text="label.usage">
-        <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5"
-                            gridx="2" gridy="1"
-                            ipadx="0" ipady="0" weightx="0" weighty="0"/>
-    </label>
-
-    <panel constraints="BorderLayout.CENTER" layout="FlowLayout(FlowLayout.LEFT)">
-        <gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5"
-                            gridx="3" gridy="1"
-                            ipadx="0" ipady="0" weightx="1" weighty="0"/>
-        <textfield id="meta"  preferredSize="100,22" Size="100,22" minimumSize="100,22" />
-
-        <!--<panel  layout="GridBagLayout">-->
-            <!--<label text="label.frequency">-->
-                <!--<gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5"-->
-                                    <!--gridx="0" gridy="0"-->
-                                    <!--ipadx="0" ipady="0" weightx="1" weighty="0"/>-->
-            <!--</label>-->
-            <!--<combobox id="frequency" constraints="BorderLayout.EAST"-->
-                      <!--maximumSize="50,22" minimumSize="50,22"-->
-                      <!--preferredSize="50,22" size="50,22"-->
-                      <!--initclass="com.dictiographer.view.comboboxmodels.FrequencyComboBoxModel">-->
-                <!--<gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5"-->
-                                    <!--gridx="1" gridy="0"-->
-                                    <!--ipadx="0" ipady="0" weightx="1" weighty="0"/>-->
-            <!--</combobox>-->
-        <!--</panel>-->
-
-    </panel>
 
 
     <!--2-->

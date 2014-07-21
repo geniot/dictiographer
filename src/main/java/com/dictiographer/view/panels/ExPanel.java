@@ -1,19 +1,18 @@
 package com.dictiographer.view.panels;
 
 import com.dictiographer.model.Constants;
+import com.dictiographer.utils.AudioFilePlayer;
 import com.dictiographer.utils.DictiographerUtils;
-import com.dictiographer.view.Bindable;
 import com.dictiographer.view.MySwingEngine;
+import com.dictiographer.view.dialogs.ImageDialog;
 import entry.EntryImage;
 import entry.Example;
 import entry.Translation;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.zip.CRC32;
 
@@ -38,6 +37,8 @@ public class ExPanel extends MySwingEngine {
     public EntryImage[] images;
 
     public Box contentPanel;
+
+    private AudioFilePlayer audioFilePlayer = new AudioFilePlayer();
 
 
     public ExPanel() {
@@ -72,18 +73,32 @@ public class ExPanel extends MySwingEngine {
             }
         }
     };
+
+    public Action imageAction = new AbstractAction() {
+        public void actionPerformed(ActionEvent e) {
+            try {
+                ImageDialog id = new ImageDialog(getClosestWindow(container), ExPanel.this, images);
+                id.setVisible(true);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    };
+
     public Action playAudioAction = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
             try {
-                File tempFile = File.createTempFile("audio", "." + fileExt);
-                tempFile.deleteOnExit();
-                FileOutputStream fos = new FileOutputStream(tempFile);
-                fos.write(audio);
-                fos.close();
+                Thread audioThread = new Thread() {
+                    public void run() {
+                        try {
+                            audioFilePlayer.play(audio);
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                };
+                audioThread.start();
 
-//                Player playMP3 = Manager.createPlayer(tempFile.toURI().toURL());
-//                playMP3.realize();
-//                playMP3.start();
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
@@ -95,15 +110,26 @@ public class ExPanel extends MySwingEngine {
             audio = null;
             playButton.setEnabled(false);
             deleteButton.setEnabled(false);
+            audioFilePlayer.stop();
         }
     };
 
+    public Action addTranslationAction = new AbstractAction() {
+        public void actionPerformed(ActionEvent e) {
+            addSingleTranslation(null);
+        }
+    };
 
 
     @Override
     public void setData(Object inputObject) {
         if (inputObject == null) return;
-//        super.setData(inputObject);
+
+
+        if (inputObject instanceof EntryImage[]) {
+            images = ((EntryImage[]) inputObject).length == 0 ? null : (EntryImage[]) inputObject;
+            return;
+        }
 
         if (inputObject instanceof Example) {
             Example ex = (Example) inputObject;
@@ -151,7 +177,7 @@ public class ExPanel extends MySwingEngine {
         if (!sourceTextField.getText().trim().equals("")) ex.setSource(sourceTextField.getText().trim());
         if (!gebrTextField.getText().trim().equals("")) ex.setMeta(gebrTextField.getText().trim());
         if (!explanationTextField.getText().trim().equals("")) ex.setExplanation(explanationTextField.getText().trim());
-        ArrayList<Translation> translations = new ArrayList();
+        ArrayList<Translation> translations = new ArrayList<Translation>();
         for (int i = 0; i < contentPanel.getComponentCount(); i++) {
             FormContentPanel fcp = (FormContentPanel) contentPanel.getComponent(i);
             SingleTranslationPanel singleTranslationPanel = (SingleTranslationPanel) fcp.getForm();

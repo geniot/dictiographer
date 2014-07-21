@@ -9,18 +9,24 @@
                 <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="0"
                                     ipadx="0" ipady="0" weightx="0" weighty="0"/>
             </label>
-            <textfield id="headword">
+            <panel layout="BorderLayout">
                 <gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="0"
                                     ipadx="0" ipady="0" weightx="1" weighty="0"/>
-            </textfield>
-            <label text="label.see">
-                <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="2" gridy="0"
-                                    ipadx="0" ipady="0" weightx="0" weighty="0"/>
-            </label>
-            <textfield id="zie" preferredSize="100,22" Size="100,22" minimumSize="100,22">
-                <gridbagconstraints fill="GridBagConstraints.ALL" insets="5,5,5,5" gridx="3" gridy="0"
-                                    ipadx="0" ipady="0" weightx="0" weighty="0"/>
-            </textfield>
+                <textfield name="headword" id="headword" constraints="BorderLayout.CENTER">
+                </textfield>
+
+                <panel constraints="BorderLayout.EAST" layout="BorderLayout">
+                    <label text="label.see" constraints="BorderLayout.WEST">
+                    </label>
+
+                    <textfield preferredSize="100,22" Size="100,22" minimumSize="100,22"
+                               id="zie" constraints="BorderLayout.CENTER">
+                    </textfield>
+                </panel>
+
+            </panel>
+
+
             <!--1-->
             <label text="label.syllables">
                 <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="1"
@@ -32,16 +38,16 @@
             </textfield>
 
             <!--<label text="label.stressed">-->
-                <!--<gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="2" gridy="1"-->
-                                    <!--ipadx="0" ipady="0" weightx="0" weighty="0"/>-->
+            <!--<gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="2" gridy="1"-->
+            <!--ipadx="0" ipady="0" weightx="0" weighty="0"/>-->
             <!--</label>-->
             <!--<combobox id="stressedSyllable"-->
-                      <!--maximumSize="40,22" minimumSize="40,22"-->
-                      <!--preferredSize="40,22" size="40,22"-->
-                      <!--initclass="com.dictiographer.view.comboboxmodels.StressedSyllableComboBoxModel">-->
-                <!--<gridbagconstraints fill="GridBagConstraints.NONE" anchor="GridBagConstraints.WEST" insets="5,5,5,5"-->
-                                    <!--gridx="3" gridy="1"-->
-                                    <!--ipadx="0" ipady="0" weightx="0" weighty="0"/>-->
+            <!--maximumSize="40,22" minimumSize="40,22"-->
+            <!--preferredSize="40,22" size="40,22"-->
+            <!--initclass="com.dictiographer.view.comboboxmodels.StressedSyllableComboBoxModel">-->
+            <!--<gridbagconstraints fill="GridBagConstraints.NONE" anchor="GridBagConstraints.WEST" insets="5,5,5,5"-->
+            <!--gridx="3" gridy="1"-->
+            <!--ipadx="0" ipady="0" weightx="0" weighty="0"/>-->
             <!--</combobox>-->
             <!--2-->
             <label text="label.poses">

@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * Time: 6:39 PM
  */
 public class EntryDialog extends AbstractDialog {
-    private EntryDialogPanel entryDialogPanel;
+    protected EntryDialogPanel entryDialogPanel;
 
     public EntryDialog(Window view, Bindable b, EntryObjectModel eom, String mode) {
         super(view, ModalityType.APPLICATION_MODAL, b);
@@ -151,8 +151,8 @@ public class EntryDialog extends AbstractDialog {
                 EntryObjectModel eom = new EntryObjectModel();
                 getData(eom);
                 if (eom.getHeadword() == null) {
-                    String lang = MyThreadLocal.get().getLocale().getLanguage();
-                    JOptionPane.showMessageDialog(EntryDialog.this, DictiographerUtils.getProperty(lang, "ERROR_HEADWORD_REQUIRED"));
+                    JOptionPane.showMessageDialog(EntryDialog.this,
+                            MyThreadLocal.get().getMessageSource().getMessage("ERROR_HEADWORD_REQUIRED", null, MyThreadLocal.get().getLocale()));
                 } else {
                     parent.setData(eom);
                 }

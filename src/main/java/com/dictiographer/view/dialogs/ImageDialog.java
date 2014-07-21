@@ -7,7 +7,6 @@ import com.dictiographer.view.MyThreadLocal;
 import com.dictiographer.view.panels.BeeldPanel;
 import com.dictiographer.view.panels.FormContentPanel;
 import entry.EntryImage;
-import entry.Example;
 
 import javax.swing.*;
 import java.awt.*;
@@ -82,7 +81,7 @@ public class ImageDialog extends AbstractDialog {
             public void actionPerformed(ActionEvent e) {
                 EntryImage[] eis = (EntryImage[]) getData(null);
                 parent.setData(eis);
-                ((JDialog) container).dispose();
+                ImageDialog.this.dispose();
             }
         };
 
