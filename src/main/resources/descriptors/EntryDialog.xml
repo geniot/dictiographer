@@ -6,34 +6,36 @@
         <panel constraints="BorderLayout.CENTER" layout="GridBagLayout">
             <!--0-->
             <label text="label.headword">
-                <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="0"
+                <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5"
+                                    gridx="0" gridy="0"
                                     ipadx="0" ipady="0" weightx="0" weighty="0"/>
             </label>
-            <panel layout="BorderLayout">
-                <gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="0"
+            <textfield name="headword" id="headword" constraints="BorderLayout.CENTER">
+                <gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5"
+                                    gridx="1" gridy="0"
                                     ipadx="0" ipady="0" weightx="1" weighty="0"/>
-                <textfield name="headword" id="headword" constraints="BorderLayout.CENTER">
-                </textfield>
-
-                <panel constraints="BorderLayout.EAST" layout="BorderLayout">
-                    <label text="label.see" constraints="BorderLayout.WEST">
-                    </label>
-
-                    <textfield preferredSize="100,22" Size="100,22" minimumSize="100,22"
-                               id="zie" constraints="BorderLayout.CENTER">
-                    </textfield>
-                </panel>
-
-            </panel>
-
-
+            </textfield>
             <!--1-->
             <label text="label.syllables">
-                <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="1"
+                <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5"
+                                    gridx="0" gridy="1"
                                     ipadx="0" ipady="0" weightx="0" weighty="0"/>
             </label>
             <textfield id="syllables">
-                <gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="1"
+                <gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5"
+                                    gridx="1" gridy="1"
+                                    ipadx="0" ipady="0" weightx="1" weighty="0"/>
+            </textfield>
+            <!--2-->
+            <label text="label.see">
+                <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5"
+                                    gridx="0" gridy="2"
+                                    ipadx="0" ipady="0" weightx="0" weighty="0"/>
+            </label>
+
+            <textfield preferredSize="100,22" Size="100,22" minimumSize="100,22" id="zie" >
+                <gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5"
+                                    gridx="1" gridy="2"
                                     ipadx="0" ipady="0" weightx="1" weighty="0"/>
             </textfield>
 
@@ -51,24 +53,24 @@
             <!--</combobox>-->
             <!--2-->
             <label text="label.poses">
-                <gridbagconstraints anchor="GridBagConstraints.NORTHEAST" insets="5,5,5,5" gridx="0" gridy="2"
+                <gridbagconstraints anchor="GridBagConstraints.NORTHEAST" insets="5,5,5,5" gridx="0" gridy="3"
                                     ipadx="0" ipady="0" weightx="0" weighty="0"/>
             </label>
             <dndtabbedpane id="partOfSpeeches" titleNamingType="DECIMAL_TO_ROMAN"
                            tabContentClassName="com.dictiographer.view.panels.PosPanel">
-                <gridbagconstraints fill="GridBagConstraints.BOTH" insets="5,5,5,5" gridx="1" gridy="2"
+                <gridbagconstraints fill="GridBagConstraints.BOTH" insets="5,5,5,5" gridx="1" gridy="3"
                                     ipadx="0" ipady="0" gridwidth="3" weightx="1" weighty="1"/>
             </dndtabbedpane>
             <!--3-->
             <label text="label.idioms">
-                <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="3"
+                <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="4"
                                     ipadx="0" ipady="0" weightx="0" weighty="0"/>
             </label>
             <button action="idiomsAction" icon="images/script.png"
                     maximumSize="35,35" minimumSize="35,35" preferredSize="35,35" size="35,35">
                 <gridbagconstraints fill="GridBagConstraints.NONE" anchor="GridBagConstraints.WEST" insets="5,5,5,5"
                                     gridx="1"
-                                    gridy="3"
+                                    gridy="4"
                                     ipadx="0" ipady="0" weightx="0" weighty="0"/>
             </button>
         </panel>
