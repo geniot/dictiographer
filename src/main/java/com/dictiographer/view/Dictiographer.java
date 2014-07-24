@@ -23,10 +23,10 @@ public class Dictiographer extends JFrame {
     private JSplitPane mainSplitPane;
     private JEditorPane entryPane;
     private JScrollPane entryScrollPane;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
+    private JButton addEntryButton;
+    private JButton editEntryButton;
+    private JButton removeEntryButton;
+    private JButton refreshButton;
 
 
     private ViewController viewController;
@@ -96,7 +96,7 @@ public class Dictiographer extends JFrame {
             }
         });
 
-        button2.addActionListener(new ActionListener() {
+        editEntryButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (list1.getSelectedValue() != null) {
@@ -224,22 +224,22 @@ public class Dictiographer extends JFrame {
         toolBar2.setBorderPainted(false);
         toolBar2.setFloatable(false);
         panel5.add(toolBar2, BorderLayout.SOUTH);
-        button1 = new JButton();
-        button1.setIcon(new ImageIcon(getClass().getResource("/images/application_form_add.png")));
-        button1.setText("");
-        toolBar2.add(button1);
-        button2 = new JButton();
-        button2.setIcon(new ImageIcon(getClass().getResource("/images/application_form_edit.png")));
-        button2.setText("");
-        toolBar2.add(button2);
-        button3 = new JButton();
-        button3.setIcon(new ImageIcon(getClass().getResource("/images/application_form_delete.png")));
-        button3.setText("");
-        toolBar2.add(button3);
-        button4 = new JButton();
-        button4.setIcon(new ImageIcon(getClass().getResource("/images/arrow_refresh.png")));
-        button4.setText("");
-        toolBar2.add(button4);
+        addEntryButton = new JButton();
+        addEntryButton.setIcon(new ImageIcon(getClass().getResource("/images/application_form_add.png")));
+        addEntryButton.setText("");
+        toolBar2.add(addEntryButton);
+        editEntryButton = new JButton();
+        editEntryButton.setIcon(new ImageIcon(getClass().getResource("/images/application_form_edit.png")));
+        editEntryButton.setText("");
+        toolBar2.add(editEntryButton);
+        removeEntryButton = new JButton();
+        removeEntryButton.setIcon(new ImageIcon(getClass().getResource("/images/application_form_delete.png")));
+        removeEntryButton.setText("");
+        toolBar2.add(removeEntryButton);
+        refreshButton = new JButton();
+        refreshButton.setIcon(new ImageIcon(getClass().getResource("/images/arrow_refresh.png")));
+        refreshButton.setText("");
+        toolBar2.add(refreshButton);
     }
 
     /**
