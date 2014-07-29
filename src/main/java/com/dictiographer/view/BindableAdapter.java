@@ -10,7 +10,6 @@ import javax.swing.*;
 public class BindableAdapter implements Bindable {
     @Override
     public void setData(Object data) {
-
     }
 
     @Override

@@ -11,6 +11,7 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.context.MessageSource;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -110,9 +111,9 @@ public class ViewController {
         return new String(baos.toByteArray(), "UTF-8");
     }
 
-    public void onEntryEdit(String domain, String hw) {
+    public void onEntryEdit(final String domain, final String hw) {
         try {
-            File file = new File(dictiographerProperties.getProperty(Constants.DATA_FOLDER_PROP_KEY) + File.separator + domain + File.separator + URLEncoder.encode(hw, "UTF-8"));
+            final File file = new File(dictiographerProperties.getProperty(Constants.DATA_FOLDER_PROP_KEY) + File.separator + domain + File.separator + URLEncoder.encode(hw, "UTF-8"));
             String s = FileUtils.readFileToString(file, "UTF-8");
             EntryObjectModel eom = (EntryObjectModel) DictiographerUtils.xml2entry(s);
 
@@ -126,13 +127,111 @@ public class ViewController {
             Bindable b = new BindableAdapter() {
                 @Override
                 public void setData(Object data) {
-                    EntryObjectModel eom = (EntryObjectModel)data;
+                    try {
+                        EntryObjectModel eom = (EntryObjectModel) data;
+                        if (!eom.getHeadword().equals(hw)) {
+                            file.delete();
+                        }
+                        FileOutputStream fos = new FileOutputStream(dictiographerProperties.getProperty(Constants.DATA_FOLDER_PROP_KEY) + File.separator + domain + File.separator + URLEncoder.encode(eom.getHeadword(), "UTF-8"));
+                        fos.write(DictiographerUtils.entry2xml(eom).getBytes("UTF-8"));
+                        fos.close();
 
-                    System.out.println(DictiographerUtils.entry2xml(eom));
+                        dictiographerProperties.setProperty(Constants.SELECTED_WORD_PROP_KEY, eom.getHeadword());
+                        view.updateView();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             };
 
             EntryDialog entryDialog = new EntryDialog(view, b, eom, Constants.UPDATE_ACTION);
+            entryDialog.setVisible(true);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void onEntryRemove(final String domain, final String res) {
+        try {
+            try {
+                if (res != null && !res.equals("")) {
+                    Locale loc = new Locale(domain);
+                    int response = showConfirmDialog(view,
+                            messageSource.getMessage("messsage.remove", new String[]{res}, loc),
+                            messageSource.getMessage("title.confirm", null, loc),
+                            JOptionPane.YES_NO_CANCEL_OPTION);
+
+                    if (response == JOptionPane.YES_OPTION) {
+                        File file = new File(dictiographerProperties.getProperty(Constants.DATA_FOLDER_PROP_KEY) + File.separator + domain + File.separator + URLEncoder.encode(res, "UTF-8"));
+                        file.delete();
+                        view.updateView();
+                    }
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(view, ex.getMessage());
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public int showConfirmDialog(Component parentComponent, Object message, String title, int optionType) {
+        ArrayList<Object> options = new ArrayList<Object>();
+        Object defaultOption;
+        switch (optionType) {
+            case JOptionPane.OK_CANCEL_OPTION:
+                options.add(UIManager.getString("OptionPane.okButtonText"));
+                options.add(UIManager.getString("OptionPane.cancelButtonText"));
+                defaultOption = UIManager.getString("OptionPane.cancelButtonText");
+                break;
+            case JOptionPane.YES_NO_OPTION:
+                options.add(UIManager.getString("OptionPane.yesButtonText"));
+                options.add(UIManager.getString("OptionPane.noButtonText"));
+                defaultOption = UIManager.getString("OptionPane.noButtonText");
+                break;
+            case JOptionPane.YES_NO_CANCEL_OPTION:
+                options.add(UIManager.getString("OptionPane.yesButtonText"));
+                options.add(UIManager.getString("OptionPane.noButtonText"));
+                options.add(UIManager.getString("OptionPane.cancelButtonText"));
+                defaultOption = UIManager.getString("OptionPane.cancelButtonText");
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown optionType " + optionType);
+        }
+        return JOptionPane.showOptionDialog(parentComponent, message, title, optionType, JOptionPane.QUESTION_MESSAGE, null, options.toArray(), defaultOption);
+    }
+
+    public void onEntryAdd(final String domain) {
+        try {
+
+            ThreadContext context = new ThreadContext();
+            Locale loc = new Locale(domain);
+            context.setLocale(loc);
+            context.setLocalizer(new MyLocalizer(loc));
+            context.setMessageSource(messageSource);
+            MyThreadLocal.set(context);
+
+            Bindable b = new BindableAdapter() {
+                @Override
+                public void setData(Object data) {
+                    try {
+                        EntryObjectModel eom = (EntryObjectModel) data;
+
+                        FileOutputStream fos = new FileOutputStream(dictiographerProperties.getProperty(Constants.DATA_FOLDER_PROP_KEY) + File.separator + domain + File.separator + URLEncoder.encode(eom.getHeadword(), "UTF-8"));
+                        fos.write(DictiographerUtils.entry2xml(eom).getBytes("UTF-8"));
+                        fos.close();
+
+                        dictiographerProperties.setProperty(Constants.SELECTED_WORD_PROP_KEY, eom.getHeadword());
+                        view.updateView();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            };
+
+            EntryDialog entryDialog = new EntryDialog(view, b, null, Constants.NEW_ACTION);
             entryDialog.setVisible(true);
 
         } catch (Exception ex) {

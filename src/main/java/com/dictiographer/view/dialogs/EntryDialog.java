@@ -155,6 +155,7 @@ public class EntryDialog extends AbstractDialog {
                             MyThreadLocal.get().getMessageSource().getMessage("ERROR_HEADWORD_REQUIRED", null, MyThreadLocal.get().getLocale()));
                 } else {
                     parent.setData(eom);
+                    EntryDialog.this.dispose();
                 }
             }
         };

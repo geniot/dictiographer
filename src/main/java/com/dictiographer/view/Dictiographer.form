@@ -123,7 +123,9 @@
                     <children>
                       <component id="e80c" class="javax.swing.JList" binding="list1" default-binding="true">
                         <constraints/>
-                        <properties/>
+                        <properties>
+                          <selectionMode value="0"/>
+                        </properties>
                       </component>
                     </children>
                   </scrollpane>

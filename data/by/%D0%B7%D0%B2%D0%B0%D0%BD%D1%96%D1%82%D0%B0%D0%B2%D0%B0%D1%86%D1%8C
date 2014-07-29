@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <java version="1.6.0_14" class="java.beans.XMLDecoder"> 
- <object class="entry.EntryObjectModel">
+ <object class="entry.EntryObjectModel"> 
   <void property="headword"> 
    <string>званітаваць</string> 
   </void> 
   <void property="partOfSpeeches"> 
-   <array class="entry.PartOfSpeech" length="1">
+   <array class="entry.PartOfSpeech" length="1"> 
     <void index="0"> 
-     <object class="entry.PartOfSpeech">
+     <object class="entry.PartOfSpeech"> 
       <void property="grammar"> 
-       <object class="entry.Grammar">
+       <object class="entry.Grammar"> 
         <void property="grammarDZE"> 
-         <object class="entry.grammar.by.GrammarDZE">
+         <object class="entry.grammar.by.GrammarDZE"> 
           <void property="finite"> 
            <boolean>true</boolean> 
           </void> 
@@ -80,16 +80,13 @@
     </void> 
    </array> 
   </void> 
-  <void property="stressedSyllable"> 
-   <int>4</int> 
-  </void> 
   <void property="syllables"> 
    <string>зва|ні|та|ваць</string> 
   </void> 
   <void property="zie"> 
-   <array class="entry.EntryLink" length="1">
+   <array class="entry.EntryLink" length="1"> 
     <void index="0"> 
-     <object class="entry.EntryLink">
+     <object class="entry.EntryLink"> 
       <void property="text"> 
        <string>ванітаваць</string> 
       </void> 

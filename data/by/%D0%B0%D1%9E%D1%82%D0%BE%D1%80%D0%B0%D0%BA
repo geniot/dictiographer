@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_26" class="java.beans.XMLDecoder"> 
- <object class="entry.EntryObjectModel">
+<java version="1.6.0_14" class="java.beans.XMLDecoder"> 
+ <object class="entry.EntryObjectModel"> 
   <void property="headword"> 
    <string>аўторак</string> 
   </void> 
   <void property="partOfSpeeches"> 
-   <array class="entry.PartOfSpeech" length="1">
+   <array class="entry.PartOfSpeech" length="1"> 
     <void index="0"> 
-     <object class="entry.PartOfSpeech">
+     <object class="entry.PartOfSpeech"> 
       <void property="entryDefinitions"> 
-       <array class="entry.EntryDefinition" length="1">
+       <array class="entry.EntryDefinition" length="1"> 
         <void index="0"> 
-         <object class="entry.EntryDefinition">
+         <object class="entry.EntryDefinition"> 
           <void property="definition"> 
            <string>Другі дзень тыдня.</string> 
           </void> 
           <void property="examples"> 
-           <array class="entry.Example" length="1">
+           <array class="entry.Example" length="1"> 
             <void index="0"> 
-             <object class="entry.Example">
+             <object class="entry.Example"> 
               <void property="example"> 
                <string>У аўторак на заняткі я не пайшоў.</string> 
               </void> 
@@ -30,9 +30,9 @@
            </array> 
           </void> 
           <void property="translations"> 
-           <array class="entry.Translation" length="2">
+           <array class="entry.Translation" length="2"> 
             <void index="0"> 
-             <object class="entry.Translation">
+             <object class="entry.Translation"> 
               <void property="locale"> 
                <string>NL</string> 
               </void> 
@@ -42,7 +42,7 @@
              </object> 
             </void> 
             <void index="1"> 
-             <object class="entry.Translation">
+             <object class="entry.Translation"> 
               <void property="locale"> 
                <string>EN</string> 
               </void> 
@@ -58,9 +58,9 @@
        </array> 
       </void> 
       <void property="grammar"> 
-       <object class="entry.Grammar">
+       <object class="entry.Grammar"> 
         <void property="grammarNAZ"> 
-         <object class="entry.grammar.by.GrammarNAZ">
+         <object class="entry.grammar.by.GrammarNAZ"> 
           <void property="genderKey"> 
            <string>m</string> 
           </void> 
@@ -110,9 +110,6 @@
      </object> 
     </void> 
    </array> 
-  </void> 
-  <void property="stressedSyllable"> 
-   <int>2</int> 
   </void> 
   <void property="syllables"> 
    <string>аў|то|рак</string> 

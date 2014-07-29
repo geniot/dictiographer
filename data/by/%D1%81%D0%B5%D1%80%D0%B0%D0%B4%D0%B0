@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <java version="1.6.0_14" class="java.beans.XMLDecoder"> 
- <object class="entry.EntryObjectModel">
+ <object class="entry.EntryObjectModel"> 
   <void property="headword"> 
    <string>серада</string> 
   </void> 
   <void property="partOfSpeeches"> 
-   <array class="entry.PartOfSpeech" length="1">
+   <array class="entry.PartOfSpeech" length="1"> 
     <void index="0"> 
-     <object class="entry.PartOfSpeech">
+     <object class="entry.PartOfSpeech"> 
       <void property="entryDefinitions"> 
-       <array class="entry.EntryDefinition" length="1">
+       <array class="entry.EntryDefinition" length="1"> 
         <void index="0"> 
-         <object class="entry.EntryDefinition">
+         <object class="entry.EntryDefinition"> 
           <void property="definition"> 
            <string>Трэці (пасля нядзелі) дзень тыдня.</string> 
           </void> 
           <void property="translations"> 
-           <array class="entry.Translation" length="1">
+           <array class="entry.Translation" length="1"> 
             <void index="0"> 
-             <object class="entry.Translation">
+             <object class="entry.Translation"> 
               <void property="locale"> 
                <string>NL</string> 
               </void> 
@@ -34,9 +34,9 @@
        </array> 
       </void> 
       <void property="grammar"> 
-       <object class="entry.Grammar">
+       <object class="entry.Grammar"> 
         <void property="grammarNAZ"> 
-         <object class="entry.grammar.by.GrammarNAZ">
+         <object class="entry.grammar.by.GrammarNAZ"> 
           <void property="genderKey"> 
            <string>v</string> 
           </void> 
@@ -86,9 +86,6 @@
      </object> 
     </void> 
    </array> 
-  </void> 
-  <void property="stressedSyllable"> 
-   <int>3</int> 
   </void> 
   <void property="syllables"> 
    <string>се|ра|да</string> 

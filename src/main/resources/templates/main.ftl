@@ -13,17 +13,22 @@
 </head>
 <body>
 
-<span id="syllables">
-    ${entry.syllables}
-</span>
+<#if entry.syllables?has_content>
+    <span id="syllables">
+        ${entry.syllables}
+    </span>
+</#if>
 
-<#list entry.partOfSpeeches as pos>
-<div class="pos_block">
-        <span class="headword_block">
 
-        </span>
-</div>
-</#list>
+<#if entry.partOfSpeeches?has_content>
+    <#list entry.partOfSpeeches as pos>
+    <div class="pos_block">
+            <span class="headword_block">
+
+            </span>
+    </div>
+    </#list>
+</#if>
 
 </body>
 </html>

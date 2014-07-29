@@ -60,7 +60,7 @@ public class Dictiographer extends JFrame {
             domainComboBox.setSelectedItem(selDomain);
         }
 
-        onDomainChanged();
+        updateView();
 
 
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -73,7 +73,7 @@ public class Dictiographer extends JFrame {
         domainComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                onDomainChanged();
+                updateView();
             }
         });
 
@@ -82,7 +82,13 @@ public class Dictiographer extends JFrame {
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
                     if (list1.getSelectedValue() != null) {
+                        editEntryButton.setEnabled(true);
+                        removeEntryButton.setEnabled(true);
                         selectEntry(list1.getSelectedValue().toString());
+                    } else {
+                        editEntryButton.setEnabled(false);
+                        removeEntryButton.setEnabled(false);
+                        selectEntry(null);
                     }
                 }
 
@@ -96,6 +102,14 @@ public class Dictiographer extends JFrame {
             }
         });
 
+        addEntryButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (domainComboBox.getSelectedItem() != null) {
+                    viewController.onEntryAdd(domainComboBox.getSelectedItem().toString());
+                }
+            }
+        });
         editEntryButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -104,11 +118,29 @@ public class Dictiographer extends JFrame {
                 }
             }
         });
+        removeEntryButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (list1.getSelectedValue() != null) {
+                    viewController.onEntryRemove(domainComboBox.getSelectedItem().toString(), list1.getSelectedValue().toString());
+                }
+            }
+        });
+        refreshButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateView();
+            }
+        });
     }
 
     private void selectEntry(String selectedEntry) {
-        props.setProperty(Constants.SELECTED_WORD_PROP_KEY, selectedEntry);
-        entryPane.setText(viewController.getEntry(domainComboBox.getSelectedItem().toString(), selectedEntry));
+        if (selectedEntry == null) {
+            entryPane.setText("");
+        } else {
+            props.setProperty(Constants.SELECTED_WORD_PROP_KEY, selectedEntry);
+            entryPane.setText(viewController.getEntry(domainComboBox.getSelectedItem().toString(), selectedEntry));
+        }
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -120,7 +152,7 @@ public class Dictiographer extends JFrame {
     }
 
 
-    private void onDomainChanged() {
+    public void updateView() {
         if (domainComboBox.getSelectedItem() == null) {
             return;
         }
@@ -199,7 +231,7 @@ public class Dictiographer extends JFrame {
         entryPane = new JEditorPane();
         entryPane.setContentType("text/html");
         entryPane.setEditable(false);
-        entryPane.setText("<html>\r\n  <head>\r\n    \r\n  </head>\r\n  <body>\r\n  </body>\r\n</html>\r\n");
+        entryPane.setText("<html>\r\n  <head>\r\n\r\n  </head>\r\n  <body>\r\n    <p style=\"margin-top: 0\">\r\n      \r\n    </p>\r\n  </body>\r\n</html>\r\n");
         entryScrollPane.setViewportView(entryPane);
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new BorderLayout(0, 0));
@@ -216,6 +248,7 @@ public class Dictiographer extends JFrame {
         final JScrollPane scrollPane1 = new JScrollPane();
         panel3.add(scrollPane1, BorderLayout.CENTER);
         list1 = new JList();
+        list1.setSelectionMode(0);
         scrollPane1.setViewportView(list1);
         final JPanel panel5 = new JPanel();
         panel5.setLayout(new BorderLayout(0, 0));
