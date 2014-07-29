@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_14" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_26" class="java.beans.XMLDecoder"> 
  <object class="entry.EntryObjectModel"> 
   <void property="headword"> 
    <string>панядзелак</string> 
@@ -88,7 +88,7 @@
    </array> 
   </void> 
   <void property="syllables"> 
-   <string>па|ня|дзе|лак</string> 
+   <string>па|ня|дз[е]|лак</string> 
   </void> 
  </object> 
 </java> 

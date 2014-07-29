@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_14" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_26" class="java.beans.XMLDecoder"> 
  <object class="entry.EntryObjectModel"> 
   <void property="headword"> 
    <string>трызніць</string> 
@@ -128,7 +128,7 @@
    </array> 
   </void> 
   <void property="syllables"> 
-   <string>трыз|ніць</string> 
+   <string>тр[ы]з|ніць</string> 
   </void> 
  </object> 
 </java> 

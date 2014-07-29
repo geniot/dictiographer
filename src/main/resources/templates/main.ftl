@@ -9,23 +9,35 @@
             font-family: Arial;
             font-size: 25px;
         }
+
+        .stress {
+            font-family: Arial;
+            font-size: 25px;
+            text-decoration: underline;
+        }
+
+        .def {
+            font-family: Arial;
+            font-size: 12px;
+            text-indent: 20px;
+        }
     </style>
 </head>
 <body>
 
 <#if entry.syllables?has_content>
-    <span id="syllables">
-        ${entry.syllables}
-    </span>
+${entry.preparedSyllables}
 </#if>
 
 
 <#if entry.partOfSpeeches?has_content>
     <#list entry.partOfSpeeches as pos>
     <div class="pos_block">
-            <span class="headword_block">
-
-            </span>
+        <#if pos.entryDefinitions?has_content>
+            <#list pos.entryDefinitions as def>
+                <div class="def">${def.definition}</div>
+            </#list>
+        </#if>
     </div>
     </#list>
 </#if>
