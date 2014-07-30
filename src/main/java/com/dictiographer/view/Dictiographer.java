@@ -2,6 +2,9 @@ package com.dictiographer.view;
 
 import com.dictiographer.controller.ViewController;
 import com.dictiographer.model.Constants;
+import org.xhtmlrenderer.simple.FSScrollPane;
+import org.xhtmlrenderer.simple.XHTMLPanel;
+import org.xhtmlrenderer.simple.xhtml.XhtmlNamespaceHandler;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -21,14 +24,15 @@ public class Dictiographer extends JFrame {
     private JComboBox domainComboBox;
     private JList list1;
     private JSplitPane mainSplitPane;
-    private JEditorPane entryPane;
     private JScrollPane entryScrollPane;
     private JButton addEntryButton;
     private JButton editEntryButton;
     private JButton removeEntryButton;
     private JButton refreshButton;
+    private XHTMLPanel entryPanel;
 
 
+    private XhtmlNamespaceHandler nsh = new XhtmlNamespaceHandler();
     private ViewController viewController;
     private Properties props;
 
@@ -38,6 +42,8 @@ public class Dictiographer extends JFrame {
 
         $$$setupUI$$$();
         setContentPane(contentPane);
+
+        setTitle(ppc.getProperty(Constants.APP_VERSION_PROP_KEY));
 
         int w = (int) Double.parseDouble(props.getProperty(Constants.WIDTH_PROP_KEY));
         int h = (int) Double.parseDouble(props.getProperty(Constants.HEIGHT_PROP_KEY));
@@ -49,16 +55,7 @@ public class Dictiographer extends JFrame {
         setLocation(x, y);
         mainSplitPane.setDividerLocation(div);
 
-        String[] dns = viewController.getDomains();
-        domainComboBox.setModel(new DefaultComboBoxModel(dns));
-        if (dns.length > 0) {
-            domainComboBox.setEnabled(true);
-        }
-
-        String selDomain = props.getProperty(Constants.SELECTED_DOMAIN_PROP_KEY);
-        if (!selDomain.equals("")) {
-            domainComboBox.setSelectedItem(selDomain);
-        }
+        entryPanel.getSharedContext().getTextRenderer().setSmoothingThreshold(0);
 
         updateView();
 
@@ -82,14 +79,11 @@ public class Dictiographer extends JFrame {
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
                     if (list1.getSelectedValue() != null) {
-                        editEntryButton.setEnabled(true);
-                        removeEntryButton.setEnabled(true);
                         selectEntry(list1.getSelectedValue().toString());
                     } else {
-                        editEntryButton.setEnabled(false);
-                        removeEntryButton.setEnabled(false);
                         selectEntry(null);
                     }
+                    updateButtonStates();
                 }
 
             }
@@ -134,15 +128,19 @@ public class Dictiographer extends JFrame {
         });
     }
 
+    private void updateButtonStates() {
+        addEntryButton.setEnabled(domainComboBox.getSelectedItem() != null);
+        editEntryButton.setEnabled(list1.getSelectedValue() != null);
+        removeEntryButton.setEnabled(list1.getSelectedValue() != null);
+    }
+
     private void selectEntry(String selectedEntry) {
         if (selectedEntry == null) {
-            entryPane.setText("");
+            entryPanel.setDocumentFromString("<html></html>", null, nsh);
         } else {
             props.setProperty(Constants.SELECTED_WORD_PROP_KEY, selectedEntry);
             String text = viewController.getEntry(domainComboBox.getSelectedItem().toString(), selectedEntry);
-            System.out.println(text);
-            entryPane.setText(text);
-            System.out.println(entryPane.getText());
+            entryPanel.setDocumentFromString(text, null, nsh);
         }
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -156,11 +154,24 @@ public class Dictiographer extends JFrame {
 
 
     public void updateView() {
+//        if (domainComboBox.getSelectedItem() == null) {
+//            return;
+//        }
         if (domainComboBox.getSelectedItem() == null) {
-            return;
+            String[] dns = viewController.getDomains();
+            domainComboBox.setModel(new DefaultComboBoxModel(dns));
+            if (dns.length > 0) {
+                domainComboBox.setEnabled(true);
+            }
+
+            String selDomain = props.getProperty(Constants.SELECTED_DOMAIN_PROP_KEY);
+            if (!selDomain.equals("")) {
+                domainComboBox.setSelectedItem(selDomain);
+            }
         }
 
-        String[] hws = viewController.getIndex(domainComboBox.getSelectedItem().toString());
+
+        String[] hws = domainComboBox.getSelectedItem() == null ? new String[]{} : viewController.getIndex(domainComboBox.getSelectedItem().toString());
         list1.setListData(hws);
 
         String selWord = props.getProperty(Constants.SELECTED_WORD_PROP_KEY);
@@ -168,8 +179,12 @@ public class Dictiographer extends JFrame {
             list1.setSelectedValue(selWord, true);
             selectEntry(list1.getSelectedValue().toString());
         } else {
-            entryPane.setText("");
+            entryPanel.setDocumentFromString("<html></html>", null, nsh);
         }
+
+
+        updateButtonStates();
+
         textField1.requestFocus();
     }
 
@@ -229,13 +244,12 @@ public class Dictiographer extends JFrame {
         final JToggleButton toggleButton6 = new JToggleButton();
         toggleButton6.setIcon(new ImageIcon(getClass().getResource("/images/grammar.png")));
         toolBar1.add(toggleButton6);
-        entryScrollPane = new JScrollPane();
+        entryScrollPane = new FSScrollPane();
+        entryScrollPane.setHorizontalScrollBarPolicy(30);
+        entryScrollPane.setVerticalScrollBarPolicy(20);
         panel2.add(entryScrollPane, BorderLayout.CENTER);
-        entryPane = new JEditorPane();
-        entryPane.setContentType("text/html");
-        entryPane.setEditable(false);
-        entryPane.setText("<html>\r\n  <head>\r\n\r\n  </head>\r\n  <body>\r\n    <p style=\"margin-top: 0\">\r\n      \r\n    </p>\r\n  </body>\r\n</html>\r\n");
-        entryScrollPane.setViewportView(entryPane);
+        entryPanel = new XHTMLPanel();
+        entryScrollPane.setViewportView(entryPanel);
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new BorderLayout(0, 0));
         mainSplitPane.setLeftComponent(panel3);

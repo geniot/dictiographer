@@ -120,6 +120,12 @@ Define this if you need any of these integrations-->
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.xhtmlrenderer</groupId>
+            <artifactId>flying-saucer-core</artifactId>
+            <version>9.0.6</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -139,7 +145,7 @@ Define this if you need any of these integrations-->
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.dictiographer.view.AppMain</mainClass>
+                            <mainClass>com.dictiographer.DictiographerLauncher</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

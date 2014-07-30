@@ -73,18 +73,17 @@
                       </component>
                     </children>
                   </toolbar>
-                  <scrollpane id="e8414" binding="entryScrollPane">
+                  <scrollpane id="6b661" class="org.xhtmlrenderer.simple.FSScrollPane" binding="entryScrollPane">
                     <constraints border-constraint="Center"/>
-                    <properties/>
+                    <properties>
+                      <horizontalScrollBarPolicy value="30"/>
+                      <verticalScrollBarPolicy value="20"/>
+                    </properties>
                     <border type="none"/>
                     <children>
-                      <component id="17001" class="javax.swing.JEditorPane" binding="entryPane">
+                      <component id="3261c" class="org.xhtmlrenderer.simple.XHTMLPanel" binding="entryPanel">
                         <constraints/>
-                        <properties>
-                          <contentType value="text/html"/>
-                          <editable value="false"/>
-                          <text value="&lt;html&gt;&#13;&#10;  &lt;head&gt;&#13;&#10;&#13;&#10;  &lt;/head&gt;&#13;&#10;  &lt;body&gt;&#13;&#10;    &lt;p style=&quot;margin-top: 0&quot;&gt;&#13;&#10;      &#13;&#10;    &lt;/p&gt;&#13;&#10;  &lt;/body&gt;&#13;&#10;&lt;/html&gt;&#13;&#10;"/>
-                        </properties>
+                        <properties/>
                       </component>
                     </children>
                   </scrollpane>

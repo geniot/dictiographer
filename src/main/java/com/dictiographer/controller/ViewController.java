@@ -59,6 +59,7 @@ public class ViewController {
         dictiographerProperties.setProperty(Constants.DIVIDER_PROP_KEY, String.valueOf(view.getDividerLocation()));
         dictiographerProperties.setProperty(Constants.SELECTED_DOMAIN_PROP_KEY, String.valueOf(view.getSelectedDomain()));
         dictiographerProperties.setProperty(Constants.SELECTED_WORD_PROP_KEY, String.valueOf(view.getSelectedWord()));
+        dictiographerProperties.remove(Constants.APP_VERSION_PROP_KEY);//should be taken from the classpath
 
         try {
             FileOutputStream fos = new FileOutputStream(getUserPropsFilePath());
@@ -106,7 +107,7 @@ public class ViewController {
         root.put("entry", eom);
         Template temp = freemarkerConfig.getConfiguration().getTemplate("main.ftl");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        Writer out = new OutputStreamWriter(baos);
+        Writer out = new OutputStreamWriter(baos,"UTF-8");
         temp.process(root, out);
         return new String(baos.toByteArray(), "UTF-8");
     }
