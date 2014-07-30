@@ -5,12 +5,13 @@
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
     <bean id="messageSource"
-          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+          class="com.dictiographer.utils.ReloadableResourceBundleMessageSourceProxy">
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="basename">
             <value>DictiographerResource</value>
         </property>
     </bean>
+
 
     <bean id="dictiographerProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="location" value="classpath:app.properties"/>
@@ -18,7 +19,7 @@
 
     <!-- freemarker config -->
     <bean id="freemarkerConfig" class="com.dictiographer.utils.FreeMarkerConfigurer">
-        <property name="templateLoaderPath" value="classpath:templates"/>
+        <property name="templateLoaderPath" value="classpath:/"/>
     </bean>
 
     <bean id="viewController" class="com.dictiographer.controller.ViewController" init-method="init">

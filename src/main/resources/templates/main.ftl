@@ -43,18 +43,20 @@
             font-style: italic;
         }
 
-        .trnLocale {
+        .label {
+            text-transform:uppercase;
             color: #a52a2a;
             font-weight: bold;
             font-size: 12px;
         }
+
     </style>
 </head>
 <body>
 
 <#macro renderTranslations trns styleClass>
     <#list trns as trn>
-    <span class="blockEntryText trn ${styleClass}"><span class="trnLocale">${trn.locale}: </span>${trn.translation}</span>
+    <span class="blockEntryText trn ${styleClass}"><span class="label">${trn.locale} </span>${trn.translation}</span>
     </#list>
 </#macro>
 
@@ -64,7 +66,7 @@ ${entry.preparedSyllables}
 
 <#if entry.zie?has_content>
     <#list entry.zie as link>
-        <span class="blockEntryText def">${link.text}</span>
+        <div class="blockEntryText def"><span class="label">${props.getMessage("label.see",lang)}</span> <a href="#" class="link">${link.text}</a></div>
     </#list>
 </#if>
 

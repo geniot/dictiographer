@@ -41,6 +41,7 @@ public class ViewController {
             System.out.println(ex.getMessage());
         }
 
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -95,19 +96,22 @@ public class ViewController {
             File file = new File(dictiographerProperties.getProperty(Constants.DATA_FOLDER_PROP_KEY) + File.separator + domain + File.separator + URLEncoder.encode(hw, "UTF-8"));
             String s = FileUtils.readFileToString(file, "UTF-8");
             EntryObjectModel eom = (EntryObjectModel) DictiographerUtils.xml2entry(s);
-            return convert(eom);
+            return convert(eom, domain);
         } catch (Exception ex) {
             ex.printStackTrace();
             return "";
         }
     }
 
-    public String convert(EntryObjectModel eom) throws Exception {
+    public String convert(EntryObjectModel eom, String domain) throws Exception {
         Map<String, Object> root = new HashMap<String, Object>();
         root.put("entry", eom);
-        Template temp = freemarkerConfig.getConfiguration().getTemplate("main.ftl");
+        root.put("lang", domain);
+        root.put("props", messageSource);
+
+        Template temp = freemarkerConfig.getConfiguration().getTemplate("templates/main.ftl");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        Writer out = new OutputStreamWriter(baos,"UTF-8");
+        Writer out = new OutputStreamWriter(baos, "UTF-8");
         temp.process(root, out);
         return new String(baos.toByteArray(), "UTF-8");
     }
@@ -282,4 +286,5 @@ public class ViewController {
     public void setFreemarkerConfig(FreeMarkerConfigurer freemarkerConfig) {
         this.freemarkerConfig = freemarkerConfig;
     }
+
 }
