@@ -5,6 +5,9 @@ import com.dictiographer.model.Constants;
 import org.xhtmlrenderer.simple.FSScrollPane;
 import org.xhtmlrenderer.simple.XHTMLPanel;
 import org.xhtmlrenderer.simple.xhtml.XhtmlNamespaceHandler;
+import org.xhtmlrenderer.swing.BasicPanel;
+import org.xhtmlrenderer.swing.FSMouseListener;
+import org.xhtmlrenderer.swing.LinkListener;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -15,7 +18,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
+import java.util.SortedSet;
 
 public class Dictiographer extends JFrame {
 
@@ -43,7 +48,7 @@ public class Dictiographer extends JFrame {
         $$$setupUI$$$();
         setContentPane(contentPane);
 
-        setTitle(ppc.getProperty(Constants.APP_VERSION_PROP_KEY));
+        setTitle("Dictiographer " + ppc.getProperty(Constants.APP_VERSION_PROP_KEY));
 
         int w = (int) Double.parseDouble(props.getProperty(Constants.WIDTH_PROP_KEY));
         int h = (int) Double.parseDouble(props.getProperty(Constants.HEIGHT_PROP_KEY));
@@ -89,6 +94,22 @@ public class Dictiographer extends JFrame {
             }
         });
 
+        List l = entryPanel.getMouseTrackingListeners();
+        for (Object o : l) {
+            if (o instanceof LinkListener) {
+                entryPanel.removeMouseTrackingListener((FSMouseListener) o);
+            }
+        }
+
+        entryPanel.addMouseTrackingListener(new LinkListener() {
+            @Override
+            public void linkClicked(BasicPanel panel, String uri) {
+                SortedSet<String> index = viewController.getIndex(domainComboBox.getSelectedItem().toString());
+                if (index.contains(uri)) {
+                    list1.setSelectedValue(uri, true);
+                }
+            }
+        });
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -170,8 +191,8 @@ public class Dictiographer extends JFrame {
             }
         }
 
-
-        String[] hws = domainComboBox.getSelectedItem() == null ? new String[]{} : viewController.getIndex(domainComboBox.getSelectedItem().toString());
+        SortedSet<String> s = viewController.getIndex(domainComboBox.getSelectedItem().toString());
+        String[] hws = domainComboBox.getSelectedItem() == null ? new String[]{} : s.toArray(new String[s.size()]);
         list1.setListData(hws);
 
         String selWord = props.getProperty(Constants.SELECTED_WORD_PROP_KEY);

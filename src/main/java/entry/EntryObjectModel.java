@@ -10,13 +10,14 @@ import java.io.Serializable;
  * Email: Vitaly.Sazanovich@gmail.com
  */
 public class EntryObjectModel implements Serializable {
-    private String version;
-    private String headword;
-    private EntryLink[] zie;
+    private String version;//not rendered
+    private String headword;//not rendered
+
     private String syllables;
-    private int stressedSyllable;
+    private EntryLink[] zie;
     private PartOfSpeech[] partOfSpeeches;
     private Idioom[] idioms;
+
 
     public String getPreparedSyllables() {
         if (syllables != null) {
@@ -54,14 +55,6 @@ public class EntryObjectModel implements Serializable {
         this.idioms = idioms;
     }
 
-    public int getStressedSyllable() {
-        return stressedSyllable;
-    }
-
-    public void setStressedSyllable(int stressedSyllable) {
-        this.stressedSyllable = stressedSyllable;
-    }
-
     public String getSyllables() {
         return syllables;
     }
@@ -94,9 +87,6 @@ public class EntryObjectModel implements Serializable {
             sb.append("\n");
             sb.append("\t");
             sb.append(syllables);
-            sb.append("[");
-            sb.append(stressedSyllable);
-            sb.append("]");
         }
         return sb.toString();
     }

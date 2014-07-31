@@ -9,10 +9,12 @@ import java.io.Serializable;
  * Email: Vitaly.Sazanovich@gmail.com
  */
 public class PartOfSpeech implements Serializable {
+
     private Grammar grammar;
-    private EntryDefinition[] entryDefinitions;
     private String[] afleidingen;
     private String pronunciation;
+    private EntryDefinition[] entryDefinitions;
+
 
 
     public String getPronunciation() {

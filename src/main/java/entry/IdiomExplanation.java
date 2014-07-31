@@ -9,9 +9,9 @@ import java.io.Serializable;
  * Email: Vitaly.Sazanovich@gmail.com
  */
 public class IdiomExplanation implements Serializable {
+    private String meta;
     private String explanation;
     private Translation[] translations;
-    private String meta;
 
     public String getMeta() {
         return meta;

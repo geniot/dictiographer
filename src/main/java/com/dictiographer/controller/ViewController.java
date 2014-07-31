@@ -76,18 +76,18 @@ public class ViewController {
         return System.getProperty("user.home") + File.separator + "dictiographer.properties";
     }
 
-    public String[] getIndex(String domain) {
+    public SortedSet<String> getIndex(String domain) {
         try {
             File f = new File(dictiographerProperties.getProperty(Constants.DATA_FOLDER_PROP_KEY) + File.separator + domain);
-            Set<String> s = new TreeSet<String>();
+            SortedSet<String> s = new TreeSet<String>();
             String[] fns = f.list();
             for (String fn : fns) {
                 s.add(URLDecoder.decode(fn, "UTF-8"));
             }
-            return s.toArray(new String[s.size()]);
+            return s;
         } catch (Exception ex) {
             ex.printStackTrace();
-            return new String[]{};
+            return new TreeSet<String>();
         }
     }
 
@@ -286,5 +286,6 @@ public class ViewController {
     public void setFreemarkerConfig(FreeMarkerConfigurer freemarkerConfig) {
         this.freemarkerConfig = freemarkerConfig;
     }
+
 
 }

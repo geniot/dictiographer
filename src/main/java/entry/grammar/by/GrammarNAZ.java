@@ -26,6 +26,7 @@ public class GrammarNAZ implements Serializable {
     private String singularM;
     private String pluralM;
 
+
     public String getGenderKey() {
         return genderKey;
     }

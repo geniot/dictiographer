@@ -4,10 +4,117 @@
   <void property="headword"> 
    <string>аўторак</string> 
   </void> 
+  <void property="idioms"> 
+   <array class="entry.Idioom" length="2"> 
+    <void index="0"> 
+     <object class="entry.Idioom"> 
+      <void property="idiomExplanations"> 
+       <array class="entry.IdiomExplanation" length="2"> 
+        <void index="0"> 
+         <object class="entry.IdiomExplanation"> 
+          <void property="explanation"> 
+           <string>абы куды</string> 
+          </void> 
+          <void property="meta"> 
+           <string>размоўнае</string> 
+          </void> 
+          <void property="translations"> 
+           <array class="entry.Translation" length="2"> 
+            <void index="0"> 
+             <object class="entry.Translation"> 
+              <void property="locale"> 
+               <string>EN</string> 
+              </void> 
+              <void property="translation"> 
+               <string>don&apos;t ask me</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="1"> 
+             <object class="entry.Translation"> 
+              <void property="locale"> 
+               <string>NL</string> 
+              </void> 
+              <void property="translation"> 
+               <string>ergens naar toe</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="1"> 
+         <object class="entry.IdiomExplanation"> 
+          <void property="explanation"> 
+           <string>няма куды</string> 
+          </void> 
+          <void property="meta"> 
+           <string>афіцыйнае</string> 
+          </void> 
+          <void property="translations"> 
+           <array class="entry.Translation" length="1"> 
+            <void index="0"> 
+             <object class="entry.Translation"> 
+              <void property="locale"> 
+               <string>EN</string> 
+              </void> 
+              <void property="translation"> 
+               <string>nowhere</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+         </object> 
+        </void> 
+       </array> 
+      </void> 
+      <void property="idioom"> 
+       <string>на кудыкіну гору</string> 
+      </void> 
+     </object> 
+    </void> 
+    <void index="1"> 
+     <object class="entry.Idioom"> 
+      <void property="idiomExplanations"> 
+       <array class="entry.IdiomExplanation" length="1"> 
+        <void index="0"> 
+         <object class="entry.IdiomExplanation"> 
+          <void property="explanation"> 
+           <string>яшчэ куды-небудзь</string> 
+          </void> 
+          <void property="meta"> 
+           <string>рэлігія</string> 
+          </void> 
+          <void property="translations"> 
+           <array class="entry.Translation" length="0"/> 
+          </void> 
+         </object> 
+        </void> 
+       </array> 
+      </void> 
+      <void property="idioom"> 
+       <string>куды бог пашле</string> 
+      </void> 
+     </object> 
+    </void> 
+   </array> 
+  </void> 
   <void property="partOfSpeeches"> 
    <array class="entry.PartOfSpeech" length="1"> 
     <void index="0"> 
      <object class="entry.PartOfSpeech"> 
+      <void property="afleidingen"> 
+       <array class="java.lang.String" length="2"> 
+        <void index="0"> 
+         <string>аўторачны</string> 
+        </void> 
+        <void index="1"> 
+         <string> аўторкавы</string> 
+        </void> 
+       </array> 
+      </void> 
       <void property="entryDefinitions"> 
        <array class="entry.EntryDefinition" length="1"> 
         <void index="0"> 
@@ -106,6 +213,9 @@
          <string>naz</string> 
         </void> 
        </object> 
+      </void> 
+      <void property="pronunciation"> 
+       <string>оўторак</string> 
       </void> 
      </object> 
     </void> 

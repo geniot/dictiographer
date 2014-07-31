@@ -9,11 +9,6 @@ import java.io.Serializable;
  */
 public class Idioom implements Serializable {
     private String idioom;
-    private String meta;
-
-    private String explanation;
-    private Translation[] translations;
-
     private IdiomExplanation[] idiomExplanations;
 
     public IdiomExplanation[] getIdiomExplanations() {
@@ -24,35 +19,11 @@ public class Idioom implements Serializable {
         this.idiomExplanations = idiomExplanations;
     }
 
-    public String getMeta() {
-        return meta;
-    }
-
-    public void setMeta(String meta) {
-        this.meta = meta;
-    }
-
     public String getIdioom() {
         return idioom;
     }
 
     public void setIdioom(String idioom) {
         this.idioom = idioom;
-    }
-
-    public String getExplanation() {
-        return explanation;
-    }
-
-    public void setExplanation(String explanation) {
-        this.explanation = explanation;
-    }
-
-    public Translation[] getTranslations() {
-        return translations;
-    }
-
-    public void setTranslations(Translation[] translations) {
-        this.translations = translations;
     }
 }
