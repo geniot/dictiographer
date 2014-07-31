@@ -15,7 +15,7 @@
 
 
 <#macro stress cont>
-${cont?replace("[","<span class='stress tableText'>")?replace("]","</span>")}
+${cont?replace("[","<span class='stress'>")?replace("]","</span>")?replace("|","&#183;")}
 </#macro>
 
 <#macro renderIdioms idioms styleClass>

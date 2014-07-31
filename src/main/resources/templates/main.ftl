@@ -11,7 +11,7 @@
 
 <#-- headword -->
     <#if entry.syllables?has_content>
-    ${entry.preparedSyllables}
+    <span class='hw'><@stress cont=entry.syllables/></span>
     </#if>
 
 <#-- see -->

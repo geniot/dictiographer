@@ -18,19 +18,6 @@ public class EntryObjectModel implements Serializable {
     private PartOfSpeech[] partOfSpeeches;
     private Idioom[] idioms;
 
-
-    public String getPreparedSyllables() {
-        if (syllables != null) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("<span class='hw'>");
-            sb.append(syllables.replaceAll("\\|", "&#183;").replaceAll("\\[", "<span class='stress'>").replaceAll("\\]", "</span>"));
-            sb.append("</span>");
-            return sb.toString();
-        } else {
-            return "";
-        }
-    }
-
     public String getVersion() {
         return version;
     }

@@ -96,7 +96,9 @@ public class ViewController {
             File file = new File(dictiographerProperties.getProperty(Constants.DATA_FOLDER_PROP_KEY) + File.separator + domain + File.separator + URLEncoder.encode(hw, "UTF-8"));
             String s = FileUtils.readFileToString(file, "UTF-8");
             EntryObjectModel eom = (EntryObjectModel) DictiographerUtils.xml2entry(s);
-            return convert(eom, domain);
+            String entry = convert(eom, domain);
+//            System.out.println(entry);
+            return entry;
         } catch (Exception ex) {
             ex.printStackTrace();
             return "";
