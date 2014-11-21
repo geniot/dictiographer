@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_26" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_14" class="java.beans.XMLDecoder"> 
  <object class="entry.EntryObjectModel"> 
   <void property="headword"> 
    <string>панядзелак</string> 
@@ -41,40 +41,40 @@
            <string>m</string> 
           </void> 
           <void property="plural"> 
-           <string>пандядз[е]лкі</string> 
+           <string>панядз[е]лкі</string> 
           </void> 
           <void property="pluralD"> 
-           <string>пандядз[е]лкам</string> 
+           <string>панядз[е]лкам</string> 
           </void> 
           <void property="pluralM"> 
-           <string>пандядз[е]лках</string> 
+           <string>панядз[е]лках</string> 
           </void> 
           <void property="pluralR"> 
-           <string>пандядз[е]лкаў</string> 
+           <string>панядз[е]лкаў</string> 
           </void> 
           <void property="pluralT"> 
-           <string>пандядз[е]лкамі</string> 
+           <string>панядз[е]лкамі</string> 
           </void> 
           <void property="pluralV"> 
-           <string>пандядз[е]лкі</string> 
+           <string>панядз[е]лкі</string> 
           </void> 
           <void property="singular"> 
-           <string>пандядз[е]лак</string> 
+           <string>панядз[е]лак</string> 
           </void> 
           <void property="singularD"> 
-           <string>пандядз[е]лку</string> 
+           <string>панядз[е]лку</string> 
           </void> 
           <void property="singularM"> 
-           <string>пандядз[е]лку</string> 
+           <string>панядз[е]лку</string> 
           </void> 
           <void property="singularR"> 
-           <string>пандядз[е]лка</string> 
+           <string>панядз[е]лка</string> 
           </void> 
           <void property="singularT"> 
-           <string>пандядз[е]лкам</string> 
+           <string>панядз[е]лкам</string> 
           </void> 
           <void property="singularV"> 
-           <string>пандядз[е]лак</string> 
+           <string>панядз[е]лак</string> 
           </void> 
          </object> 
         </void> 

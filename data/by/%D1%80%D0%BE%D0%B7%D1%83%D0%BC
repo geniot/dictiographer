@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_14" class="java.beans.XMLDecoder"> 
+ <object class="entry.EntryObjectModel"> 
+  <void property="headword"> 
+   <string>розум</string> 
+  </void> 
+  <void property="partOfSpeeches"> 
+   <array class="entry.PartOfSpeech" length="1"> 
+    <void index="0"> 
+     <object class="entry.PartOfSpeech"> 
+      <void property="entryDefinitions"> 
+       <array class="entry.EntryDefinition" length="2"> 
+        <void index="0"> 
+         <object class="entry.EntryDefinition"> 
+          <void property="definition"> 
+           <string>Вышэйшая ступень пазнавальнай дзейнасці чалавека, здольнасць лагічна мысліць, асэнсоўваць навакольную рэчаіснасць.</string> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="1"> 
+         <object class="entry.EntryDefinition"> 
+          <void property="definition"> 
+           <string>Здольнасць мысліць, разумець; разумовыя здольнасці чалавека.</string> 
+          </void> 
+         </object> 
+        </void> 
+       </array> 
+      </void> 
+      <void property="grammar"> 
+       <object class="entry.Grammar"> 
+        <void property="grammarNAZ"> 
+         <object class="entry.grammar.by.GrammarNAZ"> 
+          <void property="genderKey"> 
+           <string>m</string> 
+          </void> 
+         </object> 
+        </void> 
+        <void property="posKey"> 
+         <string>naz</string> 
+        </void> 
+       </object> 
+      </void> 
+     </object> 
+    </void> 
+   </array> 
+  </void> 
+  <void property="syllables"> 
+   <string>ро|зум</string> 
+  </void> 
+ </object> 
+</java> 
