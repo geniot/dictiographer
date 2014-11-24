@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_26" class="java.beans.XMLDecoder"> 
+ <object class="entry.EntryObjectModel"> 
+  <void property="headword"> 
+   <string>зласлівы</string> 
+  </void> 
+  <void property="partOfSpeeches"> 
+   <array class="entry.PartOfSpeech" length="1"> 
+    <void index="0"> 
+     <object class="entry.PartOfSpeech"> 
+      <void property="entryDefinitions"> 
+       <array class="entry.EntryDefinition" length="2"> 
+        <void index="0"> 
+         <object class="entry.EntryDefinition"> 
+          <void property="definition"> 
+           <string>Поўны злосці, варожасці.</string> 
+          </void> 
+          <void property="examples"> 
+           <array class="entry.Example" length="1"> 
+            <void index="0"> 
+             <object class="entry.Example"> 
+              <void property="example"> 
+               <string>— І зласлівая ты, цётка! Ніяк таго пеўня не забудзеш.</string> 
+              </void> 
+              <void property="source"> 
+               <string>Лынькоў</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+          <void property="translations"> 
+           <array class="entry.Translation" length="1"> 
+            <void index="0"> 
+             <object class="entry.Translation"> 
+              <void property="locale"> 
+               <string>NL</string> 
+              </void> 
+              <void property="translation"> 
+               <string>boosaardig, kwaadaardig, hatelijk</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="1"> 
+         <object class="entry.EntryDefinition"> 
+          <void property="definition"> 
+           <string>Які выражае злосць.</string> 
+          </void> 
+          <void property="examples"> 
+           <array class="entry.Example" length="2"> 
+            <void index="0"> 
+             <object class="entry.Example"> 
+              <void property="example"> 
+               <string>зласлівы погляд</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="1"> 
+             <object class="entry.Example"> 
+              <void property="example"> 
+               <string>зласлівы смех</string> 
+              </void> 
+              <void property="translations"> 
+               <array class="entry.Translation" length="1"> 
+                <void index="0"> 
+                 <object class="entry.Translation"> 
+                  <void property="locale"> 
+                   <string>NL</string> 
+                  </void> 
+                  <void property="translation"> 
+                   <string>gemene lach</string> 
+                  </void> 
+                 </object> 
+                </void> 
+               </array> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+         </object> 
+        </void> 
+       </array> 
+      </void> 
+      <void property="grammar"> 
+       <object class="entry.Grammar"> 
+        <void property="grammarPRY"> 
+         <object class="entry.grammar.by.GrammarPRY"> 
+          <void property="pluralMD"> 
+           <string>зласл[і]вым</string> 
+          </void> 
+          <void property="pluralMM"> 
+           <string>зласл[і]вых</string> 
+          </void> 
+          <void property="pluralMN"> 
+           <string>зласл[і]выя</string> 
+          </void> 
+          <void property="pluralMR"> 
+           <string>зласл[і]вых</string> 
+          </void> 
+          <void property="pluralMT"> 
+           <string>зласл[і]вымі</string> 
+          </void> 
+          <void property="pluralMV"> 
+           <string>зласл[і]выя</string> 
+          </void> 
+          <void property="pluralND"> 
+           <string>зласл[і]вым</string> 
+          </void> 
+          <void property="pluralNM"> 
+           <string>зласл[і]вых</string> 
+          </void> 
+          <void property="pluralNN"> 
+           <string>зласл[і]выя</string> 
+          </void> 
+          <void property="pluralNR"> 
+           <string>зласл[і]вых</string> 
+          </void> 
+          <void property="pluralNT"> 
+           <string>зласл[і]вымі</string> 
+          </void> 
+          <void property="pluralNV"> 
+           <string>зласл[і]выя</string> 
+          </void> 
+          <void property="pluralZD"> 
+           <string>зласл[і]вым</string> 
+          </void> 
+          <void property="pluralZM"> 
+           <string>зласл[і]вых</string> 
+          </void> 
+          <void property="pluralZN"> 
+           <string>зласл[і]выя</string> 
+          </void> 
+          <void property="pluralZR"> 
+           <string>зласл[і]вых</string> 
+          </void> 
+          <void property="pluralZT"> 
+           <string>зласл[і]вымі</string> 
+          </void> 
+          <void property="pluralZV"> 
+           <string>зласл[і]выя</string> 
+          </void> 
+          <void property="singularMD"> 
+           <string>зласл[і]ваму</string> 
+          </void> 
+          <void property="singularMM"> 
+           <string>зласл[і]вым</string> 
+          </void> 
+          <void property="singularMN"> 
+           <string>зласл[і]вы</string> 
+          </void> 
+          <void property="singularMR"> 
+           <string>зласл[і]вага</string> 
+          </void> 
+          <void property="singularMT"> 
+           <string>зласл[і]вым</string> 
+          </void> 
+          <void property="singularMV"> 
+           <string>зласл[і]вы</string> 
+          </void> 
+          <void property="singularND"> 
+           <string>зласл[і]ваму</string> 
+          </void> 
+          <void property="singularNM"> 
+           <string>зласл[і]вым</string> 
+          </void> 
+          <void property="singularNN"> 
+           <string>зласл[і]вае</string> 
+          </void> 
+          <void property="singularNR"> 
+           <string>зласл[і]вага</string> 
+          </void> 
+          <void property="singularNT"> 
+           <string>зласл[і]вым</string> 
+          </void> 
+          <void property="singularNV"> 
+           <string>зласл[і]вае</string> 
+          </void> 
+          <void property="singularZD"> 
+           <string>зласл[і]вай</string> 
+          </void> 
+          <void property="singularZM"> 
+           <string>зласл[і]вай/аю</string> 
+          </void> 
+          <void property="singularZN"> 
+           <string>зласл[і]вая</string> 
+          </void> 
+          <void property="singularZR"> 
+           <string>зласл[і]вай/ае</string> 
+          </void> 
+          <void property="singularZT"> 
+           <string>зласл[і]вай/аю</string> 
+          </void> 
+          <void property="singularZV"> 
+           <string>зласл[і]вая</string> 
+          </void> 
+         </object> 
+        </void> 
+        <void property="posKey"> 
+         <string>pry</string> 
+        </void> 
+       </object> 
+      </void> 
+     </object> 
+    </void> 
+   </array> 
+  </void> 
+  <void property="syllables"> 
+   <string>зла|сл[і]|вы</string> 
+  </void> 
+ </object> 
+</java> 

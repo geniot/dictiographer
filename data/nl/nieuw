@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_26" class="java.beans.XMLDecoder"> 
+ <object class="entry.EntryObjectModel"> 
+  <void property="headword"> 
+   <string>nieuw</string> 
+  </void> 
+  <void property="partOfSpeeches"> 
+   <array class="entry.PartOfSpeech" length="1"> 
+    <void index="0"> 
+     <object class="entry.PartOfSpeech"> 
+      <void property="entryDefinitions"> 
+       <array class="entry.EntryDefinition" length="1"> 
+        <void index="0"> 
+         <object class="entry.EntryDefinition"> 
+          <void property="definition"> 
+           <string>pas sinds kort bestaand of in gebruik</string> 
+          </void> 
+          <void property="translations"> 
+           <array class="entry.Translation" length="1"> 
+            <void index="0"> 
+             <object class="entry.Translation"> 
+              <void property="locale"> 
+               <string>BY</string> 
+              </void> 
+              <void property="translation"> 
+               <string>новы</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+         </object> 
+        </void> 
+       </array> 
+      </void> 
+      <void property="grammar"> 
+       <object class="entry.Grammar"> 
+        <void property="posKey"> 
+         <string>bnw</string> 
+        </void> 
+       </object> 
+      </void> 
+     </object> 
+    </void> 
+   </array> 
+  </void> 
+  <void property="syllables"> 
+   <string>nieuw</string> 
+  </void> 
+ </object> 
+</java> 
