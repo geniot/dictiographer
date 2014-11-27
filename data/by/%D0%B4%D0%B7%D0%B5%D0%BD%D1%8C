@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_14" class="java.beans.XMLDecoder"> 
+ <object class="entry.EntryObjectModel"> 
+  <void property="headword"> 
+   <string>дзень</string> 
+  </void> 
+  <void property="partOfSpeeches"> 
+   <array class="entry.PartOfSpeech" length="1"> 
+    <void index="0"> 
+     <object class="entry.PartOfSpeech"> 
+      <void property="entryDefinitions"> 
+       <array class="entry.EntryDefinition" length="6"> 
+        <void index="0"> 
+         <object class="entry.EntryDefinition"> 
+          <void property="definition"> 
+           <string>Частка сутак, час ад усходу да заходу сонца, ад раніцы да вечара.</string> 
+          </void> 
+          <void property="examples"> 
+           <array class="entry.Example" length="2"> 
+            <void index="0"> 
+             <object class="entry.Example"> 
+              <void property="example"> 
+               <string>Ціхія ясныя дні, пасля дажджоў, палалі сонцам.</string> 
+              </void> 
+              <void property="source"> 
+               <string>Чорны</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="1"> 
+             <object class="entry.Example"> 
+              <void property="example"> 
+               <string>Ад лагера да Кромані.. не больш дваццаці кіламетраў, аднак на гэты пераход быў затрачаны доўгі летні дзень.</string> 
+              </void> 
+              <void property="source"> 
+               <string>Брыль</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="1"> 
+         <object class="entry.EntryDefinition"> 
+          <void property="definition"> 
+           <string>Дзённае святло.</string> 
+          </void> 
+          <void property="examples"> 
+           <array class="entry.Example" length="2"> 
+            <void index="0"> 
+             <object class="entry.Example"> 
+              <void property="example"> 
+               <string>[Маці] устала да дня, напякла бліноў ды прылегла адпачыць.</string> 
+              </void> 
+              <void property="source"> 
+               <string>Ваданосаў</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="1"> 
+             <object class="entry.Example"> 
+              <void property="example"> 
+               <string>— Уцякай жа за пагодай, Донька маладая, Покі дзень засвеціць ясны, Покі сіл хапае!</string> 
+              </void> 
+              <void property="source"> 
+               <string>Купала</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="2"> 
+         <object class="entry.EntryDefinition"> 
+          <void property="definition"> 
+           <string>Суткі, прамежак часу ў 24 гадзіны.</string> 
+          </void> 
+          <void property="examples"> 
+           <array class="entry.Example" length="2"> 
+            <void index="0"> 
+             <object class="entry.Example"> 
+              <void property="example"> 
+               <string>У тыдні сем дзён.</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="1"> 
+             <object class="entry.Example"> 
+              <void property="example"> 
+               <string>Ужо колькі дзён, як ціхімі вечарамі глуха гудзе зямля, і гэты гул нарастае штодня.</string> 
+              </void> 
+              <void property="source"> 
+               <string>Лынькоў</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+          <void property="hyponiems"> 
+           <array class="entry.EntryLink" length="7"> 
+            <void index="0"> 
+             <object class="entry.EntryLink"> 
+              <void property="text"> 
+               <string>панядзелак</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="1"> 
+             <object class="entry.EntryLink"> 
+              <void property="text"> 
+               <string>аўторак</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="2"> 
+             <object class="entry.EntryLink"> 
+              <void property="text"> 
+               <string>серада</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="3"> 
+             <object class="entry.EntryLink"> 
+              <void property="text"> 
+               <string>чацвер</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="4"> 
+             <object class="entry.EntryLink"> 
+              <void property="text"> 
+               <string>пятніца</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="5"> 
+             <object class="entry.EntryLink"> 
+              <void property="text"> 
+               <string>субота</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="6"> 
+             <object class="entry.EntryLink"> 
+              <void property="text"> 
+               <string>нядзеля</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="3"> 
+         <object class="entry.EntryDefinition"> 
+          <void property="definition"> 
+           <string>Прамежак часу ў сутках або цэлыя суткі, прысвечаныя пэўнаму роду заняткаў, дзейнасці.</string> 
+          </void> 
+          <void property="examples"> 
+           <array class="entry.Example" length="4"> 
+            <void index="0"> 
+             <object class="entry.Example"> 
+              <void property="example"> 
+               <string>Дзень адпачынку.</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="1"> 
+             <object class="entry.Example"> 
+              <void property="example"> 
+               <string>Святочны дзень.</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="2"> 
+             <object class="entry.Example"> 
+              <void property="example"> 
+               <string>Кірмашовы дзень.</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="3"> 
+             <object class="entry.Example"> 
+              <void property="example"> 
+               <string>Прыемны дзень.</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="4"> 
+         <object class="entry.EntryDefinition"> 
+          <void property="definition"> 
+           <string>Дакладна вызначаны тэрмін, дата, прысвечаная якой-н. падзеі, святкаванню чаго-н.</string> 
+          </void> 
+          <void property="examples"> 
+           <array class="entry.Example" length="3"> 
+            <void index="0"> 
+             <object class="entry.Example"> 
+              <void property="example"> 
+               <string>Дзень Канстытуцыі.</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="1"> 
+             <object class="entry.Example"> 
+              <void property="example"> 
+               <string>Міжнародны жаночы дзень.</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="2"> 
+             <object class="entry.Example"> 
+              <void property="example"> 
+               <string>У той вечар яны адзначалі дзень нараджэння аднаго з таварышаў; у брыгадзе з&apos;явілася і такая традыцыя — калектыўна адзначаць дні нараджэння.</string> 
+              </void> 
+              <void property="source"> 
+               <string>Лось</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="5"> 
+         <object class="entry.EntryDefinition"> 
+          <void property="definition"> 
+           <string>Пэўны час, перыяд жыцця.</string> 
+          </void> 
+          <void property="examples"> 
+           <array class="entry.Example" length="3"> 
+            <void index="0"> 
+             <object class="entry.Example"> 
+              <void property="example"> 
+               <string>Дні дзяцінства.</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="1"> 
+             <object class="entry.Example"> 
+              <void property="example"> 
+               <string>Апошнія канікулы былі самымі шчаслівымі, светлымі днямі жыцця.</string> 
+              </void> 
+              <void property="source"> 
+               <string>Шамякін</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="2"> 
+             <object class="entry.Example"> 
+              <void property="example"> 
+               <string>Дні прайшлі, На галаву апалі Замаразкі першай сівізны.</string> 
+              </void> 
+              <void property="source"> 
+               <string>Панчанка</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+         </object> 
+        </void> 
+       </array> 
+      </void> 
+      <void property="grammar"> 
+       <object class="entry.Grammar"> 
+        <void property="grammarNAZ"> 
+         <object class="entry.grammar.by.GrammarNAZ"> 
+          <void property="genderKey"> 
+           <string>m</string> 
+          </void> 
+          <void property="plural"> 
+           <string>дні</string> 
+          </void> 
+          <void property="pluralD"> 
+           <string>дням</string> 
+          </void> 
+          <void property="pluralM"> 
+           <string>днях</string> 
+          </void> 
+          <void property="pluralR"> 
+           <string>дзён</string> 
+          </void> 
+          <void property="pluralT"> 
+           <string>дн[я]мі</string> 
+          </void> 
+          <void property="pluralV"> 
+           <string>дні</string> 
+          </void> 
+          <void property="singular"> 
+           <string>дзень</string> 
+          </void> 
+          <void property="singularD"> 
+           <string>дню</string> 
+          </void> 
+          <void property="singularM"> 
+           <string>дні</string> 
+          </void> 
+          <void property="singularR"> 
+           <string>дня</string> 
+          </void> 
+          <void property="singularT"> 
+           <string>днём</string> 
+          </void> 
+          <void property="singularV"> 
+           <string>дзень</string> 
+          </void> 
+         </object> 
+        </void> 
+        <void property="posKey"> 
+         <string>naz</string> 
+        </void> 
+       </object> 
+      </void> 
+     </object> 
+    </void> 
+   </array> 
+  </void> 
+  <void property="syllables"> 
+   <string>дзень</string> 
+  </void> 
+ </object> 
+</java> 

@@ -1,6 +1,7 @@
 package entry;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * User: Vitaly Sazanovich
@@ -98,8 +99,11 @@ public class EntryDefinition implements Serializable {
         return translations;
     }
 
-    public void setTranslations(Translation[] translations) {
-        this.translations = translations;
+    public void setTranslations(Translation[] trns) {
+        if (trns != null) {
+            Arrays.sort(trns);
+        }
+        this.translations = trns;
     }
 
     public String getDefinition() {

@@ -161,7 +161,9 @@ public class Dictiographer extends JFrame {
         } else {
             props.setProperty(Constants.SELECTED_WORD_PROP_KEY, selectedEntry);
             String text = viewController.getEntry(domainComboBox.getSelectedItem().toString(), selectedEntry);
-            entryPanel.setDocumentFromString(text, null, nsh);
+            if (!text.equals("")) {
+                entryPanel.setDocumentFromString(text, null, nsh);
+            }
         }
         SwingUtilities.invokeLater(new Runnable() {
             @Override

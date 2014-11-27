@@ -8,12 +8,12 @@ import java.io.Serializable;
  * Time: 10:39
  * Email: Vitaly.Sazanovich@gmail.com
  */
-public class Translation implements Serializable {
+public class Translation implements Serializable, Comparable<Translation> {
     private String locale;
     private String translation;
 
     public String getLocale() {
-        return locale==null?null:locale.toUpperCase();
+        return locale == null ? null : locale.toUpperCase();
     }
 
     public void setLocale(String locale) {
@@ -26,5 +26,15 @@ public class Translation implements Serializable {
 
     public void setTranslation(String translation) {
         this.translation = translation;
+    }
+
+
+    @Override
+    public int compareTo(Translation o) {
+        if (o != null && o.getLocale() != null) {
+            return locale.compareTo(o.getLocale());
+        } else {
+            return 1;
+        }
     }
 }

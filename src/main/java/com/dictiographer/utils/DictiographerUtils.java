@@ -12,9 +12,7 @@ import java.beans.XMLEncoder;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.util.Locale;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -124,7 +122,7 @@ public class DictiographerUtils {
 
     public static EntryLink[] str2links(String str) {
         String[] ss = str.split(",");
-        SortedSet<EntryLink> els = new TreeSet<EntryLink>();
+        List<EntryLink> els = new ArrayList<EntryLink>();
         for (String s : ss) {
             EntryLink el = new EntryLink();
             el.setText(s.trim());

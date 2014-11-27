@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_26" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_14" class="java.beans.XMLDecoder"> 
  <object class="entry.EntryObjectModel"> 
   <void property="headword"> 
    <string>аўторак</string> 
@@ -29,15 +29,26 @@
             </void> 
            </array> 
           </void> 
+          <void property="hyperoniems"> 
+           <array class="entry.EntryLink" length="1"> 
+            <void index="0"> 
+             <object class="entry.EntryLink"> 
+              <void property="text"> 
+               <string>дзень</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
           <void property="translations"> 
-           <array class="entry.Translation" length="2"> 
+           <array class="entry.Translation" length="6"> 
             <void index="0"> 
              <object class="entry.Translation"> 
               <void property="locale"> 
-               <string>NL</string> 
+               <string>DE</string> 
               </void> 
               <void property="translation"> 
-               <string>dinsdag</string> 
+               <string>Dienstag</string> 
               </void> 
              </object> 
             </void> 
@@ -48,6 +59,46 @@
               </void> 
               <void property="translation"> 
                <string>Tuesday</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="2"> 
+             <object class="entry.Translation"> 
+              <void property="locale"> 
+               <string>ES</string> 
+              </void> 
+              <void property="translation"> 
+               <string>martes</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="3"> 
+             <object class="entry.Translation"> 
+              <void property="locale"> 
+               <string>FR</string> 
+              </void> 
+              <void property="translation"> 
+               <string>mardi</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="4"> 
+             <object class="entry.Translation"> 
+              <void property="locale"> 
+               <string>NL</string> 
+              </void> 
+              <void property="translation"> 
+               <string>dinsdag</string> 
+              </void> 
+             </object> 
+            </void> 
+            <void index="5"> 
+             <object class="entry.Translation"> 
+              <void property="locale"> 
+               <string>RU</string> 
+              </void> 
+              <void property="translation"> 
+               <string>вторник</string> 
               </void> 
              </object> 
             </void> 

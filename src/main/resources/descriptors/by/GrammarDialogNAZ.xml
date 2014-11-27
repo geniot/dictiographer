@@ -33,7 +33,7 @@
                         <checkbox id="onlyPluralCheckBox" text="label.naz.case.only_plural"/>
                     </vbox>
                     <!--2-->
-                    <label text="label.dze.person">
+                    <label text="label.dze.base">
                         <gridbagconstraints anchor="GridBagConstraints.NORTHEAST" insets="5,5,5,5"
                                             gridx="0" gridy="2"
                                             ipadx="0" ipady="0" weightx="0" weighty="0"/>
