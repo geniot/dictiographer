@@ -11,7 +11,7 @@ public class GitHubWebhookController {
     }
 
     @GetMapping("/welcome")
-    public void welcome() {
-        System.out.println("Welcome");
+    public String welcome() {
+        return "welcome!";
     }
 }
