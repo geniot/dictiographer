@@ -18,6 +18,6 @@ public class GitHubWebhookController {
 
     @GetMapping("/welcome")
     public String welcome() {
-        return "welcome redeployment";
+        return "welcome redeployment 2";
     }
 }
