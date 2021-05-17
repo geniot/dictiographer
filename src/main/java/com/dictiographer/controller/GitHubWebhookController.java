@@ -10,7 +10,11 @@ public class GitHubWebhookController {
     @PostMapping("/update")
     public void update(@RequestBody String json) {
         try {
-            Runtime.getRuntime().exec("sudo systemctl restart dictiographer.service");
+            // otherwise verify using hash
+            // see https://docs.github.com/en/developers/webhooks-and-events/securing-your-webhooks
+            if (json.contains("\"url\": \"https://github.com/geniot/")){
+                Runtime.getRuntime().exec("sudo systemctl restart dictiographer.service");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
