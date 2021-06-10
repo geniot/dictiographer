@@ -1,7 +1,8 @@
 package com.dictiographer.desktop.presenter;
 
 import com.dictiographer.desktop.view.View;
-import com.dictiographer.shared.model.Model;
+import com.dictiographer.desktop.model.DictionariesMap;
+import com.dictiographer.desktop.model.Model;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -10,21 +11,21 @@ import java.util.Observer;
 
 public class Presenter extends AbstractAction implements Observer {
 
-    private static Presenter instance;
+    private static Presenter presenter;
     private Model model;
     private View view;
 
-    private InitHandler initHandler;
+    protected InitHandler initHandler;
     protected ExitHandler exitHandler;
     protected KeyHandler keyHandler;
     protected DictionaryHandler dictionaryHandler;
 
 
     public static Presenter getInstance() {
-        if (instance == null) {
-            instance = new Presenter();
+        if (presenter == null) {
+            presenter = new Presenter();
         }
-        return instance;
+        return presenter;
     }
 
     public void init() {
@@ -47,6 +48,8 @@ public class Presenter extends AbstractAction implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-
+        if (arg instanceof DictionariesMap) {
+            dictionaryHandler.onDictionariesUpdated((DictionariesMap) arg);
+        }
     }
 }

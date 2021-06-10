@@ -1,8 +1,8 @@
 package com.dictiographer.desktop.presenter;
 
 import com.dictiographer.desktop.view.View;
-import com.dictiographer.shared.model.Constants;
-import com.dictiographer.shared.model.Model;
+import com.dictiographer.desktop.model.Constants;
+import com.dictiographer.desktop.model.Model;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;

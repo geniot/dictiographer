@@ -1,18 +1,16 @@
-package com.dictiographer.shared.model;
+package com.dictiographer.desktop.model;
 
 import java.util.*;
 
 public class Model extends Observable {
     public Properties properties;
     public ResourceBundle resourceBundle;
-    private Set<IDictionary> dictionaries;
+    private DictionariesMap dictionaries = new DictionariesMap();
 
-    public void setDictionaries(Set<IDictionary> dictionaries) {
-        this.dictionaries = dictionaries;
-    }
-
-    public Set<IDictionary> getDictionaries() {
-        return dictionaries;
+    public void addDictionaries(DictionariesMap m) {
+        dictionaries.putAll(m);
+        setChanged();
+        notifyObservers(dictionaries);
     }
 
     public SortedSet<LanguageElement> getLangs() {
@@ -27,6 +25,4 @@ public class Model extends Observable {
         }
         return s;
     }
-
-
 }

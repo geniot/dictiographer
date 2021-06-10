@@ -1,4 +1,4 @@
-package com.dictiographer.shared;
+package com.dictiographer.shared.model;
 
 import com.dictiographer.shared.model.lucene.SerializableRAMDirectory;
 import com.dictiographer.shared.model.lucene.SerializableRAMFile;

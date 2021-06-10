@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.Serializable;
-import java.nio.file.Paths;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +20,7 @@ public class ZipDictionaryTest {
                 f.delete();
             }
             f.deleteOnExit();
-            IDictionary dictionary = new ZipDictionary(new File("ziptest.zip"));
+            IDictionary dictionary = new ZipDictionary(URI.create("jar:" + new File("ziptest.zip").toURI()));
             assertEquals(0, dictionary.getIndex().size());
             //test create
             dictionary.createOrUpdate("1", "test");
@@ -56,7 +56,7 @@ public class ZipDictionaryTest {
                 f.delete();
             }
             f.deleteOnExit();
-            IDictionary dictionary = new ZipDictionary(new File("ziptest.zip"));
+            IDictionary dictionary = new ZipDictionary(URI.create("jar:" + new File("ziptest.zip").toURI()));
             assertEquals(0, dictionary.getIndex().size());
 
             dictionary.createOrUpdate("1 2", "test 1 2");
@@ -94,7 +94,7 @@ public class ZipDictionaryTest {
                 f.delete();
             }
             f.deleteOnExit();
-            IDictionary dictionary = new ZipDictionary(new File("ziptest.zip"));
+            IDictionary dictionary = new ZipDictionary(URI.create("jar:" + new File("ziptest.zip").toURI()));
             assertEquals(0, dictionary.getIndex().size());
 
             dictionary.createOrUpdate("mother", "brother father");
@@ -123,7 +123,7 @@ public class ZipDictionaryTest {
                 f.delete();
             }
             f.deleteOnExit();
-            IDictionary dictionary = new ZipDictionary(new File("ziptest.zip"));
+            IDictionary dictionary = new ZipDictionary(URI.create("jar:" + new File("ziptest.zip").toURI()));
 
             String name = "Some dictionary name";
             String annotation = "Some dictionary annotation";

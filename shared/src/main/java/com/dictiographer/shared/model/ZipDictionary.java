@@ -1,6 +1,5 @@
 package com.dictiographer.shared.model;
 
-import com.dictiographer.shared.Utils;
 import com.dictiographer.shared.collections.IndexedTreeSet;
 import com.dictiographer.shared.model.lucene.SerializableRAMDirectory;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -14,7 +13,6 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 
-import java.io.File;
 import java.io.Serializable;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
@@ -25,7 +23,7 @@ import java.nio.file.Path;
 import java.util.*;
 
 public class ZipDictionary implements IDictionary {
-    private URI path;
+    private URI uri;
     private Map<String, String> env;
 
     private Base64.Encoder encoder = Base64.getUrlEncoder();
@@ -37,13 +35,13 @@ public class ZipDictionary implements IDictionary {
     private static String PROPS = "/properties.ser";
 
 
-    public ZipDictionary(File zip) {
-        this.path = URI.create("jar:" + zip.toURI());
+    public ZipDictionary(URI u) {
+        this.uri = u;
         try {
             env = new HashMap<>();
             HashMap envCrate = new HashMap<>();
             envCrate.put("create", "true");
-            FileSystem zipFileSystem = FileSystems.newFileSystem(path, envCrate);
+            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, envCrate);
             Path pathInZipFile = zipFileSystem.getPath(ENTRIES);
             Files.createDirectories(pathInZipFile);
             zipFileSystem.close();
@@ -56,7 +54,7 @@ public class ZipDictionary implements IDictionary {
     public void createOrUpdate(String headword, String entry) {
         String encodedHeadword = encoder.encodeToString(headword.getBytes(StandardCharsets.UTF_8));
         try {
-            FileSystem zipFileSystem = FileSystems.newFileSystem(path, env);
+            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
             Path pathInZipFile = zipFileSystem.getPath(ENTRIES + encodedHeadword);
             Files.deleteIfExists(pathInZipFile);
             Files.write(pathInZipFile, entry.getBytes(StandardCharsets.UTF_8));
@@ -74,7 +72,7 @@ public class ZipDictionary implements IDictionary {
     @Override
     public void bulkCreateOrUpdate(SortedMap<String, String> entries) {
         try {
-            FileSystem zipFileSystem = FileSystems.newFileSystem(path, env);
+            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
             for (Map.Entry<String, String> entry : entries.entrySet()) {
                 String headword = entry.getKey();
                 String content = entry.getValue();
@@ -91,9 +89,14 @@ public class ZipDictionary implements IDictionary {
     }
 
     @Override
+    public String getId() {
+        return uri.toString();
+    }
+
+    @Override
     public String read(String headword) {
         try {
-            FileSystem zipFileSystem = FileSystems.newFileSystem(path, env);
+            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
             String encodedHeadword = encoder.encodeToString(headword.getBytes(StandardCharsets.UTF_8));
             Path pathInZipFile = zipFileSystem.getPath(ENTRIES + encodedHeadword);
             String article = new String(Files.readAllBytes(pathInZipFile), StandardCharsets.UTF_8);
@@ -109,7 +112,7 @@ public class ZipDictionary implements IDictionary {
     @Override
     public void delete(String headword) {
         try {
-            FileSystem zipFileSystem = FileSystems.newFileSystem(path, env);
+            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
             String encodedHeadword = encoder.encodeToString(headword.getBytes(StandardCharsets.UTF_8));
             Path pathInZipFile = zipFileSystem.getPath(ENTRIES + encodedHeadword);
             Files.deleteIfExists(pathInZipFile);
@@ -128,7 +131,7 @@ public class ZipDictionary implements IDictionary {
     public IndexedTreeSet<String> getIndex() {
         IndexedTreeSet<String> index = new IndexedTreeSet<>();
         try {
-            FileSystem zipFileSystem = FileSystems.newFileSystem(path, env);
+            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
             Path pathInZipFile = zipFileSystem.getPath(INDEX);
             if (Files.exists(pathInZipFile)) {
                 index = (IndexedTreeSet<String>) Utils.deserialize(Files.readAllBytes(pathInZipFile));
@@ -143,7 +146,7 @@ public class ZipDictionary implements IDictionary {
     private void updateIndex(Set<String> headwords, boolean isDelete) {
         try {
             IndexedTreeSet<String> index = new IndexedTreeSet<>();
-            FileSystem zipFileSystem = FileSystems.newFileSystem(path, env);
+            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
             Path pathInZipFile = zipFileSystem.getPath(INDEX);
             if (Files.exists(pathInZipFile)) {
                 index = (IndexedTreeSet<String>) Utils.deserialize(Files.readAllBytes(pathInZipFile));
@@ -164,7 +167,7 @@ public class ZipDictionary implements IDictionary {
     private void updateFullTextIndex(SortedMap<String, String> entries, boolean isDelete) {
         try {
             SerializableRAMDirectory directory = new SerializableRAMDirectory();
-            FileSystem zipFileSystem = FileSystems.newFileSystem(path, env);
+            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
             Path pathInZipFile = zipFileSystem.getPath(FT_INDEX);
             if (Files.exists(pathInZipFile)) {
                 directory = Utils.deserializeIndex(Files.readAllBytes(pathInZipFile));
@@ -199,7 +202,7 @@ public class ZipDictionary implements IDictionary {
         IndexedTreeSet<SearchResult> searchResults = new IndexedTreeSet<>();
         SerializableRAMDirectory directory = new SerializableRAMDirectory();
         try {
-            FileSystem zipFileSystem = FileSystems.newFileSystem(path, env);
+            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
             Path pathInZipFile = zipFileSystem.getPath(FT_INDEX);
             if (Files.exists(pathInZipFile)) {
                 directory = Utils.deserializeIndex(Files.readAllBytes(pathInZipFile));
@@ -233,7 +236,7 @@ public class ZipDictionary implements IDictionary {
     public Map<String, Serializable> getProperties() {
         Map<String, Serializable> properties = new HashMap<>();
         try {
-            FileSystem zipFileSystem = FileSystems.newFileSystem(path, env);
+            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
             Path pathInZipFile = zipFileSystem.getPath(PROPS);
             if (Files.exists(pathInZipFile)) {
                 properties = (Map<String, Serializable>) Utils.deserialize(Files.readAllBytes(pathInZipFile));
@@ -248,7 +251,7 @@ public class ZipDictionary implements IDictionary {
     @Override
     public void setProperties(Map<String, Serializable> properties) {
         try {
-            FileSystem zipFileSystem = FileSystems.newFileSystem(path, env);
+            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
             Path pathInZipFile = zipFileSystem.getPath(PROPS);
             Files.write(pathInZipFile, Utils.serialize(properties));
             zipFileSystem.close();

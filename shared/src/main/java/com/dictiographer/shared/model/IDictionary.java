@@ -12,6 +12,8 @@ public interface IDictionary {
 
     void bulkCreateOrUpdate(SortedMap<String, String> entries);
 
+    String getId();
+
     String read(String headword);
 
     void delete(String headword);

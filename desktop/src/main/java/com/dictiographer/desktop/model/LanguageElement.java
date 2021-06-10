@@ -1,4 +1,4 @@
-package com.dictiographer.shared.model;
+package com.dictiographer.desktop.model;
 
 public class LanguageElement implements Comparable<LanguageElement> {
     private String displayText;

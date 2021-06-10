@@ -1,4 +1,4 @@
-package com.dictiographer.shared.model;
+package com.dictiographer.desktop.model;
 
 public class Constants {
     public static final String PROPS_FILE_NAME = "dictiographer.properties";

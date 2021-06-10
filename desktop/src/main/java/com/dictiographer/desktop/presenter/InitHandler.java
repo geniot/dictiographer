@@ -1,19 +1,21 @@
 package com.dictiographer.desktop.presenter;
 
+import com.dictiographer.desktop.model.*;
 import com.dictiographer.desktop.view.View;
-import com.dictiographer.shared.model.Constants;
 import com.dictiographer.shared.model.IDictionary;
-import com.dictiographer.shared.model.Model;
 import com.dictiographer.shared.model.ZipDictionary;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Locale;
+import java.util.Properties;
+import java.util.ResourceBundle;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
@@ -55,21 +57,6 @@ public class InitHandler extends BaseHandler {
             ex.printStackTrace();
         }
 
-        Set<IDictionary> dictionaries = new HashSet<>();
-        try {
-            Stream<Path> stream = Files.list(Paths.get(Constants.DICT_DIR_NAME));
-            stream.forEach(new Consumer<Path>() {
-                @Override
-                public void accept(Path path) {
-                    IDictionary dictionary = new ZipDictionary(new File(String.valueOf(path)));
-                    dictionaries.add(dictionary);
-                }
-            });
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        model.setDictionaries(dictionaries);
-
         //Display the window.
         try {
             int width = model.properties.containsKey(Constants.PropKeys.PROP_WIDTH.name()) ? Integer.parseInt(model.properties.getProperty(Constants.PropKeys.PROP_WIDTH.name())) : 600;
@@ -94,11 +81,22 @@ public class InitHandler extends BaseHandler {
 
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(presenter.keyHandler);
 
-        if (model.getDictionaries().size() == 0) {
-            view.cardLayout.show(view.cards, View.MainViews.QUICK_HELP.name());
-        } else {
-
+        DictionariesMap dictionaries = new DictionariesMap();
+        try {
+            Stream<Path> stream = Files.list(Paths.get(Constants.DICT_DIR_NAME));
+            stream.forEach(new Consumer<Path>() {
+                @Override
+                public void accept(Path path) {
+                    IDictionary dictionary = new ZipDictionary(URI.create("jar:" + new File(String.valueOf(path)).toURI()));
+                    dictionaries.put(dictionary.getId(), dictionary);
+                }
+            });
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
+
+        //triggers ui initialization
+        model.addDictionaries(dictionaries);
 
 
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
@@ -109,10 +107,10 @@ public class InitHandler extends BaseHandler {
         });
 
         //for debugging
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                presenter.dictionaryHandler.handle();
-            }
-        });
+//        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+//            public void run() {
+//                presenter.dictionaryHandler.handle();
+//            }
+//        });
     }
 }

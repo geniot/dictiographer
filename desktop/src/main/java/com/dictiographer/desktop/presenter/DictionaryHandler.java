@@ -1,17 +1,22 @@
 package com.dictiographer.desktop.presenter;
 
+import com.dictiographer.desktop.model.*;
 import com.dictiographer.desktop.view.DictionaryDialog;
 import com.dictiographer.desktop.view.JTextFieldLimit;
 import com.dictiographer.desktop.view.View;
-import com.dictiographer.shared.model.Constants;
-import com.dictiographer.shared.model.LanguageElement;
-import com.dictiographer.shared.model.Model;
+import com.dictiographer.shared.model.IDictionary;
+import com.dictiographer.shared.model.ZipDictionary;
 import org.apache.commons.io.IOUtils;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.*;
+import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.SortedSet;
 
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
@@ -109,21 +114,26 @@ public class DictionaryHandler extends BaseHandler {
     }
 
     private void onOK() {
-//        Map<String, Serializable> properties = new HashMap<>();
-//        properties.put(IDictionary.DictionaryProperty.NAME.name(), nameTextField.getText().trim());
-//        properties.put(IDictionary.DictionaryProperty.ANNOTATION.name(), annotationTextArea.getText().trim());
-//        String indexLanguage = ((LanguageElement) indexLanguageComboBox.getSelectedItem()).getCode();
-//        String contentsLanguage = ((LanguageElement) contentsLanguageComboBox.getSelectedItem()).getCode();
-//        properties.put(IDictionary.DictionaryProperty.INDEX_LANGUAGE.name(), indexLanguage);
-//        properties.put(IDictionary.DictionaryProperty.CONTENTS_LANGUAGE.name(), contentsLanguage);
-//
-//        SwingUtilities.invokeLater(new Runnable() {
-//            public void run() {
-//                properties.put(IDictionary.DictionaryProperty.ICON.name(), getIconBytes());
-//                new DictionaryAction(dictiographerFrame).create(properties);
-//            }
-//        });
-//        dispose();
+        Map<String, Serializable> properties = new HashMap<>();
+        properties.put(IDictionary.DictionaryProperty.NAME.name(), dialog.nameTextField.getText().trim());
+        properties.put(IDictionary.DictionaryProperty.ANNOTATION.name(), dialog.annotationTextArea.getText().trim());
+        String indexLanguage = ((LanguageElement) dialog.indexLanguageComboBox.getSelectedItem()).getCode();
+        String contentsLanguage = ((LanguageElement) dialog.contentsLanguageComboBox.getSelectedItem()).getCode();
+        properties.put(IDictionary.DictionaryProperty.INDEX_LANGUAGE.name(), indexLanguage);
+        properties.put(IDictionary.DictionaryProperty.CONTENTS_LANGUAGE.name(), contentsLanguage);
+        properties.put(IDictionary.DictionaryProperty.ICON.name(), getIconBytes());
+
+        String dictionaryFileName =
+                Constants.DICT_DIR_NAME + File.separator +
+                        properties.get(IDictionary.DictionaryProperty.INDEX_LANGUAGE.name()) + "_" +
+                        properties.get(IDictionary.DictionaryProperty.CONTENTS_LANGUAGE.name()) + "_" +
+                        System.currentTimeMillis() + ".zip";
+        IDictionary dictionary = new ZipDictionary(URI.create("jar:" + new File(dictionaryFileName).toURI()));
+        dictionary.setProperties(properties);
+        DictionariesMap map = new DictionariesMap();
+        map.put(dictionary.getId(), dictionary);
+        model.addDictionaries(map);
+        dialog.dispose();
     }
 
     private byte[] getIconBytes() {
@@ -133,5 +143,13 @@ public class DictionaryHandler extends BaseHandler {
             e.printStackTrace();
         }
         return new byte[]{};
+    }
+
+    public void onDictionariesUpdated(DictionariesMap dictionariesMap) {
+        if (dictionariesMap.isEmpty()) {
+            view.cardLayout.show(view.cards, View.MainViews.QUICK_HELP.name());
+        } else {
+            view.cardLayout.show(view.cards, View.MainViews.EMPTY.name());
+        }
     }
 }

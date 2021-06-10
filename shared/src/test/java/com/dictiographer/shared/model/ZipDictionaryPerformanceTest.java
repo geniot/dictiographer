@@ -1,11 +1,10 @@
 package com.dictiographer.shared.model;
 
 import com.dictiographer.shared.collections.IndexedTreeSet;
-import com.dictiographer.shared.model.IDictionary;
-import com.dictiographer.shared.model.ZipDictionary;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -27,7 +26,7 @@ public class ZipDictionaryPerformanceTest {
             f.deleteOnExit();
 
             String article = new String(Files.readAllBytes(Paths.get(this.getClass().getClassLoader().getResource("sample.txt").toURI())), StandardCharsets.UTF_8);
-            IDictionary dictionary = new ZipDictionary(new File("ziptest.zip"));
+            IDictionary dictionary = new ZipDictionary(URI.create("jar:" + f.toURI()));
             assertEquals(0, dictionary.getIndex().size());
             SortedMap<String, String> entries = new TreeMap<>();
             int size = 10000;
