@@ -17,6 +17,7 @@ public class Presenter extends AbstractAction implements Observer {
     private InitHandler initHandler;
     protected ExitHandler exitHandler;
     protected KeyHandler keyHandler;
+    protected DictionaryHandler dictionaryHandler;
 
 
     public static Presenter getInstance() {
@@ -34,6 +35,7 @@ public class Presenter extends AbstractAction implements Observer {
         initHandler = new InitHandler(model, view, this);
         exitHandler = new ExitHandler(model, view, this);
         keyHandler = new KeyHandler(model, view, this);
+        dictionaryHandler = new DictionaryHandler(model, view, this);
 
         initHandler.handle();
     }

@@ -33,8 +33,7 @@ public class KeyHandler extends BaseHandler implements KeyEventDispatcher {
         }
         //new dictionary on CTRL+D
         if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_D && !isModalDialogShowing()) {
-            System.out.println("new dictionary");
-            System.out.println(isPressed);
+            presenter.dictionaryHandler.handle();
             return false;
         }
         return false;
