@@ -13,17 +13,17 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="desktop" target="8" />
-      <module name="dictiographer" target="1.8" />
+      <module name="dictiographer" target="8" />
       <module name="server" target="8" />
       <module name="shared" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="desktop" options="-parameters" />
-      <module name="dictiographer" options="-parameters" />
-      <module name="server" options="-parameters" />
-      <module name="shared" options="-parameters" />
+      <module name="desktop" options="-parameters -verbose -Xlint:-unchecked" />
+      <module name="dictiographer" options="" />
+      <module name="server" options="-parameters -verbose -Xlint:-unchecked" />
+      <module name="shared" options="-parameters -verbose -Xlint:-unchecked" />
     </option>
   </component>
 </project>

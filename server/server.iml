@@ -25,6 +25,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="shared" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:2.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.4.5" level="project" />
@@ -66,13 +67,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.assertj:assertj-core:3.18.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest:2.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter:5.7.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-api:5.7.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.1.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.opentest4j:opentest4j:1.2.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-commons:1.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-params:5.7.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.7.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-core:3.6.28" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: net.bytebuddy:byte-buddy:1.10.22" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: net.bytebuddy:byte-buddy-agent:1.10.22" level="project" />
@@ -88,5 +83,20 @@
     <orderEntry type="library" name="Maven: com.googlecode.javaewah:JavaEWAH:1.1.7" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:2.0.0-alpha1" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-simple:2.0.0-alpha1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-core:8.8.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-queryparser:8.8.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-queries:8.8.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-sandbox:8.8.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-api:5.8.0-M1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.1.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.opentest4j:opentest4j:1.2.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-commons:1.7.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.8.0-M1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.7.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.32" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:1.4.32" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-common:1.4.32" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.jetbrains:annotations:13.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.32" level="project" />
   </component>
 </module>

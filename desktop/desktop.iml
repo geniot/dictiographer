@@ -25,5 +25,28 @@
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="shared" />
+    <orderEntry type="library" name="Maven: org.xhtmlrenderer:flying-saucer-core:9.1.22" level="project" />
+    <orderEntry type="library" name="Maven: com.intellij:forms_rt:7.0.3" level="project" />
+    <orderEntry type="library" name="Maven: asm:asm-commons:3.0" level="project" />
+    <orderEntry type="library" name="Maven: asm:asm-tree:3.0" level="project" />
+    <orderEntry type="library" name="Maven: asm:asm:3.0" level="project" />
+    <orderEntry type="library" name="Maven: com.jgoodies:forms:1.1-preview" level="project" />
+    <orderEntry type="library" name="Maven: jdom:jdom:1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-core:8.8.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-queryparser:8.8.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-queries:8.8.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-sandbox:8.8.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-api:5.8.0-M1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.1.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.opentest4j:opentest4j:1.2.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-commons:1.7.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.8.0-M1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.7.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.32" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:1.4.32" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-common:1.4.32" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.jetbrains:annotations:13.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.32" level="project" />
   </component>
 </module>
