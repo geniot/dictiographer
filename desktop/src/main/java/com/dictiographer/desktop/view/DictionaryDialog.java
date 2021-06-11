@@ -1,16 +1,23 @@
 package com.dictiographer.desktop.view;
 
+import com.dictiographer.desktop.model.LanguageElement;
+import com.dictiographer.shared.model.IDictionary;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import org.apache.commons.io.IOUtils;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
+import java.io.IOException;
+import java.io.Serializable;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class DictionaryDialog extends JDialog {
@@ -210,4 +217,25 @@ public class DictionaryDialog extends JDialog {
         return contentPane;
     }
 
+    public Map<String, Serializable> getData() {
+        Map<String, Serializable> properties = new HashMap<>();
+        properties.put(IDictionary.DictionaryProperty.NAME.name(), nameTextField.getText().trim());
+        properties.put(IDictionary.DictionaryProperty.ANNOTATION.name(), annotationTextArea.getText().trim());
+        String indexLanguage = ((LanguageElement) indexLanguageComboBox.getSelectedItem()).getCode();
+        String contentsLanguage = ((LanguageElement) contentsLanguageComboBox.getSelectedItem()).getCode();
+        properties.put(IDictionary.DictionaryProperty.INDEX_LANGUAGE.name(), indexLanguage);
+        properties.put(IDictionary.DictionaryProperty.CONTENTS_LANGUAGE.name(), contentsLanguage);
+        properties.put(IDictionary.DictionaryProperty.ICON.name(), getIconBytes());
+        return properties;
+    }
+
+
+    private byte[] getIconBytes() {
+        try {
+            return IOUtils.toByteArray(getClass().getClassLoader().getResourceAsStream("images/user.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new byte[]{};
+    }
 }

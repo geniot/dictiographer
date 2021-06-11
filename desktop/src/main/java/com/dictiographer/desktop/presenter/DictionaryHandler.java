@@ -118,34 +118,8 @@ public class DictionaryHandler extends BaseHandler {
     }
 
     private void onOK() {
-        Map<String, Serializable> properties = new HashMap<>();
-        properties.put(IDictionary.DictionaryProperty.NAME.name(), dialog.nameTextField.getText().trim());
-        properties.put(IDictionary.DictionaryProperty.ANNOTATION.name(), dialog.annotationTextArea.getText().trim());
-        String indexLanguage = ((LanguageElement) dialog.indexLanguageComboBox.getSelectedItem()).getCode();
-        String contentsLanguage = ((LanguageElement) dialog.contentsLanguageComboBox.getSelectedItem()).getCode();
-        properties.put(IDictionary.DictionaryProperty.INDEX_LANGUAGE.name(), indexLanguage);
-        properties.put(IDictionary.DictionaryProperty.CONTENTS_LANGUAGE.name(), contentsLanguage);
-        properties.put(IDictionary.DictionaryProperty.ICON.name(), getIconBytes());
-
-        String dictionaryFileName =
-                Constants.DICT_DIR_NAME + File.separator +
-                        properties.get(IDictionary.DictionaryProperty.INDEX_LANGUAGE.name()) + "_" +
-                        properties.get(IDictionary.DictionaryProperty.CONTENTS_LANGUAGE.name()) + "_" +
-                        System.currentTimeMillis() + ".zip";
-        IDictionary dictionary = new ZipDictionary(URI.create("jar:" + new File(dictionaryFileName).toURI()));
-        dictionary.setProperties(properties);
-        DictionariesMap map = new DictionariesMap();
-        map.put(dictionary.getId(), dictionary);
-        model.addDictionaries(map);
+        model.addDictionary(dialog.getData());
         dialog.dispose();
     }
 
-    private byte[] getIconBytes() {
-        try {
-            return IOUtils.toByteArray(getClass().getClassLoader().getResourceAsStream("images/user.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return new byte[]{};
-    }
 }

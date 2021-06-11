@@ -39,7 +39,7 @@
               </tabbedpane>
             </children>
           </grid>
-          <grid id="8c38b" binding="contentsPanel" layout-manager="CardLayout" hgap="0" vgap="0">
+          <grid id="8c38b" binding="cardsPanel" layout-manager="CardLayout" hgap="0" vgap="0">
             <constraints>
               <splitpane position="right"/>
             </constraints>

@@ -3,7 +3,10 @@ package com.dictiographer.desktop.presenter;
 import com.dictiographer.desktop.model.Constants;
 import com.dictiographer.desktop.model.DictionariesMap;
 import com.dictiographer.desktop.model.Model;
+import com.dictiographer.desktop.view.ContentsPanel;
+import com.dictiographer.desktop.view.IndexPanel;
 import com.dictiographer.desktop.view.View;
+import com.dictiographer.desktop.view.WrapLayout;
 import com.dictiographer.shared.model.IDictionary;
 import com.dictiographer.shared.model.ZipDictionary;
 
@@ -15,9 +18,7 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Locale;
-import java.util.Properties;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
@@ -89,26 +90,9 @@ public class InitHandler extends BaseHandler {
         view.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("images/favicon-16x16.png")).getImage());
 
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(presenter.keyHandler);
-
-        DictionariesMap dictionaries = new DictionariesMap();
-        try {
-            Stream<Path> stream = Files.list(Paths.get(Constants.DICT_DIR_NAME));
-            stream.forEach(new Consumer<Path>() {
-                @Override
-                public void accept(Path path) {
-                    IDictionary dictionary = new ZipDictionary(URI.create("jar:" + new File(String.valueOf(path)).toURI()));
-                    dictionaries.put(dictionary.getId(), dictionary);
-                }
-            });
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
         Constants.setLAF(view, Constants.DEFAULT_LAF);
 
-        //triggers ui initialization
-        model.addDictionaries(dictionaries);
-
+        onDictionariesUpdated(model.getDictionaries());
 
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {

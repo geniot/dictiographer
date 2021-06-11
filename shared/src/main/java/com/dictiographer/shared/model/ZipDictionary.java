@@ -90,7 +90,8 @@ public class ZipDictionary implements IDictionary {
 
     @Override
     public String getId() {
-        return uri.toString();
+        String[] splits = uri.toString().split("\\/");
+        return splits[splits.length - 1];
     }
 
     @Override
@@ -260,4 +261,8 @@ public class ZipDictionary implements IDictionary {
         }
     }
 
+    @Override
+    public int compareTo(IDictionary o) {
+        return this.uri.toString().compareTo(o.getId());
+    }
 }

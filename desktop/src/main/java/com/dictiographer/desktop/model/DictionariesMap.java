@@ -23,4 +23,17 @@ public class DictionariesMap extends HashMap<String, IDictionary> {
         }
         return languagesMap;
     }
+
+    public SortedSet<IDictionary> getShelfDictionaries(String from, String to) {
+        SortedSet<IDictionary> dictionaries = new TreeSet<>();
+        for (IDictionary dictionary : values()) {
+            Map<String, Serializable> dictionaryProperties = dictionary.getProperties();
+            String indexLanguage = dictionaryProperties.get(IDictionary.DictionaryProperty.INDEX_LANGUAGE.name()).toString().toUpperCase();
+            String contentsLanguage = dictionaryProperties.get(IDictionary.DictionaryProperty.CONTENTS_LANGUAGE.name()).toString().toUpperCase();
+            if (indexLanguage.equals(from) && contentsLanguage.equals(to)) {
+                dictionaries.add(dictionary);
+            }
+        }
+        return dictionaries;
+    }
 }

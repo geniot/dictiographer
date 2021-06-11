@@ -26,7 +26,7 @@ public class View extends JFrame {
         cards = new JPanel(cardLayout);
 
         quickHelpPanel = new QuickHelpPanel();
-        mainPanel = new MainPanel();
+        mainPanel = new MainPanel(p);
         emptyPanel = new JPanel();
 
         cards.add(mainPanel.$$$getRootComponent$$$(), MainViews.MAIN.name());

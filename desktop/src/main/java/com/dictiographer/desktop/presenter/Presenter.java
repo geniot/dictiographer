@@ -1,22 +1,19 @@
 package com.dictiographer.desktop.presenter;
 
-import com.dictiographer.desktop.model.DictionariesMap;
 import com.dictiographer.desktop.model.Model;
-import com.dictiographer.desktop.view.ContentsPanel;
-import com.dictiographer.desktop.view.IndexPanel;
+import com.dictiographer.desktop.view.DictionaryToggleButton;
 import com.dictiographer.desktop.view.View;
-import com.dictiographer.desktop.view.WrapLayout;
+import com.dictiographer.shared.model.IDictionary;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.SortedMap;
-import java.util.SortedSet;
 
-public class Presenter extends AbstractAction implements Observer {
+public class Presenter extends AbstractAction implements Observer, ChangeListener {
 
     private static Presenter presenter;
     private Model model;
@@ -50,49 +47,37 @@ public class Presenter extends AbstractAction implements Observer {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() instanceof DictionaryToggleButton) {
 
+        }
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        if (arg instanceof DictionariesMap) {
-            onDictionariesUpdated((DictionariesMap) arg);
+        if (arg instanceof IDictionary) {
+            dictionaryHandler.onDictionariesUpdated(model.getDictionaries());
         }
     }
 
-    public void onDictionariesUpdated(DictionariesMap dictionariesMap) {
-        if (dictionariesMap.isEmpty()) {
-            view.cardLayout.show(view.cards, View.MainViews.QUICK_HELP.name());
-        } else {
-            SortedMap<String, SortedSet<String>> languages = dictionariesMap.getLanguages();
-            view.mainPanel.indexTabbedPane.removeAll();
-            view.mainPanel.contentsPanel.removeAll();
-            for (String indexLanguage : languages.keySet()) {
-                view.mainPanel.indexTabbedPane.addTab(indexLanguage, new IndexPanel().contentPanel);
 
-                SortedSet<String> contentLanguages = languages.get(indexLanguage);
-                JTabbedPane contentsTabbedPane = new JTabbedPane();
-                contentsTabbedPane.setFocusable(false);
-                contentsTabbedPane.setRequestFocusEnabled(false);
-                contentsTabbedPane.setTabPlacement(JTabbedPane.RIGHT);
-
-                WrapLayout wrapLayout = new WrapLayout();
-                wrapLayout.setHgap(1);
-                wrapLayout.setVgap(1);
-                wrapLayout.setAlignment(FlowLayout.LEFT);
-
-                for (String contentLanguage : contentLanguages) {
-                    ContentsPanel contentsPanel = new ContentsPanel();
-                    contentsPanel.dictionariesPanel.setLayout(wrapLayout);
-                    contentsTabbedPane.add(contentsPanel.mainPanel, contentLanguage);
-                }
-
-                view.mainPanel.contentsPanel.add(contentsTabbedPane);
-
-
+    /**
+     * When selected index language tab is changed.
+     *
+     * @param e
+     */
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        if (e.getSource().equals(view.mainPanel.indexTabbedPane)) {
+            int selectedIndex = view.mainPanel.indexTabbedPane.getSelectedIndex();
+            if (selectedIndex >= 0) { //selectedIndex = -1 when a tab is removed
+                String selectedTitle = view.mainPanel.indexTabbedPane.getTitleAt(selectedIndex);
+                CardLayout cardLayout = (CardLayout) view.mainPanel.cardsPanel.getLayout();
+                cardLayout.show(view.mainPanel.cardsPanel, selectedTitle);
             }
-
-            view.cardLayout.show(view.cards, View.MainViews.MAIN.name());
         }
+    }
+
+    public void onDictionaryDelete(IDictionary dictionary) {
+        model.deleteDictionary(dictionary);
     }
 }

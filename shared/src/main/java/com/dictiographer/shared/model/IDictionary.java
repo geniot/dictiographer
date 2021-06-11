@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.SortedMap;
 
-public interface IDictionary {
+public interface IDictionary extends Comparable<IDictionary>{
 
     void createOrUpdate(String headword, String entry);
 
