@@ -2,16 +2,25 @@ package com.dictiographer.desktop.model;
 
 import com.dictiographer.shared.model.IDictionary;
 
-import java.util.HashMap;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.io.Serializable;
+import java.util.*;
 
 public class DictionariesMap extends HashMap<String, IDictionary> {
-    public SortedSet<String> getIndexLanguages() {
-        SortedSet<String> indexLanguages = new TreeSet<>();
+
+    public SortedMap<String, SortedSet<String>> getLanguages() {
+        SortedMap<String, SortedSet<String>> languagesMap = new TreeMap<>();
         for (IDictionary dictionary : values()) {
-            indexLanguages.add(dictionary.getProperties().get(IDictionary.DictionaryProperty.INDEX_LANGUAGE.name()).toString().toUpperCase());
+            Map<String, Serializable> dictionaryProperties = dictionary.getProperties();
+            String indexLanguage = dictionaryProperties.get(IDictionary.DictionaryProperty.INDEX_LANGUAGE.name()).toString().toUpperCase();
+            String contentsLanguage = dictionaryProperties.get(IDictionary.DictionaryProperty.CONTENTS_LANGUAGE.name()).toString().toUpperCase();
+
+            SortedSet<String> contentLanguagesSet = new TreeSet<>();
+            if (languagesMap.containsKey(indexLanguage)) {
+                contentLanguagesSet = languagesMap.get(indexLanguage);
+            }
+            contentLanguagesSet.add(contentsLanguage);
+            languagesMap.put(indexLanguage, contentLanguagesSet);
         }
-        return indexLanguages;
+        return languagesMap;
     }
 }
