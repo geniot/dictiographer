@@ -64,19 +64,7 @@ public class Presenter extends AbstractAction implements Observer {
         } else {
             SortedSet<String> indexLanguages = dictionariesMap.getIndexLanguages();
             for (String indexLanguage : indexLanguages) {
-                IndexPanel indexPanel = new IndexPanel();
-                indexPanel.searchTextField.getCaret().setBlinkRate(0);
-                indexPanel.searchTextField.setBorder(new EmptyBorder(0, 4, 0, 0));
-                view.mainPanel.indexTabbedPane.addTab(indexLanguage, indexPanel.contentPanel);
-                EmptyBorder border = new EmptyBorder(4, 4, 4, 4);
-                indexPanel.indexList.setCellRenderer(new DefaultListCellRenderer() {
-                    @Override
-                    public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                        DefaultListCellRenderer renderer = (DefaultListCellRenderer) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                        renderer.setBorder(border);
-                        return renderer;
-                    }
-                });
+                view.mainPanel.indexTabbedPane.addTab(indexLanguage, new IndexPanel().contentPanel);
             }
 
 //            dialog.searchTextField.setBorder(new EmptyBorder(0, 4, 0, 0));
