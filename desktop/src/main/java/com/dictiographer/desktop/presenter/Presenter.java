@@ -1,13 +1,18 @@
 package com.dictiographer.desktop.presenter;
 
-import com.dictiographer.desktop.view.View;
 import com.dictiographer.desktop.model.DictionariesMap;
 import com.dictiographer.desktop.model.Model;
+import com.dictiographer.desktop.view.IndexPanel;
+import com.dictiographer.desktop.view.View;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.SortedSet;
 
 public class Presenter extends AbstractAction implements Observer {
 
@@ -49,7 +54,68 @@ public class Presenter extends AbstractAction implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         if (arg instanceof DictionariesMap) {
-            dictionaryHandler.onDictionariesUpdated((DictionariesMap) arg);
+            onDictionariesUpdated((DictionariesMap) arg);
         }
+    }
+
+    public void onDictionariesUpdated(DictionariesMap dictionariesMap) {
+        if (dictionariesMap.isEmpty()) {
+            view.cardLayout.show(view.cards, View.MainViews.QUICK_HELP.name());
+        } else {
+            SortedSet<String> indexLanguages = dictionariesMap.getIndexLanguages();
+            for (String indexLanguage : indexLanguages) {
+                IndexPanel indexPanel = new IndexPanel();
+                indexPanel.searchTextField.getCaret().setBlinkRate(0);
+                indexPanel.searchTextField.setBorder(new EmptyBorder(0, 4, 0, 0));
+                view.mainPanel.indexTabbedPane.addTab(indexLanguage, indexPanel.contentPanel);
+                EmptyBorder border = new EmptyBorder(4, 4, 4, 4);
+                indexPanel.indexList.setCellRenderer(new DefaultListCellRenderer() {
+                    @Override
+                    public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                        DefaultListCellRenderer renderer = (DefaultListCellRenderer) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                        renderer.setBorder(border);
+                        return renderer;
+                    }
+                });
+            }
+
+//            dialog.searchTextField.setBorder(new EmptyBorder(0, 4, 0, 0));
+//            dialog.dictionariesPanel.add(getDic(dialog, "/images/user.png"));
+//
+//            WrapLayout wrapLayout = new WrapLayout();
+//            wrapLayout.setHgap(1);
+//            wrapLayout.setVgap(1);
+//            wrapLayout.setAlignment(FlowLayout.LEFT);
+//            dialog.dictionariesPanel.setLayout(wrapLayout);
+            view.cardLayout.show(view.cards, View.MainViews.MAIN.name());
+        }
+    }
+
+    private static Component getDic(JDialog dialog, String icon) {
+        JToggleButton dic = new JToggleButton();
+        dic.setFocusPainted(false);
+        dic.setBorderPainted(false);
+        dic.setFocusable(false);
+
+        dic.setOpaque(true);
+        dic.setContentAreaFilled(false);
+
+        dic.setIcon(new ImageIcon(dialog.getClass().getResource(icon)));
+        Dimension dm = new Dimension(23, 30);
+        dic.setMaximumSize(dm);
+        dic.setMinimumSize(dm);
+        dic.setPreferredSize(dm);
+        dic.setText("");
+        dic.setHorizontalAlignment(SwingConstants.CENTER);
+
+        dic.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                AbstractButton abstractButton = (AbstractButton) actionEvent.getSource();
+                boolean selected = abstractButton.getModel().isSelected();
+                dic.setBorderPainted(selected);
+            }
+        });
+        return dic;
     }
 }

@@ -10,6 +10,7 @@ import org.apache.commons.io.IOUtils;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
@@ -38,10 +39,13 @@ public class DictionaryHandler extends BaseHandler {
         //todo location and size from settings
         dialog.setSize(430, 430);
         dialog.setLocationRelativeTo(view);
+
         dialog.nameTextField.setBorder(new EmptyBorder(4, 4, 4, 4));
         dialog.annotationTextArea.setBorder(BorderFactory.createCompoundBorder(dialog.annotationTextArea.getBorder(), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+
         dialog.nameTextField.getCaret().setBlinkRate(0);
         dialog.annotationTextArea.getCaret().setBlinkRate(0);
+
         dialog.setResizable(false);
 
         DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
@@ -143,13 +147,5 @@ public class DictionaryHandler extends BaseHandler {
             e.printStackTrace();
         }
         return new byte[]{};
-    }
-
-    public void onDictionariesUpdated(DictionariesMap dictionariesMap) {
-        if (dictionariesMap.isEmpty()) {
-            view.cardLayout.show(view.cards, View.MainViews.QUICK_HELP.name());
-        } else {
-            view.cardLayout.show(view.cards, View.MainViews.EMPTY.name());
-        }
     }
 }

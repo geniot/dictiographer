@@ -1,6 +1,8 @@
 package com.dictiographer.desktop.presenter;
 
-import com.dictiographer.desktop.model.*;
+import com.dictiographer.desktop.model.Constants;
+import com.dictiographer.desktop.model.DictionariesMap;
+import com.dictiographer.desktop.model.Model;
 import com.dictiographer.desktop.view.View;
 import com.dictiographer.shared.model.IDictionary;
 import com.dictiographer.shared.model.ZipDictionary;
@@ -26,6 +28,13 @@ public class InitHandler extends BaseHandler {
     }
 
     public void handle() {
+        Insets insets = UIManager.getInsets("TabbedPane.contentBorderInsets");
+        insets.top = -1;
+        insets.left = -1;
+        insets.right = -1;
+        insets.bottom = -1;
+        UIManager.put("TabbedPane.contentBorderInsets", insets);
+
         model.resourceBundle = ResourceBundle.getBundle("DictiographerResource", Locale.ENGLISH);
 
         model.properties = new Properties();
@@ -94,6 +103,8 @@ public class InitHandler extends BaseHandler {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+        Constants.setLAF(view, Constants.DEFAULT_LAF);
 
         //triggers ui initialization
         model.addDictionaries(dictionaries);

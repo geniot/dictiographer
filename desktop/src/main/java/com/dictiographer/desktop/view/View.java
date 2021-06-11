@@ -10,20 +10,26 @@ public class View extends JFrame {
     public Presenter presenter;
     public JPanel cards;
     private QuickHelpPanel quickHelpPanel;
+    public MainPanel mainPanel;
     public CardLayout cardLayout;
 
     public enum MainViews {
-        EMPTY, QUICK_HELP
+        MAIN, QUICK_HELP
     }
 
     public View(Presenter p) {
         this.presenter = p;
+
         quickHelpPanel = new QuickHelpPanel();
+        mainPanel = new MainPanel();
+
         cardLayout = new CardLayout();
         cards = new JPanel(cardLayout);
-        cards.add(new JPanel(), MainViews.EMPTY.name());
-        cards.add(quickHelpPanel.contentPanel, MainViews.QUICK_HELP.name());
-        cardLayout.show(cards, MainViews.EMPTY.name());
+
+        cards.add(mainPanel.$$$getRootComponent$$$(), MainViews.MAIN.name());
+        cards.add(quickHelpPanel.$$$getRootComponent$$$(), MainViews.QUICK_HELP.name());
+
+        cardLayout.show(cards, MainViews.MAIN.name());
         getContentPane().add(cards, BorderLayout.CENTER);
     }
 }
