@@ -142,7 +142,7 @@ public class QuickHelpPanel {
         final JLabel label21 = new JLabel();
         Font label21Font = this.$$$getFont$$$(null, Font.ITALIC, -1, label21.getFont());
         if (label21Font != null) label21.setFont(label21Font);
-        label21.setText("Use Ctrl key and Right mouse click for hidden actions:");
+        label21.setText("Use Ctrl key and Right mouse click for different actions:");
         panel1.add(label21, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JSeparator separator4 = new JSeparator();
         panel1.add(separator4, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));

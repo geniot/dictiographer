@@ -22,7 +22,8 @@ public class DictionaryToggleButton extends JToggleButton {
         this.dictionary = d;
 
         setFocusPainted(false);
-        setBorderPainted(false);
+        setBorderPainted(true);
+        setSelected(true);
         setFocusable(false);
 
         Map<String, Serializable> properties = dictionary.getProperties();

@@ -220,7 +220,7 @@
             </constraints>
             <properties>
               <font style="2"/>
-              <text value="Use Ctrl key and Right mouse click for hidden actions:"/>
+              <text value="Use Ctrl key and Right mouse click for different actions:"/>
             </properties>
           </component>
           <component id="715c9" class="javax.swing.JSeparator">
