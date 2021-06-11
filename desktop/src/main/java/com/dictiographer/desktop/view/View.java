@@ -10,7 +10,7 @@ public class View extends JFrame {
     public Presenter presenter;
     public JPanel cards;
 
-    public QuickHelpPanel quickHelpPanel;
+    public QuickHelpPanel2 quickHelpPanel;
     public MainPanel mainPanel;
     public JPanel emptyPanel;
 
@@ -25,7 +25,7 @@ public class View extends JFrame {
         cardLayout = new CardLayout();
         cards = new JPanel(cardLayout);
 
-        quickHelpPanel = new QuickHelpPanel();
+        quickHelpPanel = new QuickHelpPanel2();
         mainPanel = new MainPanel(p);
         emptyPanel = new JPanel();
 
