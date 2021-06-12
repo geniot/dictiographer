@@ -51,17 +51,20 @@ public class DictionaryToggleButton extends JToggleButton {
         });
 
         addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                super.mouseReleased(e);
-                if (e.isPopupTrigger()) {
-                    doPop(e);
-                }
+            public void mousePressed(MouseEvent e) {
+                maybeShowPopup(e);
             }
 
-            private void doPop(MouseEvent e) {
-                DictionaryPopupMenu menu = new DictionaryPopupMenu(presenter, DictionaryToggleButton.this);
-                menu.show(e.getComponent(), e.getX(), e.getY());
+            public void mouseReleased(MouseEvent e) {
+                maybeShowPopup(e);
+            }
+
+            private void maybeShowPopup(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    DictionaryPopupMenu popup = new DictionaryPopupMenu(presenter, DictionaryToggleButton.this);
+                    popup.show(e.getComponent(),
+                            e.getX(), e.getY());
+                }
             }
         });
     }
