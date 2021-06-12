@@ -1,11 +1,5 @@
 package com.dictiographer.shared.collections;
 
-/**
- * User: Vitaly Sazanovich
- * Date: 07/02/13
- * Time: 19:25
- * Email: Vitaly.Sazanovich@gmail.com
- */
 /*
  * %W% %E%
  *

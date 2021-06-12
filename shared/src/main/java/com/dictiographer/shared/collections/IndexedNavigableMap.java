@@ -2,12 +2,6 @@ package com.dictiographer.shared.collections;
 
 import java.util.NavigableMap;
 
-/**
- * User: Vitaly Sazanovich
- * Date: 07/02/13
- * Time: 19:28
- * Email: Vitaly.Sazanovich@gmail.com
- */
 public interface IndexedNavigableMap<K, V> extends NavigableMap<K, V> {
     /**
      * Returns the key located at the index offset from the beginning

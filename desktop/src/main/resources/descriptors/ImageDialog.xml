@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialog modal="true" bundle="DictiographerResource" size="900,700" name="frame" title="title.images"
+        layout="BorderLayout">
+    <panel id="mainPanel" layout="BorderLayout" constraints="BorderLayout.CENTER">
+        <panel layout="BorderLayout"
+               constraints="BorderLayout.CENTER">
+            <dndtabbedpane id="beeldDndTabbedPane" constraints="BorderLayout.CENTER" titleNamingType="INDEX_TO_ALPHABET"
+                           tabContentClassName="com.dictiographer.desktop.view.panels.BeeldPanel">
+
+            </dndtabbedpane>
+
+        </panel>
+        <panel constraints="BorderLayout.SOUTH" layout="FlowLayout(FlowLayout.RIGHT)">
+            <button action="saveAction" text="button.save"/>
+            <button action="cancelAction" text="button.cancel"/>
+        </panel>
+    </panel>
+</dialog>

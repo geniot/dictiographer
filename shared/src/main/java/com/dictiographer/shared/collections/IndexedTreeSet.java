@@ -1,11 +1,5 @@
 package com.dictiographer.shared.collections;
 
-/**
- * User: Vitaly Sazanovich
- * Date: 07/02/13
- * Time: 19:26
- * Email: Vitaly.Sazanovich@gmail.com
- */
 /*
  * %W% %E%
  *
@@ -69,7 +63,7 @@ import java.util.*;
  * Java Collections Framework</a>.
  *
  * @param <E> the type of elements maintained by this set
- * @author Josh Bloch, Vitaly Sazanovich
+ * @author Josh Bloch
  * @version %I%, %G%
  * @see java.util.Collection
  * @see java.util.Set

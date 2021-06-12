@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialog modal="true"  bundle="DictiographerResource"  size="900,700" name="frame" title="title.category" layout="BorderLayout">
+    <panel id="mainPanel" layout="BorderLayout"
+           include="descriptors/CategoryPanel.xml#mainPanel"
+           constraints="BorderLayout.CENTER" >
+    </panel>
+    <panel constraints="BorderLayout.SOUTH" layout="FlowLayout(FlowLayout.RIGHT)">
+        <button action="saveAction" text="button.save"/>
+        <button action="cancelAction" text="button.cancel"/>
+    </panel>
+</dialog>

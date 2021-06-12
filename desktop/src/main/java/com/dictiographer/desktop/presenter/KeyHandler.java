@@ -1,7 +1,7 @@
 package com.dictiographer.desktop.presenter;
 
-import com.dictiographer.desktop.view.View;
 import com.dictiographer.desktop.model.Model;
+import com.dictiographer.desktop.view.View;
 
 import javax.swing.*;
 import java.awt.*;

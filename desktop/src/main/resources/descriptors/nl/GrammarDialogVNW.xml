@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialog modal="true" name="frame" title="Grammatica" size="900,700" layout="BorderLayout">
+    <panel id="mainPanel" constraints="BorderLayout.CENTER" layout="BorderLayout">
+
+        <panel id="cardPanel" constraints="BorderLayout.CENTER" layout="GridBagLayout">
+
+            <!--0-->
+            <label text="Soort">
+                <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="0"
+                                    ipadx="0" ipady="0" weightx="0" weighty="0"/>
+            </label>
+            <combobox id="vnwKey"
+                      initclass="com.dictiographer.desktop.view.comboboxmodels.VoornaamwoordSoortComboBoxModel">
+                <gridbagconstraints anchor="GridBagConstraints.WEST"
+                                    fill="GridBagConstraints.NONE" insets="5,5,5,5" gridx="1" gridy="0"
+                                    ipadx="0" ipady="0" weightx="1" weighty="0"/>
+            </combobox>
+
+            <panel>
+                <gridbagconstraints anchor="GridBagConstraints.EAST" fill="GridBagConstraints.BOTH" insets="5,5,5,5"
+                                    gridx="0" gridy="1"
+                                    ipadx="0" ipady="0" weightx="1" weighty="1"/>
+            </panel>
+
+
+        </panel>
+
+        <panel constraints="BorderLayout.SOUTH" layout="FlowLayout(FlowLayout.RIGHT)">
+            <button action="saveAction" text="Bewaren"/>
+            <button action="cancelAction" text="Annuleren"/>
+        </panel>
+    </panel>
+</dialog>

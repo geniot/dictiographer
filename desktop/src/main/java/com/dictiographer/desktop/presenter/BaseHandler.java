@@ -38,7 +38,7 @@ public class BaseHandler {
             //adding panels
             SortedMap<String, SortedSet<String>> languages = dictionariesMap.getLanguages();
             for (String indexLanguage : languages.keySet()) {
-                view.mainPanel.indexTabbedPane.addTab(indexLanguage, new IndexPanel().contentPanel);
+                view.mainPanel.indexTabbedPane.addTab(indexLanguage, new IndexPanel(presenter).contentPanel);
 
                 SortedSet<String> contentLanguages = languages.get(indexLanguage);
                 JTabbedPane contentsTabbedPane = new JTabbedPane();

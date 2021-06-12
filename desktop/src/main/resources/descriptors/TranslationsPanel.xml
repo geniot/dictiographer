@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doc>
+    <panel id="mainPanel"  bundle="DictiographerResource"  layout="BorderLayout">
+        <scrollpane id="scrollPane" constraints="BorderLayout.CENTER">
+            <panel layout="BorderLayout">
+
+                <vbox id="contentPanel" constraints="BorderLayout.NORTH">
+
+                </vbox>
+
+            </panel>
+        </scrollpane>
+        <panel constraints="BorderLayout.SOUTH" layout="FlowLayout(FlowLayout.LEFT)">
+            <button action="addTranslationAction"
+                    icon="images/add.png"
+                    maximumSize="25,25"
+                    minimumSize="25,25"
+                    preferredSize="25,25"
+                    size="25,25"
+                    />
+        </panel>
+
+    </panel>
+</doc>

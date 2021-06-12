@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialog bundle="DictiographerResource" modal="true" size="900,700" name="frame" title="title.grammar" layout="BorderLayout">
+    <panel id="mainPanel" constraints="BorderLayout.CENTER" layout="BorderLayout">
+
+        <panel id="cardPanel" constraints="BorderLayout.CENTER" layout="BorderLayout">
+
+                <panel border="EmptyBorder(5,5,5,5)" constraints="BorderLayout.WEST" layout="GridBagLayout">
+                    <checkbox id="bfCheckBox" text="label.dze.nonpers">
+                        <gridbagconstraints anchor="GridBagConstraints.WEST" fill="GridBagConstraints.NONE" insets="5,5,5,5"
+                                            gridx="1" gridy="0"
+                                            ipadx="0" ipady="0" weightx="1" weighty="0"/>
+                    </checkbox>
+                    <!--0-->
+                    <label text="label.dze.aspect">
+                        <gridbagconstraints anchor="GridBagConstraints.NORTHWEST" insets="5,5,5,5"
+                                            gridx="0" gridy="1"
+                                            ipadx="0" ipady="0" weightx="0" weighty="0"/>
+                    </label>
+                    <vbox>
+                        <gridbagconstraints anchor="GridBagConstraints.NORTHWEST" fill="GridBagConstraints.NONE" insets="5,5,5,5"
+                                            gridx="1" gridy="1"
+                                            ipadx="0" ipady="0" weightx="1" weighty="0"/>
+                        <checkbox id="ztCheckBox" text="label.dze.aspect.finite"/>
+                        <checkbox id="nztCheckBox" text="label.dze.aspect.infinite"/>
+                    </vbox>
+
+                    <label text="label.dze.base">
+                        <gridbagconstraints anchor="GridBagConstraints.NORTHEAST" insets="5,5,5,5"
+                                            gridx="0" gridy="2"
+                                            ipadx="0" ipady="0" weightx="0" weighty="0"/>
+                    </label>
+                    <textfield id="base1">
+                        <gridbagconstraints anchor="GridBagConstraints.WEST" fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5"
+                                            gridx="1" gridy="2"
+                                            ipadx="0" ipady="0" weightx="1" weighty="0"/>
+                    </textfield>
+                    <textfield id="base2">
+                        <gridbagconstraints anchor="GridBagConstraints.WEST" fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5"
+                                            gridx="1" gridy="3"
+                                            ipadx="0" ipady="0" weightx="1" weighty="0"/>
+                    </textfield>
+
+                    <label text="label.dze.endings">
+                        <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5"
+                                            gridx="0" gridy="4"
+                                            ipadx="0" ipady="0" weightx="0" weighty="0"/>
+                    </label>
+                    <combobox id="endings"
+                              maximumSize="40,22" minimumSize="40,22"
+                              preferredSize="40,22" size="40,22"
+                              initclass="com.dictiographer.desktop.view.comboboxmodels.EndingsComboBoxModel">
+                        <gridbagconstraints anchor="GridBagConstraints.WEST" fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5"
+                                            gridx="1" gridy="4"
+                                            ipadx="0" ipady="0" weightx="1" weighty="0"/>
+                    </combobox>
+
+                    <button action="propagateAction" icon="images/chart_organisation.png"
+                            maximumSize="35,35" minimumSize="35,35" preferredSize="35,35" size="35,35">
+                        <gridbagconstraints fill="GridBagConstraints.NONE" anchor="GridBagConstraints.WEST" insets="5,5,5,5"
+                                            gridx="2" gridy="4"
+                                            ipadx="0" ipady="0" weightx="0" weighty="0"/>
+                    </button>
+
+                    <!--5-->
+                    <panel>
+                        <gridbagconstraints anchor="GridBagConstraints.EAST" fill="GridBagConstraints.BOTH" insets="5,5,5,5"
+                                            gridx="0" gridy="5"
+                                            ipadx="0" ipady="0" weightx="1" weighty="1"/>
+                    </panel>
+                </panel>
+
+
+                <panel constraints="BorderLayout.CENTER" layout="BorderLayout">
+                    <vbox>
+                        <panel border="TitledBorder(label.dze.present)" constraints="BorderLayout.CENTER" layout="GridBagLayout">
+                            <label text="label.dze.person"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="0" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                            <label text="label.dze.singular"><gridbagconstraints anchor="GridBagConstraints.WEST" insets="5,5,5,5" gridx="1" gridy="0" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                            <label text="label.dze.plural"><gridbagconstraints anchor="GridBagConstraints.WEST" insets="5,5,5,5" gridx="2" gridy="0" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+
+                            <label text="1"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="1" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                            <textfield id="presentSing1"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="1" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                            <textfield id="presentPl1"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="1" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+
+                            <label text="2"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="2" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                            <textfield id="presentSing2"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="2" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                            <textfield id="presentPl2"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="2" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+
+                            <label text="3"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="3" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                            <textfield id="presentSing3"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="3" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                            <textfield id="presentPl3"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="3" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        </panel>
+                        <panel border="TitledBorder(label.dze.past)" constraints="BorderLayout.CENTER" layout="GridBagLayout">
+                            <label text="label.dze.person"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="0" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                            <label text="label.dze.singular"><gridbagconstraints anchor="GridBagConstraints.WEST" insets="5,5,5,5" gridx="1" gridy="0" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                            <label text="label.dze.plural"><gridbagconstraints anchor="GridBagConstraints.WEST" insets="5,5,5,5" gridx="2" gridy="0" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+
+                            <label text="1"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="1" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                            <textfield id="pastSing1"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="1" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                            <textfield id="pastPl1"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="1" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+
+                            <label text="2"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="2" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                            <textfield id="pastSing2"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="2" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                            <textfield id="pastPl2"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="2" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+
+                            <label text="3"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="3" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                            <textfield id="pastSing3"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="3" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                            <textfield id="pastPl3"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="3" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        </panel>
+                        <panel border="TitledBorder(label.dze.imperative)" constraints="BorderLayout.CENTER" layout="GridBagLayout">
+                            <label text=""><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="0" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                            <label text="label.dze.singular"><gridbagconstraints anchor="GridBagConstraints.WEST" insets="5,5,5,5" gridx="1" gridy="0" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                            <label text="label.dze.plural"><gridbagconstraints anchor="GridBagConstraints.WEST" insets="5,5,5,5" gridx="2" gridy="0" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+
+                            <label text=""><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="1" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                            <textfield id="imperSing"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="1" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                            <textfield id="imperPl"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="1" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        </panel>
+                        <panel border="TitledBorder(label.dze.aspect)" constraints="BorderLayout.CENTER" layout="GridBagLayout">
+                            <label text=""><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="0" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                            <label text="label.dze.aspect.finite"><gridbagconstraints anchor="GridBagConstraints.WEST" insets="5,5,5,5" gridx="1" gridy="0" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                            <label text="label.dze.aspect.infinite"><gridbagconstraints anchor="GridBagConstraints.WEST" insets="5,5,5,5" gridx="2" gridy="0" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+
+                            <label text=""><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="1" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                            <textfield id="finiteForm"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="1" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                            <textfield id="infiniteForm"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="1" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        </panel>
+                        <panel border="TitledBorder(label.dze.transgressive)" constraints="BorderLayout.CENTER" layout="GridBagLayout">
+                            <textfield id="participle"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="0" gridy="0" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        </panel>
+                    </vbox>
+                </panel>
+
+        </panel>
+
+        <panel constraints="BorderLayout.SOUTH" layout="FlowLayout(FlowLayout.RIGHT)">
+            <button action="saveAction" text="button.save"/>
+            <button action="cancelAction" text="button.cancel"/>
+        </panel>
+    </panel>
+</dialog>

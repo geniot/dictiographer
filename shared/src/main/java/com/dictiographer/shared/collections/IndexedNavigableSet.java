@@ -2,12 +2,6 @@ package com.dictiographer.shared.collections;
 
 import java.util.NavigableSet;
 
-/**
- * User: Vitaly Sazanovich
- * Date: 08/02/13
- * Time: 09:56
- * Email: Vitaly.Sazanovich@gmail.com
- */
 public interface IndexedNavigableSet<E> extends NavigableSet<E> {
     /**
      * Returns the entry located at the index offset from the beginning

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<panel id="mainPanel"  bundle="DictiographerResource"  constraints="BorderLayout.CENTER" layout="GridBagLayout">
+    <!--0-->
+    <label text="label.usage">
+        <gridbagconstraints anchor="GridBagConstraints.NORTHEAST" insets="5,5,5,5"
+                            gridx="0" gridy="0"
+                            ipadx="0" ipady="0" weightx="0" weighty="0"/>
+    </label>
+    <panel layout="BorderLayout">
+        <gridbagconstraints anchor="GridBagConstraints.WEST"  fill="GridBagConstraints.NONE" insets="5,5,5,5"
+                            gridx="1" gridy="0"
+                            ipadx="0" ipady="0" weightx="0" weighty="0"/>
+        <textfield preferredSize="100,23" constraints="BorderLayout.WEST" id="gebrTextField"/>
+    </panel>
+    <label text="label.source">
+        <gridbagconstraints anchor="GridBagConstraints.NORTHEAST" insets="5,5,5,5"
+                            gridx="2" gridy="0"
+                            ipadx="0" ipady="0" weightx="0" weighty="0"/>
+    </label>
+    <panel layout="BorderLayout">
+        <gridbagconstraints anchor="GridBagConstraints.WEST"  fill="GridBagConstraints.NONE" insets="5,5,5,5"
+                            gridx="3" gridy="0"
+                            ipadx="0" ipady="0" weightx="0" weighty="0"/>
+        <textfield preferredSize="500,23" constraints="BorderLayout.WEST" id="sourceTextField"/>
+    </panel>
+    <!--1-->
+    <label text="label.example">
+        <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5"
+                            gridx="0" gridy="1"
+                            ipadx="0" ipady="0" weightx="0" weighty="0"/>
+    </label>
+    <panel layout="BorderLayout">
+        <gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5"
+                            gridx="1" gridy="1"
+                            gridwidth="3"
+                            ipadx="0" ipady="0" weightx="1" weighty="0"/>
+        <textfield constraints="BorderLayout.CENTER" id="exampleTextField"/>
+    </panel>
+    <!--2-->
+    <label text="label.explanation">
+        <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5"
+                            gridx="0" gridy="2"
+                            ipadx="0" ipady="0" weightx="0" weighty="0"/>
+    </label>
+    <textfield id="explanationTextField">
+        <gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5"
+                            gridx="1" gridy="2"
+                            gridwidth="3" ipadx="0" ipady="0" weightx="1" weighty="0"/>
+    </textfield>
+    <!--3-->
+    <label text="label.recording">
+        <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5"
+                            gridx="0" gridy="3"
+                            ipadx="0" ipady="0" weightx="0" weighty="0"/>
+    </label>
+    <panel layout="FlowLayout(FlowLayout.LEFT)">
+        <gridbagconstraints fill="GridBagConstraints.NONE" anchor="GridBagConstraints.WEST" insets="5,5,5,5"
+                            gridx="1" gridy="3"
+                            ipadx="0" ipady="0" weightx="1" weighty="0"/>
+        <button id="playButton" enabled="false" action="playAudioAction" icon="images/control_play_blue.png"
+                maximumSize="40,40" minimumSize="40,40" preferredSize="40,40" size="40,40"/>
+        <button enabled="true" action="selectAudioAction" icon="images/sound.png"
+                maximumSize="40,40" minimumSize="40,40" preferredSize="40,40" size="40,40"/>
+        <button id="deleteButton" enabled="false" action="deleteAudionAction" icon="images/cross.png"
+                maximumSize="40,40" minimumSize="40,40" preferredSize="40,40" size="40,40"/>
+    </panel>
+
+    <label text="label.image">
+        <gridbagconstraints fill="GridBagConstraints.NONE"
+                            anchor="GridBagConstraints.EAST" insets="5,5,5,5"
+                            gridx="2" gridy="3"
+                            ipadx="0" ipady="0" weightx="0" weighty="0"/>
+    </label>
+    <button action="imageAction" icon="images/image.png" maximumSize="35,35"
+            minimumSize="35,35" preferredSize="35,35" size="35,35">
+        <gridbagconstraints fill="GridBagConstraints.NONE" anchor="GridBagConstraints.WEST" insets="5,5,5,5"
+                            gridx="3" gridy="3"
+                            ipadx="0" ipady="0" weightx="0" weighty="0"/>
+    </button>
+    <!--4-->
+    <label text="label.translation">
+        <gridbagconstraints anchor="GridBagConstraints.NORTHEAST" insets="5,5,5,5"
+                            gridx="0" gridy="4"
+                            ipadx="0" ipady="0" weightx="0" weighty="0"/>
+    </label>
+    <panel layout="BorderLayout"
+           include="descriptors/TranslationsPanel.xml#mainPanel">
+        <gridbagconstraints fill="GridBagConstraints.BOTH" anchor="GridBagConstraints.WEST" insets="5,5,5,5"
+                            gridx="1" gridy="4"
+                            gridwidth="3" ipadx="0" ipady="0" weightx="3" weighty="1"/>
+    </panel>
+
+</panel>

@@ -1,11 +1,5 @@
 package com.dictiographer.shared.collections;
 
-/**
- * User: Vitaly Sazanovich
- * Date: 07/02/13
- * Time: 19:16
- * Email: Vitaly.Sazanovich@gmail.com
- */
 /*
  * %W% %E%
  *
@@ -82,7 +76,7 @@ import java.util.*;
  *
  * @param <K> the type of keys maintained by this map
  * @param <V> the type of mapped values
- * @author Josh Bloch, Doug Lea, Vitaly Sazanovich
+ * @author Josh Bloch, Doug Lea
  * @version 1.73, 05/10/06
  * @see java.util.Map
  * @see java.util.HashMap

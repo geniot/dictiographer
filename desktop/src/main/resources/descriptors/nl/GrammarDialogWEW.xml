@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialog modal="true" name="frame" title="Grammatica" size="900,700" layout="BorderLayout">
+    <panel id="mainPanel" constraints="BorderLayout.CENTER" layout="BorderLayout">
+
+        <panel id="cardPanel" constraints="BorderLayout.CENTER" layout="GridBagLayout">
+
+            <!--0-->
+            <label text="Soort">
+                <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="0"
+                                    ipadx="0" ipady="0" weightx="0" weighty="0"/>
+            </label>
+            <combobox id="verbType" initclass="com.dictiographer.desktop.view.comboboxmodels.WerkwoordSoortComboBoxModel">
+                <gridbagconstraints anchor="GridBagConstraints.WEST" fill="GridBagConstraints.BOTH" insets="5,5,5,5"
+                                    gridx="1" gridy="0"
+                                    ipadx="0" ipady="0" weightx="0" weighty="0"/>
+            </combobox>
+            <!--1-->
+            <label text="Onvoltooid verleden tijd">
+                <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="1"
+                                    ipadx="0" ipady="0" weightx="0" weighty="0"/>
+            </label>
+            <textfield id="verleden">
+                <gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="1"
+                                    ipadx="0" ipady="0" weightx="1" weighty="0"/>
+            </textfield>
+            <!--2-->
+            <label text="Hulpwerkwoord">
+                <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="2"
+                                    ipadx="0" ipady="0" weightx="0" weighty="0"/>
+            </label>
+            <combobox id="helpVerb" initclass="com.dictiographer.desktop.view.comboboxmodels.HelpWerkwoordComboBoxModel">
+                <gridbagconstraints anchor="GridBagConstraints.WEST" fill="GridBagConstraints.NONE" insets="5,5,5,5"
+                                    gridx="1" gridy="2"
+                                    ipadx="0" ipady="0" weightx="1" weighty="0"/>
+            </combobox>
+            <!--3-->
+            <label text="Voltooid deelwoord (participium)">
+                <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="3"
+                                    ipadx="0" ipady="0" weightx="0" weighty="0"/>
+            </label>
+            <textfield id="voltooid">
+                <gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="3"
+                                    ipadx="0" ipady="0" weightx="1" weighty="0"/>
+            </textfield>
+            <!--4-->
+            <label text="Ook absoluut">
+                <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="4"
+                                    ipadx="0" ipady="0" weightx="0" weighty="0"/>
+            </label>
+            <checkbox id="ookAbsoluut">
+                <gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="4"
+                                    ipadx="0" ipady="0" weightx="1" weighty="0"/>
+            </checkbox>
+            <!--4-->
+            <panel>
+                <gridbagconstraints anchor="GridBagConstraints.EAST" fill="GridBagConstraints.BOTH" insets="5,5,5,5"
+                                    gridx="0" gridy="5"
+                                    ipadx="0" ipady="0" weightx="1" weighty="1"/>
+            </panel>
+
+
+        </panel>
+
+        <panel constraints="BorderLayout.SOUTH" layout="FlowLayout(FlowLayout.RIGHT)">
+            <button action="saveAction" text="Bewaren"/>
+            <button action="cancelAction" text="Annuleren"/>
+        </panel>
+    </panel>
+</dialog>

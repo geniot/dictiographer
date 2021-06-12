@@ -1,20 +1,26 @@
 package com.dictiographer.desktop.view;
 
+import com.dictiographer.desktop.presenter.Presenter;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Locale;
 
 public class IndexPanel {
     public JTextField searchTextField;
     public JList indexList;
     public JPanel contentPanel;
+    public Presenter presenter;
 
 
-    public IndexPanel() {
+    public IndexPanel(Presenter p) {
+        this.presenter = p;
         searchTextField.getCaret().setBlinkRate(0);
         searchTextField.setBorder(new EmptyBorder(0, 4, 0, 0));
 
@@ -25,6 +31,23 @@ public class IndexPanel {
                 DefaultListCellRenderer renderer = (DefaultListCellRenderer) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
                 renderer.setBorder(border);
                 return renderer;
+            }
+        });
+
+        indexList.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                maybeShowPopup(e);
+            }
+
+            public void mouseReleased(MouseEvent e) {
+                maybeShowPopup(e);
+            }
+
+            private void maybeShowPopup(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    EntryPopupMenu popup = new EntryPopupMenu(presenter);
+                    popup.show(e.getComponent(), e.getX(), e.getY());
+                }
             }
         });
     }

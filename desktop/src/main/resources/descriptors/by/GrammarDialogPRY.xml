@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialog bundle="DictiographerResource" modal="true" size="900,700" name="frame" title="title.grammar" layout="BorderLayout">
+    <panel id="mainPanel" constraints="BorderLayout.CENTER" layout="BorderLayout">
+
+        <panel id="cardPanel" constraints="BorderLayout.CENTER" layout="BorderLayout">
+
+            <panel constraints="BorderLayout.CENTER" layout="BorderLayout">
+                <vbox constraints="BorderLayout.NORTH">
+                    <panel border="TitledBorder(label.pry.declination.singular)"  layout="GridBagLayout">
+
+                        <label text="label.pry.gender.male"><gridbagconstraints anchor="GridBagConstraints.WEST" insets="5,5,5,5" gridx="1" gridy="0" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                        <label text="label.pry.gender.female"><gridbagconstraints anchor="GridBagConstraints.WEST" insets="5,5,5,5" gridx="2" gridy="0" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                        <label text="label.pry.gender.neutral"><gridbagconstraints anchor="GridBagConstraints.WEST" insets="5,5,5,5" gridx="3" gridy="0" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+
+
+                        <label text="label.naz.case.nominative"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="2" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                        <textfield id="singularMN"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="2" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="singularZN"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="2" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="singularNN"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="3" gridy="2" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+
+                        <label text="label.naz.case.genitive"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="3" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                        <textfield id="singularMR"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="3" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="singularZR"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="3" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="singularNR"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="3" gridy="3" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+
+                        <label text="label.naz.case.dative"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="4" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                        <textfield id="singularMD"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="4" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="singularZD"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="4" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="singularND"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="3" gridy="4" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+
+                        <label text="label.naz.case.accusative"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="5" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                        <textfield id="singularMV"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="5" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="singularZV"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="5" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="singularNV"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="3" gridy="5" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+
+                        <label text="label.naz.case.instrumentive"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="6" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                        <textfield id="singularMT"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="6" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="singularZT"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="6" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="singularNT"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="3" gridy="6" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+
+                        <label text="label.naz.case.locative"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="7" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                        <textfield id="singularMM"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="7" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="singularZM"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="7" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="singularNM"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="3" gridy="7" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+
+                    </panel>
+
+
+                    <panel border="TitledBorder(label.pry.declination.plural)"  layout="GridBagLayout">
+
+                        <label text="label.pry.gender.male"><gridbagconstraints anchor="GridBagConstraints.WEST" insets="5,5,5,5" gridx="1" gridy="0" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                        <label text="label.pry.gender.female"><gridbagconstraints anchor="GridBagConstraints.WEST" insets="5,5,5,5" gridx="2" gridy="0" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                        <label text="label.pry.gender.neutral"><gridbagconstraints anchor="GridBagConstraints.WEST" insets="5,5,5,5" gridx="3" gridy="0" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+
+
+                        <label text="label.naz.case.nominative"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="2" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                        <textfield id="pluralMN"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="2" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="pluralZN"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="2" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="pluralNN"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="3" gridy="2" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+
+                        <label text="label.naz.case.genitive"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="3" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                        <textfield id="pluralMR"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="3" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="pluralZR"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="3" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="pluralNR"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="3" gridy="3" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+
+                        <label text="label.naz.case.dative"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="4" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                        <textfield id="pluralMD"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="4" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="pluralZD"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="4" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="pluralND"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="3" gridy="4" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+
+                        <label text="label.naz.case.accusative"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="5" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                        <textfield id="pluralMV"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="5" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="pluralZV"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="5" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="pluralNV"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="3" gridy="5" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+
+                        <label text="label.naz.case.instrumentive"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="6" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                        <textfield id="pluralMT"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="6" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="pluralZT"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="6" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="pluralNT"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="3" gridy="6" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+
+                        <label text="label.naz.case.locative"><gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="7" ipadx="0" ipady="0" weightx="0" weighty="0"/></label>
+                        <textfield id="pluralMM"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="1" gridy="7" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="pluralZM"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="2" gridy="7" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+                        <textfield id="pluralNM"><gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5" gridx="3" gridy="7" ipadx="0" ipady="0" weightx="1" weighty="0"/></textfield>
+
+                    </panel>
+
+                    <panel layout="GridBagLayout">
+                        <label text="label.dze.person">
+                            <gridbagconstraints anchor="GridBagConstraints.NORTHEAST" insets="5,5,5,5"
+                                                gridx="0" gridy="0"
+                                                ipadx="0" ipady="0" weightx="0" weighty="0"/>
+                        </label>
+                        <textfield id="base">
+                            <gridbagconstraints anchor="GridBagConstraints.WEST" fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5"
+                                                gridx="1" gridy="0"
+                                                ipadx="0" ipady="0" weightx="1" weighty="0"/>
+                        </textfield>
+
+                        <label text="label.dze.endings">
+                            <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5"
+                                                gridx="0" gridy="1"
+                                                ipadx="0" ipady="0" weightx="0" weighty="0"/>
+                        </label>
+                        <combobox id="endings"
+                                  maximumSize="40,22" minimumSize="40,22"
+                                  preferredSize="40,22" size="40,22"
+                                  initclass="com.dictiographer.desktop.view.comboboxmodels.EndingsComboBoxModel">
+                            <gridbagconstraints anchor="GridBagConstraints.WEST" fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5"
+                                                gridx="1" gridy="1"
+                                                ipadx="0" ipady="0" weightx="1" weighty="0"/>
+                        </combobox>
+                        <button action="propagateAction" icon="images/chart_organisation.png"
+                                maximumSize="35,35" minimumSize="35,35" preferredSize="35,35" size="35,35">
+                            <gridbagconstraints fill="GridBagConstraints.NONE" anchor="GridBagConstraints.WEST" insets="5,5,5,5"
+                                                gridx="2" gridy="1"
+                                                ipadx="0" ipady="0" weightx="0" weighty="0"/>
+                        </button>
+                    </panel>
+                </vbox>
+            </panel>
+        </panel>
+
+        <panel constraints="BorderLayout.SOUTH" layout="FlowLayout(FlowLayout.RIGHT)">
+            <button action="saveAction" text="button.save"/>
+            <button action="cancelAction" text="button.cancel"/>
+        </panel>
+    </panel>
+</dialog>

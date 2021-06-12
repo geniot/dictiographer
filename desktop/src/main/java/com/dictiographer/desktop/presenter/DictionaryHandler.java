@@ -1,23 +1,15 @@
 package com.dictiographer.desktop.presenter;
 
-import com.dictiographer.desktop.model.*;
+import com.dictiographer.desktop.model.Constants;
+import com.dictiographer.desktop.model.LanguageElement;
+import com.dictiographer.desktop.model.Model;
 import com.dictiographer.desktop.view.DictionaryDialog;
 import com.dictiographer.desktop.view.JTextFieldLimit;
 import com.dictiographer.desktop.view.View;
-import com.dictiographer.shared.model.IDictionary;
-import com.dictiographer.shared.model.ZipDictionary;
-import org.apache.commons.io.IOUtils;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
-import java.io.Serializable;
-import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.SortedSet;
 
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;

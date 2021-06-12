@@ -1,26 +1,17 @@
 package com.dictiographer.desktop.presenter;
 
 import com.dictiographer.desktop.model.Constants;
-import com.dictiographer.desktop.model.DictionariesMap;
 import com.dictiographer.desktop.model.Model;
-import com.dictiographer.desktop.view.ContentsPanel;
-import com.dictiographer.desktop.view.IndexPanel;
 import com.dictiographer.desktop.view.View;
-import com.dictiographer.desktop.view.WrapLayout;
-import com.dictiographer.shared.model.IDictionary;
-import com.dictiographer.shared.model.ZipDictionary;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 import java.io.FileInputStream;
-import java.net.URI;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
-import java.util.function.Consumer;
-import java.util.stream.Stream;
+import java.util.Locale;
+import java.util.Properties;
+import java.util.ResourceBundle;
 
 public class InitHandler extends BaseHandler {
 

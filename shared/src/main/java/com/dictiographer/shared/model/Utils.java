@@ -3,12 +3,18 @@ package com.dictiographer.shared.model;
 import com.dictiographer.shared.model.lucene.SerializableRAMDirectory;
 import com.dictiographer.shared.model.lucene.SerializableRAMFile;
 
+import javax.imageio.ImageIO;
+import javax.imageio.stream.MemoryCacheImageInputStream;
+import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.logging.Logger;
 
 public class Utils {
+    private static final Logger logger = Logger.getLogger(Utils.class.getName());
 
     public static byte[] serialize(Object yourObject) {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -105,5 +111,55 @@ public class Utils {
         }
         return null;
     }
+
+    public static String getExtension(File f) {
+        String ext = null;
+        String s = f.getName();
+        int i = s.lastIndexOf('.');
+
+        if (i > 0 && i < s.length() - 1) {
+            ext = s.substring(i + 1).toLowerCase();
+        }
+        return ext;
+    }
+
+    public static BufferedImage bytesToBufferedImage(byte[] bbs) {
+        try {
+            ByteArrayInputStream in = new ByteArrayInputStream(bbs);
+            MemoryCacheImageInputStream mem = new MemoryCacheImageInputStream(in);
+            return ImageIO.read(mem);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public static byte[] bufferedImageToBytes(String fileExt, BufferedImage bi) {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(bi, fileExt, baos);
+            baos.flush();
+            byte[] imageInByte = baos.toByteArray();
+            baos.close();
+            return imageInByte;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+
+    public static String arr2str(String[] arr) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < arr.length; i++) {
+            sb.append(arr[i]);
+            if (i < arr.length - 1) {
+                sb.append(",");
+            }
+        }
+        return sb.toString();
+    }
+
+
 }
 

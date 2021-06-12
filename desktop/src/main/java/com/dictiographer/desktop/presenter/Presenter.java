@@ -23,6 +23,7 @@ public class Presenter extends AbstractAction implements Observer, ChangeListene
     protected ExitHandler exitHandler;
     protected KeyHandler keyHandler;
     protected DictionaryHandler dictionaryHandler;
+    public EntryHandler entryHandler;
 
 
     public static Presenter getInstance() {
@@ -41,6 +42,7 @@ public class Presenter extends AbstractAction implements Observer, ChangeListene
         exitHandler = new ExitHandler(model, view, this);
         keyHandler = new KeyHandler(model, view, this);
         dictionaryHandler = new DictionaryHandler(model, view, this);
+        entryHandler = new EntryHandler(model, view, this);
 
         initHandler.handle();
     }

@@ -1,0 +1,80 @@
+body {
+    font-family: Arial;
+    padding: 5px;
+}
+
+.hw {
+    font-size: 25px;
+}
+
+.stress {
+    text-decoration: underline;
+}
+
+.blockEntryText {
+    font-size: 16px;
+    display: block;
+}
+
+.def {
+    text-indent: 20px;
+}
+
+.ex {
+    text-indent: 40px;
+    color: gray;
+}
+
+.trn {
+    color: #00008b;
+    text-indent: 40px;
+}
+
+.exampleTrn {
+    color: #808080;
+    text-indent: 60px;
+}
+
+.exSource {
+    font-style: italic;
+}
+
+.label {
+    text-transform: uppercase;
+    color: #a52a2a;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.pron {
+    text-indent: 20px;
+    color: #00008b;
+    font-size: 16px;
+}
+
+.grammar {
+    color: green;
+    font-style: italic;
+}
+
+table{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+table, th, td {
+    padding: 5px;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+.noBorder{
+    border: 0;
+}
+
+td, .tableText {
+    font-style: normal;
+    color:black;
+    font-size: 16px;
+    vertical-align: top;
+}
