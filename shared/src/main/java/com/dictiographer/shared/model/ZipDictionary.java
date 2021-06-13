@@ -265,4 +265,9 @@ public class ZipDictionary implements IDictionary {
     public int compareTo(IDictionary o) {
         return this.uri.toString().compareTo(o.getId());
     }
+
+    @Override
+    public String toString(){
+        return (String) getProperties().get(DictionaryProperty.NAME.name());
+    }
 }

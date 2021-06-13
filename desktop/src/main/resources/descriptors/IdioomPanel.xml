@@ -20,7 +20,7 @@
                             ipadx="0" ipady="0" weightx="0" weighty="0"/>
     </label>
     <dndtabbedpane id="idDndTabbedPane" boundModelClassName="com.dictiographer.desktop.model.entry.IdiomExplanation" titleNamingType="INDEX_TO_ALPHABET"
-                   tabContentClassName="com.dictiographer.desktop.view.panels.IdiomExplanationPanel">
+                   tabContentClassName="com.dictiographer.desktop.view.entry.panels.IdiomExplanationPanel">
         <gridbagconstraints fill="GridBagConstraints.BOTH" insets="5,5,5,5"
                             gridx="1" gridy="1"
                             ipadx="0" ipady="0" weightx="1" weighty="1"/>

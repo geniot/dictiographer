@@ -1,6 +1,7 @@
 package com.dictiographer.desktop.view;
 
 import com.dictiographer.desktop.presenter.Presenter;
+import org.xhtmlrenderer.simple.xhtml.XhtmlNamespaceHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,30 @@ public class View extends JFrame {
     public JPanel emptyPanel;
 
     public CardLayout cardLayout;
+
+    private XhtmlNamespaceHandler nsh = new XhtmlNamespaceHandler();
+
+    public String getContentsLanguage() {
+        ExtendedCardLayout extendedCardLayout = (ExtendedCardLayout) mainPanel.cardsPanel.getLayout();
+        JTabbedPane contentsTabbedPane = (JTabbedPane) extendedCardLayout.getPanelByName(getIndexLanguage());
+        return contentsTabbedPane.getTitleAt(contentsTabbedPane.getSelectedIndex());
+    }
+
+    public String getIndexLanguage() {
+        return mainPanel.indexTabbedPane.getTitleAt(mainPanel.indexTabbedPane.getSelectedIndex());
+    }
+
+    public String getSelectedHeadword() {
+        IndexPanel indexPanel = (IndexPanel) mainPanel.indexTabbedPane.getComponentAt(mainPanel.indexTabbedPane.getSelectedIndex());
+        return (String) indexPanel.indexList.getSelectedValue();
+    }
+
+    public void setContent(String entry) {
+        ExtendedCardLayout extendedCardLayout = (ExtendedCardLayout) mainPanel.cardsPanel.getLayout();
+        JTabbedPane contentsTabbedPane = (JTabbedPane) extendedCardLayout.getPanelByName(getIndexLanguage());
+        ContentsPanel contentsPanel = (ContentsPanel) contentsTabbedPane.getComponentAt(contentsTabbedPane.getSelectedIndex());
+        contentsPanel.entryPanel.setDocumentFromString(entry, null, nsh);
+    }
 
     public enum MainViews {
         MAIN, QUICK_HELP, EMPTY

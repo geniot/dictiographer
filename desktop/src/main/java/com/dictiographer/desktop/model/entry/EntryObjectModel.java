@@ -1,11 +1,15 @@
 package com.dictiographer.desktop.model.entry;
 
 
+import com.dictiographer.shared.model.IDictionary;
+
+import java.beans.Transient;
 import java.io.Serializable;
 
 public class EntryObjectModel implements Serializable {
     private String version;//not rendered
     private String headword;//not rendered
+    private IDictionary iDictionary;
 
     private String syllables;
     private EntryLink[] zie;
@@ -58,6 +62,15 @@ public class EntryObjectModel implements Serializable {
 
     public void setHeadword(String headword) {
         this.headword = headword;
+    }
+
+    @Transient
+    public IDictionary getiDictionary() {
+        return iDictionary;
+    }
+
+    public void setiDictionary(IDictionary iDictionary) {
+        this.iDictionary = iDictionary;
     }
 
     @Override

@@ -9,7 +9,7 @@
                 <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="0"
                                     ipadx="0" ipady="0" weightx="0" weighty="0"/>
             </label>
-            <combobox id="verbType" initclass="com.dictiographer.desktop.view.comboboxmodels.WerkwoordSoortComboBoxModel">
+            <combobox id="verbType" initclass="com.dictiographer.desktop.view.entry.comboboxmodels.WerkwoordSoortComboBoxModel">
                 <gridbagconstraints anchor="GridBagConstraints.WEST" fill="GridBagConstraints.BOTH" insets="5,5,5,5"
                                     gridx="1" gridy="0"
                                     ipadx="0" ipady="0" weightx="0" weighty="0"/>
@@ -28,7 +28,7 @@
                 <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="2"
                                     ipadx="0" ipady="0" weightx="0" weighty="0"/>
             </label>
-            <combobox id="helpVerb" initclass="com.dictiographer.desktop.view.comboboxmodels.HelpWerkwoordComboBoxModel">
+            <combobox id="helpVerb" initclass="com.dictiographer.desktop.view.entry.comboboxmodels.HelpWerkwoordComboBoxModel">
                 <gridbagconstraints anchor="GridBagConstraints.WEST" fill="GridBagConstraints.NONE" insets="5,5,5,5"
                                     gridx="1" gridy="2"
                                     ipadx="0" ipady="0" weightx="1" weighty="0"/>

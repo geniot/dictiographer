@@ -2,21 +2,25 @@ package com.dictiographer.desktop.presenter;
 
 import com.dictiographer.desktop.model.entry.ByteArrayPersistenceDelegate;
 import com.dictiographer.desktop.model.entry.EntryLink;
+import com.dictiographer.desktop.model.entry.EntryObjectModel;
 import com.dictiographer.shared.model.Utils;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
 
 import java.beans.PersistenceDelegate;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DesktopUtils {
     private static final Logger logger = Logger.getLogger(DesktopUtils.class.getName());
+
     public static String links2str(EntryLink[] arr) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < arr.length; i++) {
@@ -85,5 +89,26 @@ public class DesktopUtils {
                 return key;
             }
         }
+    }
+
+    public static String convert(EntryObjectModel eom, String lang, ResourceBundle messageSource) {
+        try {
+            Map<String, Object> root = new HashMap<>();
+            root.put("entry", eom);
+            root.put("lang", lang);
+            root.put("props", messageSource);
+
+            Configuration configuration = new Configuration(Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
+            configuration.setClassForTemplateLoading(eom.getClass(), "/");
+            Template temp = configuration.getTemplate("templates/main.ftl");
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            Writer out = new OutputStreamWriter(baos, "UTF-8");
+            temp.process(root, out);
+            return new String(baos.toByteArray(), "UTF-8");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return "";
     }
 }

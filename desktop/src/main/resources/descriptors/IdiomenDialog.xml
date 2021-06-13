@@ -6,7 +6,7 @@
         <panel layout="BorderLayout" constraints="BorderLayout.CENTER">
             <dndtabbedpane id="idDndTabbedPane" constraints="BorderLayout.CENTER" boundModelClassName="com.dictiographer.desktop.model.entry.Idioom"
                            titleNamingType="INDEX_TO_ALPHABET"
-                           tabContentClassName="com.dictiographer.desktop.view.panels.IdioomPanel">
+                           tabContentClassName="com.dictiographer.desktop.view.entry.panels.IdioomPanel">
 
             </dndtabbedpane>
 

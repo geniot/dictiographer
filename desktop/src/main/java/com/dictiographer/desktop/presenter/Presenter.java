@@ -2,18 +2,20 @@ package com.dictiographer.desktop.presenter;
 
 import com.dictiographer.desktop.model.Model;
 import com.dictiographer.desktop.view.DictionaryToggleButton;
+import com.dictiographer.desktop.view.ExtendedCardLayout;
 import com.dictiographer.desktop.view.View;
 import com.dictiographer.shared.model.IDictionary;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import java.awt.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Presenter extends AbstractAction implements Observer, ChangeListener {
+public class Presenter extends AbstractAction implements Observer, ChangeListener, ListSelectionListener {
 
     private static Presenter presenter;
     private Model model;
@@ -24,6 +26,7 @@ public class Presenter extends AbstractAction implements Observer, ChangeListene
     protected KeyHandler keyHandler;
     protected DictionaryHandler dictionaryHandler;
     public EntryHandler entryHandler;
+    protected IndexHandler indexHandler;
 
 
     public static Presenter getInstance() {
@@ -43,6 +46,7 @@ public class Presenter extends AbstractAction implements Observer, ChangeListene
         keyHandler = new KeyHandler(model, view, this);
         dictionaryHandler = new DictionaryHandler(model, view, this);
         entryHandler = new EntryHandler(model, view, this);
+        indexHandler = new IndexHandler(model, view, this);
 
         initHandler.handle();
     }
@@ -58,6 +62,8 @@ public class Presenter extends AbstractAction implements Observer, ChangeListene
     public void update(Observable o, Object arg) {
         if (arg instanceof IDictionary) {
             dictionaryHandler.onDictionariesUpdated(model.getDictionaries());
+        } else if (arg instanceof String) {
+            indexHandler.handle();
         }
     }
 
@@ -73,7 +79,7 @@ public class Presenter extends AbstractAction implements Observer, ChangeListene
             int selectedIndex = view.mainPanel.indexTabbedPane.getSelectedIndex();
             if (selectedIndex >= 0) { //selectedIndex = -1 when a tab is removed
                 String selectedTitle = view.mainPanel.indexTabbedPane.getTitleAt(selectedIndex);
-                CardLayout cardLayout = (CardLayout) view.mainPanel.cardsPanel.getLayout();
+                ExtendedCardLayout cardLayout = (ExtendedCardLayout) view.mainPanel.cardsPanel.getLayout();
                 cardLayout.show(view.mainPanel.cardsPanel, selectedTitle);
             }
         }
@@ -81,5 +87,13 @@ public class Presenter extends AbstractAction implements Observer, ChangeListene
 
     public void onDictionaryDelete(IDictionary dictionary) {
         model.deleteDictionary(dictionary);
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        String selectedHeadword = view.getSelectedHeadword();
+        if (selectedHeadword != null && !selectedHeadword.equals("")) {
+            entryHandler.showEntry(selectedHeadword);
+        }
     }
 }

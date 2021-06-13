@@ -14,6 +14,7 @@ public class MainPanel {
 
     public MainPanel(Presenter p) {
         indexTabbedPane.addChangeListener(p);
+        cardsPanel.setLayout(new ExtendedCardLayout());
     }
 
     {

@@ -10,7 +10,7 @@
                                     ipadx="0" ipady="0" weightx="0" weighty="0"/>
             </label>
             <combobox id="vnwKey"
-                      initclass="com.dictiographer.desktop.view.comboboxmodels.VoornaamwoordSoortComboBoxModel">
+                      initclass="com.dictiographer.desktop.view.entry.comboboxmodels.VoornaamwoordSoortComboBoxModel">
                 <gridbagconstraints anchor="GridBagConstraints.WEST"
                                     fill="GridBagConstraints.NONE" insets="5,5,5,5" gridx="1" gridy="0"
                                     ipadx="0" ipady="0" weightx="1" weighty="0"/>

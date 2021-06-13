@@ -16,7 +16,7 @@
 
 <#-- see -->
 <#if entry.zie?has_content>
-<div class="blockEntryText def"><span class="label">${props.getMessage("label.see",lang)}</span>
+<div class="blockEntryText def"><span class="label">${props.getString("label.see")}</span>
     <#list entry.zie as link>
         <a href="${link.text}" class="link">${link.text}</a><#if link_index<entry.zie?size-1>, </#if>
     </#list>
@@ -30,7 +30,7 @@
     <#-- derivatives -->
         <#if pos.afleidingen?has_content>
         <div class="blockEntryText def">
-            <span class="label">${props.getMessage("label.derivatives",lang)}:</span>
+            <span class="label">${props.getString("label.derivatives")}:</span>
             <#list pos.afleidingen as afleiding>
                 <a href="${afleiding}" class="link">${afleiding}</a><#if afleiding_index<pos.afleidingen?size-1>, </#if>
             </#list>
@@ -78,7 +78,7 @@
                 <#-- hyperonym -->
                 <#if def.hyperoniems?has_content>
                 <div class="blockEntryText def">
-                    <span class="label">${props.getMessage("label.hyperonym",lang)}:</span>
+                    <span class="label">${props.getString("label.hyperonym")}:</span>
                     <#list def.hyperoniems as hyp>
                         <a href="${hyp.text}" class="link">${hyp.text}</a><#if hyp_index<def.hyperoniems?size-1>, </#if>
                     </#list>
@@ -88,7 +88,7 @@
                 <#-- hyponyms -->
                 <#if def.hyponiems?has_content>
                 <div class="blockEntryText def">
-                    <span class="label"><#if 1<def.hyponiems?size>${props.getMessage("label.hyponyms",lang)}</#if><#if 1=def.hyponiems?size>${props.getMessage("label.hyponym",lang)}</#if>:</span>
+                    <span class="label"><#if 1<def.hyponiems?size>${props.getString("label.hyponyms")}</#if><#if 1=def.hyponiems?size>${props.getString("label.hyponym")}</#if>:</span>
                     <#list def.hyponiems as hyp>
                         <a href="${hyp.text}" class="link">${hyp.text}</a><#if hyp_index<def.hyponiems?size-1>, </#if>
                     </#list>
@@ -98,7 +98,7 @@
                 <#-- also see -->
                 <#if def.zie?has_content>
                     <div class="blockEntryText def">
-                        <span class="label">${props.getMessage("label.see",lang)}:</span>
+                        <span class="label">${props.getString("label.see")}:</span>
                         <#list def.zie as also>
                             <a href="${also.text}" class="link">${also.text}</a><#if also_index<def.zie?size-1>, </#if>
                         </#list>

@@ -15,6 +15,19 @@
                                     gridx="1" gridy="0"
                                     ipadx="0" ipady="0" weightx="1" weighty="0"/>
             </textfield>
+            <label text="label.dictionary">
+                <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5"
+                                    gridx="2" gridy="0"
+                                    ipadx="0" ipady="0" weightx="0" weighty="0"/>
+            </label>
+            <combobox id="dictionary"
+                      maximumSize="320,22" minimumSize="320,22"
+                      preferredSize="320,22" size="320,22"
+            >
+                <gridbagconstraints anchor="GridBagConstraints.WEST" fill="GridBagConstraints.NONE" insets="5,5,5,5"
+                                    gridx="3" gridy="0"
+                                    ipadx="0" ipady="0" weightx="1" weighty="0"/>
+            </combobox>
             <!--1-->
             <label text="label.syllables">
                 <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5"
@@ -26,38 +39,25 @@
                                     gridx="1" gridy="1"
                                     ipadx="0" ipady="0" weightx="1" weighty="0"/>
             </textfield>
-            <!--2-->
             <label text="label.see">
                 <gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5"
-                                    gridx="0" gridy="2"
+                                    gridx="2" gridy="1"
                                     ipadx="0" ipady="0" weightx="0" weighty="0"/>
             </label>
 
-            <textfield preferredSize="100,22" Size="100,22" minimumSize="100,22" id="zie" >
+<!--            <textfield preferredSize="100,22" Size="100,22" minimumSize="100,22" id="zie" >-->
+            <textfield id="zie" >
                 <gridbagconstraints fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5"
-                                    gridx="1" gridy="2"
+                                    gridx="3" gridy="1"
                                     ipadx="0" ipady="0" weightx="1" weighty="0"/>
             </textfield>
-
-            <!--<label text="label.stressed">-->
-            <!--<gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="2" gridy="1"-->
-            <!--ipadx="0" ipady="0" weightx="0" weighty="0"/>-->
-            <!--</label>-->
-            <!--<combobox id="stressedSyllable"-->
-            <!--maximumSize="40,22" minimumSize="40,22"-->
-            <!--preferredSize="40,22" size="40,22"-->
-            <!--initclass="com.dictiographer.view.comboboxmodels.StressedSyllableComboBoxModel">-->
-            <!--<gridbagconstraints fill="GridBagConstraints.NONE" anchor="GridBagConstraints.WEST" insets="5,5,5,5"-->
-            <!--gridx="3" gridy="1"-->
-            <!--ipadx="0" ipady="0" weightx="0" weighty="0"/>-->
-            <!--</combobox>-->
             <!--2-->
             <label text="label.poses">
                 <gridbagconstraints anchor="GridBagConstraints.NORTHEAST" insets="5,5,5,5" gridx="0" gridy="3"
                                     ipadx="0" ipady="0" weightx="0" weighty="0"/>
             </label>
             <dndtabbedpane id="partOfSpeeches" titleNamingType="DECIMAL_TO_ROMAN"
-                           tabContentClassName="com.dictiographer.desktop.view.panels.PosPanel">
+                           tabContentClassName="com.dictiographer.desktop.view.entry.panels.PosPanel">
                 <gridbagconstraints fill="GridBagConstraints.BOTH" insets="5,5,5,5" gridx="1" gridy="3"
                                     ipadx="0" ipady="0" gridwidth="3" weightx="1" weighty="1"/>
             </dndtabbedpane>

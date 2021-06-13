@@ -44,12 +44,15 @@
                       <size top="5" left="5" bottom="5" right="5"/>
                     </border>
                     <children>
-                      <scrollpane id="df39a">
+                      <scrollpane id="1f0db" class="org.xhtmlrenderer.simple.FSScrollPane" binding="entryScrollPane">
                         <constraints border-constraint="Center"/>
-                        <properties/>
+                        <properties>
+                          <horizontalScrollBarPolicy value="30"/>
+                          <verticalScrollBarPolicy value="20"/>
+                        </properties>
                         <border type="none"/>
                         <children>
-                          <component id="6e94c" class="javax.swing.JTextArea" binding="textArea2" default-binding="true">
+                          <component id="9cdde" class="org.xhtmlrenderer.simple.XHTMLPanel" binding="entryPanel">
                             <constraints/>
                             <properties/>
                           </component>

@@ -105,7 +105,7 @@
                         <combobox id="endings"
                                   maximumSize="40,22" minimumSize="40,22"
                                   preferredSize="40,22" size="40,22"
-                                  initclass="com.dictiographer.desktop.view.comboboxmodels.EndingsComboBoxModel">
+                                  initclass="com.dictiographer.desktop.view.entry.comboboxmodels.EndingsComboBoxModel">
                             <gridbagconstraints anchor="GridBagConstraints.WEST" fill="GridBagConstraints.HORIZONTAL" insets="5,5,5,5"
                                                 gridx="1" gridy="1"
                                                 ipadx="0" ipady="0" weightx="1" weighty="0"/>

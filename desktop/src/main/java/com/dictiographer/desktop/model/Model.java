@@ -70,4 +70,10 @@ public class Model extends Observable {
         }
 
     }
+
+    public void addEntry(IDictionary dictionary, String headword, String article) {
+        dictionary.createOrUpdate(headword, article);
+        setChanged();
+        notifyObservers(headword);
+    }
 }

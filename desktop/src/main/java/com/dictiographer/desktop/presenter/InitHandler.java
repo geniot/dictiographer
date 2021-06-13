@@ -95,7 +95,7 @@ public class InitHandler extends BaseHandler {
         //for debugging
 //        javax.swing.SwingUtilities.invokeLater(new Runnable() {
 //            public void run() {
-//                presenter.dictionaryHandler.handle();
+//                presenter.entryHandler.handle();
 //            }
 //        });
     }

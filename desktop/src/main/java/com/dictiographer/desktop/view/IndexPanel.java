@@ -5,6 +5,8 @@ import com.dictiographer.desktop.presenter.Presenter;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
@@ -12,15 +14,24 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Locale;
 
-public class IndexPanel {
+public class IndexPanel extends JPanel {
     public JTextField searchTextField;
     public JList indexList;
     public JPanel contentPanel;
     public Presenter presenter;
 
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.getContentPane().add(new IndexPanel(null), BorderLayout.CENTER);
+        frame.setVisible(true);
+    }
+
 
     public IndexPanel(Presenter p) {
         this.presenter = p;
+        this.setLayout(new BorderLayout());
+        this.add($$$getRootComponent$$$(), BorderLayout.CENTER);
+
         searchTextField.getCaret().setBlinkRate(0);
         searchTextField.setBorder(new EmptyBorder(0, 4, 0, 0));
 
@@ -33,6 +44,8 @@ public class IndexPanel {
                 return renderer;
             }
         });
+
+        indexList.addListSelectionListener(presenter);
 
         indexList.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {

@@ -32,12 +32,12 @@ public class Utils {
                     out.close();
                 }
             } catch (IOException ex) {
-                // ignore close exception
+                ex.printStackTrace();
             }
             try {
                 bos.close();
             } catch (IOException ex) {
-                // ignore close exception
+                ex.printStackTrace();
             }
         }
         return new byte[]{};
@@ -56,14 +56,14 @@ public class Utils {
             try {
                 bis.close();
             } catch (IOException ex) {
-                // ignore close exception
+                ex.printStackTrace();
             }
             try {
                 if (in != null) {
                     in.close();
                 }
             } catch (IOException ex) {
-                // ignore close exception
+                ex.printStackTrace();
             }
         }
         return null;

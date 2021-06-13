@@ -7,7 +7,7 @@
 <#macro renderGrammar grammar styleClass>
     <#if grammar.posKey?has_content>
         <span class="blockEntryText grammar">
-            ${props.getMessage(grammar.posKey,lang)}<#if grammar.grammarNAZ?has_content><@renderNAZGrammar nazGrammar=grammar.grammarNAZ styleClass=''/>
+            ${props.getString(grammar.posKey)}<#if grammar.grammarNAZ?has_content><@renderNAZGrammar nazGrammar=grammar.grammarNAZ styleClass=''/>
             </#if>
         </span>
     </#if>

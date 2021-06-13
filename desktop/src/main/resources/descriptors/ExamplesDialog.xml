@@ -5,7 +5,7 @@
         <panel layout="BorderLayout"
                constraints="BorderLayout.CENTER">
             <dndtabbedpane id="exDndTabbedPane" constraints="BorderLayout.CENTER" titleNamingType="INDEX_TO_ALPHABET"
-                           tabContentClassName="com.dictiographer.desktop.view.panels.ExPanel">
+                           tabContentClassName="com.dictiographer.desktop.view.entry.panels.ExPanel">
 
             </dndtabbedpane>
 

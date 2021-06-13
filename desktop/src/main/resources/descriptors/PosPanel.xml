@@ -7,7 +7,7 @@
                             ipadx="0" ipady="0" weightx="0" weighty="0"/>
     </label>
     <combobox id="posComboBox" action="posChangedAction"
-              initclass="com.dictiographer.desktop.view.comboboxmodels.PosComboBoxModel">
+              initclass="com.dictiographer.desktop.view.entry.comboboxmodels.PosComboBoxModel">
         <gridbagconstraints anchor="GridBagConstraints.WEST" fill="GridBagConstraints.NONE" insets="5,5,5,5"
                             gridx="1" gridy="0"
                             ipadx="0" ipady="0" weightx="1" weighty="0"/>
@@ -53,7 +53,7 @@
                             ipadx="0" ipady="0" weightx="0" weighty="0"/>
     </label>
     <dndtabbedpane id="entryDefinitions" titleNamingType="INDEX_TO_DECIMAL"
-                   tabContentClassName="com.dictiographer.desktop.view.panels.DefPanel">
+                   tabContentClassName="com.dictiographer.desktop.view.entry.panels.DefPanel">
         <gridbagconstraints fill="GridBagConstraints.BOTH" insets="5,5,5,5"
                             gridx="1" gridy="2"
                             ipadx="0" ipady="0" gridwidth="3" weightx="1" weighty="1"/>

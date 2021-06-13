@@ -5,7 +5,7 @@
         <!--<gridbagconstraints anchor="GridBagConstraints.EAST" insets="5,5,5,5" gridx="0" gridy="0"-->
                             <!--ipadx="0" ipady="0" weightx="0" weighty="0"/>-->
     <!--</label>-->
-    <combobox id="locale" initclass="com.dictiographer.desktop.view.comboboxmodels.LocaleComboBoxModel">
+    <combobox id="locale" initclass="com.dictiographer.desktop.view.entry.comboboxmodels.LocaleComboBoxModel">
         <gridbagconstraints anchor="GridBagConstraints.WEST" fill="GridBagConstraints.NONE" insets="5,5,5,5"
                             gridx="0" gridy="0"
                             ipadx="0" ipady="0" weightx="0" weighty="0"/>
