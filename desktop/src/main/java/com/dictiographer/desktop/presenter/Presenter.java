@@ -91,9 +91,16 @@ public class Presenter extends AbstractAction implements Observer, ChangeListene
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
+        if (e.getValueIsAdjusting()) {
+            return;
+        }
         String selectedHeadword = view.getSelectedHeadword();
         if (selectedHeadword != null && !selectedHeadword.equals("")) {
             entryHandler.showEntry(selectedHeadword);
         }
+    }
+
+    public void onDictionarySelectionChanged() {
+        indexHandler.handle();
     }
 }

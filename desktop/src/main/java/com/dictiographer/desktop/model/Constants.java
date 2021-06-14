@@ -17,7 +17,15 @@ public class Constants {
     public static String[] LAFS = new String[]{"Acryl", "Aero", "Aluminium", "Bernstein", "Fast", "Graphite", "HiFi", "Luna", "McWin", "Mint", "Noire", "Smart", "Texture"};
 
     public enum PropKeys {
-        PROP_WIDTH, PROP_HEIGHT, PROP_POS_X, PROP_POS_Y, PROP_DIVIDER_LOCATION
+        PROP_WIDTH,
+        PROP_HEIGHT,
+        PROP_POS_X,
+        PROP_POS_Y,
+        PROP_ENTRY_POS_X,
+        PROP_ENTRY_POS_Y,
+        PROP_ENTRY_WIDTH,
+        PROP_ENTRY_HEIGHT,
+        PROP_DIVIDER_LOCATION
     }
 
     public enum ACTIONS{

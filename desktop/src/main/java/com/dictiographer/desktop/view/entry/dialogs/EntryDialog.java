@@ -16,6 +16,9 @@ import com.dictiographer.shared.model.IDictionary;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
 
 public class EntryDialog extends AbstractDialog {

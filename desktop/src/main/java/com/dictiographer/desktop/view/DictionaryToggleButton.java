@@ -46,6 +46,7 @@ public class DictionaryToggleButton extends JToggleButton {
             public void actionPerformed(ActionEvent actionEvent) {
                 AbstractButton abstractButton = (AbstractButton) actionEvent.getSource();
                 boolean selected = abstractButton.getModel().isSelected();
+                presenter.onDictionarySelectionChanged();
                 setBorderPainted(selected);
             }
         });

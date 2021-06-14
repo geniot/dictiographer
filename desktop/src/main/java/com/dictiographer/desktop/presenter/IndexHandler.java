@@ -6,7 +6,7 @@ import com.dictiographer.desktop.view.View;
 import com.dictiographer.shared.collections.IndexedTreeSet;
 import com.dictiographer.shared.model.IDictionary;
 
-import java.util.SortedSet;
+import java.util.Set;
 
 public class IndexHandler extends BaseHandler {
     public IndexHandler(Model m, View v, Presenter p) {
@@ -15,7 +15,7 @@ public class IndexHandler extends BaseHandler {
 
 
     public void handle() {
-        SortedSet<IDictionary> sortedSet = model.getDictionaries().getShelfDictionaries(view.getIndexLanguage(), view.getContentsLanguage());
+        Set<IDictionary> sortedSet = view.getSelectedDictionaries();
         IndexedTreeSet<String> index = new IndexedTreeSet<>();
         for (IDictionary dictionary : sortedSet) {
             index.addAll(dictionary.getIndex());

@@ -22,6 +22,7 @@ public abstract class AbstractDialog extends JDialog {
         setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
                 onCancel();
             }
         });

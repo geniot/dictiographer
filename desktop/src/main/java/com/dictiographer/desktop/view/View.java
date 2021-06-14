@@ -1,10 +1,13 @@
 package com.dictiographer.desktop.view;
 
 import com.dictiographer.desktop.presenter.Presenter;
+import com.dictiographer.shared.model.IDictionary;
 import org.xhtmlrenderer.simple.xhtml.XhtmlNamespaceHandler;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class View extends JFrame {
 
@@ -39,6 +42,20 @@ public class View extends JFrame {
         JTabbedPane contentsTabbedPane = (JTabbedPane) extendedCardLayout.getPanelByName(getIndexLanguage());
         ContentsPanel contentsPanel = (ContentsPanel) contentsTabbedPane.getComponentAt(contentsTabbedPane.getSelectedIndex());
         contentsPanel.entryPanel.setDocumentFromString(entry, null, nsh);
+    }
+
+    public Set<IDictionary> getSelectedDictionaries() {
+        Set<IDictionary> selectedDictionaries = new HashSet<>();
+        ExtendedCardLayout extendedCardLayout = (ExtendedCardLayout) mainPanel.cardsPanel.getLayout();
+        JTabbedPane contentsTabbedPane = (JTabbedPane) extendedCardLayout.getPanelByName(getIndexLanguage());
+        ContentsPanel contentsPanel = (ContentsPanel) contentsTabbedPane.getComponentAt(contentsTabbedPane.getSelectedIndex());
+        for (int i = 0; i < contentsPanel.dictionariesPanel.getComponentCount(); i++) {
+            DictionaryToggleButton dictionaryToggleButton = (DictionaryToggleButton) contentsPanel.dictionariesPanel.getComponent(i);
+            if (dictionaryToggleButton.isSelected()) {
+                selectedDictionaries.add(dictionaryToggleButton.dictionary);
+            }
+        }
+        return selectedDictionaries;
     }
 
     public enum MainViews {
