@@ -13,6 +13,7 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
@@ -37,30 +38,46 @@ public class ZipDictionary implements IDictionary {
 
     public ZipDictionary(URI u) {
         this.uri = u;
+        FileSystem zipFileSystem = null;
         try {
             env = new HashMap<>();
-            HashMap envCrate = new HashMap<>();
-            envCrate.put("create", "true");
-            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, envCrate);
+            HashMap envCreate = new HashMap<>();
+            envCreate.put("create", "true");
+            zipFileSystem = FileSystems.newFileSystem(uri, envCreate);
             Path pathInZipFile = zipFileSystem.getPath(ENTRIES);
             Files.createDirectories(pathInZipFile);
-            zipFileSystem.close();
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            if (zipFileSystem != null) {
+                try {
+                    zipFileSystem.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
     @Override
     public void createOrUpdate(String headword, String entry) {
         String encodedHeadword = encoder.encodeToString(headword.getBytes(StandardCharsets.UTF_8));
+        FileSystem zipFileSystem = null;
         try {
-            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
+            zipFileSystem = FileSystems.newFileSystem(uri, env);
             Path pathInZipFile = zipFileSystem.getPath(ENTRIES + encodedHeadword);
             Files.deleteIfExists(pathInZipFile);
             Files.write(pathInZipFile, entry.getBytes(StandardCharsets.UTF_8));
-            zipFileSystem.close();
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            if (zipFileSystem != null) {
+                try {
+                    zipFileSystem.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         updateIndex(new HashSet<>(Arrays.asList(headword)), false);
 
@@ -71,8 +88,9 @@ public class ZipDictionary implements IDictionary {
 
     @Override
     public void bulkCreateOrUpdate(SortedMap<String, String> entries) {
+        FileSystem zipFileSystem = null;
         try {
-            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
+            zipFileSystem = FileSystems.newFileSystem(uri, env);
             for (Map.Entry<String, String> entry : entries.entrySet()) {
                 String headword = entry.getKey();
                 String content = entry.getValue();
@@ -80,9 +98,16 @@ public class ZipDictionary implements IDictionary {
                 Path pathInZipFile = zipFileSystem.getPath(ENTRIES + encodedHeadword);
                 Files.write(pathInZipFile, content.getBytes(StandardCharsets.UTF_8));
             }
-            zipFileSystem.close();
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            if (zipFileSystem != null) {
+                try {
+                    zipFileSystem.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         updateIndex(entries.keySet(), false);
         updateFullTextIndex(entries, false);
@@ -106,30 +131,49 @@ public class ZipDictionary implements IDictionary {
 
     @Override
     public String read(String headword) {
+        FileSystem zipFileSystem = null;
         try {
-            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
+            zipFileSystem = FileSystems.newFileSystem(uri, env);
             String encodedHeadword = encoder.encodeToString(headword.getBytes(StandardCharsets.UTF_8));
             Path pathInZipFile = zipFileSystem.getPath(ENTRIES + encodedHeadword);
+            if (!Files.exists(pathInZipFile)) {
+                return null;
+            }
             String article = new String(Files.readAllBytes(pathInZipFile), StandardCharsets.UTF_8);
-            zipFileSystem.close();
             return article;
         } catch (Exception ex) {
             ex.printStackTrace();
-            return "";
+            return null;
+        } finally {
+            if (zipFileSystem != null) {
+                try {
+                    zipFileSystem.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
 
     @Override
     public void delete(String headword) {
+        FileSystem zipFileSystem = null;
         try {
-            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
+            zipFileSystem = FileSystems.newFileSystem(uri, env);
             String encodedHeadword = encoder.encodeToString(headword.getBytes(StandardCharsets.UTF_8));
             Path pathInZipFile = zipFileSystem.getPath(ENTRIES + encodedHeadword);
             Files.deleteIfExists(pathInZipFile);
-            zipFileSystem.close();
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            if (zipFileSystem != null) {
+                try {
+                    zipFileSystem.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         updateIndex(new HashSet<>(Arrays.asList(headword)), true);
 
@@ -141,23 +185,33 @@ public class ZipDictionary implements IDictionary {
     @Override
     public IndexedTreeSet<String> getIndex() {
         IndexedTreeSet<String> index = new IndexedTreeSet<>();
+        FileSystem zipFileSystem = null;
         try {
-            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
+            zipFileSystem = FileSystems.newFileSystem(uri, env);
             Path pathInZipFile = zipFileSystem.getPath(INDEX);
             if (Files.exists(pathInZipFile)) {
                 index = (IndexedTreeSet<String>) Utils.deserialize(Files.readAllBytes(pathInZipFile));
             }
-            zipFileSystem.close();
+
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            if (zipFileSystem != null) {
+                try {
+                    zipFileSystem.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return index;
     }
 
     private void updateIndex(Set<String> headwords, boolean isDelete) {
+        FileSystem zipFileSystem = null;
         try {
             IndexedTreeSet<String> index = new IndexedTreeSet<>();
-            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
+            zipFileSystem = FileSystems.newFileSystem(uri, env);
             Path pathInZipFile = zipFileSystem.getPath(INDEX);
             if (Files.exists(pathInZipFile)) {
                 index = (IndexedTreeSet<String>) Utils.deserialize(Files.readAllBytes(pathInZipFile));
@@ -169,16 +223,24 @@ public class ZipDictionary implements IDictionary {
             }
             Files.deleteIfExists(pathInZipFile);
             Files.write(pathInZipFile, Utils.serialize(index));
-            zipFileSystem.close();
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            if (zipFileSystem != null) {
+                try {
+                    zipFileSystem.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
     private void updateFullTextIndex(SortedMap<String, String> entries, boolean isDelete) {
+        FileSystem zipFileSystem = null;
         try {
             SerializableRAMDirectory directory = new SerializableRAMDirectory();
-            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
+            zipFileSystem = FileSystems.newFileSystem(uri, env);
             Path pathInZipFile = zipFileSystem.getPath(FT_INDEX);
             if (Files.exists(pathInZipFile)) {
                 directory = Utils.deserializeIndex(Files.readAllBytes(pathInZipFile));
@@ -202,9 +264,16 @@ public class ZipDictionary implements IDictionary {
             writer.close();
             Files.deleteIfExists(pathInZipFile);
             Files.write(pathInZipFile, Utils.serializeIndex(directory));
-            zipFileSystem.close();
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            if (zipFileSystem != null) {
+                try {
+                    zipFileSystem.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
@@ -212,8 +281,9 @@ public class ZipDictionary implements IDictionary {
     public IndexedTreeSet<SearchResult> search(String queryString) {
         IndexedTreeSet<SearchResult> searchResults = new IndexedTreeSet<>();
         SerializableRAMDirectory directory = new SerializableRAMDirectory();
+        FileSystem zipFileSystem = null;
         try {
-            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
+            zipFileSystem = FileSystems.newFileSystem(uri, env);
             Path pathInZipFile = zipFileSystem.getPath(FT_INDEX);
             if (Files.exists(pathInZipFile)) {
                 directory = Utils.deserializeIndex(Files.readAllBytes(pathInZipFile));
@@ -235,10 +305,17 @@ public class ZipDictionary implements IDictionary {
                 searchResult.setText(new String(Files.readAllBytes(pathInZipFile), StandardCharsets.UTF_8));
                 searchResults.add(searchResult);
             }
-            zipFileSystem.close();
             return searchResults;
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            if (zipFileSystem != null) {
+                try {
+                    zipFileSystem.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return searchResults;
     }
@@ -246,28 +323,44 @@ public class ZipDictionary implements IDictionary {
     @Override
     public Map<String, Serializable> getProperties() {
         Map<String, Serializable> properties = new HashMap<>();
+        FileSystem zipFileSystem = null;
         try {
-            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
+            zipFileSystem = FileSystems.newFileSystem(uri, env);
             Path pathInZipFile = zipFileSystem.getPath(PROPS);
             if (Files.exists(pathInZipFile)) {
                 properties = (Map<String, Serializable>) Utils.deserialize(Files.readAllBytes(pathInZipFile));
             }
-            zipFileSystem.close();
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            if (zipFileSystem != null) {
+                try {
+                    zipFileSystem.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return properties;
     }
 
     @Override
     public void setProperties(Map<String, Serializable> properties) {
+        FileSystem zipFileSystem = null;
         try {
-            FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
+            zipFileSystem = FileSystems.newFileSystem(uri, env);
             Path pathInZipFile = zipFileSystem.getPath(PROPS);
             Files.write(pathInZipFile, Utils.serialize(properties));
-            zipFileSystem.close();
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            if (zipFileSystem != null) {
+                try {
+                    zipFileSystem.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 

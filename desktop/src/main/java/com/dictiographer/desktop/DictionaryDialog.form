@@ -98,7 +98,7 @@
             <border type="line" title-resource-bundle="DictiographerResource" title-key="dictionary.index.language"/>
             <children>
               <grid id="88f33" layout-manager="BorderLayout" hgap="0" vgap="0">
-                <constraints border-constraint="South"/>
+                <constraints border-constraint="Center"/>
                 <properties/>
                 <border type="empty">
                   <size top="5" left="5" bottom="5" right="5"/>

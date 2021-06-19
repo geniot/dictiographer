@@ -5,9 +5,9 @@ import com.dictiographer.desktop.Constants;
 public class IndexEvent extends BaseEvent {
     private String headword;
 
-    public IndexEvent(String lc, Constants.EventType ea) {
+    public IndexEvent(String hw, Constants.EventType ea) {
         super(ea);
-        this.headword = lc;
+        this.headword = hw;
     }
 
     public String getHeadword() {
