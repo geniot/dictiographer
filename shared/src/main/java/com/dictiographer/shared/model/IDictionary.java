@@ -14,6 +14,10 @@ public interface IDictionary extends Comparable<IDictionary>{
 
     String getId();
 
+    String getIndexLanguage();
+
+    String getContentsLanguage();
+
     String read(String headword);
 
     void delete(String headword);

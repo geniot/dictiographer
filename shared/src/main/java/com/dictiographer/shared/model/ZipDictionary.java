@@ -95,6 +95,16 @@ public class ZipDictionary implements IDictionary {
     }
 
     @Override
+    public String getIndexLanguage() {
+        return getProperties().get(IDictionary.DictionaryProperty.INDEX_LANGUAGE.name()).toString().toUpperCase();
+    }
+
+    @Override
+    public String getContentsLanguage() {
+        return getProperties().get(DictionaryProperty.CONTENTS_LANGUAGE.name()).toString().toUpperCase();
+    }
+
+    @Override
     public String read(String headword) {
         try {
             FileSystem zipFileSystem = FileSystems.newFileSystem(uri, env);
@@ -267,7 +277,7 @@ public class ZipDictionary implements IDictionary {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return (String) getProperties().get(DictionaryProperty.NAME.name());
     }
 }
