@@ -75,10 +75,11 @@ public class ContentsPanel extends JPanel implements Subscriber {
 
         EventService.getInstance().subscribe(IndexEvent.class, null, this);
         EventService.getInstance().subscribe(DividerEvent.class, null, this);
+        EventService.getInstance().subscribe(DictionaryEvent.class, null, this);
     }
 
     public void addDictionary(IDictionary dictionary) {
-        dictionariesPanel.add(new DictionaryToggleButton(dictionary));
+        dictionariesPanel.add(new DictionaryToggleButton(dictionary, mainFrame));
         dictionariesPanel.revalidate();
         dictionariesPanel.repaint();
     }
@@ -150,6 +151,17 @@ public class ContentsPanel extends JPanel implements Subscriber {
             if (!dividerEvent.getSource().equals(this)) {
                 contentsSplitPane.setDividerLocation(dividerEvent.getNewValue());
             }
+        } else if (event instanceof DictionaryEvent) {
+            DictionaryEvent dictionaryEvent = (DictionaryEvent) event;
+            if (dictionaryEvent.getEventType().equals(Constants.EventType.DICTIONARY_EDIT)) {
+                SortedSet<DictionaryToggleButton> activeDictionaries = getShelf(false);
+                for (DictionaryToggleButton dictionaryToggleButton : activeDictionaries) {
+                    IDictionary dictionary = dictionaryToggleButton.getDictionary();
+                    if (dictionary.equals(dictionaryEvent.getDictionary())) {
+                        dictionaryToggleButton.setDictionary(dictionaryEvent.getDictionary());
+                    }
+                }
+            }
         }
     }
 
@@ -215,4 +227,5 @@ public class ContentsPanel extends JPanel implements Subscriber {
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
+
 }

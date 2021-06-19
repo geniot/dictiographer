@@ -14,12 +14,17 @@ import java.nio.file.Paths;
 
 public class DictionaryPopupMenu extends JPopupMenu {
     private JMenuItem deleteMenuItem;
+    private JMenuItem editMenuItem;
     private DictionaryToggleButton dictionaryToggleButton;
+    private MainFrame mainFrame;
 
-    public DictionaryPopupMenu(DictionaryToggleButton b) {
+    public DictionaryPopupMenu(DictionaryToggleButton b, MainFrame mf) {
         this.dictionaryToggleButton = b;
+        this.mainFrame = mf;
 
         deleteMenuItem = new JMenuItem("Delete");
+        editMenuItem = new JMenuItem("Edit");
+
         deleteMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -34,6 +39,16 @@ public class DictionaryPopupMenu extends JPopupMenu {
                 }
             }
         });
+
+        editMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                IDictionary dictionary = dictionaryToggleButton.getDictionary();
+                new DictionaryDialog(mainFrame, dictionary).setVisible(true);
+            }
+        });
+
+        add(editMenuItem);
         add(deleteMenuItem);
     }
 }

@@ -36,19 +36,37 @@ public class DictionaryDialog extends JDialog {
     private JTextArea annotationTextArea;
     private JButton iconButton;
 
-    private MainFrame frame;
+    private MainFrame mainFrame;
+    private IDictionary dictionary;
+
+    public DictionaryDialog(MainFrame mf, IDictionary d) {
+        this.mainFrame = mf;
+        this.dictionary = d;
+        init();
+        nameTextField.setText((String) d.getProperties().get(IDictionary.DictionaryProperty.NAME.name()));
+        annotationTextArea.setText((String) d.getProperties().get(IDictionary.DictionaryProperty.ANNOTATION.name()));
+        indexLanguageComboBox.setSelectedItem(findElementByCode(indexLanguageComboBox.getModel(), d.getIndexLanguage()));
+        contentsLanguageComboBox.setSelectedItem(findElementByCode(contentsLanguageComboBox.getModel(), d.getContentsLanguage()));
+        indexLanguageComboBox.setEnabled(false);
+        contentsLanguageComboBox.setEnabled(false);
+
+    }
 
     public DictionaryDialog(MainFrame f) {
-        this.frame = f;
+        this.mainFrame = f;
+        init();
+    }
+
+    private void init() {
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(contentPane, BorderLayout.CENTER);
         setModal(true);
-        setTitle(frame.resourceBundle.getString("dictionary.add.title"));
+        setTitle(mainFrame.resourceBundle.getString("dictionary.add.title"));
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         getRootPane().setDefaultButton(buttonOK);
         //todo location and size from settings
         setSize(430, 430);
-        setLocationRelativeTo(frame);
+        setLocationRelativeTo(mainFrame);
 
         indexLanguageComboBox.setRenderer(new DefaultListCellRenderer() {
             public Component getListCellRendererComponent(JList list, Object value,
@@ -83,8 +101,8 @@ public class DictionaryDialog extends JDialog {
         indexLanguageComboBox.setModel(defaultComboBoxModel1);
         contentsLanguageComboBox.setModel(defaultComboBoxModel2);
 
-        String defaultIndexLanguageCode = frame.properties.getProperty(frame.properties.getProperty(Constants.PropKeys.DEFAULT_INDEX_LANGUAGE.name()));
-        String defaultContentsLanguageCode = frame.properties.getProperty(frame.properties.getProperty(Constants.PropKeys.DEFAULT_CONTENTS_LANGUAGE.name()));
+        String defaultIndexLanguageCode = mainFrame.properties.getProperty(mainFrame.properties.getProperty(Constants.PropKeys.DEFAULT_INDEX_LANGUAGE.name()));
+        String defaultContentsLanguageCode = mainFrame.properties.getProperty(mainFrame.properties.getProperty(Constants.PropKeys.DEFAULT_CONTENTS_LANGUAGE.name()));
         indexLanguageComboBox.setSelectedItem(findElementByCode(indexLanguageComboBox.getModel(), defaultIndexLanguageCode));
         contentsLanguageComboBox.setSelectedItem(findElementByCode(contentsLanguageComboBox.getModel(), defaultContentsLanguageCode));
 
@@ -118,13 +136,12 @@ public class DictionaryDialog extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-
     }
 
     private LanguageElement findElementByCode(ComboBoxModel model, String code) {
         for (int i = 0; i < model.getSize(); i++) {
             LanguageElement languageElement = (LanguageElement) model.getElementAt(i);
-            if (languageElement.getCode().equals(code)) {
+            if (languageElement.getCode().equalsIgnoreCase(code)) {
                 return languageElement;
             }
         }
@@ -132,7 +149,7 @@ public class DictionaryDialog extends JDialog {
     }
 
     private void initLang(DefaultComboBoxModel comboBoxModel) {
-        SortedSet<LanguageElement> langs = frame.getLangs();
+        SortedSet<LanguageElement> langs = mainFrame.getLangs();
         for (LanguageElement lang : langs) {
             comboBoxModel.addElement(lang);
         }
@@ -144,14 +161,20 @@ public class DictionaryDialog extends JDialog {
 
     private void onOK() {
         Map<String, Serializable> properties = getData();
-        String dictionaryFileName =
-                Constants.DICT_DIR_NAME + File.separator +
-                        properties.get(IDictionary.DictionaryProperty.INDEX_LANGUAGE.name()) + "_" +
-                        properties.get(IDictionary.DictionaryProperty.CONTENTS_LANGUAGE.name()) + "_" +
-                        System.currentTimeMillis() + ".zip";
-        IDictionary dictionary = new ZipDictionary(URI.create("jar:" + new File(dictionaryFileName).toURI()));
-        dictionary.setProperties(properties);
-        EventService.getInstance().publish(new DictionaryEvent(dictionary, Constants.EventType.DICTIONARY_ADD));
+        if (dictionary == null) {
+            String dictionaryFileName =
+                    Constants.DICT_DIR_NAME + File.separator +
+                            properties.get(IDictionary.DictionaryProperty.INDEX_LANGUAGE.name()) + "_" +
+                            properties.get(IDictionary.DictionaryProperty.CONTENTS_LANGUAGE.name()) + "_" +
+                            System.currentTimeMillis() + ".zip";
+            dictionary = new ZipDictionary(URI.create("jar:" + new File(dictionaryFileName).toURI()));
+            dictionary.setProperties(properties);
+            EventService.getInstance().publish(new DictionaryEvent(dictionary, Constants.EventType.DICTIONARY_ADD));
+        } else {
+            dictionary.setProperties(properties);
+            EventService.getInstance().publish(new DictionaryEvent(dictionary, Constants.EventType.DICTIONARY_EDIT));
+        }
+
         dispose();
     }
 

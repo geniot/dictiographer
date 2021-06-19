@@ -350,6 +350,7 @@ public class ZipDictionary implements IDictionary {
         try {
             zipFileSystem = FileSystems.newFileSystem(uri, env);
             Path pathInZipFile = zipFileSystem.getPath(PROPS);
+            Files.deleteIfExists(pathInZipFile);
             Files.write(pathInZipFile, Utils.serialize(properties));
         } catch (Exception ex) {
             ex.printStackTrace();

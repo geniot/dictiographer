@@ -16,20 +16,18 @@ import java.util.Map;
 public class DictionaryToggleButton extends JToggleButton implements Comparable<DictionaryToggleButton> {
 
     private IDictionary dictionary;
+    private MainFrame mainFrame;
 
-    public DictionaryToggleButton(IDictionary d) {
+    public DictionaryToggleButton(IDictionary d, MainFrame mf) {
         super();
-        this.dictionary = d;
+        this.mainFrame = mf;
+
+        setDictionary(d);
 
         setFocusPainted(false);
         setBorderPainted(true);
         setSelected(true);
         setFocusable(false);
-
-        Map<String, Serializable> properties = dictionary.getProperties();
-
-        setToolTipText((String) properties.get(IDictionary.DictionaryProperty.NAME.name()));
-        setIcon(new ImageIcon((byte[]) properties.get(IDictionary.DictionaryProperty.ICON.name())));
 
         setOpaque(true);
         setContentAreaFilled(false);
@@ -62,7 +60,7 @@ public class DictionaryToggleButton extends JToggleButton implements Comparable<
 
             private void maybeShowPopup(MouseEvent e) {
                 if (e.isPopupTrigger()) {
-                    DictionaryPopupMenu popup = new DictionaryPopupMenu(DictionaryToggleButton.this);
+                    DictionaryPopupMenu popup = new DictionaryPopupMenu(DictionaryToggleButton.this, mainFrame);
                     popup.show(e.getComponent(), e.getX(), e.getY());
                 }
             }
@@ -76,5 +74,12 @@ public class DictionaryToggleButton extends JToggleButton implements Comparable<
     @Override
     public int compareTo(DictionaryToggleButton o) {
         return this.dictionary.compareTo(o.dictionary);
+    }
+
+    public void setDictionary(IDictionary d) {
+        this.dictionary = d;
+        Map<String, Serializable> properties = dictionary.getProperties();
+        setToolTipText((String) properties.get(IDictionary.DictionaryProperty.NAME.name()));
+        setIcon(new ImageIcon((byte[]) properties.get(IDictionary.DictionaryProperty.ICON.name())));
     }
 }
