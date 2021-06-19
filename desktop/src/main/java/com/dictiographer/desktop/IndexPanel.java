@@ -12,10 +12,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.Locale;
 import java.util.SortedSet;
 
@@ -76,8 +73,24 @@ public class IndexPanel extends JPanel implements ListSelectionListener, Subscri
         indexList.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                super.componentResized(e);
-                updateIndex();
+                int count = (int) (indexList.getSize().getHeight() / listCellRendererHeight);
+                if (count == indexList.getModel().getSize()) {
+                    return;
+                } else {
+                    updateIndex();
+                }
+            }
+        });
+
+        indexList.addMouseWheelListener(new MouseWheelListener() {
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e) {
+                int notches = e.getWheelRotation();
+                if (notches < 0 && indexList.getSelectedIndex() > 0) {
+                    indexList.setSelectedIndex(indexList.getSelectedIndex() - 1);
+                } else if (notches > 0 && indexList.getSelectedIndex() < indexList.getModel().getSize() - 1) {
+                    indexList.setSelectedIndex(indexList.getSelectedIndex() + 1);
+                }
             }
         });
 
@@ -137,7 +150,7 @@ public class IndexPanel extends JPanel implements ListSelectionListener, Subscri
             indexView.addAll(fullIndex);
         } else {
             int index = fullIndex.entryIndex(selectedHeadword);
-            while (indexView.size() < count && selectedIndex > 0 && index >= 0) {
+            while (indexView.size() < count && selectedIndex >= 0 && index >= 0) {
                 indexView.add(fullIndex.exact(index--));
                 --selectedIndex;
             }
