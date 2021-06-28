@@ -3,7 +3,7 @@ package com.dictiographer.desktop;
 import com.dictiographer.desktop.event.EntryEvent;
 import com.dictiographer.desktop.event.EventService;
 import com.dictiographer.desktop.model.DictionaryEntry;
-import com.dictiographer.shared.model.IDictionary;
+import io.github.geniot.dictiographer.model.IDictionary;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;

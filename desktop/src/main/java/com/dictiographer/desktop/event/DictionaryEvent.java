@@ -1,7 +1,7 @@
 package com.dictiographer.desktop.event;
 
 import com.dictiographer.desktop.Constants;
-import com.dictiographer.shared.model.IDictionary;
+import io.github.geniot.dictiographer.model.IDictionary;
 
 public class DictionaryEvent extends BaseEvent {
     private IDictionary dictionary;

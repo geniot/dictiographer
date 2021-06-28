@@ -2,8 +2,8 @@ package com.dictiographer.desktop;
 
 import com.dictiographer.desktop.event.DictionaryEvent;
 import com.dictiographer.desktop.event.EventService;
-import com.dictiographer.shared.model.IDictionary;
-import com.dictiographer.shared.model.ZipDictionary;
+import io.github.geniot.dictiographer.model.IDictionary;
+import io.github.geniot.dictiographer.model.ZipDictionary;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;

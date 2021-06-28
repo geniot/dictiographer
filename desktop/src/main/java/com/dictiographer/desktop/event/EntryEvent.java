@@ -2,7 +2,7 @@ package com.dictiographer.desktop.event;
 
 import com.dictiographer.desktop.Constants;
 import com.dictiographer.desktop.model.DictionaryEntry;
-import com.dictiographer.shared.model.IDictionary;
+import io.github.geniot.dictiographer.model.IDictionary;
 
 public class EntryEvent extends BaseEvent {
 

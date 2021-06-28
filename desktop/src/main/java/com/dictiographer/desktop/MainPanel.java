@@ -3,7 +3,7 @@ package com.dictiographer.desktop;
 
 import com.dictiographer.desktop.event.Event;
 import com.dictiographer.desktop.event.*;
-import com.dictiographer.shared.model.IDictionary;
+import io.github.geniot.dictiographer.model.IDictionary;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
