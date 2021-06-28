@@ -2,7 +2,7 @@ package com.dictiographer.desktop;
 
 import com.dictiographer.desktop.event.Event;
 import com.dictiographer.desktop.event.*;
-import com.dictiographer.shared.collections.IndexedTreeSet;
+import io.github.geniot.indexedtreemap.IndexedTreeSet;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

@@ -1,6 +1,6 @@
 package com.dictiographer.shared.model;
 
-import com.dictiographer.shared.collections.IndexedTreeSet;
+import io.github.geniot.indexedtreemap.IndexedTreeSet;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

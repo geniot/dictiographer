@@ -1,6 +1,7 @@
 package com.dictiographer.shared.model;
 
-import com.dictiographer.shared.collections.IndexedTreeSet;
+
+import io.github.geniot.indexedtreemap.IndexedTreeSet;
 
 import java.io.Serializable;
 import java.util.Map;

@@ -1,7 +1,8 @@
 package com.dictiographer.shared.model;
 
-import com.dictiographer.shared.collections.IndexedTreeSet;
+
 import com.dictiographer.shared.model.lucene.SerializableRAMDirectory;
+import io.github.geniot.indexedtreemap.IndexedTreeSet;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
