@@ -27,6 +27,7 @@
         <module>desktop</module>
         <module>server</module>
         <module>shared</module>
+        <module>compiler</module>
     </modules>
 
     <dependencies>
@@ -89,6 +90,37 @@
             <groupId>io.github.geniot</groupId>
             <artifactId>indexedtreemap</artifactId>
             <version>1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.intellij</groupId>
+            <artifactId>forms_rt</artifactId>
+            <version>7.0.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.xhtmlrenderer</groupId>
+            <artifactId>flying-saucer-core</artifactId>
+            <version>9.1.22</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.jtattoo</groupId>
+            <artifactId>JTattoo</artifactId>
+            <version>1.6.13</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.31</version>
         </dependency>
 
     </dependencies>
