@@ -4,6 +4,10 @@ import com.dictiographer.desktop.event.Event;
 import com.dictiographer.desktop.event.*;
 import io.github.geniot.dictiographer.model.IDictionary;
 import io.github.geniot.dictiographer.model.ZipDictionary;
+import org.apache.commons.io.monitor.FileAlterationListener;
+import org.apache.commons.io.monitor.FileAlterationListenerAdaptor;
+import org.apache.commons.io.monitor.FileAlterationMonitor;
+import org.apache.commons.io.monitor.FileAlterationObserver;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.net.URI;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -41,8 +46,35 @@ public class MainFrame extends JFrame implements Subscriber {
         EventService.getInstance().subscribe(DictionaryEvent.class, null, this);
         EventService.getInstance().subscribe(DictionaryAllDeletedEvent.class, null, this);
 
+        Path dictionariesDirectoryPath = null;
         try {
-            Files.createDirectories(Paths.get(Constants.DICT_DIR_NAME));
+            dictionariesDirectoryPath = Files.createDirectories(Paths.get(Constants.DICT_DIR_NAME));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            FileAlterationObserver observer = new FileAlterationObserver(dictionariesDirectoryPath.toFile());
+            FileAlterationMonitor monitor = new FileAlterationMonitor(5000);
+            FileAlterationListener listener = new FileAlterationListenerAdaptor() {
+                @Override
+                public void onFileCreate(File file) {
+                    System.out.println("onFileCreate " + file);
+                }
+
+                @Override
+                public void onFileDelete(File file) {
+                    System.out.println("onFileDelete " + file);
+                }
+
+                @Override
+                public void onFileChange(File file) {
+                    System.out.println("onFileChange " + file);
+                }
+            };
+            observer.addListener(listener);
+            monitor.addObserver(observer);
+            monitor.start();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -148,13 +180,17 @@ public class MainFrame extends JFrame implements Subscriber {
         pack();
 
         try {
+            boolean isDictionariesPresent = false;
             String[] dictionaryFileNames = new File(Constants.DICT_DIR_NAME).list();
             for (String dictionaryFileName : dictionaryFileNames) {
-                URI uri = URI.create("jar:" + new File(Constants.DICT_DIR_NAME + File.separator + dictionaryFileName).toURI());
-                IDictionary dictionary = new ZipDictionary(uri);
-                mainPanel.addDictionary(dictionary);
+                if (dictionaryFileName.endsWith(".zip")) {
+                    isDictionariesPresent = true;
+                    URI uri = URI.create("jar:" + new File(Constants.DICT_DIR_NAME + File.separator + dictionaryFileName).toURI());
+                    IDictionary dictionary = new ZipDictionary(uri);
+                    mainPanel.addDictionary(dictionary);
+                }
             }
-            if (dictionaryFileNames.length > 0) {
+            if (isDictionariesPresent) {
                 cardLayout.show(cards, MainViews.MAIN.name());
             }
         } catch (Exception ex) {
