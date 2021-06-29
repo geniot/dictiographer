@@ -10,8 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.Serializable;
-import java.util.Map;
+import java.util.Properties;
 
 public class DictionaryToggleButton extends JToggleButton implements Comparable<DictionaryToggleButton> {
 
@@ -78,8 +77,8 @@ public class DictionaryToggleButton extends JToggleButton implements Comparable<
 
     public void setDictionary(IDictionary d) {
         this.dictionary = d;
-        Map<String, Serializable> properties = dictionary.getProperties();
-        setToolTipText((String) properties.get(IDictionary.DictionaryProperty.NAME.name()));
-        setIcon(new ImageIcon((byte[]) properties.get(IDictionary.DictionaryProperty.ICON.name())));
+        Properties properties = dictionary.getProperties();
+        setToolTipText(properties.getProperty(IDictionary.DictionaryProperty.NAME.name()));
+        setIcon(new ImageIcon(dictionary.getIcon()));
     }
 }

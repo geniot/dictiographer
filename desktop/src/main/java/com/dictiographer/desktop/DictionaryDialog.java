@@ -160,7 +160,7 @@ public class DictionaryDialog extends JDialog {
     }
 
     private void onOK() {
-        Map<String, Serializable> properties = getData();
+        Properties properties = getData();
         if (dictionary == null) {
             String dictionaryFileName =
                     Constants.DICT_DIR_NAME + File.separator +
@@ -169,24 +169,25 @@ public class DictionaryDialog extends JDialog {
                             System.currentTimeMillis() + ".zip";
             dictionary = new ZipDictionary(URI.create("jar:" + new File(dictionaryFileName).toURI()));
             dictionary.setProperties(properties);
+            dictionary.setIcon(getIconBytes());
             EventService.getInstance().publish(new DictionaryEvent(dictionary, Constants.EventType.DICTIONARY_ADD));
         } else {
             dictionary.setProperties(properties);
+            dictionary.setIcon(getIconBytes());
             EventService.getInstance().publish(new DictionaryEvent(dictionary, Constants.EventType.DICTIONARY_EDIT));
         }
 
         dispose();
     }
 
-    public Map<String, Serializable> getData() {
-        Map<String, Serializable> properties = new HashMap<>();
+    public Properties getData() {
+        Properties properties = new Properties();
         properties.put(IDictionary.DictionaryProperty.NAME.name(), nameTextField.getText().trim());
         properties.put(IDictionary.DictionaryProperty.ANNOTATION.name(), annotationTextArea.getText().trim());
         String indexLanguage = ((LanguageElement) indexLanguageComboBox.getSelectedItem()).getCode();
         String contentsLanguage = ((LanguageElement) contentsLanguageComboBox.getSelectedItem()).getCode();
         properties.put(IDictionary.DictionaryProperty.INDEX_LANGUAGE.name(), indexLanguage);
         properties.put(IDictionary.DictionaryProperty.CONTENTS_LANGUAGE.name(), contentsLanguage);
-        properties.put(IDictionary.DictionaryProperty.ICON.name(), getIconBytes());
         return properties;
     }
 
